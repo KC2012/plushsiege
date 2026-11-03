@@ -1,0 +1,2255 @@
+[
+  {
+    "version": 1,
+    "id": "molten-01",
+    "world": "molten",
+    "name": "Toast of the Town",
+    "subtitle": "Knock the wooden roof into the heat band before it reaches the courtyard.",
+    "bounds": {
+      "width": 1700,
+      "height": 810,
+      "ground": 675
+    },
+    "sling": {
+      "x": 235,
+      "y": 530
+    },
+    "projectiles": [
+      "sheep",
+      "duck",
+      "bear",
+      "rabbit"
+    ],
+    "blocks": [
+      {
+        "id": "toast-l0",
+        "x": 920,
+        "y": 627,
+        "w": 18,
+        "h": 96,
+        "material": "wood"
+      },
+      {
+        "id": "toast-r0",
+        "x": 1040,
+        "y": 627,
+        "w": 18,
+        "h": 96,
+        "material": "wood"
+      },
+      {
+        "id": "toast-roof0",
+        "x": 980,
+        "y": 570,
+        "w": 160,
+        "h": 18,
+        "material": "wood"
+      },
+      {
+        "id": "toast-l1",
+        "x": 920,
+        "y": 513,
+        "w": 18,
+        "h": 96,
+        "material": "wood"
+      },
+      {
+        "id": "toast-r1",
+        "x": 1040,
+        "y": 513,
+        "w": 18,
+        "h": 96,
+        "material": "wood"
+      },
+      {
+        "id": "toast-roof1",
+        "x": 980,
+        "y": 456,
+        "w": 160,
+        "h": 18,
+        "material": "wood"
+      }
+    ],
+    "monsters": [
+      {
+        "id": "toast-m0",
+        "x": 980,
+        "y": 657,
+        "radius": 18,
+        "kind": "horn"
+      },
+      {
+        "id": "toast-m1",
+        "x": 980,
+        "y": 543,
+        "radius": 18,
+        "kind": "blob"
+      }
+    ],
+    "hazards": [],
+    "terrain": [],
+    "props": [],
+    "joints": [],
+    "mechanisms": [],
+    "zones": [
+      {
+        "id": "heat-band",
+        "kind": "heat",
+        "x": 1125,
+        "y": 560,
+        "w": 90,
+        "h": 220,
+        "rate": 5
+      }
+    ],
+    "thresholds": [
+      10000,
+      13000,
+      16000
+    ],
+    "par": 2,
+    "camera": {
+      "start": "sling"
+    },
+    "metadata": {
+      "category": "puzzle",
+      "idea": "Knock the wooden roof into the heat band before it reaches the courtyard.",
+      "mechanics": [
+        "heat-sensitive wood"
+      ],
+      "author": "Plush Siege production pass 4"
+    }
+  },
+  {
+    "version": 1,
+    "id": "molten-02",
+    "world": "molten",
+    "name": "Mind the Gap",
+    "subtitle": "The lava is below the ledge. The tenants prefer to stay above it.",
+    "bounds": {
+      "width": 1900,
+      "height": 1035,
+      "ground": 900
+    },
+    "sling": {
+      "x": 235,
+      "y": 755
+    },
+    "projectiles": [
+      "duck",
+      "sheep",
+      "bear",
+      "rabbit"
+    ],
+    "blocks": [
+      {
+        "id": "ledge-l0",
+        "x": 1030,
+        "y": 689,
+        "w": 18,
+        "h": 96,
+        "material": "glass"
+      },
+      {
+        "id": "ledge-r0",
+        "x": 1150,
+        "y": 689,
+        "w": 18,
+        "h": 96,
+        "material": "glass"
+      },
+      {
+        "id": "ledge-roof0",
+        "x": 1090,
+        "y": 632,
+        "w": 160,
+        "h": 18,
+        "material": "wood"
+      }
+    ],
+    "monsters": [
+      {
+        "id": "ledge-m0",
+        "x": 1090,
+        "y": 719,
+        "radius": 18,
+        "kind": "horn"
+      }
+    ],
+    "hazards": [],
+    "terrain": [
+      {
+        "id": "lava-shelf",
+        "x": 1090,
+        "y": 750,
+        "w": 450,
+        "h": 26,
+        "material": "stone"
+      }
+    ],
+    "props": [],
+    "joints": [],
+    "mechanisms": [],
+    "zones": [
+      {
+        "id": "lava-pool",
+        "kind": "lava",
+        "x": 1100,
+        "y": 872,
+        "w": 600,
+        "h": 54,
+        "rate": 70
+      }
+    ],
+    "thresholds": [
+      5000,
+      8000,
+      11000
+    ],
+    "par": 2,
+    "camera": {
+      "start": "overview"
+    },
+    "metadata": {
+      "category": "puzzle",
+      "idea": "The lava is below the ledge. The tenants prefer to stay above it.",
+      "mechanics": [
+        "lava",
+        "raised terrain",
+        "falling targets"
+      ],
+      "author": "Plush Siege production pass 4"
+    }
+  },
+  {
+    "version": 1,
+    "id": "molten-03",
+    "world": "molten",
+    "name": "Pressure Problems",
+    "subtitle": "Break the glass control post to wake the pressure vent.",
+    "bounds": {
+      "width": 1700,
+      "height": 810,
+      "ground": 675
+    },
+    "sling": {
+      "x": 235,
+      "y": 530
+    },
+    "projectiles": [
+      "duck",
+      "bear",
+      "rabbit",
+      "sheep"
+    ],
+    "blocks": [
+      {
+        "id": "valve",
+        "x": 800,
+        "y": 630,
+        "w": 20,
+        "h": 90,
+        "material": "glass"
+      },
+      {
+        "id": "chimney-l0",
+        "x": 1150,
+        "y": 615,
+        "w": 18,
+        "h": 96,
+        "material": "wood"
+      },
+      {
+        "id": "chimney-r0",
+        "x": 1270,
+        "y": 615,
+        "w": 18,
+        "h": 96,
+        "material": "wood"
+      },
+      {
+        "id": "chimney-roof0",
+        "x": 1210,
+        "y": 558,
+        "w": 160,
+        "h": 18,
+        "material": "glass"
+      },
+      {
+        "id": "chimney-l1",
+        "x": 1150,
+        "y": 501,
+        "w": 18,
+        "h": 96,
+        "material": "wood"
+      },
+      {
+        "id": "chimney-r1",
+        "x": 1270,
+        "y": 501,
+        "w": 18,
+        "h": 96,
+        "material": "wood"
+      },
+      {
+        "id": "chimney-roof1",
+        "x": 1210,
+        "y": 444,
+        "w": 160,
+        "h": 18,
+        "material": "glass"
+      }
+    ],
+    "monsters": [
+      {
+        "id": "chimney-m0",
+        "x": 1210,
+        "y": 645,
+        "radius": 18,
+        "kind": "horn"
+      },
+      {
+        "id": "chimney-m1",
+        "x": 1210,
+        "y": 531,
+        "radius": 18,
+        "kind": "blob"
+      }
+    ],
+    "hazards": [],
+    "terrain": [
+      {
+        "id": "pressure-runway",
+        "x": 1150,
+        "y": 675,
+        "w": 500,
+        "h": 24,
+        "material": "metal",
+        "friction": 0.02
+      }
+    ],
+    "props": [
+      {
+        "id": "pressure-ball",
+        "kind": "boulder",
+        "x": 1040,
+        "y": 623,
+        "radius": 40,
+        "material": "stone"
+      }
+    ],
+    "joints": [],
+    "mechanisms": [
+      {
+        "id": "pressure-vent",
+        "kind": "vent",
+        "x": 1040,
+        "y": 570,
+        "w": 120,
+        "h": 210,
+        "force": 0.006,
+        "speed": 1,
+        "axis": "x",
+        "trigger": "valve"
+      }
+    ],
+    "zones": [],
+    "thresholds": [
+      10000,
+      13000,
+      16000
+    ],
+    "par": 2,
+    "camera": {
+      "start": "sling"
+    },
+    "metadata": {
+      "category": "puzzle",
+      "idea": "Break the glass control post to wake the pressure vent.",
+      "mechanics": [
+        "trigger",
+        "vent",
+        "boulder"
+      ],
+      "author": "Plush Siege production pass 4"
+    }
+  },
+  {
+    "version": 1,
+    "id": "molten-04",
+    "world": "molten",
+    "name": "Hot Potato",
+    "subtitle": "A suspended powder crate has a warm landing waiting for it.",
+    "bounds": {
+      "width": 1950,
+      "height": 1035,
+      "ground": 900
+    },
+    "sling": {
+      "x": 235,
+      "y": 755
+    },
+    "projectiles": [
+      "bear",
+      "duck",
+      "rabbit",
+      "sheep"
+    ],
+    "blocks": [
+      {
+        "id": "potato-deck0",
+        "x": 986,
+        "y": 680,
+        "w": 100,
+        "h": 18,
+        "material": "wood"
+      },
+      {
+        "id": "potato-deck1",
+        "x": 1090,
+        "y": 680,
+        "w": 100,
+        "h": 18,
+        "material": "wood"
+      },
+      {
+        "id": "potato-deck2",
+        "x": 1194,
+        "y": 680,
+        "w": 100,
+        "h": 18,
+        "material": "wood"
+      }
+    ],
+    "monsters": [
+      {
+        "id": "potato-rider0",
+        "x": 986,
+        "y": 653,
+        "radius": 18,
+        "kind": "horn"
+      },
+      {
+        "id": "potato-rider1",
+        "x": 1090,
+        "y": 653,
+        "radius": 18,
+        "kind": "blob"
+      },
+      {
+        "id": "potato-rider2",
+        "x": 1194,
+        "y": 653,
+        "radius": 18,
+        "kind": "horn"
+      }
+    ],
+    "hazards": [
+      {
+        "id": "potato-charge",
+        "x": 1310,
+        "y": 880,
+        "kind": "tnt"
+      }
+    ],
+    "terrain": [],
+    "props": [],
+    "joints": [
+      {
+        "id": "potato-cable0--1",
+        "kind": "rope",
+        "pointA": {
+          "x": 951,
+          "y": 530
+        },
+        "bodyB": "potato-deck0",
+        "pointB": {
+          "x": -35,
+          "y": 0
+        },
+        "length": 150,
+        "stiffness": 0.85,
+        "damping": 0.12,
+        "breakForce": 0.065
+      },
+      {
+        "id": "potato-cable0-1",
+        "kind": "rope",
+        "pointA": {
+          "x": 1021,
+          "y": 530
+        },
+        "bodyB": "potato-deck0",
+        "pointB": {
+          "x": 35,
+          "y": 0
+        },
+        "length": 150,
+        "stiffness": 0.85,
+        "damping": 0.12,
+        "breakForce": 0.065
+      },
+      {
+        "id": "potato-cable1--1",
+        "kind": "rope",
+        "pointA": {
+          "x": 1055,
+          "y": 530
+        },
+        "bodyB": "potato-deck1",
+        "pointB": {
+          "x": -35,
+          "y": 0
+        },
+        "length": 150,
+        "stiffness": 0.85,
+        "damping": 0.12,
+        "breakForce": 0.065
+      },
+      {
+        "id": "potato-cable1-1",
+        "kind": "rope",
+        "pointA": {
+          "x": 1125,
+          "y": 530
+        },
+        "bodyB": "potato-deck1",
+        "pointB": {
+          "x": 35,
+          "y": 0
+        },
+        "length": 150,
+        "stiffness": 0.85,
+        "damping": 0.12,
+        "breakForce": 0.065
+      },
+      {
+        "id": "potato-link1",
+        "kind": "rope",
+        "bodyA": "potato-deck0",
+        "pointA": {
+          "x": 50,
+          "y": 0
+        },
+        "bodyB": "potato-deck1",
+        "pointB": {
+          "x": -50,
+          "y": 0
+        },
+        "length": 4,
+        "stiffness": 0.7,
+        "damping": 0.1,
+        "breakForce": 0.09
+      },
+      {
+        "id": "potato-cable2--1",
+        "kind": "rope",
+        "pointA": {
+          "x": 1159,
+          "y": 530
+        },
+        "bodyB": "potato-deck2",
+        "pointB": {
+          "x": -35,
+          "y": 0
+        },
+        "length": 150,
+        "stiffness": 0.85,
+        "damping": 0.12,
+        "breakForce": 0.065
+      },
+      {
+        "id": "potato-cable2-1",
+        "kind": "rope",
+        "pointA": {
+          "x": 1229,
+          "y": 530
+        },
+        "bodyB": "potato-deck2",
+        "pointB": {
+          "x": 35,
+          "y": 0
+        },
+        "length": 150,
+        "stiffness": 0.85,
+        "damping": 0.12,
+        "breakForce": 0.065
+      },
+      {
+        "id": "potato-link2",
+        "kind": "rope",
+        "bodyA": "potato-deck1",
+        "pointA": {
+          "x": 50,
+          "y": 0
+        },
+        "bodyB": "potato-deck2",
+        "pointB": {
+          "x": -50,
+          "y": 0
+        },
+        "length": 4,
+        "stiffness": 0.7,
+        "damping": 0.1,
+        "breakForce": 0.09
+      }
+    ],
+    "mechanisms": [],
+    "zones": [
+      {
+        "id": "kiln",
+        "kind": "heat",
+        "x": 1090,
+        "y": 835,
+        "w": 440,
+        "h": 120,
+        "rate": 14
+      }
+    ],
+    "thresholds": [
+      15000,
+      18000,
+      21000
+    ],
+    "par": 2,
+    "camera": {
+      "start": "overview"
+    },
+    "metadata": {
+      "category": "puzzle",
+      "idea": "A suspended powder crate has a warm landing waiting for it.",
+      "mechanics": [
+        "suspended platforms",
+        "heat",
+        "explosive"
+      ],
+      "author": "Plush Siege production pass 4"
+    }
+  },
+  {
+    "version": 1,
+    "id": "molten-05",
+    "world": "molten",
+    "name": "Basalt Bathtub",
+    "subtitle": "The stone shell is safe. Its wooden floor supports are less fortunate.",
+    "bounds": {
+      "width": 2250,
+      "height": 1135,
+      "ground": 1000
+    },
+    "sling": {
+      "x": 235,
+      "y": 855
+    },
+    "projectiles": [
+      "bear",
+      "duck",
+      "bear",
+      "rabbit",
+      "sheep"
+    ],
+    "blocks": [
+      {
+        "id": "basalt-pier-1",
+        "x": 1018,
+        "y": 930,
+        "w": 48,
+        "h": 140,
+        "material": "stone"
+      },
+      {
+        "id": "basalt-shoulder-1",
+        "x": 1030,
+        "y": 848,
+        "w": 68,
+        "h": 24,
+        "material": "stone"
+      },
+      {
+        "id": "basalt-pier1",
+        "x": 1222,
+        "y": 930,
+        "w": 48,
+        "h": 140,
+        "material": "stone"
+      },
+      {
+        "id": "basalt-shoulder1",
+        "x": 1210,
+        "y": 848,
+        "w": 68,
+        "h": 24,
+        "material": "stone"
+      },
+      {
+        "id": "basalt-keystone",
+        "x": 1120,
+        "y": 826,
+        "w": 172,
+        "h": 20,
+        "material": "stone"
+      },
+      {
+        "id": "boiler-l0",
+        "x": 1060,
+        "y": 768,
+        "w": 18,
+        "h": 96,
+        "material": "wood"
+      },
+      {
+        "id": "boiler-r0",
+        "x": 1180,
+        "y": 768,
+        "w": 18,
+        "h": 96,
+        "material": "wood"
+      },
+      {
+        "id": "boiler-roof0",
+        "x": 1120,
+        "y": 711,
+        "w": 160,
+        "h": 18,
+        "material": "stone"
+      },
+      {
+        "id": "boiler-l1",
+        "x": 1060,
+        "y": 654,
+        "w": 18,
+        "h": 96,
+        "material": "wood"
+      },
+      {
+        "id": "boiler-r1",
+        "x": 1180,
+        "y": 654,
+        "w": 18,
+        "h": 96,
+        "material": "wood"
+      },
+      {
+        "id": "boiler-roof1",
+        "x": 1120,
+        "y": 597,
+        "w": 160,
+        "h": 18,
+        "material": "stone"
+      }
+    ],
+    "monsters": [
+      {
+        "id": "basalt-keeper",
+        "x": 1120,
+        "y": 982,
+        "radius": 18,
+        "kind": "horn"
+      },
+      {
+        "id": "boiler-m0",
+        "x": 1120,
+        "y": 798,
+        "radius": 18,
+        "kind": "horn"
+      },
+      {
+        "id": "boiler-m1",
+        "x": 1120,
+        "y": 684,
+        "radius": 18,
+        "kind": "blob"
+      }
+    ],
+    "hazards": [],
+    "terrain": [],
+    "props": [],
+    "joints": [],
+    "mechanisms": [],
+    "zones": [
+      {
+        "id": "hot-wall",
+        "kind": "heat",
+        "x": 1390,
+        "y": 860,
+        "w": 120,
+        "h": 260,
+        "rate": 7
+      }
+    ],
+    "thresholds": [
+      15000,
+      19500,
+      24000
+    ],
+    "par": 2,
+    "camera": {
+      "start": "overview"
+    },
+    "metadata": {
+      "category": "siege",
+      "idea": "The stone shell is safe. Its wooden floor supports are less fortunate.",
+      "mechanics": [
+        "arch",
+        "mixed materials",
+        "heat"
+      ],
+      "author": "Plush Siege production pass 4"
+    }
+  },
+  {
+    "version": 1,
+    "id": "molten-06",
+    "world": "molten",
+    "name": "Chimney Sweep",
+    "subtitle": "Updrafts carry a launched stuffie into the upper floors.",
+    "bounds": {
+      "width": 2500,
+      "height": 1585,
+      "ground": 1450
+    },
+    "sling": {
+      "x": 235,
+      "y": 1305
+    },
+    "projectiles": [
+      "duck",
+      "bear",
+      "rabbit",
+      "duck",
+      "bear",
+      "sheep"
+    ],
+    "blocks": [
+      {
+        "id": "chimney-l0",
+        "x": 1130,
+        "y": 1402,
+        "w": 36,
+        "h": 96,
+        "material": "wood"
+      },
+      {
+        "id": "chimney-r0",
+        "x": 1290,
+        "y": 1402,
+        "w": 36,
+        "h": 96,
+        "material": "wood"
+      },
+      {
+        "id": "chimney-roof0",
+        "x": 1210,
+        "y": 1345,
+        "w": 200,
+        "h": 18,
+        "material": "stone"
+      },
+      {
+        "id": "chimney-l1",
+        "x": 1130,
+        "y": 1288,
+        "w": 36,
+        "h": 96,
+        "material": "wood"
+      },
+      {
+        "id": "chimney-r1",
+        "x": 1290,
+        "y": 1288,
+        "w": 36,
+        "h": 96,
+        "material": "wood"
+      },
+      {
+        "id": "chimney-roof1",
+        "x": 1210,
+        "y": 1231,
+        "w": 200,
+        "h": 18,
+        "material": "stone"
+      },
+      {
+        "id": "chimney-l2",
+        "x": 1130,
+        "y": 1174,
+        "w": 36,
+        "h": 96,
+        "material": "wood"
+      },
+      {
+        "id": "chimney-r2",
+        "x": 1290,
+        "y": 1174,
+        "w": 36,
+        "h": 96,
+        "material": "wood"
+      },
+      {
+        "id": "chimney-roof2",
+        "x": 1210,
+        "y": 1117,
+        "w": 200,
+        "h": 18,
+        "material": "stone"
+      },
+      {
+        "id": "chimney-l3",
+        "x": 1130,
+        "y": 1060,
+        "w": 36,
+        "h": 96,
+        "material": "wood"
+      },
+      {
+        "id": "chimney-r3",
+        "x": 1290,
+        "y": 1060,
+        "w": 36,
+        "h": 96,
+        "material": "wood"
+      },
+      {
+        "id": "chimney-roof3",
+        "x": 1210,
+        "y": 1003,
+        "w": 200,
+        "h": 18,
+        "material": "stone"
+      }
+    ],
+    "monsters": [
+      {
+        "id": "chimney-m0",
+        "x": 1210,
+        "y": 1432,
+        "radius": 18,
+        "kind": "horn"
+      },
+      {
+        "id": "chimney-m1",
+        "x": 1210,
+        "y": 1318,
+        "radius": 18,
+        "kind": "blob"
+      },
+      {
+        "id": "chimney-m2",
+        "x": 1210,
+        "y": 1204,
+        "radius": 18,
+        "kind": "bat"
+      },
+      {
+        "id": "chimney-m3",
+        "x": 1210,
+        "y": 1090,
+        "radius": 18,
+        "kind": "horn"
+      }
+    ],
+    "hazards": [],
+    "terrain": [],
+    "props": [],
+    "joints": [],
+    "mechanisms": [
+      {
+        "id": "chimney-draft",
+        "kind": "vent",
+        "x": 820,
+        "y": 1010,
+        "w": 180,
+        "h": 700,
+        "force": 0.0028,
+        "speed": -1,
+        "axis": "y"
+      }
+    ],
+    "zones": [],
+    "thresholds": [
+      20000,
+      26000,
+      32000
+    ],
+    "par": 2,
+    "camera": {
+      "start": "overview"
+    },
+    "metadata": {
+      "category": "siege",
+      "idea": "Updrafts carry a launched stuffie into the upper floors.",
+      "mechanics": [
+        "tall fortress",
+        "vent flight",
+        "vertical inspection"
+      ],
+      "author": "Plush Siege production pass 4"
+    }
+  },
+  {
+    "version": 1,
+    "id": "molten-07",
+    "world": "molten",
+    "name": "Double Boiler",
+    "subtitle": "One control post releases two pressure columns.",
+    "bounds": {
+      "width": 2650,
+      "height": 1235,
+      "ground": 1100
+    },
+    "sling": {
+      "x": 235,
+      "y": 955
+    },
+    "projectiles": [
+      "duck",
+      "bear",
+      "rabbit",
+      "duck",
+      "sheep"
+    ],
+    "blocks": [
+      {
+        "id": "master-valve",
+        "x": 780,
+        "y": 1055,
+        "w": 20,
+        "h": 90,
+        "material": "glass"
+      },
+      {
+        "id": "boiler-fort0-l0",
+        "x": 1210,
+        "y": 1040,
+        "w": 18,
+        "h": 96,
+        "material": "glass"
+      },
+      {
+        "id": "boiler-fort0-r0",
+        "x": 1330,
+        "y": 1040,
+        "w": 18,
+        "h": 96,
+        "material": "glass"
+      },
+      {
+        "id": "boiler-fort0-roof0",
+        "x": 1270,
+        "y": 983,
+        "w": 160,
+        "h": 18,
+        "material": "wood"
+      },
+      {
+        "id": "boiler-fort0-l1",
+        "x": 1210,
+        "y": 926,
+        "w": 18,
+        "h": 96,
+        "material": "glass"
+      },
+      {
+        "id": "boiler-fort0-r1",
+        "x": 1330,
+        "y": 926,
+        "w": 18,
+        "h": 96,
+        "material": "glass"
+      },
+      {
+        "id": "boiler-fort0-roof1",
+        "x": 1270,
+        "y": 869,
+        "w": 160,
+        "h": 18,
+        "material": "wood"
+      },
+      {
+        "id": "boiler-fort1-l0",
+        "x": 1660,
+        "y": 1040,
+        "w": 18,
+        "h": 96,
+        "material": "glass"
+      },
+      {
+        "id": "boiler-fort1-r0",
+        "x": 1780,
+        "y": 1040,
+        "w": 18,
+        "h": 96,
+        "material": "glass"
+      },
+      {
+        "id": "boiler-fort1-roof0",
+        "x": 1720,
+        "y": 983,
+        "w": 160,
+        "h": 18,
+        "material": "wood"
+      },
+      {
+        "id": "boiler-fort1-l1",
+        "x": 1660,
+        "y": 926,
+        "w": 18,
+        "h": 96,
+        "material": "glass"
+      },
+      {
+        "id": "boiler-fort1-r1",
+        "x": 1780,
+        "y": 926,
+        "w": 18,
+        "h": 96,
+        "material": "glass"
+      },
+      {
+        "id": "boiler-fort1-roof1",
+        "x": 1720,
+        "y": 869,
+        "w": 160,
+        "h": 18,
+        "material": "wood"
+      }
+    ],
+    "monsters": [
+      {
+        "id": "boiler-fort0-m0",
+        "x": 1270,
+        "y": 1070,
+        "radius": 18,
+        "kind": "horn"
+      },
+      {
+        "id": "boiler-fort0-m1",
+        "x": 1270,
+        "y": 956,
+        "radius": 18,
+        "kind": "blob"
+      },
+      {
+        "id": "boiler-fort1-m0",
+        "x": 1720,
+        "y": 1070,
+        "radius": 18,
+        "kind": "horn"
+      },
+      {
+        "id": "boiler-fort1-m1",
+        "x": 1720,
+        "y": 956,
+        "radius": 18,
+        "kind": "blob"
+      }
+    ],
+    "hazards": [],
+    "terrain": [
+      {
+        "id": "boiler-runway0",
+        "x": 1200,
+        "y": 1100,
+        "w": 400,
+        "h": 24,
+        "material": "metal",
+        "friction": 0.02
+      },
+      {
+        "id": "boiler-runway1",
+        "x": 1650,
+        "y": 1100,
+        "w": 400,
+        "h": 24,
+        "material": "metal",
+        "friction": 0.02
+      }
+    ],
+    "props": [
+      {
+        "id": "boiler-ball0",
+        "kind": "boulder",
+        "x": 1100,
+        "y": 1050,
+        "radius": 38,
+        "material": "stone"
+      },
+      {
+        "id": "boiler-ball1",
+        "kind": "boulder",
+        "x": 1550,
+        "y": 1050,
+        "radius": 38,
+        "material": "stone"
+      }
+    ],
+    "joints": [],
+    "mechanisms": [
+      {
+        "id": "boiler-vent0",
+        "kind": "vent",
+        "x": 1100,
+        "y": 1000,
+        "w": 130,
+        "h": 200,
+        "force": 0.006,
+        "speed": 1,
+        "axis": "x",
+        "trigger": "master-valve"
+      },
+      {
+        "id": "boiler-vent1",
+        "kind": "vent",
+        "x": 1550,
+        "y": 1000,
+        "w": 130,
+        "h": 200,
+        "force": 0.006,
+        "speed": 1,
+        "axis": "x",
+        "trigger": "master-valve"
+      }
+    ],
+    "zones": [],
+    "thresholds": [
+      20000,
+      24500,
+      29000
+    ],
+    "par": 2,
+    "camera": {
+      "start": "overview"
+    },
+    "metadata": {
+      "category": "siege",
+      "idea": "One control post releases two pressure columns.",
+      "mechanics": [
+        "triggered twin vents",
+        "boulders"
+      ],
+      "author": "Plush Siege production pass 4"
+    }
+  },
+  {
+    "version": 1,
+    "id": "molten-08",
+    "world": "molten",
+    "name": "The Red Carpet",
+    "subtitle": "A line of powder hugs the lava rim beneath two gatehouses.",
+    "bounds": {
+      "width": 3100,
+      "height": 1335,
+      "ground": 1200
+    },
+    "sling": {
+      "x": 235,
+      "y": 1055
+    },
+    "projectiles": [
+      "duck",
+      "bear",
+      "rabbit",
+      "duck",
+      "bear",
+      "sheep"
+    ],
+    "blocks": [
+      {
+        "id": "red-gate-l0",
+        "x": 1010,
+        "y": 1152,
+        "w": 18,
+        "h": 96,
+        "material": "wood"
+      },
+      {
+        "id": "red-gate-r0",
+        "x": 1130,
+        "y": 1152,
+        "w": 18,
+        "h": 96,
+        "material": "wood"
+      },
+      {
+        "id": "red-gate-roof0",
+        "x": 1070,
+        "y": 1095,
+        "w": 160,
+        "h": 18,
+        "material": "stone"
+      },
+      {
+        "id": "red-gate-l1",
+        "x": 1010,
+        "y": 1038,
+        "w": 18,
+        "h": 96,
+        "material": "wood"
+      },
+      {
+        "id": "red-gate-r1",
+        "x": 1130,
+        "y": 1038,
+        "w": 18,
+        "h": 96,
+        "material": "wood"
+      },
+      {
+        "id": "red-gate-roof1",
+        "x": 1070,
+        "y": 981,
+        "w": 160,
+        "h": 18,
+        "material": "stone"
+      },
+      {
+        "id": "red-gate-l2",
+        "x": 1010,
+        "y": 924,
+        "w": 18,
+        "h": 96,
+        "material": "wood"
+      },
+      {
+        "id": "red-gate-r2",
+        "x": 1130,
+        "y": 924,
+        "w": 18,
+        "h": 96,
+        "material": "wood"
+      },
+      {
+        "id": "red-gate-roof2",
+        "x": 1070,
+        "y": 867,
+        "w": 160,
+        "h": 18,
+        "material": "stone"
+      },
+      {
+        "id": "red-palace-l0",
+        "x": 1900,
+        "y": 1152,
+        "w": 36,
+        "h": 96,
+        "material": "glass"
+      },
+      {
+        "id": "red-palace-r0",
+        "x": 2060,
+        "y": 1152,
+        "w": 36,
+        "h": 96,
+        "material": "glass"
+      },
+      {
+        "id": "red-palace-roof0",
+        "x": 1980,
+        "y": 1095,
+        "w": 200,
+        "h": 18,
+        "material": "wood"
+      },
+      {
+        "id": "red-palace-l1",
+        "x": 1900,
+        "y": 1038,
+        "w": 36,
+        "h": 96,
+        "material": "glass"
+      },
+      {
+        "id": "red-palace-r1",
+        "x": 2060,
+        "y": 1038,
+        "w": 36,
+        "h": 96,
+        "material": "glass"
+      },
+      {
+        "id": "red-palace-roof1",
+        "x": 1980,
+        "y": 981,
+        "w": 200,
+        "h": 18,
+        "material": "wood"
+      },
+      {
+        "id": "red-palace-l2",
+        "x": 1900,
+        "y": 924,
+        "w": 36,
+        "h": 96,
+        "material": "glass"
+      },
+      {
+        "id": "red-palace-r2",
+        "x": 2060,
+        "y": 924,
+        "w": 36,
+        "h": 96,
+        "material": "glass"
+      },
+      {
+        "id": "red-palace-roof2",
+        "x": 1980,
+        "y": 867,
+        "w": 200,
+        "h": 18,
+        "material": "wood"
+      },
+      {
+        "id": "red-palace-l3",
+        "x": 1900,
+        "y": 810,
+        "w": 36,
+        "h": 96,
+        "material": "glass"
+      },
+      {
+        "id": "red-palace-r3",
+        "x": 2060,
+        "y": 810,
+        "w": 36,
+        "h": 96,
+        "material": "glass"
+      },
+      {
+        "id": "red-palace-roof3",
+        "x": 1980,
+        "y": 753,
+        "w": 200,
+        "h": 18,
+        "material": "wood"
+      }
+    ],
+    "monsters": [
+      {
+        "id": "red-gate-m0",
+        "x": 1070,
+        "y": 1182,
+        "radius": 18,
+        "kind": "horn"
+      },
+      {
+        "id": "red-gate-m1",
+        "x": 1070,
+        "y": 1068,
+        "radius": 18,
+        "kind": "blob"
+      },
+      {
+        "id": "red-gate-m2",
+        "x": 1070,
+        "y": 954,
+        "radius": 18,
+        "kind": "bat"
+      },
+      {
+        "id": "red-palace-m0",
+        "x": 1980,
+        "y": 1182,
+        "radius": 18,
+        "kind": "horn"
+      },
+      {
+        "id": "red-palace-m1",
+        "x": 1980,
+        "y": 1068,
+        "radius": 18,
+        "kind": "blob"
+      },
+      {
+        "id": "red-palace-m2",
+        "x": 1980,
+        "y": 954,
+        "radius": 18,
+        "kind": "bat"
+      },
+      {
+        "id": "red-palace-m3",
+        "x": 1980,
+        "y": 840,
+        "radius": 18,
+        "kind": "horn"
+      }
+    ],
+    "hazards": [
+      {
+        "id": "red-relay0",
+        "x": 1200,
+        "y": 1180,
+        "kind": "tnt"
+      },
+      {
+        "id": "red-relay1",
+        "x": 1380,
+        "y": 1180,
+        "kind": "tnt"
+      },
+      {
+        "id": "red-relay4",
+        "x": 1855,
+        "y": 1180,
+        "kind": "tnt"
+      },
+      {
+        "id": "red-relay5",
+        "x": 2100,
+        "y": 1180,
+        "kind": "tnt"
+      },
+      {
+        "id": "red-relay6",
+        "x": 2280,
+        "y": 1180,
+        "kind": "tnt"
+      }
+    ],
+    "terrain": [],
+    "props": [],
+    "joints": [],
+    "mechanisms": [],
+    "zones": [
+      {
+        "id": "lava-rim",
+        "kind": "lava",
+        "x": 1590,
+        "y": 1185,
+        "w": 330,
+        "h": 25,
+        "rate": 80
+      }
+    ],
+    "thresholds": [
+      35000,
+      39500,
+      44000
+    ],
+    "par": 3,
+    "camera": {
+      "start": "overview"
+    },
+    "metadata": {
+      "category": "spectacle",
+      "idea": "A line of powder hugs the lava rim beneath two gatehouses.",
+      "mechanics": [
+        "powder relay",
+        "lava rim",
+        "protected fortresses"
+      ],
+      "author": "Plush Siege production pass 4"
+    }
+  },
+  {
+    "version": 1,
+    "id": "molten-09",
+    "world": "molten",
+    "name": "Magma Machine",
+    "subtitle": "The glass switch starts an iron hammer. Keep clear of the swing.",
+    "bounds": {
+      "width": 2650,
+      "height": 1235,
+      "ground": 1100
+    },
+    "sling": {
+      "x": 235,
+      "y": 955
+    },
+    "projectiles": [
+      "duck",
+      "bear",
+      "rabbit",
+      "sheep",
+      "bear"
+    ],
+    "blocks": [
+      {
+        "id": "hammer-switch",
+        "x": 800,
+        "y": 1055,
+        "w": 20,
+        "h": 90,
+        "material": "glass"
+      },
+      {
+        "id": "hammer",
+        "x": 1140,
+        "y": 900,
+        "w": 330,
+        "h": 22,
+        "angle": -1.5707963267948966,
+        "material": "metal"
+      },
+      {
+        "id": "hammer-house-l0",
+        "x": 1280,
+        "y": 1052,
+        "w": 18,
+        "h": 96,
+        "material": "wood"
+      },
+      {
+        "id": "hammer-house-r0",
+        "x": 1400,
+        "y": 1052,
+        "w": 18,
+        "h": 96,
+        "material": "wood"
+      },
+      {
+        "id": "hammer-house-roof0",
+        "x": 1340,
+        "y": 995,
+        "w": 160,
+        "h": 18,
+        "material": "glass"
+      },
+      {
+        "id": "hammer-house-l1",
+        "x": 1280,
+        "y": 938,
+        "w": 18,
+        "h": 96,
+        "material": "wood"
+      },
+      {
+        "id": "hammer-house-r1",
+        "x": 1400,
+        "y": 938,
+        "w": 18,
+        "h": 96,
+        "material": "wood"
+      },
+      {
+        "id": "hammer-house-roof1",
+        "x": 1340,
+        "y": 881,
+        "w": 160,
+        "h": 18,
+        "material": "glass"
+      }
+    ],
+    "monsters": [
+      {
+        "id": "hammer-house-m0",
+        "x": 1340,
+        "y": 1082,
+        "radius": 18,
+        "kind": "horn"
+      },
+      {
+        "id": "hammer-house-m1",
+        "x": 1340,
+        "y": 968,
+        "radius": 18,
+        "kind": "blob"
+      }
+    ],
+    "hazards": [
+      {
+        "id": "hammer-powder",
+        "x": 1225,
+        "y": 1080,
+        "kind": "tnt"
+      }
+    ],
+    "terrain": [],
+    "props": [],
+    "joints": [
+      {
+        "id": "hammer-axle",
+        "kind": "hinge",
+        "pointA": {
+          "x": 1140,
+          "y": 900
+        },
+        "bodyB": "hammer",
+        "pointB": {
+          "x": 0,
+          "y": 0
+        },
+        "length": 0,
+        "stiffness": 1
+      }
+    ],
+    "mechanisms": [
+      {
+        "id": "hammer-motor",
+        "kind": "motor",
+        "body": "hammer",
+        "speed": 3,
+        "trigger": "hammer-switch"
+      }
+    ],
+    "zones": [],
+    "thresholds": [
+      10000,
+      14500,
+      19000
+    ],
+    "par": 2,
+    "camera": {
+      "start": "overview"
+    },
+    "metadata": {
+      "category": "siege",
+      "idea": "The glass switch starts an iron hammer. Keep clear of the swing.",
+      "mechanics": [
+        "trigger",
+        "motor",
+        "rotating hammer"
+      ],
+      "author": "Plush Siege production pass 4"
+    }
+  },
+  {
+    "version": 1,
+    "id": "molten-10",
+    "world": "molten",
+    "name": "Volcano Orchestra",
+    "subtitle": "Break the pressure valve to send the breaching stone into the foundry. Its shared glass piers carry the entire upper factory.",
+    "bounds": {
+      "width": 3000,
+      "height": 1435,
+      "ground": 1300
+    },
+    "sling": {
+      "x": 235,
+      "y": 1155
+    },
+    "projectiles": [
+      "duck",
+      "bear",
+      "duck",
+      "rabbit",
+      "bear",
+      "sheep",
+      "duck",
+      "bear"
+    ],
+    "blocks": [
+      {
+        "id": "grand-pier-0-0",
+        "x": 1110,
+        "y": 1249,
+        "w": 44,
+        "h": 102,
+        "material": "wood"
+      },
+      {
+        "id": "grand-pier-0-1",
+        "x": 1330,
+        "y": 1249,
+        "w": 44,
+        "h": 102,
+        "material": "glass"
+      },
+      {
+        "id": "grand-pier-0-2",
+        "x": 1550,
+        "y": 1249,
+        "w": 44,
+        "h": 102,
+        "material": "wood"
+      },
+      {
+        "id": "grand-pier-0-3",
+        "x": 1770,
+        "y": 1249,
+        "w": 44,
+        "h": 102,
+        "material": "glass"
+      },
+      {
+        "id": "grand-floor-0-0",
+        "x": 1220,
+        "y": 1186,
+        "w": 218.6,
+        "h": 24,
+        "material": "wood"
+      },
+      {
+        "id": "grand-floor-0-1",
+        "x": 1440,
+        "y": 1186,
+        "w": 218.6,
+        "h": 24,
+        "material": "wood"
+      },
+      {
+        "id": "grand-floor-0-2",
+        "x": 1660,
+        "y": 1186,
+        "w": 218.6,
+        "h": 24,
+        "material": "wood"
+      },
+      {
+        "id": "grand-pier-1-0",
+        "x": 1110,
+        "y": 1123,
+        "w": 44,
+        "h": 102,
+        "material": "wood"
+      },
+      {
+        "id": "grand-pier-1-1",
+        "x": 1330,
+        "y": 1123,
+        "w": 44,
+        "h": 102,
+        "material": "wood"
+      },
+      {
+        "id": "grand-pier-1-2",
+        "x": 1550,
+        "y": 1123,
+        "w": 44,
+        "h": 102,
+        "material": "wood"
+      },
+      {
+        "id": "grand-pier-1-3",
+        "x": 1770,
+        "y": 1123,
+        "w": 44,
+        "h": 102,
+        "material": "wood"
+      },
+      {
+        "id": "grand-floor-1-0",
+        "x": 1220,
+        "y": 1060,
+        "w": 218.6,
+        "h": 24,
+        "material": "wood"
+      },
+      {
+        "id": "grand-floor-1-1",
+        "x": 1440,
+        "y": 1060,
+        "w": 218.6,
+        "h": 24,
+        "material": "wood"
+      },
+      {
+        "id": "grand-floor-1-2",
+        "x": 1660,
+        "y": 1060,
+        "w": 218.6,
+        "h": 24,
+        "material": "wood"
+      },
+      {
+        "id": "grand-pier-2-0",
+        "x": 1110,
+        "y": 997,
+        "w": 44,
+        "h": 102,
+        "material": "wood"
+      },
+      {
+        "id": "grand-pier-2-1",
+        "x": 1330,
+        "y": 997,
+        "w": 44,
+        "h": 102,
+        "material": "wood"
+      },
+      {
+        "id": "grand-pier-2-2",
+        "x": 1550,
+        "y": 997,
+        "w": 44,
+        "h": 102,
+        "material": "wood"
+      },
+      {
+        "id": "grand-pier-2-3",
+        "x": 1770,
+        "y": 997,
+        "w": 44,
+        "h": 102,
+        "material": "wood"
+      },
+      {
+        "id": "grand-floor-2-0",
+        "x": 1220,
+        "y": 934,
+        "w": 218.6,
+        "h": 24,
+        "material": "wood"
+      },
+      {
+        "id": "grand-floor-2-1",
+        "x": 1440,
+        "y": 934,
+        "w": 218.6,
+        "h": 24,
+        "material": "wood"
+      },
+      {
+        "id": "grand-floor-2-2",
+        "x": 1660,
+        "y": 934,
+        "w": 218.6,
+        "h": 24,
+        "material": "wood"
+      },
+      {
+        "id": "grand-pier-3-0",
+        "x": 1110,
+        "y": 871,
+        "w": 44,
+        "h": 102,
+        "material": "wood"
+      },
+      {
+        "id": "grand-pier-3-1",
+        "x": 1330,
+        "y": 871,
+        "w": 44,
+        "h": 102,
+        "material": "wood"
+      },
+      {
+        "id": "grand-pier-3-2",
+        "x": 1550,
+        "y": 871,
+        "w": 44,
+        "h": 102,
+        "material": "wood"
+      },
+      {
+        "id": "grand-floor-3-0",
+        "x": 1220,
+        "y": 808,
+        "w": 218.6,
+        "h": 24,
+        "material": "wood"
+      },
+      {
+        "id": "grand-floor-3-1",
+        "x": 1440,
+        "y": 808,
+        "w": 218.6,
+        "h": 24,
+        "material": "wood"
+      },
+      {
+        "id": "grand-pier-4-1",
+        "x": 1330,
+        "y": 745,
+        "w": 44,
+        "h": 102,
+        "material": "wood"
+      },
+      {
+        "id": "grand-pier-4-2",
+        "x": 1550,
+        "y": 745,
+        "w": 44,
+        "h": 102,
+        "material": "wood"
+      },
+      {
+        "id": "grand-floor-4-1",
+        "x": 1440,
+        "y": 682,
+        "w": 218.6,
+        "h": 24,
+        "material": "wood"
+      },
+      {
+        "id": "west-gate-l0",
+        "x": 940,
+        "y": 1252,
+        "w": 18,
+        "h": 96,
+        "material": "glass"
+      },
+      {
+        "id": "west-gate-r0",
+        "x": 1060,
+        "y": 1252,
+        "w": 18,
+        "h": 96,
+        "material": "glass"
+      },
+      {
+        "id": "west-gate-roof0",
+        "x": 1000,
+        "y": 1195,
+        "w": 160,
+        "h": 18,
+        "material": "wood"
+      },
+      {
+        "id": "west-gate-l1",
+        "x": 940,
+        "y": 1138,
+        "w": 18,
+        "h": 96,
+        "material": "glass"
+      },
+      {
+        "id": "west-gate-r1",
+        "x": 1060,
+        "y": 1138,
+        "w": 18,
+        "h": 96,
+        "material": "glass"
+      },
+      {
+        "id": "west-gate-roof1",
+        "x": 1000,
+        "y": 1081,
+        "w": 160,
+        "h": 18,
+        "material": "wood"
+      },
+      {
+        "id": "west-gate-l2",
+        "x": 940,
+        "y": 1024,
+        "w": 18,
+        "h": 96,
+        "material": "glass"
+      },
+      {
+        "id": "west-gate-r2",
+        "x": 1060,
+        "y": 1024,
+        "w": 18,
+        "h": 96,
+        "material": "glass"
+      },
+      {
+        "id": "west-gate-roof2",
+        "x": 1000,
+        "y": 967,
+        "w": 160,
+        "h": 18,
+        "material": "wood"
+      },
+      {
+        "id": "east-gate-l0",
+        "x": 1820,
+        "y": 1252,
+        "w": 18,
+        "h": 96,
+        "material": "stone"
+      },
+      {
+        "id": "east-gate-r0",
+        "x": 1940,
+        "y": 1252,
+        "w": 18,
+        "h": 96,
+        "material": "stone"
+      },
+      {
+        "id": "east-gate-roof0",
+        "x": 1880,
+        "y": 1195,
+        "w": 160,
+        "h": 18,
+        "material": "wood"
+      },
+      {
+        "id": "east-gate-l1",
+        "x": 1820,
+        "y": 1138,
+        "w": 18,
+        "h": 96,
+        "material": "stone"
+      },
+      {
+        "id": "east-gate-r1",
+        "x": 1940,
+        "y": 1138,
+        "w": 18,
+        "h": 96,
+        "material": "stone"
+      },
+      {
+        "id": "east-gate-roof1",
+        "x": 1880,
+        "y": 1081,
+        "w": 160,
+        "h": 18,
+        "material": "wood"
+      },
+      {
+        "id": "east-gate-l2",
+        "x": 1820,
+        "y": 1024,
+        "w": 18,
+        "h": 96,
+        "material": "stone"
+      },
+      {
+        "id": "east-gate-r2",
+        "x": 1940,
+        "y": 1024,
+        "w": 18,
+        "h": 96,
+        "material": "stone"
+      },
+      {
+        "id": "east-gate-roof2",
+        "x": 1880,
+        "y": 967,
+        "w": 160,
+        "h": 18,
+        "material": "wood"
+      },
+      {
+        "id": "furnace-valve",
+        "x": 490,
+        "y": 1255,
+        "w": 20,
+        "h": 90,
+        "material": "glass"
+      }
+    ],
+    "monsters": [
+      {
+        "id": "grand-tenant-1-0",
+        "x": 1220,
+        "y": 1156,
+        "radius": 18,
+        "kind": "blob"
+      },
+      {
+        "id": "grand-tenant-1-1",
+        "x": 1440,
+        "y": 1156,
+        "radius": 18,
+        "kind": "bat"
+      },
+      {
+        "id": "grand-tenant-1-2",
+        "x": 1660,
+        "y": 1156,
+        "radius": 18,
+        "kind": "horn"
+      },
+      {
+        "id": "grand-tenant-2-0",
+        "x": 1220,
+        "y": 1030,
+        "radius": 18,
+        "kind": "bat"
+      },
+      {
+        "id": "grand-tenant-2-1",
+        "x": 1440,
+        "y": 1030,
+        "radius": 18,
+        "kind": "horn"
+      },
+      {
+        "id": "grand-tenant-2-2",
+        "x": 1660,
+        "y": 1030,
+        "radius": 18,
+        "kind": "blob"
+      },
+      {
+        "id": "grand-tenant-3-0",
+        "x": 1220,
+        "y": 904,
+        "radius": 18,
+        "kind": "horn"
+      },
+      {
+        "id": "grand-tenant-3-1",
+        "x": 1440,
+        "y": 904,
+        "radius": 18,
+        "kind": "blob"
+      },
+      {
+        "id": "grand-tenant-4-1",
+        "x": 1440,
+        "y": 778,
+        "radius": 18,
+        "kind": "bat"
+      }
+    ],
+    "hazards": [
+      {
+        "id": "underfloor-west",
+        "x": 1220,
+        "y": 1280,
+        "kind": "tnt"
+      },
+      {
+        "id": "underfloor-east",
+        "x": 1660,
+        "y": 1280,
+        "kind": "tnt"
+      }
+    ],
+    "terrain": [],
+    "props": [
+      {
+        "id": "furnace-ball",
+        "kind": "boulder",
+        "x": 600,
+        "y": 1257,
+        "radius": 43,
+        "material": "stone"
+      }
+    ],
+    "joints": [],
+    "mechanisms": [
+      {
+        "id": "furnace-pressure",
+        "kind": "vent",
+        "x": 600,
+        "y": 1220,
+        "w": 115,
+        "h": 155,
+        "force": 0.004,
+        "speed": 1,
+        "axis": "x",
+        "trigger": "furnace-valve"
+      }
+    ],
+    "zones": [
+      {
+        "id": "furnace",
+        "kind": "heat",
+        "x": 1440,
+        "y": 1285,
+        "w": 170,
+        "h": 26,
+        "rate": 8
+      }
+    ],
+    "thresholds": [
+      45000,
+      51000,
+      57000
+    ],
+    "par": 4,
+    "camera": {
+      "start": "overview"
+    },
+    "metadata": {
+      "category": "spectacle",
+      "idea": "Break the pressure valve to send the breaching stone into the foundry. Its shared glass piers carry the entire upper factory.",
+      "mechanics": [
+        "shared piers",
+        "5-storey arcade",
+        "load-bearing floors",
+        "underfloor powder",
+        "triggered vent"
+      ],
+      "author": "Plush Siege production pass 4"
+    }
+  }
+]

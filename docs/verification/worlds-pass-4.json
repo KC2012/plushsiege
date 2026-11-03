@@ -1,0 +1,25 @@
+{
+  "checks": 140,
+  "reports": [
+    {
+      "width": 1440,
+      "height": 900,
+      "errors": []
+    },
+    {
+      "width": 1180,
+      "height": 820,
+      "errors": []
+    },
+    {
+      "width": 844,
+      "height": 390,
+      "errors": []
+    },
+    {
+      "width": 390,
+      "height": 844,
+      "errors": []
+    }
+  ]
+}

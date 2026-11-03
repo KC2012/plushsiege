@@ -36,9 +36,9 @@ export class Effects {
         ? [0xd5ed44, 0xffd44e, 0xff765c, 0xffffff]
         : ability
           ? [0xffefd0, 0xc29aee, 0xe8c552]
-          : e.material === 'glass'
+          : (e.material === 'glass'||e.material==='ice')
             ? [0x5dd7e3, 0xbffff0, 0xffffff]
-            : e.material === 'stone'
+            : (e.material === 'stone'||e.material==='metal')
               ? [0xa29ab9, 0x68627e]
               : [0xbd6b3e, 0xf5ad58, 0xffd394];
     for (let i = 0; i < count && this.particles.length < PHYSICS.debrisLimit; i++) {
@@ -61,9 +61,9 @@ export class Effects {
             ? 'confetti'
             : i % 3 === 0
               ? 'dust'
-              : e.material === 'glass'
+              : (e.material === 'glass'||e.material==='ice')
                 ? 'shard'
-                : e.material === 'stone'
+                : (e.material === 'stone'||e.material==='metal')
                   ? 'chip'
                   : 'splinter',
       });

@@ -1,9 +1,10 @@
 /** World appearance is data, separate from level geometry and physics.
- * Add/register reviewed palettes as worlds are developed; only the initial
- * countryside is defined here, so future art direction remains open. */
+ * Add/register reviewed palettes as worlds are developed; five reviewed world motifs are defined here. Additional themes can register
+ * a palette and a motif without changing level physics. */
 export interface EnvironmentTheme {
   id: string;
   name: string;
+  motif?: 'meadow' | 'glacier' | 'volcano' | 'haunted' | 'orbital';
   palette: {
     skyTop: number;
     skyBottom: number;
@@ -33,6 +34,7 @@ export interface EnvironmentTheme {
 const countryside: EnvironmentTheme = {
   id: 'countryside',
   name: 'Meadow Mischief',
+  motif: 'meadow',
   palette: {
     skyTop: 0x62cbce,
     skyBottom: 0xc7eccf,
@@ -59,7 +61,54 @@ const countryside: EnvironmentTheme = {
   },
 };
 
-const registry = new Map<string, EnvironmentTheme>([[countryside.id, countryside]]);
+const frozen: EnvironmentTheme = {
+  id:'frozen',name:'Frozen Folly',motif:'glacier',palette:{...countryside.palette,
+    skyTop:0x435ec1,skyBottom:0xc0f4f4,clouds:0xf7ffff,
+    sun:{halo:0xb6b2ff,glow:0xe3c8ff,center:0xfff4e0},
+    hills:[0x759cd8,0xa0cce9,0x8ed5e9,0xbbeaf4],path:0x8ac8f0,
+    foliage:[0x5689a9,0x477c9e,0x88bdd4,0x93cee2],trunk:0x4d6f97,leafHighlight:0xe0ffff,
+    meadow:[0xc9f6f7,0xa4e6ed],
+    ground:{grassEdge:0x395886,grassLip:0xf1ffff,topsoil:0xcaf7f7,soil:0x83d1e8,seam:0x678fc9,seamHighlight:0xe9ffff,speckles:[0xaddce8,0xe8ffff]},
+    grass:0x5da9cc,flowers:{stem:0x6e8fc5,petals:0xd1faff,center:0xf7abde}
+  }
+};
+const molten: EnvironmentTheme = {
+  id:'molten',name:'Molten Mayhem',motif:'volcano',palette:{...countryside.palette,
+    skyTop:0xf66e77,skyBottom:0xffdca5,clouds:0xffe5ad,
+    sun:{halo:0xffb258,glow:0xffd143,center:0xffec81},
+    hills:[0x935576,0xb96677,0xd98b83,0xc87b78],path:0xffb26a,
+    foliage:[0x874b6d,0x734266,0xa26078,0xbe7c88],trunk:0x5b3c60,leafHighlight:0xff9a74,
+    meadow:[0x9e6b7d,0xae7482],
+    ground:{grassEdge:0x3d3152,grassLip:0xffc25c,topsoil:0x67516e,soil:0x4d3b5a,seam:0xff7850,seamHighlight:0xffc956,speckles:[0xa8747d,0xffa658]},
+    grass:0xf88c4d,flowers:{stem:0x7d4e67,petals:0xffc550,center:0xff6c4e}
+  }
+};
+const haunted: EnvironmentTheme = {
+  id:'haunted',name:'Haunted Hooligans',motif:'haunted',palette:{...countryside.palette,
+    skyTop:0x6451ac,skyBottom:0xd4bbe6,clouds:0xf0d8ee,
+    sun:{halo:0xb8acd8,glow:0xebdca4,center:0xfff2b9},
+    hills:[0x776197,0x987caf,0xb097c2,0x9d85b4],path:0xd0b4cf,
+    foliage:[0x796296,0x665381,0x8b72a3,0xa082b8],trunk:0x5a4b79,leafHighlight:0xba9bc9,
+    meadow:[0xa58db7,0xb49fc4],
+    ground:{grassEdge:0x3e365e,grassLip:0xa9d6a1,topsoil:0x8d769f,soil:0x675780,seam:0xb08ab0,seamHighlight:0xd4b4d6,speckles:[0xa791b1,0xc8acc6]},
+    grass:0x687d78,flowers:{stem:0x665482,petals:0xccecb2,center:0xffb38b}
+  }
+};
+const orbital: EnvironmentTheme = {
+  id:'orbital',name:'Orbital Oddities',motif:'orbital',palette:{...countryside.palette,
+    skyTop:0x28306c,skyBottom:0x768bc6,clouds:0x96a8ef,
+    sun:{halo:0x776cd3,glow:0xf2b2df,center:0xffd1ee},
+    hills:[0x5b63a4,0x7777bf,0x8e92ce,0xa8a7dd],path:0xa2caeb,
+    foliage:[0x6d7cad,0x6a669e,0xa298cd,0xbab3de],trunk:0x4f568e,leafHighlight:0xbad6ec,
+    meadow:[0x9197c7,0xa7acd4],
+    ground:{grassEdge:0x35365f,grassLip:0xe0d8f5,topsoil:0xa5a4ce,soil:0x7477ac,seam:0x54598d,seamHighlight:0xd8dcf1,speckles:[0x626998,0xd4cdec]},
+    grass:0x9cb7e7,flowers:{stem:0x7a7fb2,petals:0xc9ebff,center:0xffcc86}
+  }
+};
+
+const registry = new Map<string, EnvironmentTheme>(
+  [countryside,frozen,molten,haunted,orbital].map(theme=>[theme.id,theme])
+);
 /** Read-only registry view. Use registerTheme() for additions or art-direction updates. */
 export const themes: ReadonlyMap<string, EnvironmentTheme> = registry;
 

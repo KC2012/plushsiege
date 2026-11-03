@@ -1,590 +1,179 @@
-import type { BlockDef, Level, MaterialKind, StuffieKind } from '../game/types';
-import { validateLevel } from '../content/validate';
+import type { Level, MaterialKind, StuffieKind, Point, BlockDef, JointDef } from '../game/types';
+import { validateLevel, WORLD_IDS } from '../content/validate';
 import './editor.css';
 
-type Selection = { type: 'blocks' | 'monsters' | 'hazards'; id: string } | null;
-type Tool = 'select' | 'beam' | 'post' | 'square' | 'monster' | 'tnt';
-const NS = 'http://www.w3.org/2000/svg';
-const SAVE_KEY = 'plush-siege-editor-v1';
-const palette = { wood: '#f5ad58', glass: '#5dd7e3', stone: '#a29ab9' };
+type Collection = 'blocks' | 'monsters' | 'hazards' | 'terrain' | 'props' | 'zones' | 'mechanisms';
+type Selection = { type: Collection; id: string };
+type Piece = { id: string; x: number; y: number; w?: number; h?: number; radius?: number; angle?: number; material?: MaterialKind; static?: boolean; kind?: string; gravity?: Point; center?: Point; strength?: number; rate?: number; force?: number; speed?: number; axis?: 'x' | 'y' };
+type Tool = 'select' | 'pan' | 'beam' | 'post' | 'square' | 'monster' | 'tnt' | 'terrain' | 'ramp' | 'boulder' | 'planetoid' | 'zone' | 'vent' | 'sling';
+const NS = 'http://www.w3.org/2000/svg', SAVE_KEY = 'plush-siege-editor-v1';
+const palette: Record<MaterialKind, string> = { wood: '#f5ad58', glass: '#5dd7e3', stone: '#a29ab9', ice: '#c0f5ff', metal: '#889bb2' };
+const worldNames = ['Meadow Mischief', 'Frozen Folly', 'Molten Mayhem', 'Haunted Hooligans', 'Orbital Oddities'];
 const copy = <T>(value: T): T => structuredClone(value);
+const physicalCollections: Collection[] = ['blocks', 'monsters', 'hazards', 'terrain', 'props'];
 
-/** Standalone authoring surface. The returned function releases listeners and removes its DOM. */
-export function openEditor(
-  container: HTMLElement,
-  initial: Level,
-  onPlay: (level: Level) => void,
-  onClose: () => void,
-): () => void {
-  let level = copy(initial);
-  let selected: Selection = null;
-  let tool: Tool = 'select';
-  let material: MaterialKind = 'wood';
-  let snap = true;
-  let history: Level[] = [];
-  let future: Level[] = [];
-  let drag: { start: Level; x: number; y: number; dx: number; dy: number; moved: boolean } | null =
-    null;
-  const controller = new AbortController();
-  const root = document.createElement('section');
-  root.className = 'level-editor';
-  root.setAttribute('aria-label', 'Plush Siege level workshop');
-  root.innerHTML = `<header class="ed-header"><div><span class="ed-eyebrow">PLUSH SIEGE · CREATOR TOOLS</span><h1>The workshop<span>Build a little trouble.</span></h1></div><div class="ed-header-actions"><button data-action="back">← Back</button><button data-action="play" class="ed-primary">▶ Playtest</button></div></header>
-  <div class="ed-layout"><aside class="ed-tools"><label class="ed-field">Level name<input data-field="name" maxlength="80"></label><button data-action="new" class="ed-wide">＋ New blank level</button><p class="ed-caption">1. Pick a piece, then tap the scene.</p><div class="ed-tool-grid"><button data-tool="select">↖<span>Select</span></button><button data-tool="beam">━<span>Beam</span></button><button data-tool="post">┃<span>Post</span></button><button data-tool="square">▣<span>Block</span></button><button data-tool="monster">☻<span>Monster</span></button><button data-tool="tnt">✹<span>TNT</span></button></div><p class="ed-caption">Material</p><div class="ed-materials"><button data-material="wood">Wood</button><button data-material="glass">Glass</button><button data-material="stone">Stone</button></div><label class="ed-check"><input type="checkbox" data-field="snap" checked> Snap to 5 px grid</label><button data-action="tower" class="ed-wide">＋ Add tower template</button><div class="ed-selection"></div><p class="ed-caption">Your launch queue</p><div class="ed-roster"></div><select data-field="stuffie" aria-label="Stuffie to add"><option value="sheep">Sheep · balanced</option><option value="duck">Duck · dash</option><option value="bear">Bear · heavy</option><option value="rabbit">Rabbit · split</option></select><button data-action="add-stuffie" class="ed-wide">＋ Add stuffie</button></aside>
-  <div class="ed-main"><div class="ed-toolbar"><div><button data-action="undo" title="Undo">↶ Undo</button><button data-action="redo" title="Redo">↷ Redo</button></div><span>Drag to move · select to rotate</span></div><div class="ed-canvas-wrap"><svg class="ed-canvas" viewBox="0 0 1440 810" role="img" aria-label="Interactive level layout"></svg></div><div class="ed-status" role="status"></div><div class="ed-files"><button data-action="save">Save draft</button><button data-action="load">Load draft</button><button data-action="export">Export JSON ↓</button><button data-action="import">Import JSON ↑</button><input type="file" accept=".json,application/json" data-field="file" hidden></div><details class="ed-scoring"><summary>Scoring thresholds &amp; level details</summary><div class="ed-score-fields"><label>★<input type="number" data-score="0" min="0" step="500"></label><label>★★<input type="number" data-score="1" min="0" step="500"></label><label>★★★<input type="number" data-score="2" min="0" step="500"></label></div><label class="ed-field">Description<input data-field="subtitle" maxlength="180"></label><p>World: Meadow Mischief. Terrain and slingshot remain fixed in this first workshop.</p></details></div></div>`;
+/** Production editor. All authored mechanisms use the runtime's portable Level data directly. */
+export function openEditor(container: HTMLElement, initial: Level, onPlay: (level: Level) => void, onClose: () => void): () => void {
+  let level = copy(initial), selected: Selection | null = null;
+  const selection = new Map<string, Selection>();
+  let tool: Tool = 'select', material: MaterialKind = 'wood', multi = false, snap = true, grid = 5, zoom = 1;
+  let history: Level[] = [], future: Level[] = [];
+  let clipboard: { objects: { type: Collection; piece: Piece }[]; joints: JointDef[]; mechanisms: Level['mechanisms'] } | null = null;
+  let drag: { previous: Level; start: Point; originals: { selection: Selection; x: number; y: number }[]; moved: boolean; toggleOff?: Selection; pan?: { x: number; y: number } } | null = null;
+  const controller = new AbortController(), root = document.createElement('section');
+  root.className = 'level-editor'; root.setAttribute('aria-label', 'Plush Siege level workshop');
+  root.innerHTML = `<header class="ed-header"><div><span class="ed-eyebrow">PLUSH SIEGE · PRODUCTION WORKSHOP</span><h1>The workshop<span>Build a little trouble. Then make it spectacular.</span></h1></div><div class="ed-header-actions"><button data-action="back">← Back</button><button data-action="play" class="ed-primary">▶ Playtest</button></div></header>
+  <div class="ed-layout"><aside class="ed-tools"><label class="ed-field">Level name<input data-field="name" maxlength="80"></label><label class="ed-field">World<select data-field="world">${WORLD_IDS.map((id, i) => `<option value="${id}">${worldNames[i]}</option>`).join('')}</select></label><button data-action="new" class="ed-wide">＋ New blank level</button>
+  <p class="ed-caption">Pick a piece, then tap the scene.</p><div class="ed-tool-grid"><button data-tool="select">↖<span>Select</span></button><button data-tool="beam">━<span>Beam</span></button><button data-tool="post">┃<span>Post</span></button><button data-tool="square">▣<span>Block</span></button><button data-tool="monster">☻<span>Monster</span></button><button data-tool="tnt">✹<span>TNT</span></button></div>
+  <p class="ed-caption">Material</p><div class="ed-materials">${Object.keys(palette).map(key => `<button data-material="${key}">${key}</button>`).join('')}</div><label class="ed-check"><input type="checkbox" data-field="multi"> Multi-select (or hold Shift)</label><div class="ed-grid-controls"><label class="ed-check"><input type="checkbox" data-field="snap" checked> Snap</label><label>Grid<input type="number" data-field="grid" value="5" min="1" max="100"></label></div>
+  <div class="ed-selection"></div><details open><summary>Structural templates</summary><div class="ed-template-grid"><button data-action="tower">Tower</button><button data-template="arch">Corbel arch</button><button data-template="bridge">Rope bridge</button><button data-template="suspended">Suspended deck</button><button data-template="counterweight">Counterweight</button><button data-template="moving">Moving platform</button></div><p class="ed-help">Templates appear at the scene center. Select and drag the entire assembly.</p></details>
+  <details><summary>Terrain &amp; environment</summary><div class="ed-terrain-tools">${(['pan','terrain','ramp','boulder','planetoid','zone','vent','sling'] as Tool[]).map(value => `<button data-tool="${value}">${value === 'sling' ? 'Move sling' : value}</button>`).join('')}</div><label class="ed-field">Zone type<select data-field="zone-kind"><option>ice</option><option>lava</option><option>heat</option><option>gravity</option><option>zero-gravity</option></select></label></details>
+  <p class="ed-caption">Your launch queue</p><div class="ed-roster"></div><select data-field="stuffie" aria-label="Stuffie to add"><option value="sheep">Sheep · balanced</option><option value="duck">Duck · dash</option><option value="bear">Bear · heavy</option><option value="rabbit">Rabbit · split</option></select><button data-action="add-stuffie" class="ed-wide">＋ Add stuffie</button></aside>
+  <div class="ed-main"><div class="ed-toolbar"><div><button data-action="undo" title="Undo">↶ Undo</button><button data-action="redo" title="Redo">↷ Redo</button><button data-action="copy">Copy</button><button data-action="paste">Paste</button></div><label class="ed-zoom">View<select data-field="zoom"><option value="1">Fit</option><option value="1.5">150%</option><option value="2">200%</option><option value="3">300%</option><option value="6">600%</option><option value="10">1000%</option></select></label></div><div class="ed-canvas-wrap"><svg class="ed-canvas" viewBox="0 0 1440 810" role="img" aria-label="Interactive level layout"></svg></div><div class="ed-status" role="status"></div>
+  <div class="ed-files"><button data-action="save">Save draft</button><button data-action="load">Load draft</button><button data-action="export">Export JSON ↓</button><button data-action="import">Import JSON ↑</button><input type="file" accept=".json,application/json" data-field="file" hidden></div>
+  <details class="ed-scoring"><summary>World dimensions, physics &amp; metadata</summary><div class="ed-level-fields"></div><div class="ed-score-fields">${[0,1,2].map(n => `<label>${'★'.repeat(n+1)}<input type="number" data-score="${n}" min="0" step="500"></label>`).join('')}</div><label class="ed-field">Description<input data-field="subtitle" maxlength="180"></label><label class="ed-field">Central level idea<input data-field="idea" maxlength="500"></label><label class="ed-field">Mechanics (comma separated)<input data-field="mechanics" maxlength="500"></label><label class="ed-field">Category<select data-field="category"><option>puzzle</option><option>siege</option><option>spectacle</option></select></label><label class="ed-field">Author<input data-field="author" maxlength="100"></label></details>
+  <details class="ed-advanced"><summary>Advanced connections &amp; environment JSON</summary><p class="ed-help">Edit joints, mechanisms, zones, terrain, props, environment or camera settings together. Body references use the IDs shown in the inspector. Applying is validated; undo restores the previous setup.</p><textarea data-field="advanced" spellcheck="false" aria-label="Advanced production data JSON"></textarea><button data-action="apply-advanced">Apply advanced data</button><button data-action="refresh-advanced">Refresh from scene</button></details></div></div>`;
   container.append(root);
   const $ = <T extends Element = HTMLElement>(selector: string): T => root.querySelector(selector)!;
-  const svg = $<SVGSVGElement>('.ed-canvas');
-  const status = $('.ed-status');
-  const listen = (target: EventTarget, name: string, fn: EventListener) =>
-    target.addEventListener(name, fn, { signal: controller.signal });
-  const message = (text: string, bad = false) => {
-    status.textContent = text;
-    status.classList.toggle('ed-error', bad);
-  };
-  const remember = (previous: Level) => {
-    history.push(previous);
-    if (history.length > 100) history.shift();
-    future = [];
-  };
-  const commit = (change: () => void) => {
-    remember(copy(level));
-    change();
-    render();
-  };
-  const entity = () =>
-    selected ? level[selected.type].find((item) => item.id === selected!.id) : undefined;
-  const uid = (prefix: string) => `${prefix}-${crypto.randomUUID().slice(0, 8)}`;
-  const rounded = (value: number) => (snap ? Math.round(value / 5) * 5 : Math.round(value));
-  const point = (event: PointerEvent) => {
-    const matrix = svg.getScreenCTM();
-    const p = new DOMPoint(event.clientX, event.clientY).matrixTransform(matrix!.inverse());
-    return { x: rounded(p.x), y: rounded(p.y) };
-  };
-  function node(
-    tag: string,
-    attrs: Record<string, string | number>,
-    parent: Element = svg,
-  ): SVGElement {
-    const result = document.createElementNS(NS, tag);
-    Object.entries(attrs).forEach(([key, value]) => result.setAttribute(key, String(value)));
-    parent.append(result);
-    return result;
-  }
-  function mark(
-    item: { id: string; x: number; y: number },
-    type: NonNullable<Selection>['type'],
-    group: SVGElement,
-  ) {
-    group.dataset.id = item.id;
-    group.dataset.type = type;
-    if (selected?.id === item.id) {
-      node('circle', {
-        cx: item.x,
-        cy: item.y,
-        r: type === 'blocks' ? 10 : 34,
-        fill: 'none',
-        stroke: '#e86745',
-        'stroke-width': 4,
-        'stroke-dasharray': '6 4',
-        'pointer-events': 'none',
-      });
-    }
-  }
+  const svg = $<SVGSVGElement>('.ed-canvas'), wrap = $('.ed-canvas-wrap'), status = $('.ed-status');
+  const listen = (target: EventTarget, event: string, handler: EventListener) => target.addEventListener(event, handler, { signal: controller.signal });
+  const list = (type: Collection): Piece[] => { (level[type] as unknown) ??= []; return level[type] as unknown as Piece[]; };
+  const resolve = (value: Selection) => list(value.type).find(piece => piece.id === value.id);
+  const entity = () => selected ? resolve(selected) : undefined;
+  const chosen = () => [...selection.values()].map(value => ({ selection: value, piece: resolve(value) })).filter((value): value is { selection: Selection; piece: Piece } => !!value.piece);
+  const uid = (prefix: string) => `${prefix}-${crypto.randomUUID().slice(0,8)}`;
+  const message = (text: string, bad = false) => { status.textContent = text; status.classList.toggle('ed-error', bad); };
+  const remember = (previous: Level) => { history.push(previous); if(history.length > 100) history.shift(); future = []; };
+  const commit = (change: () => void) => { remember(copy(level)); change(); render(); };
+  const clearSelection = () => { selected = null; selection.clear(); };
+  const select = (value: Selection, additive = false) => { if(!additive) clearSelection(); if(additive && selection.has(value.id)) selection.delete(value.id); else selection.set(value.id,value); selected = [...selection.values()].at(-1) || null; };
+  const rounded = (value: number) => snap ? Math.round(value / grid) * grid : Math.round(value * 10) / 10;
+  const point = (event: PointerEvent): Point => { const p = new DOMPoint(event.clientX,event.clientY).matrixTransform(svg.getScreenCTM()!.inverse()); return { x: rounded(p.x), y: rounded(p.y) }; };
+  const floor = () => level.environment?.ground === false ? level.bounds.height - 80 : level.bounds.ground;
+  const meta = () => level.metadata ??= {category:'puzzle',idea:level.subtitle,mechanics:[]};
+  const environment = () => level.environment ??= {};
+  function node(tag: string, attrs: Record<string,string|number>, parent: Element = svg): SVGElement { const result = document.createElementNS(NS,tag); for(const [name,value] of Object.entries(attrs)) result.setAttribute(name,String(value)); parent.append(result); return result; }
+  function rect(piece: Piece, color: string, parent: Element, dashed = false) { node('rect',{x:piece.x-(piece.w || 40)/2,y:piece.y-(piece.h || 40)/2,width:piece.w || 40,height:piece.h || 40,rx:3,transform:`rotate(${(piece.angle || 0)*180/Math.PI} ${piece.x} ${piece.y})`,fill:color,stroke:'#242139','stroke-width':3,...(dashed?{'stroke-dasharray':'8 5'}:{})},parent); }
+  function mark(piece: Piece, type: Collection, group: SVGElement) { group.dataset.id=piece.id; group.dataset.type=type; if(selection.has(piece.id)) node('circle',{cx:piece.x,cy:piece.y,r:piece.radius || Math.max(18,Math.min(45,(piece.w || 30)/2)),fill:'none',stroke:'#ff4d74','stroke-width':5,'stroke-dasharray':'6 4','pointer-events':'none'}); }
+  function worldAnchor(body: string | undefined, p: Point): Point { if(!body) return p; const value = physicalCollections.flatMap(type => list(type)).find(piece => piece.id === body); if(!value) return p; const angle=value.angle || 0; return {x:value.x+p.x*Math.cos(angle)-p.y*Math.sin(angle),y:value.y+p.x*Math.sin(angle)+p.y*Math.cos(angle)}; }
   function renderScene() {
-    svg.replaceChildren();
-    node('rect', { width: 1440, height: 810, fill: '#94e5de' });
-    node('path', {
-      d: 'M0 585 150 360 320 510 510 330 730 560 960 380 1160 520 1330 350 1440 510V810H0Z',
-      fill: '#78b2bb',
-    });
-    node('rect', {
-      x: 0,
-      y: level.bounds.ground,
-      width: 1440,
-      height: 810 - level.bounds.ground,
-      fill: '#486d76',
-    });
-    node('path', {
-      d: `M${level.sling.x - 18} ${level.bounds.ground}L${level.sling.x - 12} ${level.sling.y - 20}M${level.sling.x - 12} ${level.sling.y + 15}L${level.sling.x + 25} ${level.sling.y - 20}`,
-      stroke: '#d58c44',
-      'stroke-width': 16,
-      'stroke-linecap': 'round',
-      fill: 'none',
-    });
-    const guide = node('text', {
-      x: 45,
-      y: 65,
-      fill: '#242139',
-      'font-size': 25,
-      'font-family': 'sans-serif',
-    });
-    guide.textContent = 'MEADOW MISCHIEF  /  LEVEL WORKSHOP';
-    for (const block of level.blocks) {
-      const group = node('g', {});
-      node(
-        'rect',
-        {
-          x: block.x - block.w / 2,
-          y: block.y - block.h / 2,
-          width: block.w,
-          height: block.h,
-          rx: 3,
-          transform: `rotate(${((block.angle ?? 0) * 180) / Math.PI} ${block.x} ${block.y})`,
-          fill: palette[block.material],
-          stroke: '#242139',
-          'stroke-width': 3,
-        },
-        group,
-      );
-      mark(block, 'blocks', group);
-    }
-    for (const monster of level.monsters) {
-      const group = node('g', {});
-      const r = monster.radius ?? 18;
-      node(
-        'path',
-        {
-          d: `M${monster.x - r * 0.9} ${monster.y + r * 0.5}L${monster.x - r} ${monster.y - r}L${monster.x - r * 0.25} ${monster.y - r * 0.65}L${monster.x + r * 0.25} ${monster.y - r * 0.75}L${monster.x + r * 0.85} ${monster.y - r * 1.2}L${monster.x + r} ${monster.y + r * 0.45}L${monster.x + r * 0.5} ${monster.y + r}L${monster.x - r * 0.5} ${monster.y + r}Z`,
-          fill:
-            monster.kind === 'blob' ? '#b8e94e' : monster.kind === 'bat' ? '#ff765c' : '#ac80e9',
-          stroke: '#242139',
-          'stroke-width': 3,
-        },
-        group,
-      );
-      for (const offset of [-r * 0.32, r * 0.32])
-        node('circle', { cx: monster.x + offset, cy: monster.y - 3, r: 4, fill: '#29362e' }, group);
-      node(
-        'path',
-        {
-          d: `M${monster.x - 5} ${monster.y + 6}Q${monster.x} ${monster.y + 12} ${monster.x + 5} ${monster.y + 6}`,
-          stroke: '#29362e',
-          fill: 'none',
-          'stroke-width': 2,
-        },
-        group,
-      );
-      mark(monster, 'monsters', group);
-    }
-    for (const hazard of level.hazards) {
-      const group = node('g', {});
-      node(
-        'rect',
-        {
-          x: hazard.x - 20,
-          y: hazard.y - 20,
-          width: 40,
-          height: 40,
-          rx: 4,
-          fill: '#ff765c',
-          stroke: '#242139',
-          'stroke-width': 3,
-        },
-        group,
-      );
-      const label = node(
-        'text',
-        {
-          x: hazard.x,
-          y: hazard.y + 5,
-          'text-anchor': 'middle',
-          fill: '#fff6da',
-          'font-size': 14,
-          'font-weight': 800,
-        },
-        group,
-      );
-      label.textContent = 'TNT';
-      mark(hazard, 'hazards', group);
-    }
+    const {width,height,ground}=level.bounds;
+    svg.setAttribute('viewBox',`0 0 ${width} ${height}`); svg.style.width=`${zoom*100}%`; svg.replaceChildren();
+    const skies:Record<string,string>={countryside:'#94e5de',frozen:'#b4e9ff',molten:'#ffb46d',haunted:'#ab91d8',orbital:'#393161'};
+    node('rect',{width,height,fill:skies[level.world] || skies.countryside});
+    node('path',{d:`M0 ${height*.72} ${width*.18} ${height*.38} ${width*.4} ${height*.66} ${width*.63} ${height*.39} ${width*.82} ${height*.68} ${width} ${height*.49}V${height}H0Z`,fill:level.world==='orbital'?'#5d4d92':'#78b2bb'});
+    if(level.environment?.ground!==false) node('rect',{x:0,y:ground,width,height:height-ground,fill:'#486d76'});
+    if(snap && grid>=5 && width/grid<=400){for(let x=0;x<width;x+=grid*10)node('path',{d:`M${x} 0V${height}`,stroke:'#242139','stroke-width':1,opacity:.08});for(let y=0;y<height;y+=grid*10)node('path',{d:`M0 ${y}H${width}`,stroke:'#242139','stroke-width':1,opacity:.08});}
+    for(const zone of list('zones')) {const group=node('g',{opacity:.55});rect(zone,({ice:'#b9f8ff',lava:'#ff6346',heat:'#ffce55',gravity:'#bb7cff','zero-gravity':'#8bf3e7'} as Record<string,string>)[zone.kind || 'ice'] || '#fff2ce',group,true);mark(zone,'zones',group);const label=node('text',{x:zone.x,y:zone.y,'text-anchor':'middle','font-size':20,fill:'#242139'},group);label.textContent=zone.kind || 'zone';}
+    for(const type of ['terrain','blocks'] as const)for(const piece of list(type)){const group=node('g',{});rect(piece,palette[piece.material || 'stone'],group);if(type==='terrain')node('path',{d:`M${piece.x-8} ${piece.y-6}l16 12m-16 0 16-12`,stroke:'#242139','stroke-width':2},group);mark(piece,type,group);}
+    for(const piece of list('props')){const group=node('g',{});node('circle',{cx:piece.x,cy:piece.y,r:piece.radius || 40,fill:palette[piece.material || 'stone'],stroke:'#242139','stroke-width':4},group);node('circle',{cx:piece.x-(piece.radius || 40)*.2,cy:piece.y-(piece.radius || 40)*.15,r:(piece.radius || 40)*.2,fill:'none',stroke:'#242139','stroke-width':2},group);mark(piece,'props',group);}
+    for(const monster of list('monsters')){const group=node('g',{}),r=monster.radius || 18;node('path',{d:`M${monster.x-r*.9} ${monster.y+r*.5}L${monster.x-r} ${monster.y-r}L${monster.x-r*.25} ${monster.y-r*.65}L${monster.x+r*.25} ${monster.y-r*.75}L${monster.x+r*.85} ${monster.y-r*1.2}L${monster.x+r} ${monster.y+r*.45}L${monster.x+r*.5} ${monster.y+r}L${monster.x-r*.5} ${monster.y+r}Z`,fill:monster.kind==='blob'?'#b8e94e':monster.kind==='bat'?'#ff765c':'#ac80e9',stroke:'#242139','stroke-width':3},group);for(const offset of[-r*.32,r*.32])node('circle',{cx:monster.x+offset,cy:monster.y-3,r:4,fill:'#242139'},group);mark(monster,'monsters',group);}
+    for(const hazard of list('hazards')){const group=node('g',{});rect({...hazard,w:40,h:40},'#ff765c',group);const label=node('text',{x:hazard.x,y:hazard.y+5,'text-anchor':'middle',fill:'#fff2ce','font-size':14,'font-weight':900},group);label.textContent='TNT';mark(hazard,'hazards',group);}
+    for(const mechanism of list('mechanisms'))if(mechanism.kind==='vent' && Number.isFinite(mechanism.x)){const group=node('g',{});rect(mechanism,'#ffd44e88',group,true);const label=node('text',{x:mechanism.x,y:mechanism.y,'text-anchor':'middle','font-size':26,fill:'#242139'},group);label.textContent='↑ VENT';mark(mechanism,'mechanisms',group);}
+    for(const joint of level.joints || []){const a=worldAnchor(joint.bodyA,joint.pointA),b=worldAnchor(joint.bodyB,joint.pointB);node('path',{d:`M${a.x} ${a.y}L${b.x} ${b.y}`,stroke:joint.kind==='spring'?'#e569a8':'#242139','stroke-width':joint.kind==='hinge'?7:3,...(joint.kind==='rope'?{'stroke-dasharray':'8 4'}:{})});for(const p of[a,b])node('circle',{cx:p.x,cy:p.y,r:5,fill:'#fff2ce',stroke:'#242139','stroke-width':2});}
+    node('path',{d:`M${level.sling.x-18} ${Math.min(height,level.sling.y+145)}L${level.sling.x-12} ${level.sling.y-20}M${level.sling.x-12} ${level.sling.y+15}L${level.sling.x+25} ${level.sling.y-20}`,stroke:'#d58c44','stroke-width':16,'stroke-linecap':'round',fill:'none'});
   }
-  function numericField(label: string, value: number, onChange: (value: number) => void, step = 5) {
-    const field = document.createElement('label');
-    field.textContent = label;
-    const input = document.createElement('input');
-    input.type = 'number';
-    input.value = String(Math.round(value * 100) / 100);
-    input.step = String(step);
-    input.addEventListener('change', () => {
-      const n = Number(input.value);
-      if (Number.isFinite(n)) commit(() => onChange(n));
+  function numericField(label: string,value: number,change: (value:number)=>void,step=5) { const field=document.createElement('label');field.textContent=label;const input=document.createElement('input');input.type='number';input.setAttribute('aria-label',label);input.value=String(Math.round(value*10000)/10000);input.step=String(step);input.addEventListener('change',()=>{const n=Number(input.value);if(Number.isFinite(n))commit(()=>change(n));});field.append(input);return field; }
+  function selectField(label: string,value: string,options: string[],change:(value:string)=>void) {const field=document.createElement('label');field.textContent=label;const input=document.createElement('select');input.setAttribute('aria-label',label);for(const option of options){const el=document.createElement('option');el.value=option;el.textContent=option;input.append(el);}input.value=value;input.addEventListener('change',()=>commit(()=>change(input.value)));field.append(input);return field;}
+  function actionButton(text:string,action:()=>void) {const button=document.createElement('button');button.textContent=text;button.addEventListener('click',action);return button;}
+  function attachJoint(kind:'rope'|'hinge'|'spring') {
+    const pieces=chosen().filter(value=>physicalCollections.includes(value.selection.type));if(!pieces.length)return;
+    commit(()=>{const [a,b]=pieces,target=b || a;
+      const anchor=kind==='hinge'?b?{x:(a.piece.x+b.piece.x)/2,y:(a.piece.y+b.piece.y)/2}:{x:a.piece.x,y:a.piece.y}:undefined;
+      const local=(piece:Piece,p:Point)=>{const angle=-(piece.angle || 0),dx=p.x-piece.x,dy=p.y-piece.y;return{x:dx*Math.cos(angle)-dy*Math.sin(angle),y:dx*Math.sin(angle)+dy*Math.cos(angle)};};
+      (level.joints ??=[]).push({id:uid(kind),kind,...(b?{bodyA:a.piece.id}:{}),bodyB:target.piece.id,pointA:anchor?b?local(a.piece,anchor):anchor:b?{x:0,y:0}:{x:a.piece.x,y:Math.max(5,a.piece.y-150)},pointB:anchor?local(target.piece,anchor):{x:0,y:0},length:kind==='hinge'?0:b?Math.hypot(a.piece.x-b.piece.x,a.piece.y-b.piece.y):150,stiffness:kind==='spring'?.035:1,damping:.12});
     });
-    field.append(input);
-    return field;
   }
   function renderSelection() {
-    const panel = $('.ed-selection');
-    panel.replaceChildren();
-    const item = entity();
-    if (!item || !selected) {
-      const tip = document.createElement('p');
-      tip.className = 'ed-caption';
-      tip.textContent = 'Select a piece to resize, rotate, or duplicate it.';
-      panel.append(tip);
-      return;
+    const panel=$('.ed-selection');panel.replaceChildren();const items=chosen(),item=entity();
+    const title=document.createElement('p');title.className='ed-caption';title.textContent=items.length?`${items.length} selected · ${selected?.id}`:'Select a piece to edit. Shift or Multi-select builds an assembly.';panel.append(title);
+    if(!item || !selected)return;
+    const fields=document.createElement('div');fields.className='ed-object-fields';fields.append(numericField('X',item.x,n=>item.x=n),numericField('Y',item.y,n=>item.y=n));
+    if(item.w!==undefined)fields.append(numericField('Width',item.w,n=>item.w=Math.max(4,n)),numericField('Height',item.h || 20,n=>item.h=Math.max(4,n)));
+    if(item.radius!==undefined)fields.append(numericField('Radius',item.radius,n=>item.radius=Math.max(selected?.type==='monsters'?6:8,n)));
+    if(['blocks','terrain'].includes(selected.type))fields.append(numericField('Angle °',(item.angle || 0)*180/Math.PI,n=>item.angle=(snap?Math.round(n/15)*15:n)*Math.PI/180,15));
+    if(selected.type==='blocks'||selected.type==='props')fields.append(selectField('Body',item.static?'static':'dynamic',['dynamic','static'],value=>item.static=value==='static'));
+    if(selected.type==='monsters')fields.append(selectField('Monster',item.kind || 'horn',['horn','blob','bat'],value=>item.kind=value));
+    if(selected.type==='zones'){
+      fields.append(selectField('Zone',item.kind || 'ice',['ice','lava','heat','gravity','zero-gravity'],value=>item.kind=value));
+      fields.append(numericField('Strength',item.strength ?? 1,n=>item.strength=Math.max(0,n),.1),numericField('Rate / s',item.rate ?? 3,n=>item.rate=Math.max(0,n),.5));
+      if(item.kind==='gravity')fields.append(numericField('Center X',item.center?.x ?? item.x,n=>(item.center ??={x:item.x,y:item.y}).x=n),numericField('Center Y',item.center?.y ?? item.y,n=>(item.center ??={x:item.x,y:item.y}).y=n),numericField('Radius',item.radius || 250,n=>item.radius=Math.max(1,n)));
     }
-    const fields = document.createElement('div');
-    fields.className = 'ed-object-fields';
-    fields.append(
-      numericField('X', item.x, (n) => (item.x = Math.max(0, Math.min(1440, n)))),
-      numericField('Y', item.y, (n) => (item.y = Math.max(0, Math.min(810, n)))),
-    );
-    if (selected.type === 'blocks') {
-      const block = item as BlockDef;
-      fields.append(
-        numericField('Width', block.w, (n) => (block.w = Math.max(10, Math.min(500, n)))),
-        numericField('Height', block.h, (n) => (block.h = Math.max(10, Math.min(500, n)))),
-      );
-      fields.append(
-        numericField(
-          'Angle °',
-          ((block.angle ?? 0) * 180) / Math.PI,
-          (n) => (block.angle = (n * Math.PI) / 180),
-          15,
-        ),
-      );
-    }
+    if(selected.type==='mechanisms')fields.append(numericField('Force',item.force ?? .003,n=>item.force=Math.max(0,n),.001),selectField('Axis',item.axis || 'y',['x','y'],value=>item.axis=value as 'x'|'y'));
     panel.append(fields);
-    const actions = document.createElement('div');
-    actions.className = 'ed-object-actions';
-    for (const [text, action] of [
-      [
-        '↻ 15°',
-        () => {
-          if (selected?.type === 'blocks')
-            commit(
-              () => ((item as BlockDef).angle = ((item as BlockDef).angle ?? 0) + Math.PI / 12),
-            );
-        },
-      ],
-      [
-        'Duplicate',
-        () =>
-          commit(() => {
-            const duplicate = { ...copy(item), id: uid('piece'), x: item.x + 35, y: item.y - 35 };
-            (level[selected!.type] as (typeof item)[]).push(duplicate);
-            selected = { type: selected!.type, id: duplicate.id };
-          }),
-      ],
-      [
-        'Delete',
-        () =>
-          commit(() => {
-            const list = level[selected!.type];
-            const i = list.findIndex((it) => it.id === selected!.id);
-            list.splice(i, 1);
-            selected = null;
-          }),
-      ],
-    ] as const) {
-      const button = document.createElement('button');
-      button.textContent = text;
-      button.addEventListener('click', action);
-      actions.append(button);
+    const controls=document.createElement('div');controls.className='ed-object-actions';controls.append(actionButton('↻ 15°',()=>rotateSelection()),actionButton('Duplicate',()=>{copySelection();pasteSelection();}),actionButton('Delete',removeSelection));panel.append(controls);
+    if(items.length>1){const align=document.createElement('div');align.className='ed-object-actions';for(const mode of['left','center-x','right','top','center-y','bottom'])align.append(actionButton(mode,()=>alignSelection(mode)));panel.append(align);}
+    if(physicalCollections.includes(selected.type)){
+      const joints=document.createElement('div');joints.className='ed-object-actions';for(const kind of['rope','hinge','spring'] as const)joints.append(actionButton(`＋ ${kind}`,()=>attachJoint(kind)));panel.append(joints);
+      const linked=(level.joints || []).filter(joint=>joint.bodyA===item.id||joint.bodyB===item.id);for(const joint of linked){const row=document.createElement('div');row.className='ed-joint-row';const text=document.createElement('span');text.textContent=`${joint.kind} · ${joint.id}`;row.append(text,actionButton('×',()=>commit(()=>level.joints=level.joints?.filter(j=>j.id!==joint.id))));panel.append(row);}
+      const mech=(level.mechanisms || []).find(value=>value.body===item.id);
+      if(mech){const box=document.createElement('div');box.className='ed-object-fields';box.append(numericField('Speed',mech.speed || .2,n=>mech.speed=n,.05),numericField('Range',mech.range || 120,n=>mech.range=Math.max(0,n)),selectField('Axis',mech.axis || 'x',['x','y'],value=>mech.axis=value as 'x'|'y'),selectField('Trigger',mech.trigger || 'none',['none',...physicalCollections.flatMap(type=>list(type)).filter(value=>value.id!==item.id&&!value.static).map(value=>value.id)],value=>mech.trigger=value==='none'?undefined:value));panel.append(box,actionButton('Remove actuator',()=>commit(()=>level.mechanisms=level.mechanisms?.filter(value=>value.id!==mech.id))));}
+      else{const buttons=document.createElement('div');buttons.className='ed-object-actions';for(const kind of['motor','platform'] as const)buttons.append(actionButton(`＋ ${kind}`,()=>commit(()=>{(level.mechanisms ??=[]).push({id:uid(kind),kind,body:item.id,speed:kind==='motor'?.65:.2,range:120,axis:'x'});if(kind==='motor')(level.joints ??=[]).push({id:uid('pivot'),kind:'hinge',bodyB:item.id,pointA:{x:item.x,y:item.y},pointB:{x:0,y:0},length:0,stiffness:1});})));panel.append(buttons);}
     }
-    panel.append(actions);
   }
-  function renderRoster() {
-    const panel = $('.ed-roster');
-    panel.replaceChildren();
-    level.projectiles.forEach((kind, index) => {
-      const button = document.createElement('button');
-      button.textContent = `${index + 1}. ${kind} ×`;
-      button.title = 'Remove this stuffie';
-      button.addEventListener('click', () => commit(() => level.projectiles.splice(index, 1)));
-      panel.append(button);
-    });
+  function renderLevelFields(){const panel=$('.ed-level-fields');panel.replaceChildren();panel.className='ed-level-fields ed-object-fields';panel.append(numericField('World width',level.bounds.width,n=>level.bounds.width=Math.max(400,Math.min(10000,n)),100),numericField('World height',level.bounds.height,n=>level.bounds.height=Math.max(300,Math.min(5000,n)),100),numericField('Ground Y',level.bounds.ground,n=>level.bounds.ground=Math.max(1,Math.min(level.bounds.height,n))),numericField('Sling X',level.sling.x,n=>level.sling.x=n),numericField('Sling Y',level.sling.y,n=>level.sling.y=n),selectField('Ground',level.environment?.ground===false?'off':'on',['on','off'],value=>environment().ground=value==='on'),numericField('Gravity X',level.environment?.gravity?.x || 0,n=>(environment().gravity ??={x:0,y:1}).x=n,.1),numericField('Gravity Y',level.environment?.gravity?.y ?? 1,n=>(environment().gravity ??={x:0,y:1}).y=n,.1),numericField('Ground friction',level.environment?.groundFriction ?? .9,n=>environment().groundFriction=Math.max(0,Math.min(2,n)),.05),selectField('Camera start',level.camera?.start || 'overview',['overview','sling'],value=>(level.camera ??={}).start=value as 'overview'|'sling'),numericField('Camera zoom',level.camera?.zoom || 1,n=>(level.camera ??={}).zoom=Math.max(.1,Math.min(3,n)),.1));}
+  function renderRoster(){const panel=$('.ed-roster');panel.replaceChildren();level.projectiles.forEach((kind,index)=>{const group=document.createElement('span');group.append(actionButton(`${index+1}. ${kind} ×`,()=>commit(()=>level.projectiles.splice(index,1))));if(index)group.append(actionButton('←',()=>commit(()=>{[level.projectiles[index-1],level.projectiles[index]]=[level.projectiles[index],level.projectiles[index-1]];})));panel.append(group);});}
+  const advancedKeys=['terrain','props','joints','mechanisms','zones','environment','camera'] as const;
+  function refreshAdvanced(){const data:Record<string,unknown>={};for(const key of advancedKeys)if(level[key]!==undefined)data[key]=level[key];$<HTMLTextAreaElement>('[data-field="advanced"]').value=JSON.stringify(data,null,2);}
+  function render(){renderScene();renderSelection();renderRoster();renderLevelFields();$<HTMLInputElement>('[data-field="name"]').value=level.name;$<HTMLInputElement>('[data-field="subtitle"]').value=level.subtitle;$<HTMLSelectElement>('[data-field="world"]').value=level.world;$<HTMLInputElement>('[data-field="idea"]').value=level.metadata?.idea || '';$<HTMLInputElement>('[data-field="mechanics"]').value=level.metadata?.mechanics.join(', ') || '';$<HTMLInputElement>('[data-field="author"]').value=level.metadata?.author || '';$<HTMLSelectElement>('[data-field="category"]').value=level.metadata?.category || 'puzzle';root.querySelectorAll<HTMLButtonElement>('[data-tool]').forEach(button=>button.classList.toggle('ed-active',button.dataset.tool===tool));root.querySelectorAll<HTMLButtonElement>('[data-material]').forEach(button=>button.classList.toggle('ed-active',button.dataset.material===material));root.querySelectorAll<HTMLInputElement>('[data-score]').forEach(input=>input.value=String(level.thresholds[Number(input.dataset.score)]));$<HTMLButtonElement>('[data-action="undo"]').disabled=!history.length;$<HTMLButtonElement>('[data-action="redo"]').disabled=!future.length;$<HTMLButtonElement>('[data-action="paste"]').disabled=!clipboard;const issues=validateLevel(level);const bodies=physicalCollections.reduce((sum,type)=>sum+list(type).length,0);message(issues.length?`${issues.length} issue${issues.length===1?'':'s'} · ${issues[0].path}: ${issues[0].message}`:`${bodies} bodies · ${level.monsters.length} monsters · ${bodies>240?'Heavy scene: 240 bodies recommended':'Ready to playtest'}`,issues.length>0);}
+  function addPiece(x:number,y:number){commit(()=>{clearSelection();let type:Collection='blocks',piece:Piece;const ground=level.environment?.ground!==false;
+    if(tool==='sling'){level.sling={x,y};return;}
+    if(tool==='monster'){type='monsters';piece={id:uid('monster'),x,y:ground?Math.min(y,floor()-18):y,radius:18,kind:'horn'};}
+    else if(tool==='tnt'){type='hazards';piece={id:uid('tnt'),x,y:ground?Math.min(y,floor()-20):y,kind:'tnt'};}
+    else if(tool==='boulder'||tool==='planetoid'){type='props';piece={id:uid(tool),x,y,radius:tool==='planetoid'?100:35,kind:tool,material,static:tool==='planetoid'};}
+    else if(tool==='zone'){type='zones';const kind=$<HTMLSelectElement>('[data-field="zone-kind"]').value;piece={id:uid('zone'),x,y,w:240,h:180,kind,...(kind==='gravity'?{center:{x,y},radius:250,strength:1}:{}),...(kind==='heat'?{rate:3}:{}),...(kind==='lava'?{rate:50}:{})};}
+    else if(tool==='vent'){type='mechanisms';piece={id:uid('vent'),kind:'vent',x,y,w:160,h:200,force:.003,axis:'y'};}
+    else{type=tool==='terrain'||tool==='ramp'?'terrain':'blocks';const w=tool==='beam'?140:tool==='post'?20:tool==='terrain'?240:tool==='ramp'?300:50,h=tool==='beam'?20:tool==='post'?100:type==='terrain'?30:50;piece={id:uid(type==='terrain'?'terrain':'block'),x,y:ground&&type==='blocks'?Math.min(y,floor()-h/2):y,w,h,material,...(tool==='ramp'?{angle:-Math.PI/12}:{})};}
+    list(type).push(piece);select({type,id:piece.id});});}
+  function copySelection(){const objects=chosen().map(value=>({type:value.selection.type,piece:copy(value.piece)}));const ids=new Set(objects.map(value=>value.piece.id));clipboard={objects,joints:copy((level.joints || []).filter(joint=>(!joint.bodyA||ids.has(joint.bodyA))&&(!joint.bodyB||ids.has(joint.bodyB))&&!!(joint.bodyA||joint.bodyB))),mechanisms:copy((level.mechanisms || []).filter(mech=>mech.body&&ids.has(mech.body)))};$<HTMLButtonElement>('[data-action="paste"]').disabled=!objects.length;message(`${objects.length} pieces copied with internal connections.`);}
+  function pasteSelection(){if(!clipboard?.objects.length)return;const data=copy(clipboard);commit(()=>{tool='select';clearSelection();const ids=new Map(data.objects.map(value=>[value.piece.id,uid('copy')]));for(const value of data.objects){value.piece.id=ids.get(value.piece.id)!;value.piece.x+=35;value.piece.y-=35;if(value.piece.center){value.piece.center.x+=35;value.piece.center.y-=35;}list(value.type).push(value.piece);selection.set(value.piece.id,{type:value.type,id:value.piece.id});}for(const joint of data.joints){joint.id=uid('joint');if(joint.bodyA)joint.bodyA=ids.get(joint.bodyA);else{joint.pointA.x+=35;joint.pointA.y-=35;}if(joint.bodyB)joint.bodyB=ids.get(joint.bodyB);else{joint.pointB.x+=35;joint.pointB.y-=35;}(level.joints ??=[]).push(joint);}for(const mechanism of data.mechanisms || []){mechanism.id=uid('mechanism');mechanism.body=ids.get(mechanism.body!);if(mechanism.trigger&&ids.has(mechanism.trigger))mechanism.trigger=ids.get(mechanism.trigger);(level.mechanisms ??=[]).push(mechanism);}selected=[...selection.values()].at(-1)||null;});}
+  function removeSelection(){if(!selection.size)return;commit(()=>{const ids=new Set(selection.keys());for(const type of ['blocks','monsters','hazards','terrain','props','zones','mechanisms'] as Collection[]){const values=list(type);for(let i=values.length-1;i>=0;i--)if(ids.has(values[i].id))values.splice(i,1);}level.joints=level.joints?.filter(joint=>!ids.has(joint.bodyA || '')&&!ids.has(joint.bodyB || ''));level.mechanisms=level.mechanisms?.filter(mech=>!ids.has(mech.body || '')&&!ids.has(mech.trigger || ''));clearSelection();});}
+  function rotateSelection(){if(!selection.size)return;commit(()=>{
+    const items=chosen(),angle=Math.PI/12,c=Math.cos(angle),t=Math.sin(angle),x=items.reduce((sum,v)=>sum+v.piece.x,0)/items.length,y=items.reduce((sum,v)=>sum+v.piece.y,0)/items.length;
+    const rotate=(p:Point)=>({x:x+(p.x-x)*c-(p.y-y)*t,y:y+(p.x-x)*t+(p.y-y)*c});
+    for(const {piece,selection:value} of items){const p=rotate(piece);piece.x=p.x;piece.y=p.y;if(value.type==='blocks'||value.type==='terrain')piece.angle=roundedAngle((piece.angle || 0)+angle);if(piece.center)piece.center=rotate(piece.center);}
+    if(items.length>1)for(const joint of level.joints || [])if((!joint.bodyA||selection.has(joint.bodyA))&&(!joint.bodyB||selection.has(joint.bodyB))){if(!joint.bodyA)joint.pointA=rotate(joint.pointA);if(!joint.bodyB)joint.pointB=rotate(joint.pointB);}
+  });}
+  const roundedAngle=(angle:number)=>snap?Math.round(angle/(Math.PI/12))*Math.PI/12:angle;
+  function alignSelection(mode:string){const items=chosen();if(items.length<2)return;
+    const left=Math.min(...items.map(v=>v.piece.x-(v.piece.w || (v.piece.radius || 0)*2)/2)),right=Math.max(...items.map(v=>v.piece.x+(v.piece.w || (v.piece.radius || 0)*2)/2)),top=Math.min(...items.map(v=>v.piece.y-(v.piece.h || (v.piece.radius || 0)*2)/2)),bottom=Math.max(...items.map(v=>v.piece.y+(v.piece.h || (v.piece.radius || 0)*2)/2)),centerX=items.reduce((sum,v)=>sum+v.piece.x,0)/items.length,centerY=items.reduce((sum,v)=>sum+v.piece.y,0)/items.length;
+    commit(()=>{for(const {piece} of items){if(mode==='center-x')piece.x=rounded(centerX);if(mode==='center-y')piece.y=rounded(centerY);if(mode==='left')piece.x=left+(piece.w || (piece.radius || 0)*2)/2;if(mode==='right')piece.x=right-(piece.w || (piece.radius || 0)*2)/2;if(mode==='top')piece.y=top+(piece.h || (piece.radius || 0)*2)/2;if(mode==='bottom')piece.y=bottom-(piece.h || (piece.radius || 0)*2)/2;}});
   }
-  function render() {
-    renderScene();
-    renderSelection();
-    renderRoster();
-    $<HTMLInputElement>('[data-field="name"]').value = level.name;
-    $<HTMLInputElement>('[data-field="subtitle"]').value = level.subtitle;
-    root
-      .querySelectorAll<HTMLButtonElement>('[data-tool]')
-      .forEach((button) => button.classList.toggle('ed-active', button.dataset.tool === tool));
-    root
-      .querySelectorAll<HTMLButtonElement>('[data-material]')
-      .forEach((button) =>
-        button.classList.toggle('ed-active', button.dataset.material === material),
-      );
-    root
-      .querySelectorAll<HTMLInputElement>('[data-score]')
-      .forEach((input) => (input.value = String(level.thresholds[Number(input.dataset.score)])));
-    $<HTMLButtonElement>('[data-action="undo"]').disabled = !history.length;
-    $<HTMLButtonElement>('[data-action="redo"]').disabled = !future.length;
-    const issues = validateLevel(level);
-    message(
-      issues.length
-        ? `${issues.length} issue${issues.length === 1 ? '' : 's'} · ${issues[0].path}: ${issues[0].message}`
-        : `${level.blocks.length} pieces · ${level.monsters.length} monsters · Ready to playtest`,
-      issues.length > 0,
-    );
-  }
-  function addPiece(x: number, y: number) {
-    commit(() => {
-      if (tool === 'monster') {
-        const id = uid('monster');
-        level.monsters.push({
-          id,
-          x,
-          y: Math.min(y, level.bounds.ground - 18),
-          radius: 18,
-          kind: 'horn',
-        });
-        selected = { type: 'monsters', id };
-      } else if (tool === 'tnt') {
-        const id = uid('tnt');
-        level.hazards.push({ id, x, y: Math.min(y, level.bounds.ground - 20), kind: 'tnt' });
-        selected = { type: 'hazards', id };
-      } else {
-        const id = uid('block');
-        const w = tool === 'beam' ? 140 : tool === 'post' ? 20 : 50;
-        const h = tool === 'beam' ? 20 : tool === 'post' ? 100 : 50;
-        level.blocks.push({ id, x, y: Math.min(y, level.bounds.ground - h / 2), w, h, material });
-        selected = { type: 'blocks', id };
-      }
-    });
-  }
-  listen(svg, 'pointerdown', ((event: PointerEvent) => {
-    if (event.button !== 0) return;
-    event.preventDefault();
-    const p = point(event);
-    if (tool !== 'select') {
-      addPiece(p.x, p.y);
-      return;
-    }
-    const target = (event.target as Element).closest<SVGElement>('[data-id]');
-    selected = target
-      ? { id: target.dataset.id!, type: target.dataset.type as NonNullable<Selection>['type'] }
-      : null;
-    const item = entity();
-    if (item) {
-      drag = {
-        start: copy(level),
-        x: p.x,
-        y: p.y,
-        dx: item.x - p.x,
-        dy: item.y - p.y,
-        moved: false,
-      };
-      svg.setPointerCapture(event.pointerId);
-    }
-    render();
+  function template(kind:string){commit(()=>{tool='select';clearSelection();const x=rounded(level.bounds.width*.7),g=floor();const block=(dx:number,y:number,w:number,h:number,m=material)=>{const piece={id:uid('template'),x:x+dx,y,w,h,material:m};level.blocks.push(piece);selection.set(piece.id,{type:'blocks',id:piece.id});return piece;};const monster=(dx:number,y:number)=>{const piece={id:uid('monster'),x:x+dx,y,radius:18,kind:'blob' as const};level.monsters.push(piece);selection.set(piece.id,{type:'monsters',id:piece.id});};
+    if(kind==='tower'){block(-60,g-50,20,100);block(60,g-50,20,100);block(0,g-110,160,20);monster(0,g-18);}
+    if(kind==='arch'){block(-110,g-50,40,100,'stone');block(110,g-50,40,100,'stone');block(-90,g-115,80,30,'stone');block(90,g-115,80,30,'stone');block(-55,g-145,90,30,'stone');block(55,g-145,90,30,'stone');block(0,g-175,130,30,'stone');monster(0,g-18);}
+    if(kind==='bridge'){const y=g-149;for(const dx of[-190,190]){const piece={id:uid('abutment'),x:x+dx,y:g-70,w:80,h:140,material:'stone' as const};(level.terrain ??=[]).push(piece);selection.set(piece.id,{type:'terrain',id:piece.id});}const planks=[-140,-70,0,70,140].map(dx=>block(dx,y,70,18));for(let i=1;i<planks.length;i++)(level.joints ??=[]).push({id:uid('bridge-rope'),kind:'rope',bodyA:planks[i-1].id,bodyB:planks[i].id,pointA:{x:35,y:0},pointB:{x:-35,y:0},length:0,stiffness:1,damping:.12});for(const i of[0,4])(level.joints ??=[]).push({id:uid('anchor'),kind:'rope',bodyB:planks[i].id,pointA:{x:planks[i].x+(i===0?-35:35),y},pointB:{x:i===0?-35:35,y:0},length:0,stiffness:1});monster(0,y-27);}
+    if(kind==='suspended'){const deck=block(0,g-200,200,20);for(const dx of[-70,70])(level.joints ??=[]).push({id:uid('suspension'),kind:'rope',bodyB:deck.id,pointA:{x:x+dx,y:g-400},pointB:{x:dx,y:0},length:200,stiffness:1,damping:.1});monster(0,g-228);}
+    if(kind==='counterweight'){const beam=block(0,g-160,300,22);block(-120,g-74.5,20,149,'wood');block(120,g-74.5,20,149,'wood');block(-110,g-201,60,60,'stone');monster(110,g-189);(level.joints ??=[]).push({id:uid('fulcrum'),kind:'hinge',bodyB:beam.id,pointA:{x,y:g-160},pointB:{x:0,y:0},length:0,stiffness:1});}
+    if(kind==='moving'){const deck=block(0,g-200,200,20,'metal');(level.mechanisms ??=[]).push({id:uid('moving-platform'),kind:'platform',body:deck.id,axis:'x',range:120,speed:.2});monster(0,g-228);}
+    selected=[...selection.values()].at(-1)||null;});}
+  listen(svg,'pointerdown',((event:PointerEvent)=>{if(event.button!==0)return;event.preventDefault();const p=point(event);if(tool==='pan'){drag={previous:copy(level),start:{x:event.clientX,y:event.clientY},originals:[],moved:false,pan:{x:wrap.scrollLeft,y:wrap.scrollTop}};svg.setPointerCapture(event.pointerId);return;}if(tool!=='select'){addPiece(p.x,p.y);return;}const target=(event.target as Element).closest<SVGElement>('[data-id]');if(!target){if(!multi&&!event.shiftKey)clearSelection();render();return;}const value={id:target.dataset.id!,type:target.dataset.type as Collection},toggleOff=(multi||event.shiftKey)&&selection.has(value.id);if(!toggleOff){if(multi||event.shiftKey)select(value,true);else if(!selection.has(value.id))select(value);else selected=value;}if(selection.has(value.id)){drag={previous:copy(level),start:p,originals:chosen().map(value=>({selection:value.selection,x:value.piece.x,y:value.piece.y})),moved:false,...(toggleOff?{toggleOff:value}:{})};svg.setPointerCapture(event.pointerId);}render();}) as EventListener);
+  listen(svg,'pointermove',((event:PointerEvent)=>{if(!drag)return;if(drag.pan){wrap.scrollLeft=drag.pan.x-(event.clientX-drag.start.x);wrap.scrollTop=drag.pan.y-(event.clientY-drag.start.y);return;}
+    const p=point(event),dx=p.x-drag.start.x,dy=p.y-drag.start.y;if(Math.abs(dx)+Math.abs(dy)>2)drag.moved=true;
+    for(const value of drag.originals){const piece=resolve(value.selection);if(piece){piece.x=rounded(value.x+dx);piece.y=rounded(value.y+dy);if(piece.center){const original=(drag.previous.zones || []).find(zone=>zone.id===piece.id);if(original?.center)piece.center={x:original.center.x+dx,y:original.center.y+dy};}}}
+    if(drag.originals.length>1)for(const joint of level.joints || [])if((!joint.bodyA||selection.has(joint.bodyA))&&(!joint.bodyB||selection.has(joint.bodyB))){const original=drag.previous.joints?.find(value=>value.id===joint.id);if(original){if(!joint.bodyA)joint.pointA={x:original.pointA.x+dx,y:original.pointA.y+dy};if(!joint.bodyB)joint.pointB={x:original.pointB.x+dx,y:original.pointB.y+dy};}}
+    renderScene();renderSelection();
   }) as EventListener);
-  listen(svg, 'pointermove', ((event: PointerEvent) => {
-    const item = entity();
-    if (!drag || !item) return;
-    const p = point(event);
-    if (Math.abs(p.x - drag.x) + Math.abs(p.y - drag.y) > 2) drag.moved = true;
-    item.x = Math.max(10, Math.min(1430, p.x + drag.dx));
-    item.y = Math.max(20, Math.min(790, p.y + drag.dy));
-    renderScene();
-    renderSelection();
+  const endDrag=()=>{if(!drag)return;if(drag.moved)remember(drag.previous);else if(drag.toggleOff){selection.delete(drag.toggleOff.id);selected=[...selection.values()].at(-1)||null;}drag=null;render();};listen(svg,'pointerup',endDrag);listen(svg,'pointercancel',endDrag);listen(svg,'lostpointercapture',endDrag);
+  function load(raw:string,success:string,allowIncomplete=false){let input:unknown;try{input=JSON.parse(raw);}catch{message('This file is not valid JSON.',true);return;}const issues=validateLevel(input);const blocking=allowIncomplete?issues.filter(issue=>{if(issue.message.startsWith('Overlaps ')||issue.message.startsWith('Object extends beyond'))return false;if(issue.path==='monsters'&&issue.message==='At least one monster is required.')return false;if(issue.path==='projectiles'&&(input as Level).projectiles?.length===0)return false;if(issue.path==='thresholds'&&Array.isArray((input as Level).thresholds)&&(input as Level).thresholds.length===3&&(input as Level).thresholds.every(n=>Number.isFinite(n)&&n>=0))return false;return true;}):issues;if(blocking.length){message(`Import rejected · ${blocking[0].path}: ${blocking[0].message}`,true);return;}commit(()=>{level=copy(input as Level);clearSelection();});refreshAdvanced();message(success);}
+  listen(root,'click',((event:MouseEvent)=>{const button=(event.target as Element).closest<HTMLButtonElement>('button');if(!button)return;if(button.dataset.tool){tool=button.dataset.tool as Tool;render();return;}if(button.dataset.material){material=button.dataset.material as MaterialKind;const affected=chosen().filter(value=>['blocks','terrain','props'].includes(value.selection.type));if(affected.length)commit(()=>affected.forEach(value=>value.piece.material=material));else render();return;}if(button.dataset.template){template(button.dataset.template);return;}switch(button.dataset.action){
+    case'back':onClose();break;case'play':{const issues=validateLevel(level);if(issues.length)message(`Cannot playtest · ${issues[0].path}: ${issues[0].message}`,true);else onPlay(copy(level));break;}
+    case'new':commit(()=>{tool='select';level={version:1,id:uid('custom'),name:'Untitled trouble',subtitle:'A little castle, a lot of mischief.',world:level.world,bounds:copy(level.bounds),sling:copy(level.sling),blocks:[],monsters:[],hazards:[],projectiles:['sheep','duck','bear','rabbit'],thresholds:[5000,9000,14000],...(level.environment?{environment:copy(level.environment)}:{})};clearSelection();});refreshAdvanced();break;
+    case'undo':if(history.length){future.push(copy(level));level=history.pop()!;clearSelection();render();}break;case'redo':if(future.length){history.push(copy(level));level=future.pop()!;clearSelection();render();}break;
+    case'copy':copySelection();break;case'paste':pasteSelection();break;case'tower':template('tower');break;
+    case'add-stuffie':if(level.projectiles.length<12)commit(()=>level.projectiles.push($<HTMLSelectElement>('[data-field="stuffie"]').value as StuffieKind));break;
+    case'save':try{localStorage.setItem(SAVE_KEY,JSON.stringify(level));message('Draft saved on this device.');}catch{message('Device storage is unavailable. Export JSON to keep your draft.',true);}break;
+    case'load':try{const raw=localStorage.getItem(SAVE_KEY);if(raw)load(raw,'Draft loaded.',true);else message('No saved draft on this device.');}catch{message('The saved draft could not be read. Try importing JSON.',true);}break;
+    case'export':{const blob=new Blob([JSON.stringify(level,null,2)],{type:'application/json'}),url=URL.createObjectURL(blob),link=document.createElement('a');link.href=url;link.download=`${level.id.replace(/[^a-z0-9_-]/gi,'-')}.json`;link.click();setTimeout(()=>URL.revokeObjectURL(url),1000);message('Level exported as portable JSON.');break;}
+    case'import':$<HTMLInputElement>('[data-field="file"]').click();break;case'refresh-advanced':refreshAdvanced();break;
+    case'apply-advanced':{let data:unknown;try{data=JSON.parse($<HTMLTextAreaElement>('[data-field="advanced"]').value);}catch{message('Advanced data is not valid JSON.',true);break;}if(!data||typeof data!=='object'||Array.isArray(data)){message('Advanced data must be an object.',true);break;}const next=copy(level) as unknown as Record<string,unknown>;for(const key of advancedKeys)if(Object.prototype.hasOwnProperty.call(data,key))next[key]=(data as Record<string,unknown>)[key];const issues=validateLevel(next);if(issues.length){message(`Advanced data rejected · ${issues[0].path}: ${issues[0].message}`,true);break;}commit(()=>{level=next as unknown as Level;clearSelection();});message('Advanced data applied.');break;}
+  }}) as EventListener);
+  listen(root,'change',((event:Event)=>{const input=event.target as HTMLInputElement;const field=input.dataset.field;
+    if(field==='name')commit(()=>level.name=input.value.trim()||'Untitled trouble');if(field==='subtitle')commit(()=>level.subtitle=input.value.trim()||'A little castle, a lot of mischief.');if(field==='world')commit(()=>level.world=input.value);if(field==='multi')multi=input.checked;if(field==='snap'){snap=input.checked;renderScene();}if(field==='grid'){grid=Math.max(1,Math.min(100,Number(input.value)||5));input.value=String(grid);renderScene();}if(field==='zoom'){zoom=Number(input.value)||1;renderScene();}
+    if(field==='idea')commit(()=>meta().idea=input.value.trim()||level.subtitle);if(field==='author')commit(()=>meta().author=input.value);if(field==='mechanics')commit(()=>meta().mechanics=input.value.split(',').map(value=>value.trim()).filter(Boolean));if(field==='category')commit(()=>meta().category=input.value as 'puzzle'|'siege'|'spectacle');
+    if(input.dataset.score!==undefined){const n=Number(input.value);if(Number.isFinite(n))commit(()=>level.thresholds[Number(input.dataset.score)]=Math.max(0,n));}
+    if(field==='file'&&input.files?.[0]){const file=input.files[0];if(file.size>2_000_000){message('Choose a level JSON file smaller than 2 MB.',true);return;}file.text().then(raw=>{if(!controller.signal.aborted)load(raw,'Level imported.');}).catch(()=>message('Could not read this file.',true));input.value='';}
   }) as EventListener);
-  const endDrag = () => {
-    if (!drag) return;
-    if (drag.moved) remember(drag.start);
-    drag = null;
-    render();
-  };
-  listen(svg, 'pointerup', endDrag);
-  listen(svg, 'pointercancel', endDrag);
-  listen(svg, 'lostpointercapture', endDrag);
-  listen(root, 'click', ((event: MouseEvent) => {
-    const button = (event.target as Element).closest<HTMLButtonElement>('button');
-    if (!button) return;
-    if (button.dataset.tool) {
-      tool = button.dataset.tool as Tool;
-      render();
-      return;
-    }
-    if (button.dataset.material) {
-      material = button.dataset.material as MaterialKind;
-      if (selected?.type === 'blocks') commit(() => ((entity() as BlockDef).material = material));
-      else render();
-      return;
-    }
-    switch (button.dataset.action) {
-      case 'back':
-        onClose();
-        break;
-      case 'new':
-        commit(() => {
-          level = {
-            ...copy(initial),
-            id: uid('custom'),
-            name: 'Untitled trouble',
-            subtitle: 'A little castle, a lot of mischief.',
-            blocks: [],
-            monsters: [],
-            hazards: [],
-            projectiles: ['sheep', 'duck', 'bear', 'rabbit'],
-            thresholds: [5000, 9000, 14000],
-          };
-          selected = null;
-        });
-        break;
-      case 'play': {
-        const issues = validateLevel(level);
-        if (issues.length) {
-          message(`Cannot playtest · ${issues[0].path}: ${issues[0].message}`, true);
-          break;
-        }
-        onPlay(copy(level));
-        break;
-      }
-      case 'undo':
-        if (history.length) {
-          future.push(copy(level));
-          level = history.pop()!;
-          selected = null;
-          render();
-        }
-        break;
-      case 'redo':
-        if (future.length) {
-          history.push(copy(level));
-          level = future.pop()!;
-          selected = null;
-          render();
-        }
-        break;
-      case 'tower':
-        commit(() => {
-          const x = 1030;
-          const floor = level.bounds.ground;
-          for (const dx of [-60, 60])
-            level.blocks.push({
-              id: uid('post'),
-              x: x + dx,
-              y: floor - 50,
-              w: 20,
-              h: 100,
-              material,
-            });
-          level.blocks.push({ id: uid('beam'), x, y: floor - 110, w: 160, h: 20, material });
-          level.monsters.push({ id: uid('monster'), x, y: floor - 18, radius: 18, kind: 'blob' });
-        });
-        break;
-      case 'add-stuffie':
-        if (level.projectiles.length < 12)
-          commit(() =>
-            level.projectiles.push(
-              $<HTMLSelectElement>('[data-field="stuffie"]').value as StuffieKind,
-            ),
-          );
-        break;
-      case 'save':
-        try {
-          localStorage.setItem(SAVE_KEY, JSON.stringify(level));
-          message('Draft saved on this device.');
-        } catch {
-          message('Device storage is unavailable. Export JSON to keep your draft.', true);
-        }
-        break;
-      case 'load':
-        try {
-          const value = localStorage.getItem(SAVE_KEY);
-          if (!value) {
-            message('No saved draft on this device.');
-            break;
-          }
-          load(value, 'Draft loaded.', true);
-        } catch {
-          message('The saved draft could not be read. Try importing JSON.', true);
-        }
-        break;
-      case 'export': {
-        const blob = new Blob([JSON.stringify(level, null, 2)], { type: 'application/json' });
-        const url = URL.createObjectURL(blob);
-        const link = document.createElement('a');
-        link.href = url;
-        link.download = `${level.id.replace(/[^a-z0-9_-]/gi, '-')}.json`;
-        link.click();
-        setTimeout(() => URL.revokeObjectURL(url), 1000);
-        message('Level exported as portable JSON.');
-        break;
-      }
-      case 'import':
-        $<HTMLInputElement>('[data-field="file"]').click();
-        break;
-    }
-  }) as EventListener);
-  function load(raw: string, success: string, allowIncompleteDraft = false) {
-    let input: unknown;
-    try {
-      input = JSON.parse(raw);
-    } catch {
-      message('This file is not valid JSON.', true);
-      return;
-    }
-    const issues = validateLevel(input);
-    // Locally saved drafts may be mid-construction; only allow shape-safe authoring errors.
-    const blocking = allowIncompleteDraft
-      ? issues.filter((issue) => {
-          if (
-            issue.message.startsWith('Overlaps ') ||
-            issue.message.startsWith('Object extends beyond')
-          )
-            return false;
-          if (issue.path === 'monsters' && issue.message === 'At least one monster is required.')
-            return false;
-          if (issue.path === 'projectiles' && (input as Level).projectiles?.length === 0)
-            return false;
-          if (
-            issue.path === 'thresholds' &&
-            Array.isArray((input as Level).thresholds) &&
-            (input as Level).thresholds.length === 3 &&
-            (input as Level).thresholds.every((n) => Number.isFinite(n) && n >= 0)
-          )
-            return false;
-          return true;
-        })
-      : issues;
-    if (blocking.length) {
-      message(`Import rejected · ${blocking[0].path}: ${blocking[0].message}`, true);
-      return;
-    }
-    commit(() => {
-      level = copy(input as Level);
-      selected = null;
-    });
-    message(success);
-  }
-  listen(root, 'change', ((event: Event) => {
-    const input = event.target as HTMLInputElement;
-    if (input.dataset.field === 'name')
-      commit(() => (level.name = input.value.trim() || 'Untitled trouble'));
-    if (input.dataset.field === 'subtitle')
-      commit(() => (level.subtitle = input.value.trim() || 'A little castle, a lot of mischief.'));
-    if (input.dataset.field === 'snap') snap = input.checked;
-    if (input.dataset.score !== undefined) {
-      const n = Number(input.value);
-      if (Number.isFinite(n))
-        commit(() => (level.thresholds[Number(input.dataset.score)] = Math.max(0, n)));
-    }
-    if (input.dataset.field === 'file' && input.files?.[0]) {
-      const file = input.files[0];
-      if (file.size > 2_000_000) {
-        message('Choose a level JSON file smaller than 2 MB.', true);
-        return;
-      }
-      file
-        .text()
-        .then((raw) => {
-          if (!controller.signal.aborted) load(raw, 'Level imported.');
-        })
-        .catch(() => message('Could not read this file.', true));
-      input.value = '';
-    }
-  }) as EventListener);
-  render();
-  return () => {
-    controller.abort();
-    drag = null;
-    root.remove();
-  };
+  listen(root,'keydown',((event:KeyboardEvent)=>{if((event.target as HTMLElement).matches('input,textarea,select'))return;const mod=event.ctrlKey||event.metaKey;if(mod&&event.key.toLowerCase()==='c'){event.preventDefault();copySelection();}if(mod&&event.key.toLowerCase()==='v'){event.preventDefault();pasteSelection();}if(event.key==='Delete'||event.key==='Backspace'){event.preventDefault();removeSelection();}}) as EventListener);
+  render();refreshAdvanced();return()=>{controller.abort();drag=null;root.remove();};
 }

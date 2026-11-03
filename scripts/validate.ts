@@ -5,7 +5,7 @@ import fs from 'node:fs';
 import { performance } from 'node:perf_hooks';
 import { resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
-import { campaign } from '../src/content/campaign';
+import { introCampaign as campaign } from '../src/content/campaign';
 import solutionFixtures from '../tests/fixtures/campaign-solutions.json';
 import { validateLevel } from '../src/content/validate';
 import { Simulation } from '../src/game/physics';

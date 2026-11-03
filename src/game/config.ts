@@ -28,6 +28,8 @@ export const MATERIALS: Record<
     color: 0x88d9de,
     points: 600,
   },
+  ice: {density:.0009,health:6,friction:.035,restitution:.02,color:0x9beaff,points:600},
+  metal: {density:.006,health:180,friction:.5,restitution:.03,color:0x8e91ae,points:1000},
   stone: {
     density: 0.0038,
     // Heavy masonry usually tumbles intact before it breaks.
@@ -89,6 +91,9 @@ export const PHYSICS = {
   settleFrames: 90,
   debrisLimit: 140,
   fragmentLimit: 72,
+  bodyLimit: 240,
+  spaceProjectileLifetimeMs: 30000,
+  spaceVictoryGraceMs: 3000,
   minFragmentSize: 12,
   fragmentLifetimeMs: 45000,
   // Show the intact rigid body reacting before replacing it with large pieces.

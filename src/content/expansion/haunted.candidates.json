@@ -1,0 +1,2765 @@
+[
+  {
+    "version": 1,
+    "id": "haunted-01",
+    "world": "haunted",
+    "name": "Swing Vote",
+    "subtitle": "A chandelier is only as dependable as its cables.",
+    "bounds": {
+      "width": 1900,
+      "height": 935,
+      "ground": 800
+    },
+    "sling": {
+      "x": 235,
+      "y": 655
+    },
+    "projectiles": [
+      "sheep",
+      "duck",
+      "bear",
+      "rabbit"
+    ],
+    "blocks": [
+      {
+        "id": "chandelier-deck0",
+        "x": 996,
+        "y": 580,
+        "w": 100,
+        "h": 18,
+        "material": "wood"
+      },
+      {
+        "id": "chandelier-deck1",
+        "x": 1100,
+        "y": 580,
+        "w": 100,
+        "h": 18,
+        "material": "wood"
+      },
+      {
+        "id": "chandelier-deck2",
+        "x": 1204,
+        "y": 580,
+        "w": 100,
+        "h": 18,
+        "material": "wood"
+      }
+    ],
+    "monsters": [
+      {
+        "id": "chandelier-rider0",
+        "x": 996,
+        "y": 553,
+        "radius": 18,
+        "kind": "horn"
+      },
+      {
+        "id": "chandelier-rider1",
+        "x": 1100,
+        "y": 553,
+        "radius": 18,
+        "kind": "blob"
+      },
+      {
+        "id": "chandelier-rider2",
+        "x": 1204,
+        "y": 553,
+        "radius": 18,
+        "kind": "horn"
+      }
+    ],
+    "hazards": [],
+    "terrain": [],
+    "props": [],
+    "joints": [
+      {
+        "id": "chandelier-cable0--1",
+        "kind": "rope",
+        "pointA": {
+          "x": 961,
+          "y": 430
+        },
+        "bodyB": "chandelier-deck0",
+        "pointB": {
+          "x": -35,
+          "y": 0
+        },
+        "length": 150,
+        "stiffness": 0.85,
+        "damping": 0.12,
+        "breakForce": 0.065
+      },
+      {
+        "id": "chandelier-cable0-1",
+        "kind": "rope",
+        "pointA": {
+          "x": 1031,
+          "y": 430
+        },
+        "bodyB": "chandelier-deck0",
+        "pointB": {
+          "x": 35,
+          "y": 0
+        },
+        "length": 150,
+        "stiffness": 0.85,
+        "damping": 0.12,
+        "breakForce": 0.065
+      },
+      {
+        "id": "chandelier-cable1--1",
+        "kind": "rope",
+        "pointA": {
+          "x": 1065,
+          "y": 430
+        },
+        "bodyB": "chandelier-deck1",
+        "pointB": {
+          "x": -35,
+          "y": 0
+        },
+        "length": 150,
+        "stiffness": 0.85,
+        "damping": 0.12,
+        "breakForce": 0.065
+      },
+      {
+        "id": "chandelier-cable1-1",
+        "kind": "rope",
+        "pointA": {
+          "x": 1135,
+          "y": 430
+        },
+        "bodyB": "chandelier-deck1",
+        "pointB": {
+          "x": 35,
+          "y": 0
+        },
+        "length": 150,
+        "stiffness": 0.85,
+        "damping": 0.12,
+        "breakForce": 0.065
+      },
+      {
+        "id": "chandelier-link1",
+        "kind": "rope",
+        "bodyA": "chandelier-deck0",
+        "pointA": {
+          "x": 50,
+          "y": 0
+        },
+        "bodyB": "chandelier-deck1",
+        "pointB": {
+          "x": -50,
+          "y": 0
+        },
+        "length": 4,
+        "stiffness": 0.7,
+        "damping": 0.1,
+        "breakForce": 0.09
+      },
+      {
+        "id": "chandelier-cable2--1",
+        "kind": "rope",
+        "pointA": {
+          "x": 1169,
+          "y": 430
+        },
+        "bodyB": "chandelier-deck2",
+        "pointB": {
+          "x": -35,
+          "y": 0
+        },
+        "length": 150,
+        "stiffness": 0.85,
+        "damping": 0.12,
+        "breakForce": 0.065
+      },
+      {
+        "id": "chandelier-cable2-1",
+        "kind": "rope",
+        "pointA": {
+          "x": 1239,
+          "y": 430
+        },
+        "bodyB": "chandelier-deck2",
+        "pointB": {
+          "x": 35,
+          "y": 0
+        },
+        "length": 150,
+        "stiffness": 0.85,
+        "damping": 0.12,
+        "breakForce": 0.065
+      },
+      {
+        "id": "chandelier-link2",
+        "kind": "rope",
+        "bodyA": "chandelier-deck1",
+        "pointA": {
+          "x": 50,
+          "y": 0
+        },
+        "bodyB": "chandelier-deck2",
+        "pointB": {
+          "x": -50,
+          "y": 0
+        },
+        "length": 4,
+        "stiffness": 0.7,
+        "damping": 0.1,
+        "breakForce": 0.09
+      }
+    ],
+    "mechanisms": [],
+    "zones": [],
+    "thresholds": [
+      15000,
+      18000,
+      21000
+    ],
+    "par": 2,
+    "camera": {
+      "start": "overview"
+    },
+    "metadata": {
+      "category": "puzzle",
+      "idea": "A chandelier is only as dependable as its cables.",
+      "mechanics": [
+        "suspended platforms",
+        "ropes"
+      ],
+      "author": "Plush Siege production pass 4"
+    }
+  },
+  {
+    "version": 1,
+    "id": "haunted-02",
+    "world": "haunted",
+    "name": "The Pendulum Room",
+    "subtitle": "Strike the hanging stone into the residents of the lower gallery.",
+    "bounds": {
+      "width": 1900,
+      "height": 985,
+      "ground": 850
+    },
+    "sling": {
+      "x": 235,
+      "y": 705
+    },
+    "projectiles": [
+      "duck",
+      "bear",
+      "sheep",
+      "rabbit"
+    ],
+    "blocks": [
+      {
+        "id": "gallery-l0",
+        "x": 1180,
+        "y": 802,
+        "w": 18,
+        "h": 96,
+        "material": "glass"
+      },
+      {
+        "id": "gallery-r0",
+        "x": 1300,
+        "y": 802,
+        "w": 18,
+        "h": 96,
+        "material": "glass"
+      },
+      {
+        "id": "gallery-roof0",
+        "x": 1240,
+        "y": 745,
+        "w": 160,
+        "h": 18,
+        "material": "wood"
+      }
+    ],
+    "monsters": [
+      {
+        "id": "gallery-m0",
+        "x": 1240,
+        "y": 832,
+        "radius": 18,
+        "kind": "horn"
+      }
+    ],
+    "hazards": [],
+    "terrain": [],
+    "props": [
+      {
+        "id": "pendulum",
+        "kind": "boulder",
+        "x": 1050,
+        "y": 610,
+        "radius": 42,
+        "material": "stone"
+      }
+    ],
+    "joints": [
+      {
+        "id": "pendulum-chain",
+        "kind": "rope",
+        "pointA": {
+          "x": 1050,
+          "y": 340
+        },
+        "bodyB": "pendulum",
+        "pointB": {
+          "x": 0,
+          "y": 0
+        },
+        "length": 270,
+        "stiffness": 0.9,
+        "damping": 0.03,
+        "breakForce": 0.1
+      }
+    ],
+    "mechanisms": [],
+    "zones": [],
+    "thresholds": [
+      5000,
+      8000,
+      11000
+    ],
+    "par": 2,
+    "camera": {
+      "start": "overview"
+    },
+    "metadata": {
+      "category": "puzzle",
+      "idea": "Strike the hanging stone into the residents of the lower gallery.",
+      "mechanics": [
+        "pendulum",
+        "chain",
+        "secondary impact"
+      ],
+      "author": "Plush Siege production pass 4"
+    }
+  },
+  {
+    "version": 1,
+    "id": "haunted-03",
+    "world": "haunted",
+    "name": "Graveyard Shift",
+    "subtitle": "The night watch travels on a very real moving platform.",
+    "bounds": {
+      "width": 2050,
+      "height": 985,
+      "ground": 850
+    },
+    "sling": {
+      "x": 235,
+      "y": 705
+    },
+    "projectiles": [
+      "duck",
+      "rabbit",
+      "bear",
+      "sheep"
+    ],
+    "blocks": [
+      {
+        "id": "night-lift",
+        "x": 1120,
+        "y": 650,
+        "w": 220,
+        "h": 22,
+        "material": "metal",
+        "static": true
+      },
+      {
+        "id": "clocktower-l0",
+        "x": 1440,
+        "y": 802,
+        "w": 18,
+        "h": 96,
+        "material": "wood"
+      },
+      {
+        "id": "clocktower-r0",
+        "x": 1560,
+        "y": 802,
+        "w": 18,
+        "h": 96,
+        "material": "wood"
+      },
+      {
+        "id": "clocktower-roof0",
+        "x": 1500,
+        "y": 745,
+        "w": 160,
+        "h": 18,
+        "material": "glass"
+      },
+      {
+        "id": "clocktower-l1",
+        "x": 1440,
+        "y": 688,
+        "w": 18,
+        "h": 96,
+        "material": "wood"
+      },
+      {
+        "id": "clocktower-r1",
+        "x": 1560,
+        "y": 688,
+        "w": 18,
+        "h": 96,
+        "material": "wood"
+      },
+      {
+        "id": "clocktower-roof1",
+        "x": 1500,
+        "y": 631,
+        "w": 160,
+        "h": 18,
+        "material": "glass"
+      }
+    ],
+    "monsters": [
+      {
+        "id": "night-lift-rider",
+        "x": 1120,
+        "y": 621,
+        "radius": 18,
+        "kind": "bat"
+      },
+      {
+        "id": "clocktower-m0",
+        "x": 1500,
+        "y": 832,
+        "radius": 18,
+        "kind": "horn"
+      },
+      {
+        "id": "clocktower-m1",
+        "x": 1500,
+        "y": 718,
+        "radius": 18,
+        "kind": "blob"
+      }
+    ],
+    "hazards": [],
+    "terrain": [],
+    "props": [],
+    "joints": [],
+    "mechanisms": [
+      {
+        "id": "night-lift-drive",
+        "kind": "platform",
+        "body": "night-lift",
+        "range": 130,
+        "speed": 0.1,
+        "axis": "x"
+      }
+    ],
+    "zones": [],
+    "thresholds": [
+      15000,
+      18000,
+      21000
+    ],
+    "par": 2,
+    "camera": {
+      "start": "overview"
+    },
+    "metadata": {
+      "category": "puzzle",
+      "idea": "The night watch travels on a very real moving platform.",
+      "mechanics": [
+        "moving platform",
+        "timing"
+      ],
+      "author": "Plush Siege production pass 4"
+    }
+  },
+  {
+    "version": 1,
+    "id": "haunted-04",
+    "world": "haunted",
+    "name": "A Creak in the Floor",
+    "subtitle": "The trapdoor has one hinge and a surprisingly fragile prop.",
+    "bounds": {
+      "width": 2250,
+      "height": 1135,
+      "ground": 1000
+    },
+    "sling": {
+      "x": 235,
+      "y": 855
+    },
+    "projectiles": [
+      "bear",
+      "duck",
+      "rabbit",
+      "sheep",
+      "bear"
+    ],
+    "blocks": [
+      {
+        "id": "trapdoor-lever",
+        "x": 1100,
+        "y": 810,
+        "w": 350,
+        "h": 22,
+        "material": "wood"
+      },
+      {
+        "id": "trapdoor-weak-foot",
+        "x": 955,
+        "y": 910.5,
+        "w": 20,
+        "h": 179,
+        "material": "glass"
+      },
+      {
+        "id": "trapdoor-right-foot",
+        "x": 1245,
+        "y": 910.5,
+        "w": 24,
+        "h": 179,
+        "material": "wood"
+      },
+      {
+        "id": "crypt-l0",
+        "x": 1440,
+        "y": 952,
+        "w": 18,
+        "h": 96,
+        "material": "glass"
+      },
+      {
+        "id": "crypt-r0",
+        "x": 1560,
+        "y": 952,
+        "w": 18,
+        "h": 96,
+        "material": "glass"
+      },
+      {
+        "id": "crypt-roof0",
+        "x": 1500,
+        "y": 895,
+        "w": 160,
+        "h": 18,
+        "material": "stone"
+      }
+    ],
+    "monsters": [
+      {
+        "id": "trapdoor-rider",
+        "x": 1205,
+        "y": 781,
+        "radius": 18,
+        "kind": "blob"
+      },
+      {
+        "id": "crypt-m0",
+        "x": 1500,
+        "y": 982,
+        "radius": 18,
+        "kind": "horn"
+      }
+    ],
+    "hazards": [],
+    "terrain": [],
+    "props": [
+      {
+        "id": "trapdoor-weight",
+        "x": 995,
+        "y": 767,
+        "kind": "boulder",
+        "radius": 32,
+        "material": "stone"
+      }
+    ],
+    "joints": [
+      {
+        "id": "trapdoor-pivot",
+        "kind": "hinge",
+        "pointA": {
+          "x": 1100,
+          "y": 810
+        },
+        "bodyB": "trapdoor-lever",
+        "pointB": {
+          "x": 0,
+          "y": 0
+        },
+        "length": 0,
+        "stiffness": 1,
+        "damping": 0.04
+      }
+    ],
+    "mechanisms": [],
+    "zones": [],
+    "thresholds": [
+      10000,
+      14500,
+      19000
+    ],
+    "par": 2,
+    "camera": {
+      "start": "overview"
+    },
+    "metadata": {
+      "category": "siege",
+      "idea": "The trapdoor has one hinge and a surprisingly fragile prop.",
+      "mechanics": [
+        "hinge",
+        "counterweight",
+        "trapdoor"
+      ],
+      "author": "Plush Siege production pass 4"
+    }
+  },
+  {
+    "version": 1,
+    "id": "haunted-05",
+    "world": "haunted",
+    "name": "The Crooked Manor",
+    "subtitle": "The veranda and both wings share their floor beams. A broken middle pier drops two rooms at once.",
+    "bounds": {
+      "width": 2450,
+      "height": 1285,
+      "ground": 1150
+    },
+    "sling": {
+      "x": 235,
+      "y": 1005
+    },
+    "projectiles": [
+      "bear",
+      "duck",
+      "rabbit",
+      "bear",
+      "sheep"
+    ],
+    "blocks": [
+      {
+        "id": "manor-pier-0-0",
+        "x": 930,
+        "y": 1099,
+        "w": 44,
+        "h": 102,
+        "material": "wood"
+      },
+      {
+        "id": "manor-pier-0-1",
+        "x": 1150,
+        "y": 1099,
+        "w": 44,
+        "h": 102,
+        "material": "glass"
+      },
+      {
+        "id": "manor-pier-0-2",
+        "x": 1370,
+        "y": 1099,
+        "w": 44,
+        "h": 102,
+        "material": "wood"
+      },
+      {
+        "id": "manor-pier-0-3",
+        "x": 1590,
+        "y": 1099,
+        "w": 44,
+        "h": 102,
+        "material": "glass"
+      },
+      {
+        "id": "manor-floor-0-0",
+        "x": 1040,
+        "y": 1036,
+        "w": 218.6,
+        "h": 24,
+        "material": "glass"
+      },
+      {
+        "id": "manor-floor-0-1",
+        "x": 1260,
+        "y": 1036,
+        "w": 218.6,
+        "h": 24,
+        "material": "glass"
+      },
+      {
+        "id": "manor-floor-0-2",
+        "x": 1480,
+        "y": 1036,
+        "w": 218.6,
+        "h": 24,
+        "material": "glass"
+      },
+      {
+        "id": "manor-pier-1-0",
+        "x": 930,
+        "y": 973,
+        "w": 44,
+        "h": 102,
+        "material": "wood"
+      },
+      {
+        "id": "manor-pier-1-1",
+        "x": 1150,
+        "y": 973,
+        "w": 44,
+        "h": 102,
+        "material": "wood"
+      },
+      {
+        "id": "manor-pier-1-2",
+        "x": 1370,
+        "y": 973,
+        "w": 44,
+        "h": 102,
+        "material": "wood"
+      },
+      {
+        "id": "manor-pier-1-3",
+        "x": 1590,
+        "y": 973,
+        "w": 44,
+        "h": 102,
+        "material": "wood"
+      },
+      {
+        "id": "manor-floor-1-0",
+        "x": 1040,
+        "y": 910,
+        "w": 218.6,
+        "h": 24,
+        "material": "glass"
+      },
+      {
+        "id": "manor-floor-1-1",
+        "x": 1260,
+        "y": 910,
+        "w": 218.6,
+        "h": 24,
+        "material": "glass"
+      },
+      {
+        "id": "manor-floor-1-2",
+        "x": 1480,
+        "y": 910,
+        "w": 218.6,
+        "h": 24,
+        "material": "glass"
+      },
+      {
+        "id": "manor-pier-2-0",
+        "x": 930,
+        "y": 847,
+        "w": 44,
+        "h": 102,
+        "material": "wood"
+      },
+      {
+        "id": "manor-pier-2-1",
+        "x": 1150,
+        "y": 847,
+        "w": 44,
+        "h": 102,
+        "material": "wood"
+      },
+      {
+        "id": "manor-pier-2-2",
+        "x": 1370,
+        "y": 847,
+        "w": 44,
+        "h": 102,
+        "material": "wood"
+      },
+      {
+        "id": "manor-pier-2-3",
+        "x": 1590,
+        "y": 847,
+        "w": 44,
+        "h": 102,
+        "material": "wood"
+      },
+      {
+        "id": "manor-floor-2-0",
+        "x": 1040,
+        "y": 784,
+        "w": 218.6,
+        "h": 24,
+        "material": "glass"
+      },
+      {
+        "id": "manor-floor-2-1",
+        "x": 1260,
+        "y": 784,
+        "w": 218.6,
+        "h": 24,
+        "material": "glass"
+      },
+      {
+        "id": "manor-floor-2-2",
+        "x": 1480,
+        "y": 784,
+        "w": 218.6,
+        "h": 24,
+        "material": "glass"
+      }
+    ],
+    "monsters": [
+      {
+        "id": "manor-tenant-0-0",
+        "x": 1040,
+        "y": 1132,
+        "radius": 18,
+        "kind": "horn"
+      },
+      {
+        "id": "manor-tenant-0-1",
+        "x": 1260,
+        "y": 1132,
+        "radius": 18,
+        "kind": "blob"
+      },
+      {
+        "id": "manor-tenant-0-2",
+        "x": 1480,
+        "y": 1132,
+        "radius": 18,
+        "kind": "bat"
+      },
+      {
+        "id": "manor-tenant-1-0",
+        "x": 1040,
+        "y": 1006,
+        "radius": 18,
+        "kind": "blob"
+      },
+      {
+        "id": "manor-tenant-1-1",
+        "x": 1260,
+        "y": 1006,
+        "radius": 18,
+        "kind": "bat"
+      },
+      {
+        "id": "manor-tenant-1-2",
+        "x": 1480,
+        "y": 1006,
+        "radius": 18,
+        "kind": "horn"
+      },
+      {
+        "id": "manor-tenant-2-0",
+        "x": 1040,
+        "y": 880,
+        "radius": 18,
+        "kind": "bat"
+      },
+      {
+        "id": "manor-tenant-2-1",
+        "x": 1260,
+        "y": 880,
+        "radius": 18,
+        "kind": "horn"
+      },
+      {
+        "id": "manor-tenant-2-2",
+        "x": 1480,
+        "y": 880,
+        "radius": 18,
+        "kind": "blob"
+      }
+    ],
+    "hazards": [],
+    "terrain": [],
+    "props": [],
+    "joints": [],
+    "mechanisms": [],
+    "zones": [],
+    "thresholds": [
+      45000,
+      49500,
+      54000
+    ],
+    "par": 2,
+    "camera": {
+      "start": "overview"
+    },
+    "metadata": {
+      "category": "siege",
+      "idea": "The veranda and both wings share their floor beams. A broken middle pier drops two rooms at once.",
+      "mechanics": [
+        "shared floor beams",
+        "glass veranda",
+        "asymmetric manor"
+      ],
+      "author": "Plush Siege production pass 4"
+    }
+  },
+  {
+    "version": 1,
+    "id": "haunted-06",
+    "world": "haunted",
+    "name": "Possessed Carousel",
+    "subtitle": "Break the switch post and the carousel starts sweeping the hall.",
+    "bounds": {
+      "width": 2250,
+      "height": 1085,
+      "ground": 950
+    },
+    "sling": {
+      "x": 235,
+      "y": 805
+    },
+    "projectiles": [
+      "duck",
+      "bear",
+      "rabbit",
+      "sheep"
+    ],
+    "blocks": [
+      {
+        "id": "carousel-switch",
+        "x": 780,
+        "y": 905,
+        "w": 20,
+        "h": 90,
+        "material": "glass"
+      },
+      {
+        "id": "carousel",
+        "x": 1130,
+        "y": 735,
+        "w": 330,
+        "h": 22,
+        "angle": -1.5707963267948966,
+        "material": "metal"
+      },
+      {
+        "id": "hall-l0",
+        "x": 1270,
+        "y": 902,
+        "w": 18,
+        "h": 96,
+        "material": "glass"
+      },
+      {
+        "id": "hall-r0",
+        "x": 1390,
+        "y": 902,
+        "w": 18,
+        "h": 96,
+        "material": "glass"
+      },
+      {
+        "id": "hall-roof0",
+        "x": 1330,
+        "y": 845,
+        "w": 160,
+        "h": 18,
+        "material": "wood"
+      },
+      {
+        "id": "hall-l1",
+        "x": 1270,
+        "y": 788,
+        "w": 18,
+        "h": 96,
+        "material": "glass"
+      },
+      {
+        "id": "hall-r1",
+        "x": 1390,
+        "y": 788,
+        "w": 18,
+        "h": 96,
+        "material": "glass"
+      },
+      {
+        "id": "hall-roof1",
+        "x": 1330,
+        "y": 731,
+        "w": 160,
+        "h": 18,
+        "material": "wood"
+      }
+    ],
+    "monsters": [
+      {
+        "id": "hall-m0",
+        "x": 1330,
+        "y": 932,
+        "radius": 18,
+        "kind": "horn"
+      },
+      {
+        "id": "hall-m1",
+        "x": 1330,
+        "y": 818,
+        "radius": 18,
+        "kind": "blob"
+      }
+    ],
+    "hazards": [],
+    "terrain": [],
+    "props": [],
+    "joints": [
+      {
+        "id": "carousel-axle",
+        "kind": "hinge",
+        "pointA": {
+          "x": 1130,
+          "y": 735
+        },
+        "bodyB": "carousel",
+        "pointB": {
+          "x": 0,
+          "y": 0
+        },
+        "length": 0,
+        "stiffness": 1
+      }
+    ],
+    "mechanisms": [
+      {
+        "id": "carousel-motor",
+        "kind": "motor",
+        "body": "carousel",
+        "speed": 1.8,
+        "trigger": "carousel-switch"
+      }
+    ],
+    "zones": [],
+    "thresholds": [
+      10000,
+      13000,
+      16000
+    ],
+    "par": 2,
+    "camera": {
+      "start": "overview"
+    },
+    "metadata": {
+      "category": "puzzle",
+      "idea": "Break the switch post and the carousel starts sweeping the hall.",
+      "mechanics": [
+        "triggered rotating structure",
+        "hinge"
+      ],
+      "author": "Plush Siege production pass 4"
+    }
+  },
+  {
+    "version": 1,
+    "id": "haunted-07",
+    "world": "haunted",
+    "name": "Chain Letter",
+    "subtitle": "Three cable-linked balconies pass a collision along the house.",
+    "bounds": {
+      "width": 2700,
+      "height": 1285,
+      "ground": 1150
+    },
+    "sling": {
+      "x": 235,
+      "y": 1005
+    },
+    "projectiles": [
+      "duck",
+      "bear",
+      "rabbit",
+      "duck",
+      "sheep"
+    ],
+    "blocks": [
+      {
+        "id": "letter-deck0",
+        "x": 1012,
+        "y": 860,
+        "w": 100,
+        "h": 18,
+        "material": "wood"
+      },
+      {
+        "id": "letter-deck1",
+        "x": 1116,
+        "y": 860,
+        "w": 100,
+        "h": 18,
+        "material": "wood"
+      },
+      {
+        "id": "letter-deck2",
+        "x": 1220,
+        "y": 860,
+        "w": 100,
+        "h": 18,
+        "material": "wood"
+      },
+      {
+        "id": "letter-deck3",
+        "x": 1324,
+        "y": 860,
+        "w": 100,
+        "h": 18,
+        "material": "wood"
+      },
+      {
+        "id": "letter-deck4",
+        "x": 1428,
+        "y": 860,
+        "w": 100,
+        "h": 18,
+        "material": "wood"
+      },
+      {
+        "id": "mailroom-l0",
+        "x": 1690,
+        "y": 1102,
+        "w": 18,
+        "h": 96,
+        "material": "glass"
+      },
+      {
+        "id": "mailroom-r0",
+        "x": 1810,
+        "y": 1102,
+        "w": 18,
+        "h": 96,
+        "material": "glass"
+      },
+      {
+        "id": "mailroom-roof0",
+        "x": 1750,
+        "y": 1045,
+        "w": 160,
+        "h": 18,
+        "material": "wood"
+      },
+      {
+        "id": "mailroom-l1",
+        "x": 1690,
+        "y": 988,
+        "w": 18,
+        "h": 96,
+        "material": "glass"
+      },
+      {
+        "id": "mailroom-r1",
+        "x": 1810,
+        "y": 988,
+        "w": 18,
+        "h": 96,
+        "material": "glass"
+      },
+      {
+        "id": "mailroom-roof1",
+        "x": 1750,
+        "y": 931,
+        "w": 160,
+        "h": 18,
+        "material": "wood"
+      }
+    ],
+    "monsters": [
+      {
+        "id": "letter-rider0",
+        "x": 1012,
+        "y": 833,
+        "radius": 18,
+        "kind": "horn"
+      },
+      {
+        "id": "letter-rider1",
+        "x": 1116,
+        "y": 833,
+        "radius": 18,
+        "kind": "blob"
+      },
+      {
+        "id": "letter-rider2",
+        "x": 1220,
+        "y": 833,
+        "radius": 18,
+        "kind": "horn"
+      },
+      {
+        "id": "letter-rider3",
+        "x": 1324,
+        "y": 833,
+        "radius": 18,
+        "kind": "blob"
+      },
+      {
+        "id": "letter-rider4",
+        "x": 1428,
+        "y": 833,
+        "radius": 18,
+        "kind": "horn"
+      },
+      {
+        "id": "mailroom-m0",
+        "x": 1750,
+        "y": 1132,
+        "radius": 18,
+        "kind": "horn"
+      },
+      {
+        "id": "mailroom-m1",
+        "x": 1750,
+        "y": 1018,
+        "radius": 18,
+        "kind": "blob"
+      }
+    ],
+    "hazards": [],
+    "terrain": [],
+    "props": [],
+    "joints": [
+      {
+        "id": "letter-cable0--1",
+        "kind": "rope",
+        "pointA": {
+          "x": 977,
+          "y": 710
+        },
+        "bodyB": "letter-deck0",
+        "pointB": {
+          "x": -35,
+          "y": 0
+        },
+        "length": 150,
+        "stiffness": 0.85,
+        "damping": 0.12,
+        "breakForce": 0.065
+      },
+      {
+        "id": "letter-cable0-1",
+        "kind": "rope",
+        "pointA": {
+          "x": 1047,
+          "y": 710
+        },
+        "bodyB": "letter-deck0",
+        "pointB": {
+          "x": 35,
+          "y": 0
+        },
+        "length": 150,
+        "stiffness": 0.85,
+        "damping": 0.12,
+        "breakForce": 0.065
+      },
+      {
+        "id": "letter-cable1--1",
+        "kind": "rope",
+        "pointA": {
+          "x": 1081,
+          "y": 710
+        },
+        "bodyB": "letter-deck1",
+        "pointB": {
+          "x": -35,
+          "y": 0
+        },
+        "length": 150,
+        "stiffness": 0.85,
+        "damping": 0.12,
+        "breakForce": 0.065
+      },
+      {
+        "id": "letter-cable1-1",
+        "kind": "rope",
+        "pointA": {
+          "x": 1151,
+          "y": 710
+        },
+        "bodyB": "letter-deck1",
+        "pointB": {
+          "x": 35,
+          "y": 0
+        },
+        "length": 150,
+        "stiffness": 0.85,
+        "damping": 0.12,
+        "breakForce": 0.065
+      },
+      {
+        "id": "letter-link1",
+        "kind": "rope",
+        "bodyA": "letter-deck0",
+        "pointA": {
+          "x": 50,
+          "y": 0
+        },
+        "bodyB": "letter-deck1",
+        "pointB": {
+          "x": -50,
+          "y": 0
+        },
+        "length": 4,
+        "stiffness": 0.7,
+        "damping": 0.1,
+        "breakForce": 0.09
+      },
+      {
+        "id": "letter-cable2--1",
+        "kind": "rope",
+        "pointA": {
+          "x": 1185,
+          "y": 710
+        },
+        "bodyB": "letter-deck2",
+        "pointB": {
+          "x": -35,
+          "y": 0
+        },
+        "length": 150,
+        "stiffness": 0.85,
+        "damping": 0.12,
+        "breakForce": 0.065
+      },
+      {
+        "id": "letter-cable2-1",
+        "kind": "rope",
+        "pointA": {
+          "x": 1255,
+          "y": 710
+        },
+        "bodyB": "letter-deck2",
+        "pointB": {
+          "x": 35,
+          "y": 0
+        },
+        "length": 150,
+        "stiffness": 0.85,
+        "damping": 0.12,
+        "breakForce": 0.065
+      },
+      {
+        "id": "letter-link2",
+        "kind": "rope",
+        "bodyA": "letter-deck1",
+        "pointA": {
+          "x": 50,
+          "y": 0
+        },
+        "bodyB": "letter-deck2",
+        "pointB": {
+          "x": -50,
+          "y": 0
+        },
+        "length": 4,
+        "stiffness": 0.7,
+        "damping": 0.1,
+        "breakForce": 0.09
+      },
+      {
+        "id": "letter-cable3--1",
+        "kind": "rope",
+        "pointA": {
+          "x": 1289,
+          "y": 710
+        },
+        "bodyB": "letter-deck3",
+        "pointB": {
+          "x": -35,
+          "y": 0
+        },
+        "length": 150,
+        "stiffness": 0.85,
+        "damping": 0.12,
+        "breakForce": 0.065
+      },
+      {
+        "id": "letter-cable3-1",
+        "kind": "rope",
+        "pointA": {
+          "x": 1359,
+          "y": 710
+        },
+        "bodyB": "letter-deck3",
+        "pointB": {
+          "x": 35,
+          "y": 0
+        },
+        "length": 150,
+        "stiffness": 0.85,
+        "damping": 0.12,
+        "breakForce": 0.065
+      },
+      {
+        "id": "letter-link3",
+        "kind": "rope",
+        "bodyA": "letter-deck2",
+        "pointA": {
+          "x": 50,
+          "y": 0
+        },
+        "bodyB": "letter-deck3",
+        "pointB": {
+          "x": -50,
+          "y": 0
+        },
+        "length": 4,
+        "stiffness": 0.7,
+        "damping": 0.1,
+        "breakForce": 0.09
+      },
+      {
+        "id": "letter-cable4--1",
+        "kind": "rope",
+        "pointA": {
+          "x": 1393,
+          "y": 710
+        },
+        "bodyB": "letter-deck4",
+        "pointB": {
+          "x": -35,
+          "y": 0
+        },
+        "length": 150,
+        "stiffness": 0.85,
+        "damping": 0.12,
+        "breakForce": 0.065
+      },
+      {
+        "id": "letter-cable4-1",
+        "kind": "rope",
+        "pointA": {
+          "x": 1463,
+          "y": 710
+        },
+        "bodyB": "letter-deck4",
+        "pointB": {
+          "x": 35,
+          "y": 0
+        },
+        "length": 150,
+        "stiffness": 0.85,
+        "damping": 0.12,
+        "breakForce": 0.065
+      },
+      {
+        "id": "letter-link4",
+        "kind": "rope",
+        "bodyA": "letter-deck3",
+        "pointA": {
+          "x": 50,
+          "y": 0
+        },
+        "bodyB": "letter-deck4",
+        "pointB": {
+          "x": -50,
+          "y": 0
+        },
+        "length": 4,
+        "stiffness": 0.7,
+        "damping": 0.1,
+        "breakForce": 0.09
+      }
+    ],
+    "mechanisms": [],
+    "zones": [],
+    "thresholds": [
+      35000,
+      39500,
+      44000
+    ],
+    "par": 2,
+    "camera": {
+      "start": "overview"
+    },
+    "metadata": {
+      "category": "siege",
+      "idea": "Three cable-linked balconies pass a collision along the house.",
+      "mechanics": [
+        "chains",
+        "linked suspension",
+        "multi-stage collapse"
+      ],
+      "author": "Plush Siege production pass 4"
+    }
+  },
+  {
+    "version": 1,
+    "id": "haunted-08",
+    "world": "haunted",
+    "name": "Spooky Action",
+    "subtitle": "A pale gravity pocket changes how the falling roof reaches the courtyard.",
+    "bounds": {
+      "width": 2500,
+      "height": 1185,
+      "ground": 1050
+    },
+    "sling": {
+      "x": 235,
+      "y": 905
+    },
+    "projectiles": [
+      "duck",
+      "bear",
+      "rabbit",
+      "bear",
+      "sheep"
+    ],
+    "blocks": [
+      {
+        "id": "spooky-l0",
+        "x": 1060,
+        "y": 1002,
+        "w": 18,
+        "h": 96,
+        "material": "glass"
+      },
+      {
+        "id": "spooky-r0",
+        "x": 1180,
+        "y": 1002,
+        "w": 18,
+        "h": 96,
+        "material": "glass"
+      },
+      {
+        "id": "spooky-roof0",
+        "x": 1120,
+        "y": 945,
+        "w": 160,
+        "h": 18,
+        "material": "stone"
+      },
+      {
+        "id": "spooky-l1",
+        "x": 1060,
+        "y": 888,
+        "w": 18,
+        "h": 96,
+        "material": "glass"
+      },
+      {
+        "id": "spooky-r1",
+        "x": 1180,
+        "y": 888,
+        "w": 18,
+        "h": 96,
+        "material": "glass"
+      },
+      {
+        "id": "spooky-roof1",
+        "x": 1120,
+        "y": 831,
+        "w": 160,
+        "h": 18,
+        "material": "stone"
+      },
+      {
+        "id": "spooky-l2",
+        "x": 1060,
+        "y": 774,
+        "w": 18,
+        "h": 96,
+        "material": "glass"
+      },
+      {
+        "id": "spooky-r2",
+        "x": 1180,
+        "y": 774,
+        "w": 18,
+        "h": 96,
+        "material": "glass"
+      },
+      {
+        "id": "spooky-roof2",
+        "x": 1120,
+        "y": 717,
+        "w": 160,
+        "h": 18,
+        "material": "stone"
+      },
+      {
+        "id": "neighbor-l0",
+        "x": 1480,
+        "y": 1002,
+        "w": 18,
+        "h": 96,
+        "material": "wood"
+      },
+      {
+        "id": "neighbor-r0",
+        "x": 1600,
+        "y": 1002,
+        "w": 18,
+        "h": 96,
+        "material": "wood"
+      },
+      {
+        "id": "neighbor-roof0",
+        "x": 1540,
+        "y": 945,
+        "w": 160,
+        "h": 18,
+        "material": "glass"
+      }
+    ],
+    "monsters": [
+      {
+        "id": "spooky-m0",
+        "x": 1120,
+        "y": 1032,
+        "radius": 18,
+        "kind": "horn"
+      },
+      {
+        "id": "spooky-m1",
+        "x": 1120,
+        "y": 918,
+        "radius": 18,
+        "kind": "blob"
+      },
+      {
+        "id": "spooky-m2",
+        "x": 1120,
+        "y": 804,
+        "radius": 18,
+        "kind": "bat"
+      },
+      {
+        "id": "neighbor-m0",
+        "x": 1540,
+        "y": 1032,
+        "radius": 18,
+        "kind": "horn"
+      }
+    ],
+    "hazards": [],
+    "terrain": [],
+    "props": [],
+    "joints": [],
+    "mechanisms": [],
+    "zones": [
+      {
+        "id": "ghost-pocket",
+        "kind": "zero-gravity",
+        "x": 1350,
+        "y": 840,
+        "w": 160,
+        "h": 320
+      }
+    ],
+    "thresholds": [
+      20000,
+      24500,
+      29000
+    ],
+    "par": 2,
+    "camera": {
+      "start": "overview"
+    },
+    "metadata": {
+      "category": "siege",
+      "idea": "A pale gravity pocket changes how the falling roof reaches the courtyard.",
+      "mechanics": [
+        "zero-gravity pocket",
+        "falling masonry"
+      ],
+      "author": "Plush Siege production pass 4"
+    }
+  },
+  {
+    "version": 1,
+    "id": "haunted-09",
+    "world": "haunted",
+    "name": "Midnight Bells",
+    "subtitle": "The bells hang from the roof of a three-storey music hall. Falling floors pull the bells through the lower galleries.",
+    "bounds": {
+      "width": 3300,
+      "height": 1435,
+      "ground": 1300
+    },
+    "sling": {
+      "x": 235,
+      "y": 1155
+    },
+    "projectiles": [
+      "duck",
+      "bear",
+      "rabbit",
+      "duck",
+      "bear",
+      "sheep"
+    ],
+    "blocks": [
+      {
+        "id": "bell-house-pier-0-0",
+        "x": 1040,
+        "y": 1249,
+        "w": 44,
+        "h": 102,
+        "material": "glass"
+      },
+      {
+        "id": "bell-house-pier-0-1",
+        "x": 1260,
+        "y": 1249,
+        "w": 44,
+        "h": 102,
+        "material": "glass"
+      },
+      {
+        "id": "bell-house-pier-0-2",
+        "x": 1480,
+        "y": 1249,
+        "w": 44,
+        "h": 102,
+        "material": "glass"
+      },
+      {
+        "id": "bell-house-pier-0-3",
+        "x": 1700,
+        "y": 1249,
+        "w": 44,
+        "h": 102,
+        "material": "glass"
+      },
+      {
+        "id": "bell-house-pier-0-4",
+        "x": 1920,
+        "y": 1249,
+        "w": 44,
+        "h": 102,
+        "material": "glass"
+      },
+      {
+        "id": "bell-house-floor-0-0",
+        "x": 1150,
+        "y": 1186,
+        "w": 218.6,
+        "h": 24,
+        "material": "wood"
+      },
+      {
+        "id": "bell-house-floor-0-1",
+        "x": 1370,
+        "y": 1186,
+        "w": 218.6,
+        "h": 24,
+        "material": "wood"
+      },
+      {
+        "id": "bell-house-floor-0-2",
+        "x": 1590,
+        "y": 1186,
+        "w": 218.6,
+        "h": 24,
+        "material": "wood"
+      },
+      {
+        "id": "bell-house-floor-0-3",
+        "x": 1810,
+        "y": 1186,
+        "w": 218.6,
+        "h": 24,
+        "material": "wood"
+      },
+      {
+        "id": "bell-house-pier-1-0",
+        "x": 1040,
+        "y": 1123,
+        "w": 44,
+        "h": 102,
+        "material": "glass"
+      },
+      {
+        "id": "bell-house-pier-1-1",
+        "x": 1260,
+        "y": 1123,
+        "w": 44,
+        "h": 102,
+        "material": "glass"
+      },
+      {
+        "id": "bell-house-pier-1-2",
+        "x": 1480,
+        "y": 1123,
+        "w": 44,
+        "h": 102,
+        "material": "glass"
+      },
+      {
+        "id": "bell-house-pier-1-3",
+        "x": 1700,
+        "y": 1123,
+        "w": 44,
+        "h": 102,
+        "material": "glass"
+      },
+      {
+        "id": "bell-house-pier-1-4",
+        "x": 1920,
+        "y": 1123,
+        "w": 44,
+        "h": 102,
+        "material": "glass"
+      },
+      {
+        "id": "bell-house-floor-1-0",
+        "x": 1150,
+        "y": 1060,
+        "w": 218.6,
+        "h": 24,
+        "material": "wood"
+      },
+      {
+        "id": "bell-house-floor-1-1",
+        "x": 1370,
+        "y": 1060,
+        "w": 218.6,
+        "h": 24,
+        "material": "wood"
+      },
+      {
+        "id": "bell-house-floor-1-2",
+        "x": 1590,
+        "y": 1060,
+        "w": 218.6,
+        "h": 24,
+        "material": "wood"
+      },
+      {
+        "id": "bell-house-floor-1-3",
+        "x": 1810,
+        "y": 1060,
+        "w": 218.6,
+        "h": 24,
+        "material": "wood"
+      },
+      {
+        "id": "bell-house-pier-2-0",
+        "x": 1040,
+        "y": 997,
+        "w": 44,
+        "h": 102,
+        "material": "glass"
+      },
+      {
+        "id": "bell-house-pier-2-1",
+        "x": 1260,
+        "y": 997,
+        "w": 44,
+        "h": 102,
+        "material": "glass"
+      },
+      {
+        "id": "bell-house-pier-2-2",
+        "x": 1480,
+        "y": 997,
+        "w": 44,
+        "h": 102,
+        "material": "glass"
+      },
+      {
+        "id": "bell-house-pier-2-3",
+        "x": 1700,
+        "y": 997,
+        "w": 44,
+        "h": 102,
+        "material": "glass"
+      },
+      {
+        "id": "bell-house-pier-2-4",
+        "x": 1920,
+        "y": 997,
+        "w": 44,
+        "h": 102,
+        "material": "glass"
+      },
+      {
+        "id": "bell-house-floor-2-0",
+        "x": 1150,
+        "y": 934,
+        "w": 218.6,
+        "h": 24,
+        "material": "wood"
+      },
+      {
+        "id": "bell-house-floor-2-1",
+        "x": 1370,
+        "y": 934,
+        "w": 218.6,
+        "h": 24,
+        "material": "wood"
+      },
+      {
+        "id": "bell-house-floor-2-2",
+        "x": 1590,
+        "y": 934,
+        "w": 218.6,
+        "h": 24,
+        "material": "wood"
+      },
+      {
+        "id": "bell-house-floor-2-3",
+        "x": 1810,
+        "y": 934,
+        "w": 218.6,
+        "h": 24,
+        "material": "wood"
+      }
+    ],
+    "monsters": [
+      {
+        "id": "bell-house-tenant-1-0",
+        "x": 1150,
+        "y": 1156,
+        "radius": 18,
+        "kind": "blob"
+      },
+      {
+        "id": "bell-house-tenant-1-1",
+        "x": 1370,
+        "y": 1156,
+        "radius": 18,
+        "kind": "bat"
+      },
+      {
+        "id": "bell-house-tenant-1-2",
+        "x": 1590,
+        "y": 1156,
+        "radius": 18,
+        "kind": "horn"
+      },
+      {
+        "id": "bell-house-tenant-1-3",
+        "x": 1810,
+        "y": 1156,
+        "radius": 18,
+        "kind": "blob"
+      },
+      {
+        "id": "bell-house-tenant-2-0",
+        "x": 1150,
+        "y": 1030,
+        "radius": 18,
+        "kind": "bat"
+      },
+      {
+        "id": "bell-house-tenant-2-1",
+        "x": 1370,
+        "y": 1030,
+        "radius": 18,
+        "kind": "horn"
+      },
+      {
+        "id": "bell-house-tenant-2-2",
+        "x": 1590,
+        "y": 1030,
+        "radius": 18,
+        "kind": "blob"
+      },
+      {
+        "id": "bell-house-tenant-2-3",
+        "x": 1810,
+        "y": 1030,
+        "radius": 18,
+        "kind": "bat"
+      }
+    ],
+    "hazards": [],
+    "terrain": [],
+    "props": [
+      {
+        "id": "bell0",
+        "kind": "boulder",
+        "x": 1150,
+        "y": 1235,
+        "radius": 28,
+        "material": "metal"
+      },
+      {
+        "id": "bell1",
+        "kind": "boulder",
+        "x": 1370,
+        "y": 1235,
+        "radius": 28,
+        "material": "metal"
+      },
+      {
+        "id": "bell2",
+        "kind": "boulder",
+        "x": 1590,
+        "y": 1235,
+        "radius": 28,
+        "material": "metal"
+      },
+      {
+        "id": "bell3",
+        "kind": "boulder",
+        "x": 1810,
+        "y": 1235,
+        "radius": 28,
+        "material": "metal"
+      }
+    ],
+    "joints": [
+      {
+        "id": "bell-chain0",
+        "kind": "rope",
+        "bodyA": "bell-house-floor-2-0",
+        "pointA": {
+          "x": 0,
+          "y": 0
+        },
+        "bodyB": "bell0",
+        "pointB": {
+          "x": 0,
+          "y": 0
+        },
+        "length": 299,
+        "stiffness": 0.9,
+        "damping": 0.04,
+        "breakForce": 0.12
+      },
+      {
+        "id": "bell-chain1",
+        "kind": "rope",
+        "bodyA": "bell-house-floor-2-1",
+        "pointA": {
+          "x": 0,
+          "y": 0
+        },
+        "bodyB": "bell1",
+        "pointB": {
+          "x": 0,
+          "y": 0
+        },
+        "length": 299,
+        "stiffness": 0.9,
+        "damping": 0.04,
+        "breakForce": 0.12
+      },
+      {
+        "id": "bell-chain2",
+        "kind": "rope",
+        "bodyA": "bell-house-floor-2-2",
+        "pointA": {
+          "x": 0,
+          "y": 0
+        },
+        "bodyB": "bell2",
+        "pointB": {
+          "x": 0,
+          "y": 0
+        },
+        "length": 299,
+        "stiffness": 0.9,
+        "damping": 0.04,
+        "breakForce": 0.12
+      },
+      {
+        "id": "bell-chain3",
+        "kind": "rope",
+        "bodyA": "bell-house-floor-2-3",
+        "pointA": {
+          "x": 0,
+          "y": 0
+        },
+        "bodyB": "bell3",
+        "pointB": {
+          "x": 0,
+          "y": 0
+        },
+        "length": 299,
+        "stiffness": 0.9,
+        "damping": 0.04,
+        "breakForce": 0.12
+      }
+    ],
+    "mechanisms": [],
+    "zones": [],
+    "thresholds": [
+      40000,
+      44500,
+      49000
+    ],
+    "par": 3,
+    "camera": {
+      "start": "overview"
+    },
+    "metadata": {
+      "category": "spectacle",
+      "idea": "The bells hang from the roof of a three-storey music hall. Falling floors pull the bells through the lower galleries.",
+      "mechanics": [
+        "building-anchored bells",
+        "shared floors",
+        "metal pendulums"
+      ],
+      "author": "Plush Siege production pass 4"
+    }
+  },
+  {
+    "version": 1,
+    "id": "haunted-10",
+    "world": "haunted",
+    "name": "The House That Fell",
+    "subtitle": "The galleries hang from the castle roof. Break a shared glass pier to bring the upper halls into the powder vaults.",
+    "bounds": {
+      "width": 3000,
+      "height": 1435,
+      "ground": 1300
+    },
+    "sling": {
+      "x": 235,
+      "y": 1155
+    },
+    "projectiles": [
+      "duck",
+      "bear",
+      "duck",
+      "rabbit",
+      "bear",
+      "sheep",
+      "duck",
+      "bear"
+    ],
+    "blocks": [
+      {
+        "id": "grand-pier-0-0",
+        "x": 1000,
+        "y": 1249,
+        "w": 44,
+        "h": 102,
+        "material": "glass"
+      },
+      {
+        "id": "grand-pier-0-1",
+        "x": 1220,
+        "y": 1249,
+        "w": 44,
+        "h": 102,
+        "material": "glass"
+      },
+      {
+        "id": "grand-pier-0-2",
+        "x": 1440,
+        "y": 1249,
+        "w": 44,
+        "h": 102,
+        "material": "glass"
+      },
+      {
+        "id": "grand-pier-0-3",
+        "x": 1660,
+        "y": 1249,
+        "w": 44,
+        "h": 102,
+        "material": "glass"
+      },
+      {
+        "id": "grand-pier-0-4",
+        "x": 1880,
+        "y": 1249,
+        "w": 44,
+        "h": 102,
+        "material": "glass"
+      },
+      {
+        "id": "grand-floor-0-0",
+        "x": 1110,
+        "y": 1186,
+        "w": 218.6,
+        "h": 24,
+        "material": "wood"
+      },
+      {
+        "id": "grand-floor-0-1",
+        "x": 1330,
+        "y": 1186,
+        "w": 218.6,
+        "h": 24,
+        "material": "wood"
+      },
+      {
+        "id": "grand-floor-0-2",
+        "x": 1550,
+        "y": 1186,
+        "w": 218.6,
+        "h": 24,
+        "material": "wood"
+      },
+      {
+        "id": "grand-floor-0-3",
+        "x": 1770,
+        "y": 1186,
+        "w": 218.6,
+        "h": 24,
+        "material": "wood"
+      },
+      {
+        "id": "grand-pier-1-0",
+        "x": 1000,
+        "y": 1123,
+        "w": 44,
+        "h": 102,
+        "material": "glass"
+      },
+      {
+        "id": "grand-pier-1-1",
+        "x": 1220,
+        "y": 1123,
+        "w": 44,
+        "h": 102,
+        "material": "glass"
+      },
+      {
+        "id": "grand-pier-1-2",
+        "x": 1440,
+        "y": 1123,
+        "w": 44,
+        "h": 102,
+        "material": "glass"
+      },
+      {
+        "id": "grand-pier-1-3",
+        "x": 1660,
+        "y": 1123,
+        "w": 44,
+        "h": 102,
+        "material": "glass"
+      },
+      {
+        "id": "grand-pier-1-4",
+        "x": 1880,
+        "y": 1123,
+        "w": 44,
+        "h": 102,
+        "material": "glass"
+      },
+      {
+        "id": "grand-floor-1-0",
+        "x": 1110,
+        "y": 1060,
+        "w": 218.6,
+        "h": 24,
+        "material": "wood"
+      },
+      {
+        "id": "grand-floor-1-1",
+        "x": 1330,
+        "y": 1060,
+        "w": 218.6,
+        "h": 24,
+        "material": "wood"
+      },
+      {
+        "id": "grand-floor-1-2",
+        "x": 1550,
+        "y": 1060,
+        "w": 218.6,
+        "h": 24,
+        "material": "wood"
+      },
+      {
+        "id": "grand-floor-1-3",
+        "x": 1770,
+        "y": 1060,
+        "w": 218.6,
+        "h": 24,
+        "material": "wood"
+      },
+      {
+        "id": "grand-pier-2-0",
+        "x": 1000,
+        "y": 997,
+        "w": 44,
+        "h": 102,
+        "material": "glass"
+      },
+      {
+        "id": "grand-pier-2-1",
+        "x": 1220,
+        "y": 997,
+        "w": 44,
+        "h": 102,
+        "material": "glass"
+      },
+      {
+        "id": "grand-pier-2-2",
+        "x": 1440,
+        "y": 997,
+        "w": 44,
+        "h": 102,
+        "material": "glass"
+      },
+      {
+        "id": "grand-pier-2-3",
+        "x": 1660,
+        "y": 997,
+        "w": 44,
+        "h": 102,
+        "material": "glass"
+      },
+      {
+        "id": "grand-pier-2-4",
+        "x": 1880,
+        "y": 997,
+        "w": 44,
+        "h": 102,
+        "material": "glass"
+      },
+      {
+        "id": "grand-floor-2-0",
+        "x": 1110,
+        "y": 934,
+        "w": 218.6,
+        "h": 24,
+        "material": "wood"
+      },
+      {
+        "id": "grand-floor-2-2",
+        "x": 1550,
+        "y": 934,
+        "w": 218.6,
+        "h": 24,
+        "material": "wood"
+      },
+      {
+        "id": "grand-floor-2-3",
+        "x": 1770,
+        "y": 934,
+        "w": 218.6,
+        "h": 24,
+        "material": "wood"
+      },
+      {
+        "id": "grand-pier-3-0",
+        "x": 1000,
+        "y": 871,
+        "w": 44,
+        "h": 102,
+        "material": "glass"
+      },
+      {
+        "id": "grand-pier-3-1",
+        "x": 1220,
+        "y": 871,
+        "w": 44,
+        "h": 102,
+        "material": "glass"
+      },
+      {
+        "id": "grand-pier-3-3",
+        "x": 1660,
+        "y": 871,
+        "w": 44,
+        "h": 102,
+        "material": "glass"
+      },
+      {
+        "id": "grand-pier-3-4",
+        "x": 1880,
+        "y": 871,
+        "w": 44,
+        "h": 102,
+        "material": "glass"
+      },
+      {
+        "id": "grand-floor-3-0",
+        "x": 1110,
+        "y": 808,
+        "w": 218.6,
+        "h": 24,
+        "material": "wood"
+      },
+      {
+        "id": "grand-floor-3-3",
+        "x": 1770,
+        "y": 808,
+        "w": 218.6,
+        "h": 24,
+        "material": "wood"
+      },
+      {
+        "id": "grand-pier-4-3",
+        "x": 1660,
+        "y": 745,
+        "w": 44,
+        "h": 102,
+        "material": "glass"
+      },
+      {
+        "id": "grand-pier-4-4",
+        "x": 1880,
+        "y": 745,
+        "w": 44,
+        "h": 102,
+        "material": "glass"
+      },
+      {
+        "id": "grand-floor-4-3",
+        "x": 1770,
+        "y": 682,
+        "w": 218.6,
+        "h": 24,
+        "material": "wood"
+      },
+      {
+        "id": "west-gate-l0",
+        "x": 830,
+        "y": 1252,
+        "w": 18,
+        "h": 96,
+        "material": "stone"
+      },
+      {
+        "id": "west-gate-r0",
+        "x": 950,
+        "y": 1252,
+        "w": 18,
+        "h": 96,
+        "material": "stone"
+      },
+      {
+        "id": "west-gate-roof0",
+        "x": 890,
+        "y": 1195,
+        "w": 160,
+        "h": 18,
+        "material": "wood"
+      },
+      {
+        "id": "west-gate-l1",
+        "x": 830,
+        "y": 1138,
+        "w": 18,
+        "h": 96,
+        "material": "stone"
+      },
+      {
+        "id": "west-gate-r1",
+        "x": 950,
+        "y": 1138,
+        "w": 18,
+        "h": 96,
+        "material": "stone"
+      },
+      {
+        "id": "west-gate-roof1",
+        "x": 890,
+        "y": 1081,
+        "w": 160,
+        "h": 18,
+        "material": "wood"
+      },
+      {
+        "id": "west-gate-l2",
+        "x": 830,
+        "y": 1024,
+        "w": 18,
+        "h": 96,
+        "material": "stone"
+      },
+      {
+        "id": "west-gate-r2",
+        "x": 950,
+        "y": 1024,
+        "w": 18,
+        "h": 96,
+        "material": "stone"
+      },
+      {
+        "id": "west-gate-roof2",
+        "x": 890,
+        "y": 967,
+        "w": 160,
+        "h": 18,
+        "material": "wood"
+      },
+      {
+        "id": "east-gate-l0",
+        "x": 1930,
+        "y": 1252,
+        "w": 18,
+        "h": 96,
+        "material": "stone"
+      },
+      {
+        "id": "east-gate-r0",
+        "x": 2050,
+        "y": 1252,
+        "w": 18,
+        "h": 96,
+        "material": "stone"
+      },
+      {
+        "id": "east-gate-roof0",
+        "x": 1990,
+        "y": 1195,
+        "w": 160,
+        "h": 18,
+        "material": "wood"
+      },
+      {
+        "id": "east-gate-l1",
+        "x": 1930,
+        "y": 1138,
+        "w": 18,
+        "h": 96,
+        "material": "stone"
+      },
+      {
+        "id": "east-gate-r1",
+        "x": 2050,
+        "y": 1138,
+        "w": 18,
+        "h": 96,
+        "material": "stone"
+      },
+      {
+        "id": "east-gate-roof1",
+        "x": 1990,
+        "y": 1081,
+        "w": 160,
+        "h": 18,
+        "material": "wood"
+      },
+      {
+        "id": "east-gate-l2",
+        "x": 1930,
+        "y": 1024,
+        "w": 18,
+        "h": 96,
+        "material": "stone"
+      },
+      {
+        "id": "east-gate-r2",
+        "x": 2050,
+        "y": 1024,
+        "w": 18,
+        "h": 96,
+        "material": "stone"
+      },
+      {
+        "id": "east-gate-roof2",
+        "x": 1990,
+        "y": 967,
+        "w": 160,
+        "h": 18,
+        "material": "wood"
+      },
+      {
+        "id": "gallery-0",
+        "x": 1110,
+        "y": 1120,
+        "w": 130,
+        "h": 20,
+        "material": "glass"
+      },
+      {
+        "id": "gallery-1",
+        "x": 1770,
+        "y": 1120,
+        "w": 130,
+        "h": 20,
+        "material": "glass"
+      }
+    ],
+    "monsters": [
+      {
+        "id": "grand-tenant-0-2",
+        "x": 1550,
+        "y": 1282,
+        "radius": 18,
+        "kind": "bat"
+      },
+      {
+        "id": "grand-tenant-1-0",
+        "x": 1110,
+        "y": 1156,
+        "radius": 18,
+        "kind": "blob"
+      },
+      {
+        "id": "grand-tenant-1-1",
+        "x": 1330,
+        "y": 1156,
+        "radius": 18,
+        "kind": "bat"
+      },
+      {
+        "id": "grand-tenant-1-2",
+        "x": 1550,
+        "y": 1156,
+        "radius": 18,
+        "kind": "horn"
+      },
+      {
+        "id": "grand-tenant-1-3",
+        "x": 1770,
+        "y": 1156,
+        "radius": 18,
+        "kind": "blob"
+      },
+      {
+        "id": "grand-tenant-2-0",
+        "x": 1110,
+        "y": 1030,
+        "radius": 18,
+        "kind": "bat"
+      },
+      {
+        "id": "grand-tenant-2-2",
+        "x": 1550,
+        "y": 1030,
+        "radius": 18,
+        "kind": "blob"
+      },
+      {
+        "id": "grand-tenant-2-3",
+        "x": 1770,
+        "y": 1030,
+        "radius": 18,
+        "kind": "bat"
+      },
+      {
+        "id": "grand-tenant-3-0",
+        "x": 1110,
+        "y": 904,
+        "radius": 18,
+        "kind": "horn"
+      },
+      {
+        "id": "grand-tenant-3-3",
+        "x": 1770,
+        "y": 904,
+        "radius": 18,
+        "kind": "horn"
+      },
+      {
+        "id": "grand-tenant-4-3",
+        "x": 1770,
+        "y": 778,
+        "radius": 18,
+        "kind": "blob"
+      }
+    ],
+    "hazards": [
+      {
+        "id": "underfloor-west",
+        "x": 1110,
+        "y": 1280,
+        "kind": "tnt"
+      },
+      {
+        "id": "underfloor-east",
+        "x": 1770,
+        "y": 1280,
+        "kind": "tnt"
+      }
+    ],
+    "terrain": [],
+    "props": [],
+    "joints": [
+      {
+        "id": "gallery-chain-0-a",
+        "kind": "rope",
+        "bodyA": "grand-floor-3-0",
+        "pointA": {
+          "x": -65,
+          "y": 0
+        },
+        "bodyB": "gallery-0",
+        "pointB": {
+          "x": -65,
+          "y": 0
+        },
+        "length": 312,
+        "stiffness": 0.85,
+        "damping": 0.12,
+        "breakForce": 0.15
+      },
+      {
+        "id": "gallery-chain-0-b",
+        "kind": "rope",
+        "bodyA": "grand-floor-3-0",
+        "pointA": {
+          "x": 65,
+          "y": 0
+        },
+        "bodyB": "gallery-0",
+        "pointB": {
+          "x": 65,
+          "y": 0
+        },
+        "length": 312,
+        "stiffness": 0.85,
+        "damping": 0.12,
+        "breakForce": 0.15
+      },
+      {
+        "id": "gallery-chain-1-a",
+        "kind": "rope",
+        "bodyA": "grand-floor-4-3",
+        "pointA": {
+          "x": -65,
+          "y": 0
+        },
+        "bodyB": "gallery-1",
+        "pointB": {
+          "x": -65,
+          "y": 0
+        },
+        "length": 438,
+        "stiffness": 0.85,
+        "damping": 0.12,
+        "breakForce": 0.15
+      },
+      {
+        "id": "gallery-chain-1-b",
+        "kind": "rope",
+        "bodyA": "grand-floor-4-3",
+        "pointA": {
+          "x": 65,
+          "y": 0
+        },
+        "bodyB": "gallery-1",
+        "pointB": {
+          "x": 65,
+          "y": 0
+        },
+        "length": 438,
+        "stiffness": 0.85,
+        "damping": 0.12,
+        "breakForce": 0.15
+      }
+    ],
+    "mechanisms": [],
+    "zones": [],
+    "thresholds": [
+      55000,
+      61000,
+      67000
+    ],
+    "par": 4,
+    "camera": {
+      "start": "overview"
+    },
+    "metadata": {
+      "category": "spectacle",
+      "idea": "The galleries hang from the castle roof. Break a shared glass pier to bring the upper halls into the powder vaults.",
+      "mechanics": [
+        "shared piers",
+        "5-storey arcade",
+        "load-bearing floors",
+        "hanging galleries",
+        "underfloor powder"
+      ],
+      "author": "Plush Siege production pass 4"
+    }
+  }
+]

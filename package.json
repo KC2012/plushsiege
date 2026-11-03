@@ -1,6 +1,6 @@
 {
   "name": "plush-siege",
-  "version": "0.3.0",
+  "version": "0.4.0",
   "private": true,
   "type": "module",
   "scripts": {
@@ -8,13 +8,21 @@
     "build": "tsc --noEmit && vite build",
     "preview": "vite preview --host 0.0.0.0",
     "test": "node --import tsx --test --test-isolation=none tests/*.test.ts",
-    "validate": "node --import tsx scripts/validate.ts",
+    "validate": "node --import tsx scripts/validate.ts && npm run test:expansion",
     "test:browser": "node scripts/browser-test.mjs",
     "test:editor": "node scripts/editor-test.mjs",
     "test:offline": "node scripts/offline-test.mjs",
     "test:destruction": "node scripts/destruction-browser-test.mjs",
     "test:monsters": "node scripts/monster-browser-test.mjs",
-    "test:presentation": "node scripts/presentation-browser-test.mjs"
+    "test:presentation": "node scripts/presentation-browser-test.mjs",
+    "test:camera": "node scripts/camera-browser-test.mjs",
+    "test:audio": "node scripts/audio-browser-test.mjs",
+    "test:expansion": "node --import tsx --test tests/expansion-content.test.ts",
+    "produce:levels": "node --import tsx scripts/produce-levels.ts",
+    "audit:expansion": "node --import tsx scripts/audit-expansion.ts",
+    "test:worlds": "node scripts/expansion-browser-test.mjs",
+    "test:showcase": "node scripts/showcase-browser-test.mjs",
+    "measure:physics": "node --import tsx scripts/measure-campaign.ts"
   },
   "dependencies": {
     "matter-js": "0.20.0",

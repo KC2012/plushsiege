@@ -51,3 +51,46 @@ test('nonfinite or malformed scores are rejected on load and record', () => {
   a.record('y', 1000, 4);
   assert.deepEqual(Object.keys(a.data.scores), ['good']);
 });
+
+test('legacy saves retain progress and receive separate music/effects defaults', () => {
+  const s = storage();
+  s.setItem(
+    'plush-siege-v1',
+    JSON.stringify({
+      version: 1,
+      scores: { 'meadow-01': { score: 8500, stars: 3 } },
+      sound: false,
+      trajectory: false,
+    }),
+  );
+  const a = new ProgressStore(s);
+  assert.equal(a.data.sound, false);
+  assert.equal(a.data.trajectory, false);
+  assert.deepEqual(a.data.scores['meadow-01'], { score: 8500, stars: 3 });
+  assert.equal(a.data.musicVolume, 0.22);
+  assert.equal(a.data.effectsVolume, 0.75);
+  a.data.musicVolume = 0.4;
+  a.data.effectsVolume = 0.7;
+  a.persist();
+  const b = new ProgressStore(s);
+  assert.equal(b.data.musicVolume, 0.4);
+  assert.equal(b.data.effectsVolume, 0.7);
+  assert.deepEqual(b.data.scores, a.data.scores);
+});
+test('loaded volume values are finite and clamped without resetting other save data', () => {
+  const s = storage();
+  s.setItem(
+    'plush-siege-v1',
+    JSON.stringify({ version: 1, scores: {}, musicVolume: -5, effectsVolume: 9 }),
+  );
+  const a = new ProgressStore(s);
+  assert.equal(a.data.musicVolume, 0);
+  assert.equal(a.data.effectsVolume, 1);
+  s.setItem(
+    'plush-siege-v1',
+    JSON.stringify({ version: 1, scores: {}, musicVolume: 'loud', effectsVolume: null }),
+  );
+  const b = new ProgressStore(s);
+  assert.equal(b.data.musicVolume, 0.22);
+  assert.equal(b.data.effectsVolume, 0.75);
+});

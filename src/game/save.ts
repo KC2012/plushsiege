@@ -6,6 +6,8 @@ export interface SaveData {
   version: 1;
   scores: Record<string, RecordScore>;
   sound: boolean;
+  musicVolume: number;
+  effectsVolume: number;
   trajectory: boolean;
   reducedMotion: boolean;
 }
@@ -14,6 +16,8 @@ const fresh = (): SaveData => ({
   version: 1,
   scores: {},
   sound: true,
+  musicVolume: 0.22,
+  effectsVolume: 0.75,
   trajectory: true,
   reducedMotion: false,
 });
@@ -38,6 +42,9 @@ export class ProgressStore {
         }
         for (const key of ['sound', 'trajectory', 'reducedMotion'] as const)
           if (typeof s[key] === 'boolean') this.data[key] = s[key];
+        for (const key of ['musicVolume', 'effectsVolume'] as const)
+          if (typeof s[key] === 'number' && Number.isFinite(s[key]))
+            this.data[key] = Math.max(0, Math.min(1, s[key]));
       }
     } catch {
       this.available = false;

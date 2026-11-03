@@ -1,0 +1,2161 @@
+[
+  {
+    "version": 1,
+    "id": "frozen-01",
+    "world": "frozen",
+    "name": "Skate Expectations",
+    "subtitle": "The ice under this little fort is the real weak point.",
+    "bounds": {
+      "width": 1700,
+      "height": 810,
+      "ground": 675
+    },
+    "sling": {
+      "x": 235,
+      "y": 530
+    },
+    "projectiles": [
+      "sheep",
+      "duck",
+      "bear"
+    ],
+    "blocks": [
+      {
+        "id": "skate-l0",
+        "x": 840,
+        "y": 627,
+        "w": 18,
+        "h": 96,
+        "material": "ice"
+      },
+      {
+        "id": "skate-r0",
+        "x": 960,
+        "y": 627,
+        "w": 18,
+        "h": 96,
+        "material": "ice"
+      },
+      {
+        "id": "skate-roof0",
+        "x": 900,
+        "y": 570,
+        "w": 160,
+        "h": 18,
+        "material": "wood"
+      }
+    ],
+    "monsters": [
+      {
+        "id": "skate-m0",
+        "x": 900,
+        "y": 657,
+        "radius": 18,
+        "kind": "horn"
+      }
+    ],
+    "hazards": [],
+    "terrain": [],
+    "props": [],
+    "joints": [],
+    "mechanisms": [],
+    "zones": [
+      {
+        "id": "frozen-surface",
+        "kind": "ice",
+        "x": 850,
+        "y": 585,
+        "w": 1700,
+        "h": 200
+      }
+    ],
+    "thresholds": [
+      5000,
+      6500,
+      8000
+    ],
+    "par": 2,
+    "camera": {
+      "start": "sling"
+    },
+    "metadata": {
+      "category": "puzzle",
+      "idea": "The ice under this little fort is the real weak point.",
+      "mechanics": [
+        "ice",
+        "sliding"
+      ],
+      "author": "Plush Siege production pass 4"
+    },
+    "environment": {
+      "groundFriction": 0.035
+    }
+  },
+  {
+    "version": 1,
+    "id": "frozen-02",
+    "world": "frozen",
+    "name": "The Glass Lake",
+    "subtitle": "A broad ice roof spreads its weight over three brittle columns.",
+    "bounds": {
+      "width": 1900,
+      "height": 935,
+      "ground": 800
+    },
+    "sling": {
+      "x": 235,
+      "y": 655
+    },
+    "projectiles": [
+      "bear",
+      "duck",
+      "sheep",
+      "rabbit"
+    ],
+    "blocks": [
+      {
+        "id": "lake-deck-left",
+        "x": 950,
+        "y": 620,
+        "w": 278.6,
+        "h": 22,
+        "material": "ice"
+      },
+      {
+        "id": "lake-deck-right",
+        "x": 1230,
+        "y": 620,
+        "w": 278.6,
+        "h": 22,
+        "material": "ice"
+      },
+      {
+        "id": "lake-trestle",
+        "x": 1090,
+        "y": 715.5,
+        "w": 22,
+        "h": 169,
+        "material": "wood"
+      }
+    ],
+    "monsters": [
+      {
+        "id": "lake-left",
+        "x": 966.8,
+        "y": 591,
+        "radius": 18,
+        "kind": "horn"
+      },
+      {
+        "id": "lake-right",
+        "x": 1213.2,
+        "y": 591,
+        "radius": 18,
+        "kind": "bat"
+      }
+    ],
+    "hazards": [],
+    "terrain": [
+      {
+        "id": "lake-left-bank",
+        "x": 832,
+        "y": 715.5,
+        "w": 44,
+        "h": 169,
+        "material": "stone"
+      },
+      {
+        "id": "lake-right-bank",
+        "x": 1348,
+        "y": 715.5,
+        "w": 44,
+        "h": 169,
+        "material": "stone"
+      }
+    ],
+    "props": [],
+    "joints": [],
+    "mechanisms": [],
+    "zones": [
+      {
+        "id": "frozen-surface",
+        "kind": "ice",
+        "x": 950,
+        "y": 710,
+        "w": 1900,
+        "h": 200
+      }
+    ],
+    "thresholds": [
+      10000,
+      13000,
+      16000
+    ],
+    "par": 2,
+    "camera": {
+      "start": "overview"
+    },
+    "metadata": {
+      "category": "puzzle",
+      "idea": "A broad ice roof spreads its weight over three brittle columns.",
+      "mechanics": [
+        "ice bridge",
+        "sliding roof"
+      ],
+      "author": "Plush Siege production pass 4"
+    },
+    "environment": {
+      "groundFriction": 0.035
+    }
+  },
+  {
+    "version": 1,
+    "id": "frozen-03",
+    "world": "frozen",
+    "name": "Curling Club",
+    "subtitle": "A stone on a slick runway is a remarkably impolite greeting.",
+    "bounds": {
+      "width": 1700,
+      "height": 810,
+      "ground": 675
+    },
+    "sling": {
+      "x": 235,
+      "y": 530
+    },
+    "projectiles": [
+      "duck",
+      "bear",
+      "duck",
+      "sheep"
+    ],
+    "blocks": [
+      {
+        "id": "pins-l0",
+        "x": 1110,
+        "y": 627,
+        "w": 18,
+        "h": 96,
+        "material": "ice"
+      },
+      {
+        "id": "pins-r0",
+        "x": 1230,
+        "y": 627,
+        "w": 18,
+        "h": 96,
+        "material": "ice"
+      },
+      {
+        "id": "pins-roof0",
+        "x": 1170,
+        "y": 570,
+        "w": 160,
+        "h": 18,
+        "material": "wood"
+      }
+    ],
+    "monsters": [
+      {
+        "id": "pins-m0",
+        "x": 1170,
+        "y": 657,
+        "radius": 18,
+        "kind": "horn"
+      }
+    ],
+    "hazards": [],
+    "terrain": [],
+    "props": [
+      {
+        "id": "curling-stone",
+        "kind": "boulder",
+        "x": 800,
+        "y": 637,
+        "radius": 38,
+        "material": "stone"
+      }
+    ],
+    "joints": [],
+    "mechanisms": [],
+    "zones": [
+      {
+        "id": "frozen-surface",
+        "kind": "ice",
+        "x": 850,
+        "y": 585,
+        "w": 1700,
+        "h": 200
+      }
+    ],
+    "thresholds": [
+      5000,
+      8000,
+      11000
+    ],
+    "par": 2,
+    "camera": {
+      "start": "sling"
+    },
+    "metadata": {
+      "category": "puzzle",
+      "idea": "A stone on a slick runway is a remarkably impolite greeting.",
+      "mechanics": [
+        "rolling boulder",
+        "frozen floor"
+      ],
+      "author": "Plush Siege production pass 4"
+    },
+    "environment": {
+      "groundFriction": 0.035
+    }
+  },
+  {
+    "version": 1,
+    "id": "frozen-04",
+    "world": "frozen",
+    "name": "Frostbite Ferry",
+    "subtitle": "Catch the moving ferry, or drop the dock onto its route.",
+    "bounds": {
+      "width": 2200,
+      "height": 1035,
+      "ground": 900
+    },
+    "sling": {
+      "x": 235,
+      "y": 755
+    },
+    "projectiles": [
+      "duck",
+      "rabbit",
+      "bear",
+      "sheep",
+      "duck"
+    ],
+    "blocks": [
+      {
+        "id": "ferry",
+        "x": 1040,
+        "y": 710,
+        "w": 240,
+        "h": 22,
+        "material": "metal",
+        "static": true
+      },
+      {
+        "id": "dock-l0",
+        "x": 1420,
+        "y": 852,
+        "w": 18,
+        "h": 96,
+        "material": "ice"
+      },
+      {
+        "id": "dock-r0",
+        "x": 1540,
+        "y": 852,
+        "w": 18,
+        "h": 96,
+        "material": "ice"
+      },
+      {
+        "id": "dock-roof0",
+        "x": 1480,
+        "y": 795,
+        "w": 160,
+        "h": 18,
+        "material": "wood"
+      },
+      {
+        "id": "dock-l1",
+        "x": 1420,
+        "y": 738,
+        "w": 18,
+        "h": 96,
+        "material": "ice"
+      },
+      {
+        "id": "dock-r1",
+        "x": 1540,
+        "y": 738,
+        "w": 18,
+        "h": 96,
+        "material": "ice"
+      },
+      {
+        "id": "dock-roof1",
+        "x": 1480,
+        "y": 681,
+        "w": 160,
+        "h": 18,
+        "material": "wood"
+      }
+    ],
+    "monsters": [
+      {
+        "id": "ferry-rider",
+        "x": 1040,
+        "y": 681,
+        "radius": 18,
+        "kind": "bat"
+      },
+      {
+        "id": "dock-m0",
+        "x": 1480,
+        "y": 882,
+        "radius": 18,
+        "kind": "horn"
+      },
+      {
+        "id": "dock-m1",
+        "x": 1480,
+        "y": 768,
+        "radius": 18,
+        "kind": "blob"
+      }
+    ],
+    "hazards": [],
+    "terrain": [],
+    "props": [],
+    "joints": [],
+    "mechanisms": [
+      {
+        "id": "ferry-drive",
+        "kind": "platform",
+        "body": "ferry",
+        "range": 110,
+        "speed": 0.1,
+        "axis": "x"
+      }
+    ],
+    "zones": [
+      {
+        "id": "frozen-surface",
+        "kind": "ice",
+        "x": 1100,
+        "y": 810,
+        "w": 2200,
+        "h": 200
+      }
+    ],
+    "thresholds": [
+      15000,
+      19500,
+      24000
+    ],
+    "par": 2,
+    "camera": {
+      "start": "overview"
+    },
+    "metadata": {
+      "category": "siege",
+      "idea": "Catch the moving ferry, or drop the dock onto its route.",
+      "mechanics": [
+        "moving platform",
+        "timing",
+        "ice"
+      ],
+      "author": "Plush Siege production pass 4"
+    },
+    "environment": {
+      "groundFriction": 0.035
+    }
+  },
+  {
+    "version": 1,
+    "id": "frozen-05",
+    "world": "frozen",
+    "name": "Icicle Express",
+    "subtitle": "Break an ice deck and the hanging walkway becomes an avalanche.",
+    "bounds": {
+      "width": 1950,
+      "height": 985,
+      "ground": 850
+    },
+    "sling": {
+      "x": 235,
+      "y": 705
+    },
+    "projectiles": [
+      "sheep",
+      "bear",
+      "duck",
+      "rabbit"
+    ],
+    "blocks": [
+      {
+        "id": "icicle-deck0",
+        "x": 1016,
+        "y": 630,
+        "w": 100,
+        "h": 18,
+        "material": "ice"
+      },
+      {
+        "id": "icicle-deck1",
+        "x": 1120,
+        "y": 630,
+        "w": 100,
+        "h": 18,
+        "material": "ice"
+      },
+      {
+        "id": "icicle-deck2",
+        "x": 1224,
+        "y": 630,
+        "w": 100,
+        "h": 18,
+        "material": "ice"
+      }
+    ],
+    "monsters": [
+      {
+        "id": "icicle-rider0",
+        "x": 1016,
+        "y": 603,
+        "radius": 18,
+        "kind": "horn"
+      },
+      {
+        "id": "icicle-rider1",
+        "x": 1120,
+        "y": 603,
+        "radius": 18,
+        "kind": "blob"
+      },
+      {
+        "id": "icicle-rider2",
+        "x": 1224,
+        "y": 603,
+        "radius": 18,
+        "kind": "horn"
+      }
+    ],
+    "hazards": [],
+    "terrain": [],
+    "props": [],
+    "joints": [
+      {
+        "id": "icicle-cable0--1",
+        "kind": "rope",
+        "pointA": {
+          "x": 981,
+          "y": 480
+        },
+        "bodyB": "icicle-deck0",
+        "pointB": {
+          "x": -35,
+          "y": 0
+        },
+        "length": 150,
+        "stiffness": 0.85,
+        "damping": 0.12,
+        "breakForce": 0.065
+      },
+      {
+        "id": "icicle-cable0-1",
+        "kind": "rope",
+        "pointA": {
+          "x": 1051,
+          "y": 480
+        },
+        "bodyB": "icicle-deck0",
+        "pointB": {
+          "x": 35,
+          "y": 0
+        },
+        "length": 150,
+        "stiffness": 0.85,
+        "damping": 0.12,
+        "breakForce": 0.065
+      },
+      {
+        "id": "icicle-cable1--1",
+        "kind": "rope",
+        "pointA": {
+          "x": 1085,
+          "y": 480
+        },
+        "bodyB": "icicle-deck1",
+        "pointB": {
+          "x": -35,
+          "y": 0
+        },
+        "length": 150,
+        "stiffness": 0.85,
+        "damping": 0.12,
+        "breakForce": 0.065
+      },
+      {
+        "id": "icicle-cable1-1",
+        "kind": "rope",
+        "pointA": {
+          "x": 1155,
+          "y": 480
+        },
+        "bodyB": "icicle-deck1",
+        "pointB": {
+          "x": 35,
+          "y": 0
+        },
+        "length": 150,
+        "stiffness": 0.85,
+        "damping": 0.12,
+        "breakForce": 0.065
+      },
+      {
+        "id": "icicle-link1",
+        "kind": "rope",
+        "bodyA": "icicle-deck0",
+        "pointA": {
+          "x": 50,
+          "y": 0
+        },
+        "bodyB": "icicle-deck1",
+        "pointB": {
+          "x": -50,
+          "y": 0
+        },
+        "length": 4,
+        "stiffness": 0.7,
+        "damping": 0.1,
+        "breakForce": 0.09
+      },
+      {
+        "id": "icicle-cable2--1",
+        "kind": "rope",
+        "pointA": {
+          "x": 1189,
+          "y": 480
+        },
+        "bodyB": "icicle-deck2",
+        "pointB": {
+          "x": -35,
+          "y": 0
+        },
+        "length": 150,
+        "stiffness": 0.85,
+        "damping": 0.12,
+        "breakForce": 0.065
+      },
+      {
+        "id": "icicle-cable2-1",
+        "kind": "rope",
+        "pointA": {
+          "x": 1259,
+          "y": 480
+        },
+        "bodyB": "icicle-deck2",
+        "pointB": {
+          "x": 35,
+          "y": 0
+        },
+        "length": 150,
+        "stiffness": 0.85,
+        "damping": 0.12,
+        "breakForce": 0.065
+      },
+      {
+        "id": "icicle-link2",
+        "kind": "rope",
+        "bodyA": "icicle-deck1",
+        "pointA": {
+          "x": 50,
+          "y": 0
+        },
+        "bodyB": "icicle-deck2",
+        "pointB": {
+          "x": -50,
+          "y": 0
+        },
+        "length": 4,
+        "stiffness": 0.7,
+        "damping": 0.1,
+        "breakForce": 0.09
+      }
+    ],
+    "mechanisms": [],
+    "zones": [
+      {
+        "id": "frozen-surface",
+        "kind": "ice",
+        "x": 975,
+        "y": 760,
+        "w": 1950,
+        "h": 200
+      }
+    ],
+    "thresholds": [
+      15000,
+      18000,
+      21000
+    ],
+    "par": 2,
+    "camera": {
+      "start": "overview"
+    },
+    "metadata": {
+      "category": "puzzle",
+      "idea": "Break an ice deck and the hanging walkway becomes an avalanche.",
+      "mechanics": [
+        "breakable cables",
+        "ice fracture"
+      ],
+      "author": "Plush Siege production pass 4"
+    },
+    "environment": {
+      "groundFriction": 0.035
+    }
+  },
+  {
+    "version": 1,
+    "id": "frozen-06",
+    "world": "frozen",
+    "name": "Bank Shot Bay",
+    "subtitle": "A sloping bank offers a second route past the steel shield.",
+    "bounds": {
+      "width": 2350,
+      "height": 1085,
+      "ground": 950
+    },
+    "sling": {
+      "x": 235,
+      "y": 805
+    },
+    "projectiles": [
+      "duck",
+      "bear",
+      "rabbit",
+      "duck",
+      "sheep"
+    ],
+    "blocks": [
+      {
+        "id": "bay-l0",
+        "x": 1230,
+        "y": 902,
+        "w": 18,
+        "h": 96,
+        "material": "ice"
+      },
+      {
+        "id": "bay-r0",
+        "x": 1350,
+        "y": 902,
+        "w": 18,
+        "h": 96,
+        "material": "ice"
+      },
+      {
+        "id": "bay-roof0",
+        "x": 1290,
+        "y": 845,
+        "w": 160,
+        "h": 18,
+        "material": "wood"
+      },
+      {
+        "id": "bay-l1",
+        "x": 1230,
+        "y": 788,
+        "w": 18,
+        "h": 96,
+        "material": "ice"
+      },
+      {
+        "id": "bay-r1",
+        "x": 1350,
+        "y": 788,
+        "w": 18,
+        "h": 96,
+        "material": "ice"
+      },
+      {
+        "id": "bay-roof1",
+        "x": 1290,
+        "y": 731,
+        "w": 160,
+        "h": 18,
+        "material": "wood"
+      }
+    ],
+    "monsters": [
+      {
+        "id": "bay-m0",
+        "x": 1290,
+        "y": 932,
+        "radius": 18,
+        "kind": "horn"
+      },
+      {
+        "id": "bay-m1",
+        "x": 1290,
+        "y": 818,
+        "radius": 18,
+        "kind": "blob"
+      }
+    ],
+    "hazards": [],
+    "terrain": [
+      {
+        "id": "shield",
+        "x": 1040,
+        "y": 820,
+        "w": 28,
+        "h": 260,
+        "material": "metal"
+      },
+      {
+        "id": "bank",
+        "x": 840,
+        "y": 895,
+        "w": 260,
+        "h": 24,
+        "angle": -0.25,
+        "material": "ice",
+        "friction": 0.01
+      }
+    ],
+    "props": [],
+    "joints": [],
+    "mechanisms": [],
+    "zones": [
+      {
+        "id": "frozen-surface",
+        "kind": "ice",
+        "x": 1175,
+        "y": 860,
+        "w": 2350,
+        "h": 200
+      }
+    ],
+    "thresholds": [
+      10000,
+      14500,
+      19000
+    ],
+    "par": 2,
+    "camera": {
+      "start": "overview"
+    },
+    "metadata": {
+      "category": "siege",
+      "idea": "A sloping bank offers a second route past the steel shield.",
+      "mechanics": [
+        "ramp",
+        "metal protection",
+        "lob route"
+      ],
+      "author": "Plush Siege production pass 4"
+    },
+    "environment": {
+      "groundFriction": 0.035
+    }
+  },
+  {
+    "version": 1,
+    "id": "frozen-07",
+    "world": "frozen",
+    "name": "Cold Storage",
+    "subtitle": "A durable lid, slippery feet, and an inconveniently heavy tenant.",
+    "bounds": {
+      "width": 2300,
+      "height": 1185,
+      "ground": 1050
+    },
+    "sling": {
+      "x": 235,
+      "y": 905
+    },
+    "projectiles": [
+      "bear",
+      "bear",
+      "duck",
+      "rabbit",
+      "sheep"
+    ],
+    "blocks": [
+      {
+        "id": "freezer-l0",
+        "x": 1020,
+        "y": 1002,
+        "w": 18,
+        "h": 96,
+        "material": "ice"
+      },
+      {
+        "id": "freezer-r0",
+        "x": 1140,
+        "y": 1002,
+        "w": 18,
+        "h": 96,
+        "material": "ice"
+      },
+      {
+        "id": "freezer-roof0",
+        "x": 1080,
+        "y": 945,
+        "w": 160,
+        "h": 18,
+        "material": "metal"
+      },
+      {
+        "id": "freezer-l1",
+        "x": 1020,
+        "y": 888,
+        "w": 18,
+        "h": 96,
+        "material": "ice"
+      },
+      {
+        "id": "freezer-r1",
+        "x": 1140,
+        "y": 888,
+        "w": 18,
+        "h": 96,
+        "material": "ice"
+      },
+      {
+        "id": "freezer-roof1",
+        "x": 1080,
+        "y": 831,
+        "w": 160,
+        "h": 18,
+        "material": "metal"
+      },
+      {
+        "id": "freezer-l2",
+        "x": 1020,
+        "y": 774,
+        "w": 18,
+        "h": 96,
+        "material": "ice"
+      },
+      {
+        "id": "freezer-r2",
+        "x": 1140,
+        "y": 774,
+        "w": 18,
+        "h": 96,
+        "material": "ice"
+      },
+      {
+        "id": "freezer-roof2",
+        "x": 1080,
+        "y": 717,
+        "w": 160,
+        "h": 18,
+        "material": "metal"
+      },
+      {
+        "id": "delivery-l0",
+        "x": 1430,
+        "y": 1002,
+        "w": 18,
+        "h": 96,
+        "material": "wood"
+      },
+      {
+        "id": "delivery-r0",
+        "x": 1550,
+        "y": 1002,
+        "w": 18,
+        "h": 96,
+        "material": "wood"
+      },
+      {
+        "id": "delivery-roof0",
+        "x": 1490,
+        "y": 945,
+        "w": 160,
+        "h": 18,
+        "material": "ice"
+      },
+      {
+        "id": "delivery-l1",
+        "x": 1430,
+        "y": 888,
+        "w": 18,
+        "h": 96,
+        "material": "wood"
+      },
+      {
+        "id": "delivery-r1",
+        "x": 1550,
+        "y": 888,
+        "w": 18,
+        "h": 96,
+        "material": "wood"
+      },
+      {
+        "id": "delivery-roof1",
+        "x": 1490,
+        "y": 831,
+        "w": 160,
+        "h": 18,
+        "material": "ice"
+      }
+    ],
+    "monsters": [
+      {
+        "id": "freezer-m0",
+        "x": 1080,
+        "y": 1032,
+        "radius": 18,
+        "kind": "horn"
+      },
+      {
+        "id": "freezer-m1",
+        "x": 1080,
+        "y": 918,
+        "radius": 18,
+        "kind": "blob"
+      },
+      {
+        "id": "freezer-m2",
+        "x": 1080,
+        "y": 804,
+        "radius": 18,
+        "kind": "bat"
+      },
+      {
+        "id": "delivery-m0",
+        "x": 1490,
+        "y": 1032,
+        "radius": 18,
+        "kind": "horn"
+      },
+      {
+        "id": "delivery-m1",
+        "x": 1490,
+        "y": 918,
+        "radius": 18,
+        "kind": "blob"
+      }
+    ],
+    "hazards": [],
+    "terrain": [],
+    "props": [],
+    "joints": [],
+    "mechanisms": [],
+    "zones": [
+      {
+        "id": "frozen-surface",
+        "kind": "ice",
+        "x": 1150,
+        "y": 960,
+        "w": 2300,
+        "h": 200
+      }
+    ],
+    "thresholds": [
+      25000,
+      29500,
+      34000
+    ],
+    "par": 2,
+    "camera": {
+      "start": "overview"
+    },
+    "metadata": {
+      "category": "siege",
+      "idea": "A durable lid, slippery feet, and an inconveniently heavy tenant.",
+      "mechanics": [
+        "metal roof",
+        "ice supports",
+        "multi-story"
+      ],
+      "author": "Plush Siege production pass 4"
+    },
+    "environment": {
+      "groundFriction": 0.035
+    }
+  },
+  {
+    "version": 1,
+    "id": "frozen-08",
+    "world": "frozen",
+    "name": "Avalanche Avenue",
+    "subtitle": "The parked boulder is the start of a very long delivery route.",
+    "bounds": {
+      "width": 3100,
+      "height": 1285,
+      "ground": 1150
+    },
+    "sling": {
+      "x": 235,
+      "y": 1005
+    },
+    "projectiles": [
+      "duck",
+      "bear",
+      "duck",
+      "rabbit",
+      "bear",
+      "sheep"
+    ],
+    "blocks": [
+      {
+        "id": "avalanche-stop",
+        "x": 906,
+        "y": 860,
+        "w": 22,
+        "h": 58,
+        "material": "glass"
+      },
+      {
+        "id": "a-l0",
+        "x": 1330,
+        "y": 1102,
+        "w": 18,
+        "h": 96,
+        "material": "ice"
+      },
+      {
+        "id": "a-r0",
+        "x": 1450,
+        "y": 1102,
+        "w": 18,
+        "h": 96,
+        "material": "ice"
+      },
+      {
+        "id": "a-roof0",
+        "x": 1390,
+        "y": 1045,
+        "w": 160,
+        "h": 18,
+        "material": "wood"
+      },
+      {
+        "id": "a-l1",
+        "x": 1330,
+        "y": 988,
+        "w": 18,
+        "h": 96,
+        "material": "ice"
+      },
+      {
+        "id": "a-r1",
+        "x": 1450,
+        "y": 988,
+        "w": 18,
+        "h": 96,
+        "material": "ice"
+      },
+      {
+        "id": "a-roof1",
+        "x": 1390,
+        "y": 931,
+        "w": 160,
+        "h": 18,
+        "material": "wood"
+      },
+      {
+        "id": "a-l2",
+        "x": 1330,
+        "y": 874,
+        "w": 18,
+        "h": 96,
+        "material": "ice"
+      },
+      {
+        "id": "a-r2",
+        "x": 1450,
+        "y": 874,
+        "w": 18,
+        "h": 96,
+        "material": "ice"
+      },
+      {
+        "id": "a-roof2",
+        "x": 1390,
+        "y": 817,
+        "w": 160,
+        "h": 18,
+        "material": "wood"
+      },
+      {
+        "id": "b-l0",
+        "x": 1750,
+        "y": 1102,
+        "w": 18,
+        "h": 96,
+        "material": "ice"
+      },
+      {
+        "id": "b-r0",
+        "x": 1870,
+        "y": 1102,
+        "w": 18,
+        "h": 96,
+        "material": "ice"
+      },
+      {
+        "id": "b-roof0",
+        "x": 1810,
+        "y": 1045,
+        "w": 160,
+        "h": 18,
+        "material": "glass"
+      },
+      {
+        "id": "b-l1",
+        "x": 1750,
+        "y": 988,
+        "w": 18,
+        "h": 96,
+        "material": "ice"
+      },
+      {
+        "id": "b-r1",
+        "x": 1870,
+        "y": 988,
+        "w": 18,
+        "h": 96,
+        "material": "ice"
+      },
+      {
+        "id": "b-roof1",
+        "x": 1810,
+        "y": 931,
+        "w": 160,
+        "h": 18,
+        "material": "glass"
+      },
+      {
+        "id": "c-l0",
+        "x": 2150,
+        "y": 1102,
+        "w": 18,
+        "h": 96,
+        "material": "wood"
+      },
+      {
+        "id": "c-r0",
+        "x": 2270,
+        "y": 1102,
+        "w": 18,
+        "h": 96,
+        "material": "wood"
+      },
+      {
+        "id": "c-roof0",
+        "x": 2210,
+        "y": 1045,
+        "w": 160,
+        "h": 18,
+        "material": "ice"
+      },
+      {
+        "id": "c-l1",
+        "x": 2150,
+        "y": 988,
+        "w": 18,
+        "h": 96,
+        "material": "wood"
+      },
+      {
+        "id": "c-r1",
+        "x": 2270,
+        "y": 988,
+        "w": 18,
+        "h": 96,
+        "material": "wood"
+      },
+      {
+        "id": "c-roof1",
+        "x": 2210,
+        "y": 931,
+        "w": 160,
+        "h": 18,
+        "material": "ice"
+      }
+    ],
+    "monsters": [
+      {
+        "id": "a-m0",
+        "x": 1390,
+        "y": 1132,
+        "radius": 18,
+        "kind": "horn"
+      },
+      {
+        "id": "a-m1",
+        "x": 1390,
+        "y": 1018,
+        "radius": 18,
+        "kind": "blob"
+      },
+      {
+        "id": "a-m2",
+        "x": 1390,
+        "y": 904,
+        "radius": 18,
+        "kind": "bat"
+      },
+      {
+        "id": "b-m0",
+        "x": 1810,
+        "y": 1132,
+        "radius": 18,
+        "kind": "horn"
+      },
+      {
+        "id": "b-m1",
+        "x": 1810,
+        "y": 1018,
+        "radius": 18,
+        "kind": "blob"
+      },
+      {
+        "id": "c-m0",
+        "x": 2210,
+        "y": 1132,
+        "radius": 18,
+        "kind": "horn"
+      },
+      {
+        "id": "c-m1",
+        "x": 2210,
+        "y": 1018,
+        "radius": 18,
+        "kind": "blob"
+      }
+    ],
+    "hazards": [
+      {
+        "id": "avalanche-relay0",
+        "x": 1250,
+        "y": 1130,
+        "kind": "tnt"
+      },
+      {
+        "id": "avalanche-relay1",
+        "x": 1500,
+        "y": 1130,
+        "kind": "tnt"
+      },
+      {
+        "id": "avalanche-relay2",
+        "x": 1620,
+        "y": 1130,
+        "kind": "tnt"
+      },
+      {
+        "id": "avalanche-relay3",
+        "x": 1710,
+        "y": 1130,
+        "kind": "tnt"
+      },
+      {
+        "id": "avalanche-relay4",
+        "x": 1990,
+        "y": 1130,
+        "kind": "tnt"
+      },
+      {
+        "id": "avalanche-relay5",
+        "x": 2110,
+        "y": 1130,
+        "kind": "tnt"
+      }
+    ],
+    "terrain": [
+      {
+        "id": "avalanche-ledge",
+        "x": 860,
+        "y": 900,
+        "w": 160,
+        "h": 22,
+        "material": "stone"
+      },
+      {
+        "id": "avalanche-ramp",
+        "x": 1095,
+        "y": 945,
+        "w": 360,
+        "h": 22,
+        "angle": 0.28,
+        "material": "stone",
+        "friction": 0.025
+      }
+    ],
+    "props": [
+      {
+        "id": "avalanche-ball",
+        "kind": "boulder",
+        "x": 850,
+        "y": 849,
+        "radius": 40,
+        "material": "stone"
+      }
+    ],
+    "joints": [],
+    "mechanisms": [],
+    "zones": [
+      {
+        "id": "frozen-surface",
+        "kind": "ice",
+        "x": 1550,
+        "y": 1060,
+        "w": 3100,
+        "h": 200
+      }
+    ],
+    "thresholds": [
+      35000,
+      39500,
+      44000
+    ],
+    "par": 3,
+    "camera": {
+      "start": "overview"
+    },
+    "metadata": {
+      "category": "spectacle",
+      "idea": "The parked boulder is the start of a very long delivery route.",
+      "mechanics": [
+        "boulder",
+        "ramp",
+        "ice cascade",
+        "explosive relay"
+      ],
+      "author": "Plush Siege production pass 4"
+    },
+    "environment": {
+      "groundFriction": 0.035
+    }
+  },
+  {
+    "version": 1,
+    "id": "frozen-09",
+    "world": "frozen",
+    "name": "The Long Slide",
+    "subtitle": "Two tall storage stacks share one very slippery landing.",
+    "bounds": {
+      "width": 2600,
+      "height": 1335,
+      "ground": 1200
+    },
+    "sling": {
+      "x": 235,
+      "y": 1055
+    },
+    "projectiles": [
+      "bear",
+      "duck",
+      "rabbit",
+      "bear",
+      "duck"
+    ],
+    "blocks": [
+      {
+        "id": "slider-l0",
+        "x": 1040,
+        "y": 1106,
+        "w": 36,
+        "h": 96,
+        "material": "ice"
+      },
+      {
+        "id": "slider-r0",
+        "x": 1200,
+        "y": 1106,
+        "w": 36,
+        "h": 96,
+        "material": "ice"
+      },
+      {
+        "id": "slider-roof0",
+        "x": 1120,
+        "y": 1049,
+        "w": 200,
+        "h": 18,
+        "material": "wood"
+      },
+      {
+        "id": "slider-l1",
+        "x": 1040,
+        "y": 992,
+        "w": 36,
+        "h": 96,
+        "material": "ice"
+      },
+      {
+        "id": "slider-r1",
+        "x": 1200,
+        "y": 992,
+        "w": 36,
+        "h": 96,
+        "material": "ice"
+      },
+      {
+        "id": "slider-roof1",
+        "x": 1120,
+        "y": 935,
+        "w": 200,
+        "h": 18,
+        "material": "wood"
+      },
+      {
+        "id": "slider-l2",
+        "x": 1040,
+        "y": 878,
+        "w": 36,
+        "h": 96,
+        "material": "ice"
+      },
+      {
+        "id": "slider-r2",
+        "x": 1200,
+        "y": 878,
+        "w": 36,
+        "h": 96,
+        "material": "ice"
+      },
+      {
+        "id": "slider-roof2",
+        "x": 1120,
+        "y": 821,
+        "w": 200,
+        "h": 18,
+        "material": "wood"
+      },
+      {
+        "id": "slider-l3",
+        "x": 1040,
+        "y": 764,
+        "w": 36,
+        "h": 96,
+        "material": "ice"
+      },
+      {
+        "id": "slider-r3",
+        "x": 1200,
+        "y": 764,
+        "w": 36,
+        "h": 96,
+        "material": "ice"
+      },
+      {
+        "id": "slider-roof3",
+        "x": 1120,
+        "y": 707,
+        "w": 200,
+        "h": 18,
+        "material": "wood"
+      },
+      {
+        "id": "receiver-l0",
+        "x": 1610,
+        "y": 1106,
+        "w": 18,
+        "h": 96,
+        "material": "wood"
+      },
+      {
+        "id": "receiver-r0",
+        "x": 1730,
+        "y": 1106,
+        "w": 18,
+        "h": 96,
+        "material": "wood"
+      },
+      {
+        "id": "receiver-roof0",
+        "x": 1670,
+        "y": 1049,
+        "w": 160,
+        "h": 18,
+        "material": "ice"
+      },
+      {
+        "id": "receiver-l1",
+        "x": 1610,
+        "y": 992,
+        "w": 18,
+        "h": 96,
+        "material": "wood"
+      },
+      {
+        "id": "receiver-r1",
+        "x": 1730,
+        "y": 992,
+        "w": 18,
+        "h": 96,
+        "material": "wood"
+      },
+      {
+        "id": "receiver-roof1",
+        "x": 1670,
+        "y": 935,
+        "w": 160,
+        "h": 18,
+        "material": "ice"
+      },
+      {
+        "id": "receiver-l2",
+        "x": 1610,
+        "y": 878,
+        "w": 18,
+        "h": 96,
+        "material": "wood"
+      },
+      {
+        "id": "receiver-r2",
+        "x": 1730,
+        "y": 878,
+        "w": 18,
+        "h": 96,
+        "material": "wood"
+      },
+      {
+        "id": "receiver-roof2",
+        "x": 1670,
+        "y": 821,
+        "w": 160,
+        "h": 18,
+        "material": "ice"
+      }
+    ],
+    "monsters": [
+      {
+        "id": "slider-m0",
+        "x": 1120,
+        "y": 1136,
+        "radius": 18,
+        "kind": "horn"
+      },
+      {
+        "id": "slider-m1",
+        "x": 1120,
+        "y": 1022,
+        "radius": 18,
+        "kind": "blob"
+      },
+      {
+        "id": "slider-m2",
+        "x": 1120,
+        "y": 908,
+        "radius": 18,
+        "kind": "bat"
+      },
+      {
+        "id": "slider-m3",
+        "x": 1120,
+        "y": 794,
+        "radius": 18,
+        "kind": "horn"
+      },
+      {
+        "id": "receiver-m0",
+        "x": 1670,
+        "y": 1136,
+        "radius": 18,
+        "kind": "horn"
+      },
+      {
+        "id": "receiver-m1",
+        "x": 1670,
+        "y": 1022,
+        "radius": 18,
+        "kind": "blob"
+      },
+      {
+        "id": "receiver-m2",
+        "x": 1670,
+        "y": 908,
+        "radius": 18,
+        "kind": "bat"
+      }
+    ],
+    "hazards": [],
+    "terrain": [
+      {
+        "id": "raised-lake",
+        "x": 1390,
+        "y": 1177,
+        "w": 1250,
+        "h": 46,
+        "material": "ice"
+      }
+    ],
+    "props": [],
+    "joints": [],
+    "mechanisms": [],
+    "zones": [
+      {
+        "id": "frozen-surface",
+        "kind": "ice",
+        "x": 1300,
+        "y": 1110,
+        "w": 2600,
+        "h": 200
+      }
+    ],
+    "thresholds": [
+      35000,
+      39500,
+      44000
+    ],
+    "par": 2,
+    "camera": {
+      "start": "overview"
+    },
+    "metadata": {
+      "category": "siege",
+      "idea": "Two tall storage stacks share one very slippery landing.",
+      "mechanics": [
+        "ice momentum",
+        "tall towers",
+        "shared terrain"
+      ],
+      "author": "Plush Siege production pass 4"
+    },
+    "environment": {
+      "groundFriction": 0.035
+    }
+  },
+  {
+    "version": 1,
+    "id": "frozen-10",
+    "world": "frozen",
+    "name": "Glacier Opera",
+    "subtitle": "Three ice arches carry a linked skyway and its three frozen turrets. Break the caps to drop the upper city.",
+    "bounds": {
+      "width": 2800,
+      "height": 1435,
+      "ground": 1300
+    },
+    "sling": {
+      "x": 235,
+      "y": 1155
+    },
+    "projectiles": [
+      "duck",
+      "bear",
+      "rabbit",
+      "duck",
+      "bear",
+      "rabbit",
+      "sheep"
+    ],
+    "blocks": [
+      {
+        "id": "opera-arch-0-pier-1",
+        "x": 848,
+        "y": 1230,
+        "w": 48,
+        "h": 140,
+        "material": "stone"
+      },
+      {
+        "id": "opera-arch-0-shoulder-1",
+        "x": 860,
+        "y": 1148,
+        "w": 68,
+        "h": 24,
+        "material": "ice"
+      },
+      {
+        "id": "opera-arch-0-pier1",
+        "x": 1052,
+        "y": 1230,
+        "w": 48,
+        "h": 140,
+        "material": "stone"
+      },
+      {
+        "id": "opera-arch-0-shoulder1",
+        "x": 1040,
+        "y": 1148,
+        "w": 68,
+        "h": 24,
+        "material": "ice"
+      },
+      {
+        "id": "opera-arch-0-keystone",
+        "x": 950,
+        "y": 1126,
+        "w": 172,
+        "h": 20,
+        "material": "ice"
+      },
+      {
+        "id": "opera-arch-1-pier-1",
+        "x": 1228,
+        "y": 1230,
+        "w": 48,
+        "h": 140,
+        "material": "stone"
+      },
+      {
+        "id": "opera-arch-1-shoulder-1",
+        "x": 1240,
+        "y": 1148,
+        "w": 68,
+        "h": 24,
+        "material": "ice"
+      },
+      {
+        "id": "opera-arch-1-pier1",
+        "x": 1432,
+        "y": 1230,
+        "w": 48,
+        "h": 140,
+        "material": "stone"
+      },
+      {
+        "id": "opera-arch-1-shoulder1",
+        "x": 1420,
+        "y": 1148,
+        "w": 68,
+        "h": 24,
+        "material": "ice"
+      },
+      {
+        "id": "opera-arch-1-keystone",
+        "x": 1330,
+        "y": 1126,
+        "w": 172,
+        "h": 20,
+        "material": "ice"
+      },
+      {
+        "id": "opera-arch-2-pier-1",
+        "x": 1608,
+        "y": 1230,
+        "w": 48,
+        "h": 140,
+        "material": "stone"
+      },
+      {
+        "id": "opera-arch-2-shoulder-1",
+        "x": 1620,
+        "y": 1148,
+        "w": 68,
+        "h": 24,
+        "material": "ice"
+      },
+      {
+        "id": "opera-arch-2-pier1",
+        "x": 1812,
+        "y": 1230,
+        "w": 48,
+        "h": 140,
+        "material": "stone"
+      },
+      {
+        "id": "opera-arch-2-shoulder1",
+        "x": 1800,
+        "y": 1148,
+        "w": 68,
+        "h": 24,
+        "material": "ice"
+      },
+      {
+        "id": "opera-arch-2-keystone",
+        "x": 1710,
+        "y": 1126,
+        "w": 172,
+        "h": 20,
+        "material": "ice"
+      },
+      {
+        "id": "opera-skyway-0",
+        "x": 1140,
+        "y": 1105,
+        "w": 378.6,
+        "h": 22,
+        "material": "ice"
+      },
+      {
+        "id": "opera-skyway-1",
+        "x": 1520,
+        "y": 1105,
+        "w": 378.6,
+        "h": 22,
+        "material": "ice"
+      },
+      {
+        "id": "opera-west-l0",
+        "x": 1080,
+        "y": 1046,
+        "w": 18,
+        "h": 96,
+        "material": "ice"
+      },
+      {
+        "id": "opera-west-r0",
+        "x": 1200,
+        "y": 1046,
+        "w": 18,
+        "h": 96,
+        "material": "ice"
+      },
+      {
+        "id": "opera-west-roof0",
+        "x": 1140,
+        "y": 989,
+        "w": 160,
+        "h": 18,
+        "material": "wood"
+      },
+      {
+        "id": "opera-west-l1",
+        "x": 1080,
+        "y": 932,
+        "w": 18,
+        "h": 96,
+        "material": "ice"
+      },
+      {
+        "id": "opera-west-r1",
+        "x": 1200,
+        "y": 932,
+        "w": 18,
+        "h": 96,
+        "material": "ice"
+      },
+      {
+        "id": "opera-west-roof1",
+        "x": 1140,
+        "y": 875,
+        "w": 160,
+        "h": 18,
+        "material": "wood"
+      },
+      {
+        "id": "opera-spire-l0",
+        "x": 1270,
+        "y": 1046,
+        "w": 18,
+        "h": 96,
+        "material": "ice"
+      },
+      {
+        "id": "opera-spire-r0",
+        "x": 1390,
+        "y": 1046,
+        "w": 18,
+        "h": 96,
+        "material": "ice"
+      },
+      {
+        "id": "opera-spire-roof0",
+        "x": 1330,
+        "y": 989,
+        "w": 160,
+        "h": 18,
+        "material": "wood"
+      },
+      {
+        "id": "opera-spire-l1",
+        "x": 1270,
+        "y": 932,
+        "w": 18,
+        "h": 96,
+        "material": "ice"
+      },
+      {
+        "id": "opera-spire-r1",
+        "x": 1390,
+        "y": 932,
+        "w": 18,
+        "h": 96,
+        "material": "ice"
+      },
+      {
+        "id": "opera-spire-roof1",
+        "x": 1330,
+        "y": 875,
+        "w": 160,
+        "h": 18,
+        "material": "wood"
+      },
+      {
+        "id": "opera-spire-l2",
+        "x": 1270,
+        "y": 818,
+        "w": 18,
+        "h": 96,
+        "material": "ice"
+      },
+      {
+        "id": "opera-spire-r2",
+        "x": 1390,
+        "y": 818,
+        "w": 18,
+        "h": 96,
+        "material": "ice"
+      },
+      {
+        "id": "opera-spire-roof2",
+        "x": 1330,
+        "y": 761,
+        "w": 160,
+        "h": 18,
+        "material": "wood"
+      },
+      {
+        "id": "opera-east-l0",
+        "x": 1460,
+        "y": 1046,
+        "w": 18,
+        "h": 96,
+        "material": "ice"
+      },
+      {
+        "id": "opera-east-r0",
+        "x": 1580,
+        "y": 1046,
+        "w": 18,
+        "h": 96,
+        "material": "ice"
+      },
+      {
+        "id": "opera-east-roof0",
+        "x": 1520,
+        "y": 989,
+        "w": 160,
+        "h": 18,
+        "material": "wood"
+      },
+      {
+        "id": "opera-east-l1",
+        "x": 1460,
+        "y": 932,
+        "w": 18,
+        "h": 96,
+        "material": "ice"
+      },
+      {
+        "id": "opera-east-r1",
+        "x": 1580,
+        "y": 932,
+        "w": 18,
+        "h": 96,
+        "material": "ice"
+      },
+      {
+        "id": "opera-east-roof1",
+        "x": 1520,
+        "y": 875,
+        "w": 160,
+        "h": 18,
+        "material": "wood"
+      }
+    ],
+    "monsters": [
+      {
+        "id": "opera-arch-0-keeper",
+        "x": 950,
+        "y": 1282,
+        "radius": 18,
+        "kind": "horn"
+      },
+      {
+        "id": "opera-arch-1-keeper",
+        "x": 1330,
+        "y": 1282,
+        "radius": 18,
+        "kind": "horn"
+      },
+      {
+        "id": "opera-arch-2-keeper",
+        "x": 1710,
+        "y": 1282,
+        "radius": 18,
+        "kind": "horn"
+      },
+      {
+        "id": "opera-west-m0",
+        "x": 1140,
+        "y": 1076,
+        "radius": 18,
+        "kind": "horn"
+      },
+      {
+        "id": "opera-west-m1",
+        "x": 1140,
+        "y": 962,
+        "radius": 18,
+        "kind": "blob"
+      },
+      {
+        "id": "opera-spire-m0",
+        "x": 1330,
+        "y": 1076,
+        "radius": 18,
+        "kind": "horn"
+      },
+      {
+        "id": "opera-spire-m1",
+        "x": 1330,
+        "y": 962,
+        "radius": 18,
+        "kind": "blob"
+      },
+      {
+        "id": "opera-spire-m2",
+        "x": 1330,
+        "y": 848,
+        "radius": 18,
+        "kind": "bat"
+      },
+      {
+        "id": "opera-east-m0",
+        "x": 1520,
+        "y": 1076,
+        "radius": 18,
+        "kind": "horn"
+      },
+      {
+        "id": "opera-east-m1",
+        "x": 1520,
+        "y": 962,
+        "radius": 18,
+        "kind": "blob"
+      }
+    ],
+    "hazards": [],
+    "terrain": [],
+    "props": [],
+    "joints": [],
+    "mechanisms": [],
+    "zones": [
+      {
+        "id": "frozen-surface",
+        "kind": "ice",
+        "x": 1400,
+        "y": 1210,
+        "w": 2800,
+        "h": 200
+      }
+    ],
+    "thresholds": [
+      50000,
+      56000,
+      62000
+    ],
+    "par": 3,
+    "camera": {
+      "start": "overview"
+    },
+    "metadata": {
+      "category": "spectacle",
+      "idea": "Three ice arches carry a linked skyway and its three frozen turrets. Break the caps to drop the upper city.",
+      "mechanics": [
+        "load-bearing ice arch caps",
+        "joined skyway",
+        "three turrets",
+        "falling city"
+      ],
+      "author": "Plush Siege production pass 4"
+    },
+    "environment": {
+      "groundFriction": 0.035
+    }
+  }
+]

@@ -1,0 +1,5 @@
+{
+  "checks": 8,
+  "errors": [],
+  "note": "Rendered real-engine witnesses advanced by fixed steps; this is not a pointer-input or physical-device performance test."
+}

@@ -1,5 +1,5 @@
 import type Phaser from 'phaser';
-import type { BlockDef, StuffieKind } from './types';
+import type { BlockDef, StuffieKind, TerrainDef, PropDef, ZoneDef, MechanismDef } from './types';
 import { getTheme } from '../content/themes';
 
 type G = Phaser.GameObjects.Graphics;
@@ -18,6 +18,7 @@ class Pen {
     public angle = 0,
     public sx = 1,
     public sy = 1,
+    public opacity = 1,
   ) {}
   point(x: number, y: number): Point {
     const c = Math.cos(this.angle),
@@ -32,12 +33,12 @@ class Pen {
   }
   polygon(points: number[][], color: number, stroke?: number, width = 1.5, alpha = 1) {
     const p = points.map(([x, y]) => this.point(x, y));
-    this.g.fillStyle(color, alpha).fillPoints(p, true);
+    this.g.fillStyle(color, alpha * this.opacity).fillPoints(p, true);
     if (stroke !== undefined)
-      this.g.lineStyle(width * this.weight, stroke, alpha).strokePoints(p, true);
+      this.g.lineStyle(width * this.weight, stroke, alpha * this.opacity).strokePoints(p, true);
   }
   line(points: number[][], color: number, width = 1.5, alpha = 1) {
-    this.g.lineStyle(width * this.weight, color, alpha).strokePoints(
+    this.g.lineStyle(width * this.weight, color, alpha * this.opacity).strokePoints(
       points.map(([x, y]) => this.point(x, y)),
       false,
     );
@@ -147,7 +148,8 @@ function graphicTree(
 
 /** Bold geometric countryside. Decorative silhouettes avoid the central target
  * area and have no gameplay ink outline. The scene caches this by world ID. */
-export function drawBackground(g: G, time: number, theme = 'countryside'): void {
+export function drawBackground(g: G, time: number, theme = 'countryside', sceneryOnly = false): void {
+  if (drawThemedScenery(g,time,theme,sceneryOnly)) return;
   const p = new Pen(g),
     c = getTheme(theme).palette;
   g.fillStyle(c.skyBottom).fillRect(0, 0, 1440, 810);
@@ -369,118 +371,12 @@ export function drawBackground(g: G, time: number, theme = 'countryside'): void 
     ],
     c.meadow[1],
   );
-  // Actual contact surface is y=675. Decorative cuts below it do not imply ledges.
-  g.fillStyle(c.ground.grassEdge).fillRect(0, 673, 1440, 9);
-  g.fillStyle(c.ground.grassLip).fillRect(0, 671, 1440, 4);
-  g.fillStyle(c.ground.topsoil).fillRect(0, 682, 1440, 128);
-  p.polygon(
-    [
-      [0, 706],
-      [150, 721],
-      [324, 707],
-      [489, 730],
-      [688, 716],
-      [901, 733],
-      [1121, 714],
-      [1290, 733],
-      [1440, 718],
-      [1440, 810],
-      [0, 810],
-    ],
-    c.ground.soil,
-  );
-  p.polygon(
-    [
-      [0, 753],
-      [226, 769],
-      [415, 748],
-      [664, 773],
-      [920, 756],
-      [1141, 776],
-      [1440, 752],
-      [1440, 767],
-      [1138, 790],
-      [920, 768],
-      [663, 785],
-      [416, 761],
-      [224, 781],
-      [0, 765],
-    ],
-    c.ground.seam,
-  );
-  p.line(
-    [
-      [0, 698],
-      [198, 711],
-      [364, 698],
-      [544, 714],
-      [716, 703],
-      [913, 719],
-      [1131, 703],
-      [1325, 718],
-      [1440, 707],
-    ],
-    c.ground.seamHighlight,
-    3,
-  );
-  for (let i = 0; i < 29; i++) {
-    const x = (i * 137 + 31) % 1440,
-      y = 726 + ((i * 31) % 78);
-    p.polygon(
-      [
-        [x - 3, y],
-        [x + 2, y - 2],
-        [x + 6, y + 1],
-        [x, y + 3],
-      ],
-      c.ground.speckles[i % 2],
-    );
-  }
-  for (const x of [22, 119, 358, 441, 583, 1338, 1423]) {
-    p.polygon(
-      [
-        [x - 9, 673],
-        [x - 15, 659],
-        [x - 3, 666],
-        [x + 2, 649],
-        [x + 6, 667],
-        [x + 16, 659],
-        [x + 12, 673],
-      ],
-      c.grass,
-    );
-  }
-  for (const [x, y] of [
-    [38, 650],
-    [399, 658],
-    [1371, 648],
-  ]) {
-    p.line(
-      [
-        [x, y + 21],
-        [x, y],
-      ],
-      c.flowers.stem,
-      2.5,
-    );
-    p.polygon(
-      [
-        [x, y - 7],
-        [x + 3, y - 2],
-        [x + 9, y],
-        [x + 3, y + 3],
-        [x, y + 9],
-        [x - 3, y + 3],
-        [x - 9, y],
-        [x - 3, y - 2],
-      ],
-      c.flowers.petals,
-    );
-    p.ellipse(x, y, 2.5, 2.5, c.flowers.center);
-  }
+  if (!sceneryOnly) drawWorldGround(g,{width:1440,height:810,ground:675},theme);
+  else g.fillStyle(c.meadow[1]).fillRect(0,674,1440,136);
 }
 
 export interface StuffieExpression {
+  alpha?: number;
   stretch?: number;
   evil?: boolean;
   blink?: boolean;
@@ -666,6 +562,7 @@ export function drawStuffie(
   const stretch = Math.max(-0.4, Math.min(0.65, state.stretch || 0)),
     scale = r / 24;
   const p = new Pen(g, x, y, angle, scale * (1 + stretch), scale / (1 + stretch * 0.8));
+  p.opacity = Math.max(0, Math.min(1, state.alpha ?? 1));
   if (kind === 'sheep') {
     p.polygon(
       [
@@ -1750,6 +1647,21 @@ export function drawBlock(g: G, def: BlockDef, healthRatio = 1): void {
         0xe8fff2,
         2,
       );
+  } else if (material === 'ice') {
+    beveled(p,w,h,0xa6eff8,0x315b90,edge);
+    p.polygon([[-x+2,-y+2],[-w*.05,-y+2],[-w*.27,y-2],[-x+2,y-2]],0xe5ffff);
+    p.polygon([[w*.1,-y+2],[x-2,-y+2],[x-2,y-2],[-w*.1,y-2]],0x78cde7);
+    p.line([[-x+4,-y+4],[x-4,-y+4]],0xf7ffff,2);
+    p.line([[-w*.16,-y],[-w*.04,-h*.05],[w*.1,h*.05],[w*.2,y]],0x599fd0,1.2);
+    p.line([[-w*.04,-h*.05],[-w*.32,h*.13]],0xf3ffff,1.3);
+    if(w>35&&h>12){p.line([[w*.26,-h*.24],[w*.26,h*.2]],0xeaffff,1);p.line([[w*.2,-h*.1],[w*.32,h*.06]],0xeaffff,1);}
+  } else if (material === 'metal') {
+    beveled(p,w,h,0x839aab,INK,edge);
+    p.polygon([[-x+2,-y+2],[x-2,-y+2],[x-2,-y+Math.min(6,h*.25)],[-x+2,-y+Math.min(6,h*.25)]],0xd1e4e5);
+    p.polygon([[-x+2,y-Math.min(6,h*.25)],[x-2,y-Math.min(6,h*.25)],[x-2,y-2],[-x+2,y-2]],0x4e647e);
+    for(const[xx,yy]of[[-x+5,-y+5],[x-5,y-5]]){p.ellipse(xx,yy,2.7,2.7,INK);p.ellipse(xx-.5,yy-.5,1.2,1.2,0xc8dfdf);}
+    if(w>h){p.line([[-x+12,0],[x-12,0]],0x60778e,1.5);p.line([[-x+12,-2],[x-12,-2]],0xabc2ca,.8);}
+    else{p.line([[0,-y+12],[0,y-12]],0x60778e,1.5);p.line([[-2,-y+12],[-2,y-12]],0xabc2ca,.8);}
   } else {
     beveled(p, w, h, 0xa29ab9, INK, edge);
     p.polygon(
@@ -1970,6 +1882,18 @@ export function drawFragment(g: G, def: BlockDef, healthRatio = 1): void {
       0xecfff0,
       1.2,
     );
+  } else if (def.material === 'ice') {
+    p.polygon([[-l+b,-t],[l-b,-t],[l,-t*.45],[l,t*.6],[l-b,t],[-l+b,t],[-l,t*.2],[-l,-t*.5]],0xa6eff8,0x315b90,stroke);
+    p.polygon([[-l+b,-t+1],[l*.25,-t+1],[-l*.15,t*.7],[-l+b,t*.4]],0xeeffff);
+    p.polygon([[l*.2,-t*.6],[l-b,-t*.5],[l-b,t*.6],[l*.55,t*.8]],0x64badc);
+    p.line([[-l*.35,-t],[-l*.12,0],[l*.12,t]],0x4a94c6,1.1);
+    p.line([[-l*.12,0],[l*.5,-t*.5]],0xeeffff,1.2);
+  } else if (def.material === 'metal') {
+    p.polygon([[-l+b*.4,-t],[l-b,-t],[l,-t*.55],[l-b*.5,t*.3],[l,t*.8],[l-b,t],[-l,t],[-l+b*.4,t*.15],[-l,-t*.5]],0x839aab,INK,stroke);
+    p.line([[-l+b,-t+1],[l-b,-t+1]],0xcce2e3,1.5);
+    p.polygon([[-l+b,t*.5],[l-b,t*.45],[l-b,t],[-l,t]],0x4e647e);
+    p.line([[-l*.65,0],[l*.6,-t*.05]],0x50657e,1.2);
+    if(l>8){p.ellipse(-l*.65,0,1.8,1.8,INK);p.ellipse(-l*.65-.3,-.4,.7,.7,0xcce2e3);}
   } else {
     p.polygon(
       [
@@ -2240,5 +2164,207 @@ export function drawSling(g: G, anchor: Point, pouch?: Point, front = false): vo
       INK,
       5,
     );
+  }
+}
+
+function skyGradient(g:G,top:number,bottom:number) {
+  for(let i=0;i<24;i++){
+    const t=i/23,part=(shift:number)=>Math.round(((top>>shift)&255)*(1-t)+((bottom>>shift)&255)*t);
+    g.fillStyle((part(16)<<16)|(part(8)<<8)|part(0)).fillRect(0,i*34,1440,35);
+  }
+}
+function orbitLine(p:Pen,rx:number,ry:number,color:number,width:number,start=0,end=TAU,alpha=1) {
+  const points:number[][]=[];
+  for(let i=0;i<=40;i++){const a=start+(end-start)*i/40;points.push([Math.cos(a)*rx,Math.sin(a)*ry]);}
+  p.line(points,color,width,alpha);
+}
+/** Distinct silhouette families, not palette replacements of the meadow geometry. */
+function drawThemedScenery(g:G,time:number,id:string,sceneryOnly:boolean):boolean {
+  const theme=getTheme(id),motif=theme.motif||'meadow',c=theme.palette,p=new Pen(g);
+  if(motif==='meadow')return false;
+  skyGradient(g,c.skyTop,c.skyBottom);
+  if(motif==='glacier'){
+    // Broad aurora ribbons stay high above the readable playfield.
+    p.polygon([[0,89],[155,131],[343,55],[536,104],[726,50],[925,88],[1080,17],[1241,60],[1440,23],[1440,74],[1238,111],[1080,70],[922,140],[726,100],[534,151],[342,98],[157,174],[0,129]],0x70eacb,undefined,1,.47);
+    p.polygon([[0,125],[187,183],[386,108],[572,164],[818,110],[1009,159],[1193,86],[1440,126],[1440,153],[1195,115],[1007,192],[818,141],[572,195],[385,137],[187,213],[0,157]],0xd3a7ff,undefined,1,.34);
+    g.fillStyle(c.sun.halo,.3).fillCircle(1194,176,91);g.fillStyle(c.sun.center).fillCircle(1194,176,57);
+    for(let i=0;i<21;i++){const x=(i*173+30)%1440,y=54+(i*67)%215;g.fillStyle(0xe9ffff,.5).fillCircle(x,y,i%4===0?2:1);}
+    p.polygon([[0,543],[63,345],[132,410],[220,249],[287,476],[350,441],[467,608],[0,810]],c.hills[0]);
+    p.polygon([[220,249],[237,435],[271,415],[287,476],[331,534],[315,414],[263,386]],c.hills[1]);
+    p.polygon([[63,345],[67,493],[106,466],[132,410],[113,434]],c.hills[2]);
+    p.polygon([[1440,485],[1380,279],[1306,376],[1236,235],[1184,455],[1093,403],[984,604],[1440,810]],c.hills[0]);
+    p.polygon([[1236,235],[1247,468],[1281,431],[1306,376],[1272,393]],c.hills[1]);
+    p.polygon([[1380,279],[1372,465],[1411,529],[1440,485]],c.hills[2]);
+    p.polygon([[0,617],[212,583],[395,626],[628,574],[845,615],[1116,578],[1440,609],[1440,810],[0,810]],c.meadow[0]);
+    p.polygon([[0,663],[291,633],[481,675],[736,622],[1036,664],[1276,623],[1440,651],[1440,810],[0,810]],c.meadow[1]);
+    p.line([[0,690],[284,670],[454,692],[700,655],[981,690],[1210,665],[1440,680]],0xe9ffff,3,.7);
+    p.line([[318,745],[583,710],[719,721]],0x77bbd8,2,.5);p.line([[921,745],[1140,709],[1342,731]],0x77bbd8,2,.5);
+    for(const[x,y,s]of[[44,628,1],[1390,630,.9],[109,657,.55]]){
+      const q=new Pen(g,x,y,0,s,s);q.polygon([[-17,0],[-10,-58],[0,-76],[16,-26],[26,0]],0x92d5ec);q.polygon([[0,-76],[3,-9],[16,-26]],0xe8ffff);
+    }
+  }else if(motif==='volcano'){
+    g.fillStyle(c.sun.halo,.7).fillCircle(1163,171,103);g.fillStyle(c.sun.center).fillCircle(1163,171,61);
+    p.polygon([[0,142],[166,110],[278,139],[466,110],[654,143],[842,127],[1056,145],[1440,119],[1440,152],[1056,168],[841,148],[650,166],[465,136],[274,161],[165,135],[0,163]],c.clouds,undefined,1,.65);
+    // Broken volcanic cones and visible magma channels define a new terrain silhouette.
+    p.polygon([[0,566],[114,435],[203,315],[239,341],[278,313],[397,524],[512,485],[624,646],[0,810]],c.hills[0]);
+    p.polygon([[203,315],[239,341],[278,313],[271,358],[255,354],[264,401],[244,426],[266,463],[250,504],[286,559],[278,615],[218,615],[239,556],[218,505],[236,462],[221,421],[237,394],[223,355],[207,359]],0xf78b67);
+    p.polygon([[220,336],[238,347],[265,335],[249,358],[245,391],[235,400],[239,361]],0xffd56b);
+    p.polygon([[1440,526],[1374,396],[1282,297],[1247,315],[1213,295],[1114,470],[1061,451],[932,638],[1440,810]],c.hills[1]);
+    p.polygon([[1282,297],[1247,315],[1213,295],[1225,342],[1243,349],[1234,392],[1255,427],[1248,468],[1275,513],[1264,565],[1301,568],[1291,512],[1272,468],[1280,426],[1258,389],[1265,350]],0xf49c73);
+    p.polygon([[0,648],[225,568],[409,618],[617,565],[821,623],[1073,570],[1243,620],[1440,589],[1440,810],[0,810]],c.hills[2]);
+    p.polygon([[0,698],[224,664],[450,704],[706,644],[920,694],[1180,649],[1440,687],[1440,810],[0,810]],c.meadow[0]);
+    p.polygon([[0,750],[267,722],[471,751],[751,703],[972,744],[1215,705],[1440,737],[1440,763],[1210,737],[974,774],[750,732],[470,779],[265,748],[0,777]],0xf89c69,undefined,1,.65);
+    // Distant geyser silhouettes have no gameplay outline; active vents are drawn separately.
+    for(const[x,y,s]of[[78,570,.8],[1360,571,1]]){const q=new Pen(g,x,y,0,s,s);q.polygon([[-25,30],[-13,5],[-17,-24],[-8,-62],[3,-40],[8,-9],[25,7],[17,30]],0xeea17c,undefined,1,.55);q.polygon([[-30,30],[-18,5],[13,4],[28,30]],c.hills[0]);}
+  }else if(motif==='haunted'){
+    g.fillStyle(c.sun.halo,.4).fillCircle(1150,180,100);g.fillStyle(c.sun.center).fillCircle(1150,180,68);g.fillStyle(c.skyTop,.12).fillCircle(1125,162,17);g.fillStyle(c.skyTop,.12).fillCircle(1172,199,13);
+    p.polygon([[0,165],[198,133],[327,152],[451,131],[684,164],[851,145],[1011,165],[1440,133],[1440,172],[1013,194],[850,175],[681,190],[451,159],[327,176],[197,158],[0,191]],c.clouds,undefined,1,.35);
+    p.polygon([[0,579],[191,462],[373,552],[561,478],[738,571],[970,476],[1163,549],[1334,455],[1440,538],[1440,810],[0,810]],c.hills[1]);
+    const mansion=(x:number,y:number,scale:number,mirror=1)=>{
+      const q=new Pen(g,x,y,0,scale*mirror,scale);
+      q.polygon([[-88,87],[-80,-21],[-57,-35],[-42,-111],[-34,-75],[-24,-34],[5,-40],[34,-69],[67,-55],[69,12],[95,31],[96,87]],c.hills[0]);
+      q.polygon([[-97,-17],[-52,-62],[-30,-27],[-14,-30],[-44,-109],[-47,-151],[-28,-176],[-20,-137],[-28,-120],[-2,-31],[33,-87],[79,-48],[96,-31],[67,-34],[35,-64],[7,-22]],c.trunk);
+      q.polygon([[-65,9],[-62,-8],[-49,-11],[-48,9]],0xd1e7af,undefined,1,.7);q.polygon([[24,-6],[27,-25],[41,-29],[42,-9]],0xe3dca8,undefined,1,.7);q.polygon([[51,33],[53,17],[66,20],[65,36]],0xd1e7af,undefined,1,.7);
+      q.polygon([[-11,87],[-9,49],[6,39],[20,49],[23,87]],c.trunk);
+    };
+    mansion(192,486,1.2);mansion(1323,493,1.1,-1);
+    // Tiny ghost-shaped wisps stay in the sky, far from physical monster targets.
+    for(const[x,y,s]of[[887,230,.65],[1033,323,.45],[379,270,.4]]){const q=new Pen(g,x,y,0,s,s);q.polygon([[-22,20],[-20,-4],[-13,-19],[2,-24],[17,-15],[22,9],[33,21],[17,18],[12,27],[2,19],[-5,28],[-12,20]],0xe2f1dc,undefined,1,.35);q.ellipse(-7,-4,2.3,4,c.hills[0],undefined,1,.5);q.ellipse(5,-6,2.2,3.7,c.hills[0],undefined,1,.5);}
+    for(const[x,y]of[[495,108],[797,68]]){const q=new Pen(g,x,y);q.line([[0,-115],[0,18]],c.trunk,2,.35);q.line([[-28,8],[-19,22],[0,27],[20,20],[28,5]],c.trunk,3,.35);for(const xx of[-23,0,23]){q.line([[xx,20],[xx,-1]],c.trunk,2,.35);q.ellipse(xx,-5,2,5,0xe6efb4,undefined,1,.45);}}
+    p.polygon([[0,658],[211,602],[455,646],[716,602],[930,649],[1186,603],[1440,641],[1440,810],[0,810]],c.meadow[0]);
+    p.polygon([[0,722],[242,673],[443,709],[747,663],[981,712],[1220,669],[1440,696],[1440,810],[0,810]],c.meadow[1]);
+  }else if(motif==='orbital'){
+    p.polygon([[0,102],[305,32],[602,162],[852,120],[1113,225],[1440,165],[1440,255],[1110,302],[850,192],[599,242],[305,105],[0,180]],0xc195f0,undefined,1,.12);
+    for(let i=0;i<67;i++){
+      const x=(i*173+29)%1440,y=32+(i*89)%716,s=i%5===0?2:1;
+      if(i%9===0){p.line([[x-4,y],[x+4,y]],0xc8efff,1,.7);p.line([[x,y-4],[x,y+4]],0xc8efff,1,.7);}
+      else g.fillStyle(i%3?0xe4efff:0xffcfec,.55+(i%3)*.13).fillCircle(x,y,s);
+    }
+    const ring=new Pen(g,1243,208,-.3);orbitLine(ring,190,49,0xb7b4ed,7,0,TAU,.5);
+    const planet=new Pen(g,1243,208);planet.ellipse(0,0,111,111,0xa3a1d6);planet.polygon([[-101,-42],[-15,-76],[99,-50],[111,-6],[15,-27],[-109,2]],0xc6b3e2);planet.polygon([[-91,62],[-4,43],[97,61],[65,93],[-18,108]],0x8d8ec7);
+    orbitLine(ring,190,49,0xe2d0f0,7,0,Math.PI,.65);
+    const little=new Pen(g,202,171,.22);little.ellipse(0,0,52,52,0x76c9c9);little.polygon([[-47,-17],[9,-35],[50,-11],[49,12],[6,-12],[-50,4]],0x98e4d7);little.ellipse(-20,16,9,7,0x5fa8b9);little.ellipse(16,25,6,5,0x5fa8b9);
+    // These low-contrast distant rocks do not use the dark outline of real planetoids.
+    for(const[x,y,r]of[[94,607,46],[1339,608,63],[409,738,23]]){const q=new Pen(g,x,y);q.polygon([[-r*.9,-r*.35],[-r*.3,-r],[r*.65,-r*.68],[r,-r*.05],[r*.65,r*.8],[-r*.25,r],[-r,r*.3]],c.hills[0]);q.ellipse(-r*.25,-r*.1,r*.19,r*.14,c.hills[1]);}
+  }
+  if(!sceneryOnly)drawWorldGround(g,{width:1440,height:810,ground:675},id);
+  return true;
+}
+
+/** Real terrain contact surface, in world coordinates rather than viewport space. */
+export function drawWorldGround(g:G,bounds:{width:number;height:number;ground:number},theme='countryside',originX=0):void {
+  const p=new Pen(g,originX,0),c=getTheme(theme).palette,motif=getTheme(theme).motif||'meadow';
+  const w=bounds.width,y=bounds.ground,bottom=Math.max(bounds.height,y+160);
+  g.fillStyle(c.ground.topsoil).fillRect(originX,y,w,bottom-y);
+  g.fillStyle(c.ground.soil).fillRect(originX,y+29,w,Math.max(0,bottom-y-29));
+  const top:number[][]=[[0,y+31]],seam:number[][]=[[0,y+88]];
+  for(let x=0;x<=w+180;x+=180){top.push([Math.min(x,w),y+26+((x/180)%2)*13]);seam.push([Math.min(x,w),y+88+((x/180)%2)*16]);}
+  p.line(top,c.ground.seamHighlight,3);p.line(seam,c.ground.seam,8);
+  g.fillStyle(c.ground.grassEdge).fillRect(originX,y,w,7);g.fillStyle(c.ground.grassLip).fillRect(originX,y,w,3);
+  for(let i=0;i<Math.min(100,Math.ceil(w/78));i++){
+    const x=(i*137+31)%w,yy=y+49+(i*31)%95;
+    p.polygon([[x-3,yy],[x+2,yy-2],[x+6,yy+1],[x,yy+3]],c.ground.speckles[i%2]);
+  }
+  if(motif==='glacier')for(let x=18;x<w;x+=155){p.line([[x,y+5],[x+20,y+16],[x+12,y+34],[x+37,y+49]],0x5ba7cc,1.5);p.line([[x+20,y+16],[x+45,y+13]],0xeaffff,1.5);}
+  else if(motif==='volcano')for(let x=25;x<w;x+=173){p.line([[x,y+8],[x+12,y+25],[x+7,y+43],[x+35,y+65]],0xff9b4e,3);p.line([[x+12,y+25],[x+43,y+32]],0xffcf63,1.5);}
+  else if(motif==='meadow')for(let x=22;x<w;x+=173)p.polygon([[x-8,y],[x-13,y-12],[x-2,y-5],[x+3,y-20],[x+6,y-4],[x+14,y-12],[x+10,y]],c.grass);
+  else if(motif==='orbital')for(let x=80;x<w;x+=259){p.ellipse(x,y+67,28,10,c.ground.seam,undefined,1,.6);p.line([[x-26,y+64],[x-8,y+58],[x+20,y+62]],c.ground.seamHighlight,2);}
+}
+
+/** Terrain dimensions and rotation exactly follow the static rectangle collider. */
+export function drawTerrain(g:G,def:TerrainDef):void {
+  drawBlock(g,{...def,material:def.material||'stone',static:true});
+  const p=new Pen(g,def.x,def.y,def.angle||0);
+  if(def.w>65&&def.h>14)p.line([[-def.w/2+10,-def.h/2+5],[def.w/2-10,-def.h/2+5]],CREAM,1,.5);
+}
+
+/** Readable rolling boulders and circular planetoids. Decorative craters remain
+ * inside the same radius as the physics body; rings are reserved for field zones. */
+export function drawProp(g:G,def:PropDef,angle=0):void {
+  const p=new Pen(g,def.x,def.y,angle),r=def.radius,ice=def.material==='ice',metal=def.material==='metal';
+  const color=ice?0xa6eff8:metal?0x839aab:def.kind==='planetoid'?0xa0a9d6:0xaaa0bb;
+  const shade=ice?0x66bddc:metal?0x526d85:def.kind==='planetoid'?0x717cb0:0x7b7392;
+  const points:number[][]=[];
+  for(let i=0;i<20;i++){const a=i*TAU/20,rr=r*(i%3===0?.96:1);points.push([Math.cos(a)*rr,Math.sin(a)*rr]);}
+  p.polygon(points,color,INK,Math.max(2.3,Math.min(4,r*.055)));
+  p.polygon([[-r*.9,r*.2],[-r*.3,r*.55],[r*.45,r*.55],[r*.91,r*.2],[r*.7,r*.69],[r*.2,r*.96],[-r*.45,r*.86]],shade);
+  p.line([[-r*.83,-r*.27],[-r*.54,-r*.69],[-r*.05,-r*.88]],ice?0xeeffff:0xd4d6e4,2);
+  if(def.kind==='planetoid'){
+    p.ellipse(-r*.29,-r*.18,r*.22,r*.17,shade,INK,1.2);p.line([[-r*.46,-r*.19],[-r*.28,-r*.29],[-r*.1,-r*.23]],0xcad2e8,1.5);
+    p.ellipse(r*.37,r*.1,r*.13,r*.16,shade);p.ellipse(r*.13,-r*.55,r*.08,r*.07,shade);
+    p.line([[-r*.21,r*.66],[r*.07,r*.52],[r*.31,r*.61]],INK,1.2,.6);
+  }else{
+    p.line([[-r*.28,-r*.8],[-r*.12,-r*.24],[r*.19,r*.03],[r*.07,r*.48],[r*.3,r*.88]],ice?0x3879ac:INK,1.7);
+    p.line([[r*.19,r*.03],[r*.61,-r*.12],[r*.8,-r*.4]],ice?0xe9ffff:INK,1.4);
+    p.polygon([[-r*.59,r*.12],[-r*.43,r*.02],[-r*.24,r*.16],[-r*.37,r*.28]],shade);
+  }
+}
+
+/** Areas are drawn behind bodies. x/y are zone centers, matching physics bounds. */
+export function drawZone(g:G,def:ZoneDef,time:number):void {
+  const p=new Pen(g),left=def.x-def.w/2,top=def.y-def.h/2,right=left+def.w,bottom=top+def.h;
+  if(def.kind==='lava'){
+    g.fillStyle(0xff6e4f,.14).fillRect(left,top,def.w,def.h);g.fillStyle(0xffb94f,.45).fillRect(left,bottom-Math.min(14,def.h*.45),def.w,Math.min(14,def.h*.45));
+    const wave:number[][]=[[left,bottom],[left,top+5]],count=Math.min(24,Math.max(3,Math.ceil(def.w/36)));
+    for(let i=0;i<=count;i++){const x=left+i*def.w/count,y=top+6+Math.sin(time/450+i*1.8)*3;wave.push([x,y]);}
+    wave.push([right,bottom]);p.polygon(wave,0xff7450,0x9c4158,1.8,.72);
+    for(let i=0;i<Math.min(7,count);i++){const x=left+(i+.5)*def.w/Math.min(7,count),y=top+def.h*.55+Math.sin(time/520+i)*def.h*.1;p.ellipse(x,y,4+i%2,2.7,0xffdd73);}
+    p.line([[left+2,top+7],[right-2,top+7]],0xffdf78,2,.8);
+  }else if(def.kind==='heat'){
+    g.fillStyle(0xffb25f,.07).fillRect(left,top,def.w,def.h);
+    for(let i=0;i<Math.min(7,Math.ceil(def.w/45));i++){const x=left+(i+.5)*def.w/Math.min(7,Math.ceil(def.w/45)),h=Math.min(35,def.h*.7);p.line([[x,bottom-4],[x-4,bottom-h*.4],[x+4,bottom-h*.75],[x,bottom-h]],0xed9857,1.8,.4);}
+  }else if(def.kind==='ice'){
+    g.fillStyle(0x8debf2,.18).fillRect(left,top,def.w,def.h);g.lineStyle(1.5,0xe4ffff,.7).strokeRect(left,top,def.w,def.h);
+    for(let x=left+15;x<right;x+=Math.max(50,def.w/12))p.line([[x,top+4],[Math.min(x+19,right-2),bottom-4]],0xf1ffff,2,.65);
+  }else{
+    const zero=def.kind==='zero-gravity',color=zero?0xd6b9ff:0x91e7e9;
+    g.fillStyle(color,.055).fillRect(left,top,def.w,def.h);
+    if(!zero&&!def.center){
+      const vector=def.gravity||{x:0,y:def.strength??.25},angle=Math.atan2(vector.y,vector.x);
+      if(Math.hypot(vector.x,vector.y)>.001)for(let i=0;i<3;i++)for(let j=0;j<2;j++){
+        const x=left+(i+.5)*def.w/3,y=top+(j+.5)*def.h/2,arrow=new Pen(g,x,y,angle);
+        arrow.line([[-9,0],[8,0]],color,1.7,.55);arrow.line([[2,-5],[8,0],[2,5]],color,1.7,.55);
+      }
+      return;
+    }
+    const center=def.center||{x:def.x,y:def.y},radius=def.radius||Math.min(def.w,def.h)/2;
+    const q=new Pen(g,center.x,center.y);
+    if(!zero){orbitLine(q,radius,radius,color,1.5,0,TAU,.42);orbitLine(q,radius*.6,radius*.6,color,1,0,TAU,.2);}
+    for(let i=0;i<8;i++){
+      const a=i*TAU/8+(zero?time/15000:0),r=radius*(zero?.55:.79),x=center.x+Math.cos(a)*r,y=center.y+Math.sin(a)*r;
+      if(zero){p.polygon([[x-2,y],[x,y-3],[x+2,y],[x,y+3]],color,undefined,1,.65);}
+      else{const arrow=new Pen(g,x,y,a+Math.PI);arrow.line([[-7,0],[6,0]],color,1.7,.65);arrow.line([[1,-4],[6,0],[1,4]],color,1.7,.65);}
+    }
+    if(zero){p.line([[left+8,top+16],[left+8,top+8],[left+16,top+8]],color,1.5,.5);p.line([[right-16,bottom-8],[right-8,bottom-8],[right-8,bottom-16]],color,1.5,.5);}
+  }
+}
+
+/** Mechanical markers represent real actuators; a body-bound marker is only drawn
+ * after the scene resolves its current body position into x/y. */
+export function drawMechanism(g:G,def:MechanismDef,time:number,active=true):void {
+  if(def.x===undefined||def.y===undefined)return;
+  const p=new Pen(g,def.x,def.y),w=def.w||52,h=def.h||18;
+  if(def.kind==='vent'){
+    // w/h describe a force region, not a giant solid block. Put the small nozzle
+    // at its upstream boundary and show flow inside the actual affected region.
+    const horizontal=def.axis==='x',direction=def.speed===undefined?(horizontal?1:-1):Math.sign(def.speed)||1;
+    const extent=horizontal?(def.w||100):(def.h||140),cross=horizontal?(def.h||140):(def.w||100);
+    const x=def.x-(horizontal?direction*extent/2:0),y=def.y-(horizontal?0:direction*extent/2);
+    const rotation=horizontal?(direction>0?Math.PI/2:-Math.PI/2):(direction>0?Math.PI:0);
+    const nozzle=new Pen(g,x,y,rotation),nozzleWidth=Math.min(90,cross),rise=Math.min(72,extent*.75);
+    beveled(nozzle,nozzleWidth,14,active?0x8c859e:0x6f758a,INK,2.3);
+    for(let xx=-nozzleWidth/2+8;xx<nozzleWidth/2-4;xx+=9)nozzle.line([[xx,-4],[xx,4]],INK,2);
+    if(active)for(const dx of[-nozzleWidth*.24,0,nozzleWidth*.24]){
+      const height=rise*(.75+(Math.sin(time/280+dx)*.5+.5)*.25);
+      nozzle.line([[dx,-10],[dx-3,-height*.45],[dx+3,-height]],0xffbd69,2,.65);
+      nozzle.polygon([[dx-4,-height+3],[dx,-height-3],[dx+4,-height+3]],0xffdc86,undefined,1,.6);
+    }
+  }else if(def.kind==='motor'){
+    const q=new Pen(g,def.x,def.y,active?time/1700:0),r=10,points:number[][]=[];
+    for(let i=0;i<24;i++){const a=i*TAU/24,rr=i%3===0?r+3:r;points.push([Math.cos(a)*rr,Math.sin(a)*rr]);}
+    q.polygon(points,active?0xffc968:0x8296ad,INK,1.8);q.ellipse(0,0,3.5,3.5,INK);
+  }else{
+    const color=active?0x7bd8c3:0x8296ad;
+    for(const side of[-1,1]){const q=new Pen(g,def.x+side*w*.25,def.y);const horizontal=def.axis!=='y';q.line(horizontal?[[-7,-3],[0,3],[7,-3]]:[[-3,-7],[3,0],[-3,7]],color,2);}
   }
 }

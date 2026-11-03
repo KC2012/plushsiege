@@ -2,7 +2,7 @@
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "https://plush-siege.local/schemas/level-v1.json",
   "title": "Plush Siege level v1",
-  "description": "Portable level format. Angles are radians, positions and dimensions are world pixels; x points right and y points down. Runtime validation also checks bounds, overlap and ID uniqueness.",
+  "description": "Portable v1 production format. Optional terrain, physical props, joints, mechanisms, environmental zones, camera and metadata preserve legacy compatibility. Angles use radians; x points right and y points down. Runtime validation also checks reference IDs, spawn clearance, collective body limits, polygon bounds and blocking overlaps. Static terrain may tessellate; sensor zones may overlap solids.",
   "type": "object",
   "required": [
     "version",
@@ -19,42 +19,118 @@
     "thresholds"
   ],
   "properties": {
-    "version": { "const": 1 },
-    "id": { "type": "string", "pattern": "^[a-zA-Z0-9_-]{1,80}$" },
-    "name": { "type": "string", "minLength": 1 },
-    "subtitle": { "type": "string", "minLength": 1 },
-    "world": { "type": "string", "minLength": 1 },
+    "version": {
+      "const": 1
+    },
+    "id": {
+      "type": "string",
+      "pattern": "^[a-zA-Z0-9_-]{1,80}$"
+    },
+    "name": {
+      "type": "string",
+      "minLength": 1
+    },
+    "subtitle": {
+      "type": "string",
+      "minLength": 1
+    },
+    "world": {
+      "enum": [
+        "countryside",
+        "frozen",
+        "molten",
+        "haunted",
+        "orbital"
+      ]
+    },
     "bounds": {
       "type": "object",
-      "required": ["width", "height", "ground"],
+      "required": [
+        "width",
+        "height",
+        "ground"
+      ],
       "properties": {
-        "width": { "type": "number", "minimum": 400, "maximum": 10000 },
-        "height": { "type": "number", "minimum": 300, "maximum": 3000 },
-        "ground": { "type": "number", "exclusiveMinimum": 0 }
+        "width": {
+          "type": "number",
+          "minimum": 400,
+          "maximum": 10000
+        },
+        "height": {
+          "type": "number",
+          "minimum": 300,
+          "maximum": 5000
+        },
+        "ground": {
+          "type": "number",
+          "exclusiveMinimum": 0
+        }
       }
     },
-    "sling": { "$ref": "#/$defs/point" },
+    "sling": {
+      "$ref": "#/$defs/point"
+    },
     "projectiles": {
       "type": "array",
       "minItems": 1,
       "maxItems": 12,
-      "items": { "enum": ["sheep", "duck", "bear", "rabbit"] }
+      "items": {
+        "enum": [
+          "sheep",
+          "duck",
+          "bear",
+          "rabbit"
+        ]
+      }
     },
     "blocks": {
       "type": "array",
       "maxItems": 400,
       "items": {
         "type": "object",
-        "required": ["id", "x", "y", "w", "h", "material"],
+        "required": [
+          "id",
+          "x",
+          "y",
+          "w",
+          "h",
+          "material"
+        ],
         "properties": {
-          "id": { "type": "string", "minLength": 1 },
-          "x": { "type": "number" },
-          "y": { "type": "number" },
-          "w": { "type": "number", "minimum": 4 },
-          "h": { "type": "number", "minimum": 4 },
-          "angle": { "type": "number" },
-          "material": { "enum": ["wood", "glass", "stone"] },
-          "static": { "type": "boolean" }
+          "id": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 120
+          },
+          "x": {
+            "type": "number"
+          },
+          "y": {
+            "type": "number"
+          },
+          "w": {
+            "type": "number",
+            "minimum": 4
+          },
+          "h": {
+            "type": "number",
+            "minimum": 4
+          },
+          "angle": {
+            "type": "number"
+          },
+          "material": {
+            "enum": [
+              "wood",
+              "glass",
+              "stone",
+              "ice",
+              "metal"
+            ]
+          },
+          "static": {
+            "type": "boolean"
+          }
         }
       }
     },
@@ -64,13 +140,34 @@
       "maxItems": 400,
       "items": {
         "type": "object",
-        "required": ["id", "x", "y"],
+        "required": [
+          "id",
+          "x",
+          "y"
+        ],
         "properties": {
-          "id": { "type": "string", "minLength": 1 },
-          "x": { "type": "number" },
-          "y": { "type": "number" },
-          "radius": { "type": "number", "minimum": 6, "maximum": 60 },
-          "kind": { "enum": ["horn", "blob", "bat"] }
+          "id": {
+            "type": "string",
+            "minLength": 1
+          },
+          "x": {
+            "type": "number"
+          },
+          "y": {
+            "type": "number"
+          },
+          "radius": {
+            "type": "number",
+            "minimum": 6,
+            "maximum": 60
+          },
+          "kind": {
+            "enum": [
+              "horn",
+              "blob",
+              "bat"
+            ]
+          }
         }
       }
     },
@@ -79,12 +176,26 @@
       "maxItems": 400,
       "items": {
         "type": "object",
-        "required": ["id", "x", "y", "kind"],
+        "required": [
+          "id",
+          "x",
+          "y",
+          "kind"
+        ],
         "properties": {
-          "id": { "type": "string", "minLength": 1 },
-          "x": { "type": "number" },
-          "y": { "type": "number" },
-          "kind": { "const": "tnt" }
+          "id": {
+            "type": "string",
+            "minLength": 1
+          },
+          "x": {
+            "type": "number"
+          },
+          "y": {
+            "type": "number"
+          },
+          "kind": {
+            "const": "tnt"
+          }
         }
       }
     },
@@ -92,16 +203,457 @@
       "type": "array",
       "minItems": 3,
       "maxItems": 3,
-      "items": { "type": "number", "minimum": 0 }
+      "items": {
+        "type": "number",
+        "minimum": 0
+      }
     },
-    "par": { "type": "integer", "minimum": 1 },
-    "tutorial": { "type": "string" }
+    "par": {
+      "type": "integer",
+      "minimum": 1,
+      "maximum": 12
+    },
+    "tutorial": {
+      "type": "string"
+    },
+    "terrain": {
+      "type": "array",
+      "maxItems": 400,
+      "items": {
+        "$ref": "#/$defs/terrain"
+      }
+    },
+    "props": {
+      "type": "array",
+      "maxItems": 400,
+      "items": {
+        "$ref": "#/$defs/prop"
+      }
+    },
+    "joints": {
+      "type": "array",
+      "maxItems": 200,
+      "items": {
+        "$ref": "#/$defs/joint"
+      }
+    },
+    "mechanisms": {
+      "type": "array",
+      "maxItems": 100,
+      "items": {
+        "$ref": "#/$defs/mechanism"
+      }
+    },
+    "zones": {
+      "type": "array",
+      "maxItems": 100,
+      "items": {
+        "$ref": "#/$defs/zone"
+      }
+    },
+    "environment": {
+      "type": "object",
+      "required": [],
+      "properties": {
+        "gravity": {
+          "$ref": "#/$defs/point"
+        },
+        "ground": {
+          "type": "boolean"
+        },
+        "groundFriction": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 2
+        }
+      }
+    },
+    "camera": {
+      "type": "object",
+      "required": [],
+      "properties": {
+        "start": {
+          "enum": [
+            "overview",
+            "sling"
+          ]
+        },
+        "zoom": {
+          "type": "number",
+          "minimum": 0.1,
+          "maximum": 3
+        }
+      }
+    },
+    "metadata": {
+      "type": "object",
+      "required": [
+        "category",
+        "idea",
+        "mechanics"
+      ],
+      "properties": {
+        "category": {
+          "enum": [
+            "puzzle",
+            "siege",
+            "spectacle"
+          ]
+        },
+        "idea": {
+          "type": "string",
+          "minLength": 1
+        },
+        "mechanics": {
+          "type": "array",
+          "maxItems": 40,
+          "items": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 120
+          }
+        },
+        "author": {
+          "type": "string"
+        }
+      }
+    }
   },
   "$defs": {
     "point": {
       "type": "object",
-      "required": ["x", "y"],
-      "properties": { "x": { "type": "number" }, "y": { "type": "number" } }
+      "required": [
+        "x",
+        "y"
+      ],
+      "properties": {
+        "x": {
+          "type": "number"
+        },
+        "y": {
+          "type": "number"
+        }
+      }
+    },
+    "terrain": {
+      "type": "object",
+      "required": [
+        "id",
+        "x",
+        "y",
+        "w",
+        "h"
+      ],
+      "properties": {
+        "id": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 120
+        },
+        "x": {
+          "type": "number"
+        },
+        "y": {
+          "type": "number"
+        },
+        "w": {
+          "type": "number",
+          "minimum": 4
+        },
+        "h": {
+          "type": "number",
+          "minimum": 4
+        },
+        "angle": {
+          "type": "number"
+        },
+        "material": {
+          "enum": [
+            "wood",
+            "glass",
+            "stone",
+            "ice",
+            "metal"
+          ]
+        },
+        "friction": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 2
+        }
+      }
+    },
+    "prop": {
+      "type": "object",
+      "required": [
+        "id",
+        "x",
+        "y",
+        "kind",
+        "radius"
+      ],
+      "properties": {
+        "id": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 120
+        },
+        "x": {
+          "type": "number"
+        },
+        "y": {
+          "type": "number"
+        },
+        "kind": {
+          "enum": [
+            "boulder",
+            "planetoid"
+          ]
+        },
+        "radius": {
+          "type": "number",
+          "minimum": 8,
+          "maximum": 5000
+        },
+        "material": {
+          "enum": [
+            "wood",
+            "glass",
+            "stone",
+            "ice",
+            "metal"
+          ]
+        },
+        "static": {
+          "type": "boolean"
+        }
+      }
+    },
+    "joint": {
+      "type": "object",
+      "required": [
+        "id",
+        "kind",
+        "pointA",
+        "pointB"
+      ],
+      "properties": {
+        "id": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 120
+        },
+        "kind": {
+          "enum": [
+            "rope",
+            "hinge",
+            "spring"
+          ]
+        },
+        "bodyA": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 120
+        },
+        "bodyB": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 120
+        },
+        "pointA": {
+          "$ref": "#/$defs/point"
+        },
+        "pointB": {
+          "$ref": "#/$defs/point"
+        },
+        "length": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 20000
+        },
+        "stiffness": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1
+        },
+        "damping": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1
+        },
+        "breakForce": {
+          "type": "number",
+          "exclusiveMinimum": 0,
+          "maximum": 1000000
+        }
+      },
+      "anyOf": [
+        {
+          "required": [
+            "bodyA"
+          ]
+        },
+        {
+          "required": [
+            "bodyB"
+          ]
+        }
+      ]
+    },
+    "mechanism": {
+      "type": "object",
+      "required": [
+        "id",
+        "kind"
+      ],
+      "properties": {
+        "id": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 120
+        },
+        "x": {
+          "type": "number"
+        },
+        "y": {
+          "type": "number"
+        },
+        "kind": {
+          "enum": [
+            "motor",
+            "platform",
+            "vent"
+          ]
+        },
+        "body": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 120
+        },
+        "trigger": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 120
+        },
+        "w": {
+          "type": "number",
+          "exclusiveMinimum": 0
+        },
+        "h": {
+          "type": "number",
+          "exclusiveMinimum": 0
+        },
+        "speed": {
+          "type": "number",
+          "minimum": -100,
+          "maximum": 100
+        },
+        "range": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 10000
+        },
+        "axis": {
+          "enum": [
+            "x",
+            "y"
+          ]
+        },
+        "force": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 10
+        }
+      },
+      "allOf": [
+        {
+          "if": {
+            "properties": {
+              "kind": {
+                "const": "vent"
+              }
+            }
+          },
+          "then": {
+            "required": [
+              "x",
+              "y",
+              "w",
+              "h"
+            ]
+          },
+          "else": {
+            "required": [
+              "body"
+            ]
+          }
+        }
+      ]
+    },
+    "zone": {
+      "type": "object",
+      "required": [
+        "id",
+        "kind",
+        "x",
+        "y",
+        "w",
+        "h"
+      ],
+      "properties": {
+        "id": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 120
+        },
+        "x": {
+          "type": "number"
+        },
+        "y": {
+          "type": "number"
+        },
+        "w": {
+          "type": "number",
+          "minimum": 4
+        },
+        "h": {
+          "type": "number",
+          "minimum": 4
+        },
+        "angle": {
+          "type": "number"
+        },
+        "kind": {
+          "enum": [
+            "ice",
+            "lava",
+            "heat",
+            "gravity",
+            "zero-gravity"
+          ]
+        },
+        "gravity": {
+          "$ref": "#/$defs/point"
+        },
+        "center": {
+          "$ref": "#/$defs/point"
+        },
+        "strength": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 10
+        },
+        "radius": {
+          "type": "number",
+          "minimum": 1,
+          "maximum": 20000
+        },
+        "rate": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 100
+        }
+      }
     }
   }
 }

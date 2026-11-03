@@ -1,16 +1,19 @@
 import Matter from 'matter-js';
-import type { Level, StuffieKind, BlockDef, MonsterDef } from './types';
+import type { Level, StuffieKind, BlockDef, MonsterDef, TerrainDef, PropDef, Point } from './types';
 import { MATERIALS, STUFFIES, PHYSICS } from './config';
-import { contactImpact, impactDamage, type DamageRecord } from './damage';
+import { contactImpact, impactDamage, pinnedImpactEnergy, type DamageRecord } from './damage';
+import { WorldPhysics } from './world-physics';
 const { Engine, Bodies, Body, Composite, Events, Sleeping } = Matter;
 export type Phase = 'aiming' | 'flying' | 'won' | 'lost';
 export interface Entity {
   id: string;
-  type: 'block' | 'fragment' | 'monster' | 'projectile' | 'tnt';
+  type: 'block' | 'fragment' | 'monster' | 'projectile' | 'tnt' | 'terrain' | 'prop';
   body: Matter.Body;
   health: number;
   maxHealth: number;
   def?: BlockDef | MonsterDef;
+  terrainDef?:TerrainDef;
+  propDef?:PropDef;
   kind?: StuffieKind;
   born: number;
   /** Large fracture pieces keep the original material, dimensions and rigid body. */
@@ -19,6 +22,8 @@ export interface Entity {
   fractureAt?: number;
   /** An ability is available only before the first solid impact. */
   airborne?: boolean;
+  /** Cosmetic fade before legitimate exhaustion in empty space. */
+  exhaustedAt?:number;
 }
 export interface GameEvent {
   type:
@@ -31,7 +36,9 @@ export interface GameEvent {
     | 'ready'
     | 'won'
     | 'lost'
-    | 'damage';
+    | 'damage'
+    | 'joint-break'
+    | 'mechanism';
   x: number;
   y: number;
   material?: string;
@@ -46,12 +53,18 @@ export interface GameEvent {
   remainingHealth?: number;
   normalSpeed?: number;
   energy?: number;
+  jointId?:string;
+  mechanismId?:string;
 }
 
 export { contactImpact } from './damage';
 
 export class Simulation {
   engine: Matter.Engine;
+  worldPhysics!:WorldPhysics;
+  get constraints(){return this.worldPhysics.constraints;}
+  get mechanisms(){return this.worldPhysics.mechanisms;}
+  accelerationAt(point:Point){return this.worldPhysics.accelerationAt(point);}
   entities = new Map<number, Entity>();
   phase: Phase = 'aiming';
   score = 0;
@@ -70,6 +83,7 @@ export class Simulation {
   damageHistory: GameEvent[] = [];
   private quiet = 0;
   private shotStart = 0;
+  private targetsClearedAt?:number;
 
   constructor(public level: Level) {
     this.engine = Engine.create({
@@ -77,16 +91,10 @@ export class Simulation {
       positionIterations: 10,
       velocityIterations: 8,
     });
-    Composite.add(this.engine.world, [
-      Bodies.rectangle(
-        level.bounds.width / 2,
-        level.bounds.ground + 60,
-        level.bounds.width + 500,
-        120,
-        { isStatic: true, friction: 0.9, label: 'ground' },
-      ),
-      Bodies.rectangle(-110, 300, 100, 1500, { isStatic: true }),
-    ]);
+    if(level.environment?.ground!==false)Composite.add(this.engine.world,
+      Bodies.rectangle(level.bounds.width/2,level.bounds.ground+60,level.bounds.width+500,120,{isStatic:true,friction:level.environment?.groundFriction??(level.world==='frozen'?.025:.9),label:'ground'})
+    );
+    Composite.add(this.engine.world,Bodies.rectangle(-110,level.bounds.height/2,100,level.bounds.height+1500,{isStatic:true}));
     for (const d of level.blocks) {
       const m = MATERIALS[d.material];
       const b = Bodies.rectangle(d.x, d.y, d.w, d.h, {
@@ -134,6 +142,7 @@ export class Simulation {
         maxHealth: 5,
         born: 0,
       });
+    this.worldPhysics=new WorldPhysics(level,this.engine,this.entities,e=>this.add(e),(e,damage)=>this.queueDamage(e,damage),event=>this.events.push(event));
     Events.on(this.engine, 'beforeSolve', () => {
       // Existing contact pairs need their pre-solver velocities too: collisionActive
       // fires after resolution and collisionStart alone misses renewed loading.
@@ -156,7 +165,7 @@ export class Simulation {
       const removed = Array.isArray(event.object) ? event.object : [event.object];
       for (const object of removed) {
         if (object && typeof object === 'object' && 'type' in object && object.type === 'body')
-          this.wakeDependents((object as Matter.Body).id);
+          {const body=object as Matter.Body;this.wakeDependents(body.id);this.worldPhysics.bodyRemoved(body,this.entities.get(body.id)?.id);}
         else if (
           object &&
           typeof object === 'object' &&
@@ -170,7 +179,7 @@ export class Simulation {
     // No hidden construction simulation: the first visible frame is the authored geometry.
   }
   private queueDamage(entity: Entity, damage: DamageRecord) {
-    if (damage.amount <= 0.12 || entity.body.isStatic || entity.type === 'projectile') return;
+    if ((damage.amount <= 0.12 && damage.source!=='heat'&&damage.source!=='lava') || entity.body.isStatic || entity.type === 'projectile') return;
     const list = this.pending.get(entity.body.id) || [];
     list.push(damage);
     this.pending.set(entity.body.id, list);
@@ -207,19 +216,21 @@ export class Simulation {
         ? 'fall'
         : other?.type === 'projectile'
           ? 'projectile'
-          : other?.type === 'block' || other?.type === 'fragment'
+          : other?.type === 'block' || other?.type === 'fragment' || other?.type === 'prop'
             ? 'structure'
             : other?.type === 'monster'
               ? 'monster'
               : 'fall';
-      const amount = impactDamage(impact.energy, impact.closing, hit.type === 'monster', source);
+      const pinned=hit.type==='monster'&&source==='structure'&&body.position.y<hit.body.position.y&&body.velocity.y>hit.body.velocity.y&&Math.abs(pair.collision.normal.y)>.65&&this.isSupported(hit.body.id,body.id);
+      const energy=pinned?Math.max(impact.energy,pinnedImpactEnergy(body,point,pair.collision.normal,impact.closing)):impact.energy;
+      const amount = impactDamage(energy, impact.closing, hit.type === 'monster', source);
       if (amount > 0.12) {
         this.queueDamage(hit, {
           amount,
           source,
           sourceBodyId: body.id,
           normalSpeed: impact.closing,
-          energy: impact.energy,
+          energy,
           material: other?.def && 'material' in other.def ? other.def.material : undefined,
         });
         damaged = true;
@@ -229,7 +240,7 @@ export class Simulation {
       // This is work from moving load, never damage from a contact timer.
       if (
         hit.type === 'monster' &&
-        (other?.type === 'block' || other?.type === 'fragment') &&
+        (other?.type === 'block' || other?.type === 'fragment' || other?.type === 'prop') &&
         !body.isStatic &&
         Math.abs(pair.collision.normal.y) > 0.65 &&
         body.position.y < hit.body.position.y &&
@@ -263,7 +274,7 @@ export class Simulation {
         x: point.x,
         y: point.y,
         material:
-          target?.type === 'block' || target?.type === 'fragment'
+          target?.type === 'block' || target?.type === 'fragment' || target?.type === 'prop'
             ? (target.def as BlockDef).material
             : target?.type,
         power: impact.closing,
@@ -335,8 +346,10 @@ export class Simulation {
         (!pair.isActive && !((a.isSleeping || a.isStatic) && (b.isSleeping || b.isStatic)))
       )
         continue;
-      if (pair.collision.normal.y < -0.2) connect(b, a);
-      if (pair.collision.normal.y > 0.2) connect(a, b);
+      const ga=this.worldPhysics.accelerationAt(a.position),gb=this.worldPhysics.accelerationAt(b.position),n=pair.collision.normal;
+      const ma=Math.hypot(ga.x,ga.y),mb=Math.hypot(gb.x,gb.y);
+      if(ma>1e-6&&(n.x*ga.x+n.y*ga.y)<-.2*ma)connect(b,a);
+      if(mb>1e-6&&(n.x*gb.x+n.y*gb.y)>.2*mb)connect(a,b);
     }
     for (const [support, dependents] of this.supportDependents)
       for (const body of dependents)
@@ -485,6 +498,7 @@ export class Simulation {
     if (this.phase === 'won' || this.phase === 'lost') return;
     this.time += PHYSICS.step;
     this.impactTimes.clear();
+    this.worldPhysics.beforeStep(this.time,this.shots>0);
     this.wakeMovedSupports();
     Engine.update(this.engine, PHYSICS.step);
     this.refreshSupports();
@@ -515,7 +529,7 @@ export class Simulation {
           if (this.damageHistory.length > 256) this.damageHistory.shift();
         }
         if (e.health <= 0) {
-          if (e.type === 'block' || e.type === 'fragment')
+          if (e.type === 'block' || e.type === 'fragment' || e.type === 'prop')
             e.fractureAt ??= this.time + PHYSICS.fractureDelayMs;
           else this.destroy(e);
         }
@@ -533,11 +547,36 @@ export class Simulation {
       }
       if (e.fractureAt !== undefined && this.time >= e.fractureAt) this.fracture(e);
     }
+    if(this.worldPhysics.spaceLike)for(const e of [...this.entities.values()])if(e.type==='projectile'&&this.time-e.born>PHYSICS.spaceProjectileLifetimeMs) {
+      // Empty-space exhaustion never removes contact supports or an imminent hit.
+      const attached=[...this.constraints.values()].some(c=>c.bodyA===e.body||c.bodyB===e.body);
+      const near=Composite.allBodies(this.engine.world).some(body=>body!==e.body&&Math.hypot(Math.max(body.bounds.min.x-e.body.position.x,0,e.body.position.x-body.bounds.max.x),Math.max(body.bounds.min.y-e.body.position.y,0,e.body.position.y-body.bounds.max.y))<95);
+      if(attached||near||this.supportDependents.get(e.body.id)?.size){e.exhaustedAt=undefined;continue;}
+      e.exhaustedAt??=this.time;
+      if(this.time-e.exhaustedAt>450)this.remove(e);
+    }
+    const driven=this.worldPhysics.drivenBodyIds();
+    const stableRider=(support:Matter.Body,body:Matter.Body)=>{
+      const pair=(this.engine.pairs.list as Matter.Pair[]).find((p:Matter.Pair)=>(p.collision.parentA===support&&p.collision.parentB===body)||(p.collision.parentB===support&&p.collision.parentA===body));
+      if(!pair)return false;
+      const points:Matter.Vector[]=pair.collision.supports.filter((point:Matter.Vector):point is Matter.Vector=>!!point);
+      if(!points.length)return false;
+      const point={x:points.reduce((n:number,p:Matter.Vector)=>n+p.x,0)/points.length,y:points.reduce((n:number,p:Matter.Vector)=>n+p.y,0)/points.length};
+      const at=(b:Matter.Body,p:Point)=>({x:b.velocity.x-b.angularVelocity*(p.y-b.position.y),y:b.velocity.y+b.angularVelocity*(p.x-b.position.x)});
+      const actual=at(body,point),surface=at(support,point),normal=pair.collision.normal;
+      if(Math.hypot(actual.x-surface.x,actual.y-surface.y)>1.5||Math.abs((actual.x-surface.x)*normal.x+(actual.y-surface.y)*normal.y)>.55)return false;
+      const carry=at(support,body.position),g=this.accelerationAt(body.position),gm=Math.hypot(g.x,g.y);
+      if(gm>1e-6&&Math.abs((body.velocity.x-carry.x)*g.x/gm+(body.velocity.y-carry.y)*g.y/gm)>.45)return false;
+      return !!body.circleRadius||Math.abs(body.angularVelocity-support.angularVelocity)<.045;
+    };
+    const markCarried=(id:number)=>{const support=this.entities.get(id)?.body;if(!support)return;for(const body of this.supportDependents.get(id)||[])if(!driven.has(body.id)&&stableRider(support,body)){driven.add(body.id);markCarried(body.id);}};
+    for(const id of [...driven])markCarried(id);
     const moving =
       this.supportWakePending ||
       [...this.entities.values()].some(
         (e) =>
           !e.body.isStatic &&
+          !driven.has(e.body.id) &&
           !e.body.isSleeping &&
           (e.body.speed > 0.32 ||
             Math.abs(e.body.angularVelocity) > 0.04 ||
@@ -558,7 +597,8 @@ export class Simulation {
       }
     if (this.phase !== 'flying') return;
     if (!this.remainingMonsters) {
-      if (this.quiet > 36) {
+      this.targetsClearedAt??=this.time;
+      if (this.quiet > 36 || (this.worldPhysics.spaceLike&&this.time-this.targetsClearedAt>PHYSICS.spaceVictoryGraceMs)) {
         this.score += this.unused * 3000;
         this.phase = 'won';
         this.events.push({ type: 'won', x: 0, y: 0, points: this.score });
@@ -595,7 +635,7 @@ export class Simulation {
     const d = e.def as BlockDef,
       m = MATERIALS[d.material],
       depth = e.depth || 0;
-    const count = d.material === 'glass' ? 3 : 2;
+    const count = d.material === 'glass'||d.material==='ice' ? 3 : 2;
     const long = Math.max(d.w, d.h),
       short = Math.min(d.w, d.h);
     if (depth >= 2 || long / count < PHYSICS.minFragmentSize || short < 7) {
@@ -604,7 +644,7 @@ export class Simulation {
       return;
     }
     const fragments = [...this.entities.values()].filter((n) => n.type === 'fragment').length;
-    if (fragments - Number(e.type === 'fragment') + count > PHYSICS.fragmentLimit) {
+    if (this.entities.size+count-1>PHYSICS.bodyLimit || fragments - Number(e.type === 'fragment') + count > PHYSICS.fragmentLimit) {
       // At the physical-debris budget retain a cracked rigid body, rather than make
       // a large structural piece disappear just to satisfy the performance cap.
       e.fractureAt = undefined;
@@ -681,9 +721,9 @@ export class Simulation {
     } else if (e.type === 'monster') {
       this.score += 5000;
       this.events.push({ type: 'monster', x, y, points: 5000, bodyId: e.body.id });
-    } else if (e.type === 'block' || e.type === 'fragment') {
+    } else if (e.type === 'block' || e.type === 'fragment' || e.type === 'prop') {
       const material = (e.def as BlockDef).material,
-        points = e.type === 'block' ? MATERIALS[material].points : 0;
+        points = e.type === 'block'||e.type==='prop' ? MATERIALS[material].points : 0;
       this.score += points;
       this.events.push({ type: 'break', x, y, material, points, bodyId: e.body.id });
     }
@@ -695,6 +735,7 @@ export class Simulation {
   }
   dispose() {
     this.disposed = true;
+    this.worldPhysics.dispose();
     Events.off(this.engine, 'collisionStart');
     Events.off(this.engine, 'beforeSolve');
     Events.off(this.engine.world, 'afterRemove');

@@ -1,0 +1,14 @@
+PASS large world starts in a whole-level overview
+PASS mouse wheel zooms the world without launching
+PASS dragging empty scenery pans without launching
+PASS decorative background stays fixed while the world camera moves
+PASS two-finger pinch zooms without a launch or ability
+PASS sling focus brings the loaded projectile into the viewport
+PASS aiming uses world coordinates at non-unit zoom
+PASS a shot enables camera tracking
+PASS manual inspection interrupts projectile tracking
+PASS overview can be restored during the same shot
+PASS legacy level pointer mapping remains unchanged
+PASS iPad-sized FIT canvas preserves zoom-correct world aiming
+PASS camera integration has no uncaught browser errors
+Camera browser: 13 checks passed.

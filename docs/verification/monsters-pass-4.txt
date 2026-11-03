@@ -1,0 +1,44 @@
+PASS visual lab exposes all ten requested cases plus crushing
+PASS support-withdrawal: every live target has a dynamic finite-mass body
+PASS support-withdrawal: scenario reaches its required physical outcome
+PASS support-withdrawal: painted targets stay synchronized with rigid bodies
+PASS support-withdrawal: unsupported target actually falls before defeat
+PASS support-withdrawal: landing damage is indirect fall damage
+PASS falling-stone: every live target has a dynamic finite-mass body
+PASS falling-stone: scenario reaches its required physical outcome
+PASS falling-stone: painted targets stay synchronized with rigid bodies
+PASS sideways-wood: every live target has a dynamic finite-mass body
+PASS sideways-wood: scenario reaches its required physical outcome
+PASS sideways-wood: painted targets stay synchronized with rigid bodies
+PASS monster-fall: every live target has a dynamic finite-mass body
+PASS monster-fall: scenario reaches its required physical outcome
+PASS monster-fall: painted targets stay synchronized with rigid bodies
+PASS monster-fall: unsupported target actually falls before defeat
+PASS monster-fall: landing damage is indirect fall damage
+PASS push-off-ledge: every live target has a dynamic finite-mass body
+PASS push-off-ledge: scenario reaches its required physical outcome
+PASS push-off-ledge: painted targets stay synchronized with rigid bodies
+PASS falling-chain: every live target has a dynamic finite-mass body
+PASS falling-chain: scenario reaches its required physical outcome
+PASS falling-chain: painted targets stay synchronized with rigid bodies
+PASS explosion: every live target has a dynamic finite-mass body
+PASS explosion: scenario reaches its required physical outcome
+PASS explosion: painted targets stay synchronized with rigid bodies
+PASS collapse-around: every live target has a dynamic finite-mass body
+PASS collapse-around: scenario reaches its required physical outcome
+PASS collapse-around: painted targets stay synchronized with rigid bodies
+PASS gentle-contact: every live target has a dynamic finite-mass body
+PASS gentle-contact: scenario reaches its required physical outcome
+PASS gentle-contact: painted targets stay synchronized with rigid bodies
+PASS gentle-contact: no health was lost
+PASS stable-rest: every live target has a dynamic finite-mass body
+PASS stable-rest: scenario reaches its required physical outcome
+PASS stable-rest: painted targets stay synchronized with rigid bodies
+PASS stable-rest: no health was lost
+PASS crushing-load: every live target has a dynamic finite-mass body
+PASS crushing-load: scenario reaches its required physical outcome
+PASS crushing-load: painted targets stay synchronized with rigid bodies
+PASS manual step control advances exactly one fixed physics tick
+PASS reset reconstructs the same deterministic rig
+PASS monster lab produces no uncaught browser errors
+Monster browser: 43 checks passed.

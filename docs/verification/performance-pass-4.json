@@ -1,0 +1,501 @@
+{
+  "summary": {
+    "levels": 70,
+    "peakEntities": 100,
+    "peakFragments": 50,
+    "maxP95StepMs": 2.6900739999991856
+  },
+  "levels": [
+    {
+      "id": "meadow-01",
+      "steps": 166,
+      "peakEntities": 5,
+      "peakFragments": 2,
+      "p95StepMs": 0.7815380000000118
+    },
+    {
+      "id": "meadow-02",
+      "steps": 368,
+      "peakEntities": 10,
+      "peakFragments": 4,
+      "p95StepMs": 0.481583999999998
+    },
+    {
+      "id": "meadow-03",
+      "steps": 814,
+      "peakEntities": 6,
+      "peakFragments": 2,
+      "p95StepMs": 0.4043619999999919
+    },
+    {
+      "id": "meadow-04",
+      "steps": 193,
+      "peakEntities": 9,
+      "peakFragments": 2,
+      "p95StepMs": 0.273099000000002
+    },
+    {
+      "id": "meadow-05",
+      "steps": 194,
+      "peakEntities": 8,
+      "peakFragments": 6,
+      "p95StepMs": 0.21673699999996643
+    },
+    {
+      "id": "meadow-06",
+      "steps": 580,
+      "peakEntities": 17,
+      "peakFragments": 14,
+      "p95StepMs": 0.5062500000000227
+    },
+    {
+      "id": "meadow-07",
+      "steps": 380,
+      "peakEntities": 16,
+      "peakFragments": 6,
+      "p95StepMs": 0.5339490000000069
+    },
+    {
+      "id": "meadow-08",
+      "steps": 487,
+      "peakEntities": 14,
+      "peakFragments": 10,
+      "p95StepMs": 0.47328300000003765
+    },
+    {
+      "id": "meadow-09",
+      "steps": 166,
+      "peakEntities": 14,
+      "peakFragments": 8,
+      "p95StepMs": 0.33179600000005394
+    },
+    {
+      "id": "meadow-10",
+      "steps": 426,
+      "peakEntities": 16,
+      "peakFragments": 8,
+      "p95StepMs": 0.31979200000000674
+    },
+    {
+      "id": "meadow-11",
+      "steps": 173,
+      "peakEntities": 7,
+      "peakFragments": 3,
+      "p95StepMs": 0.26519500000006246
+    },
+    {
+      "id": "meadow-12",
+      "steps": 270,
+      "peakEntities": 12,
+      "peakFragments": 7,
+      "p95StepMs": 0.17608700000005229
+    },
+    {
+      "id": "meadow-13",
+      "steps": 970,
+      "peakEntities": 12,
+      "peakFragments": 8,
+      "p95StepMs": 0.1866810000000214
+    },
+    {
+      "id": "meadow-14",
+      "steps": 336,
+      "peakEntities": 11,
+      "peakFragments": 6,
+      "p95StepMs": 0.16276600000003327
+    },
+    {
+      "id": "meadow-15",
+      "steps": 309,
+      "peakEntities": 6,
+      "peakFragments": 0,
+      "p95StepMs": 0.22344399999997222
+    },
+    {
+      "id": "meadow-16",
+      "steps": 544,
+      "peakEntities": 25,
+      "peakFragments": 14,
+      "p95StepMs": 0.495679999999993
+    },
+    {
+      "id": "meadow-17",
+      "steps": 205,
+      "peakEntities": 7,
+      "peakFragments": 6,
+      "p95StepMs": 0.20768900000007307
+    },
+    {
+      "id": "meadow-18",
+      "steps": 225,
+      "peakEntities": 17,
+      "peakFragments": 16,
+      "p95StepMs": 1.4008000000001175
+    },
+    {
+      "id": "meadow-19",
+      "steps": 493,
+      "peakEntities": 26,
+      "peakFragments": 16,
+      "p95StepMs": 1.311104000000114
+    },
+    {
+      "id": "meadow-20",
+      "steps": 292,
+      "peakEntities": 10,
+      "peakFragments": 5,
+      "p95StepMs": 0.506970999999794
+    },
+    {
+      "id": "meadow-21",
+      "steps": 187,
+      "peakEntities": 15,
+      "peakFragments": 9,
+      "p95StepMs": 0.39159399999994093
+    },
+    {
+      "id": "meadow-22",
+      "steps": 446,
+      "peakEntities": 14,
+      "peakFragments": 5,
+      "p95StepMs": 0.27497300000004543
+    },
+    {
+      "id": "meadow-23",
+      "steps": 595,
+      "peakEntities": 19,
+      "peakFragments": 13,
+      "p95StepMs": 0.24430600000005143
+    },
+    {
+      "id": "meadow-24",
+      "steps": 853,
+      "peakEntities": 24,
+      "peakFragments": 16,
+      "p95StepMs": 0.5007419999997182
+    },
+    {
+      "id": "meadow-25",
+      "steps": 653,
+      "peakEntities": 17,
+      "peakFragments": 2,
+      "p95StepMs": 0.32480200000009063
+    },
+    {
+      "id": "meadow-26",
+      "steps": 478,
+      "peakEntities": 7,
+      "peakFragments": 0,
+      "p95StepMs": 0.17041999999992186
+    },
+    {
+      "id": "meadow-27",
+      "steps": 396,
+      "peakEntities": 13,
+      "peakFragments": 6,
+      "p95StepMs": 0.3077659999999014
+    },
+    {
+      "id": "meadow-28",
+      "steps": 221,
+      "peakEntities": 21,
+      "peakFragments": 8,
+      "p95StepMs": 0.4057700000003024
+    },
+    {
+      "id": "meadow-29",
+      "steps": 603,
+      "peakEntities": 38,
+      "peakFragments": 14,
+      "p95StepMs": 2.314270999999735
+    },
+    {
+      "id": "meadow-30",
+      "steps": 2205,
+      "peakEntities": 89,
+      "peakFragments": 39,
+      "p95StepMs": 1.6471339999998236
+    },
+    {
+      "id": "frozen-01",
+      "steps": 149,
+      "peakEntities": 8,
+      "peakFragments": 6,
+      "p95StepMs": 0.12331199999971432
+    },
+    {
+      "id": "frozen-02",
+      "steps": 278,
+      "peakEntities": 12,
+      "peakFragments": 7,
+      "p95StepMs": 0.29469699999935983
+    },
+    {
+      "id": "frozen-03",
+      "steps": 129,
+      "peakEntities": 9,
+      "peakFragments": 6,
+      "p95StepMs": 0.1494620000003124
+    },
+    {
+      "id": "frozen-04",
+      "steps": 708,
+      "peakEntities": 16,
+      "peakFragments": 9,
+      "p95StepMs": 0.23550900000009278
+    },
+    {
+      "id": "frozen-05",
+      "steps": 202,
+      "peakEntities": 7,
+      "peakFragments": 0,
+      "p95StepMs": 0.07001800000034564
+    },
+    {
+      "id": "frozen-06",
+      "steps": 287,
+      "peakEntities": 14,
+      "peakFragments": 8,
+      "p95StepMs": 0.47119000000020606
+    },
+    {
+      "id": "frozen-07",
+      "steps": 240,
+      "peakEntities": 25,
+      "peakFragments": 9,
+      "p95StepMs": 0.6655029999992621
+    },
+    {
+      "id": "frozen-08",
+      "steps": 312,
+      "peakEntities": 44,
+      "peakFragments": 31,
+      "p95StepMs": 0.9388269999999466
+    },
+    {
+      "id": "frozen-09",
+      "steps": 411,
+      "peakEntities": 40,
+      "peakFragments": 18,
+      "p95StepMs": 1.1711500000001251
+    },
+    {
+      "id": "frozen-10",
+      "steps": 336,
+      "peakEntities": 76,
+      "peakFragments": 46,
+      "p95StepMs": 2.3372269999999844
+    },
+    {
+      "id": "molten-01",
+      "steps": 192,
+      "peakEntities": 9,
+      "peakFragments": 2,
+      "p95StepMs": 0.231579000000238
+    },
+    {
+      "id": "molten-02",
+      "steps": 185,
+      "peakEntities": 9,
+      "peakFragments": 6,
+      "p95StepMs": 0.1717129999997269
+    },
+    {
+      "id": "molten-03",
+      "steps": 207,
+      "peakEntities": 12,
+      "peakFragments": 3,
+      "p95StepMs": 0.4179490000005899
+    },
+    {
+      "id": "molten-04",
+      "steps": 550,
+      "peakEntities": 8,
+      "peakFragments": 0,
+      "p95StepMs": 0.3044629999994868
+    },
+    {
+      "id": "molten-05",
+      "steps": 364,
+      "peakEntities": 15,
+      "peakFragments": 2,
+      "p95StepMs": 0.5707009999996444
+    },
+    {
+      "id": "molten-06",
+      "steps": 545,
+      "peakEntities": 19,
+      "peakFragments": 6,
+      "p95StepMs": 0.256771999999728
+    },
+    {
+      "id": "molten-07",
+      "steps": 490,
+      "peakEntities": 24,
+      "peakFragments": 6,
+      "p95StepMs": 1.1350379999994402
+    },
+    {
+      "id": "molten-08",
+      "steps": 398,
+      "peakEntities": 41,
+      "peakFragments": 25,
+      "p95StepMs": 2.6900739999991856
+    },
+    {
+      "id": "molten-09",
+      "steps": 402,
+      "peakEntities": 12,
+      "peakFragments": 5,
+      "p95StepMs": 0.20014100000025792
+    },
+    {
+      "id": "molten-10",
+      "steps": 2180,
+      "peakEntities": 67,
+      "peakFragments": 22,
+      "p95StepMs": 1.9732509999994363
+    },
+    {
+      "id": "haunted-01",
+      "steps": 315,
+      "peakEntities": 7,
+      "peakFragments": 0,
+      "p95StepMs": 0.04218899999978021
+    },
+    {
+      "id": "haunted-02",
+      "steps": 214,
+      "peakEntities": 7,
+      "peakFragments": 3,
+      "p95StepMs": 0.2067319999996471
+    },
+    {
+      "id": "haunted-03",
+      "steps": 483,
+      "peakEntities": 18,
+      "peakFragments": 10,
+      "p95StepMs": 0.21388699999988603
+    },
+    {
+      "id": "haunted-04",
+      "steps": 249,
+      "peakEntities": 15,
+      "peakFragments": 11,
+      "p95StepMs": 0.22013500000048225
+    },
+    {
+      "id": "haunted-05",
+      "steps": 406,
+      "peakEntities": 51,
+      "peakFragments": 36,
+      "p95StepMs": 0.9834229999996751
+    },
+    {
+      "id": "haunted-06",
+      "steps": 182,
+      "peakEntities": 14,
+      "peakFragments": 7,
+      "p95StepMs": 0.39442400000007183
+    },
+    {
+      "id": "haunted-07",
+      "steps": 1166,
+      "peakEntities": 19,
+      "peakFragments": 7,
+      "p95StepMs": 0.20166299999982584
+    },
+    {
+      "id": "haunted-08",
+      "steps": 232,
+      "peakEntities": 20,
+      "peakFragments": 9,
+      "p95StepMs": 0.4209760000012466
+    },
+    {
+      "id": "haunted-09",
+      "steps": 1352,
+      "peakEntities": 58,
+      "peakFragments": 32,
+      "p95StepMs": 0.8315409999995609
+    },
+    {
+      "id": "haunted-10",
+      "steps": 2321,
+      "peakEntities": 100,
+      "peakFragments": 50,
+      "p95StepMs": 1.5327460000007704
+    },
+    {
+      "id": "orbital-01",
+      "steps": 614,
+      "peakEntities": 15,
+      "peakFragments": 10,
+      "p95StepMs": 0.26907500000015716
+    },
+    {
+      "id": "orbital-02",
+      "steps": 281,
+      "peakEntities": 13,
+      "peakFragments": 6,
+      "p95StepMs": 0.3439010000001872
+    },
+    {
+      "id": "orbital-03",
+      "steps": 1715,
+      "peakEntities": 23,
+      "peakFragments": 8,
+      "p95StepMs": 0.21793000000070606
+    },
+    {
+      "id": "orbital-04",
+      "steps": 636,
+      "peakEntities": 18,
+      "peakFragments": 10,
+      "p95StepMs": 0.17703900000014983
+    },
+    {
+      "id": "orbital-05",
+      "steps": 570,
+      "peakEntities": 8,
+      "peakFragments": 0,
+      "p95StepMs": 0.05448499999874912
+    },
+    {
+      "id": "orbital-06",
+      "steps": 1138,
+      "peakEntities": 34,
+      "peakFragments": 17,
+      "p95StepMs": 0.46476499999880616
+    },
+    {
+      "id": "orbital-07",
+      "steps": 795,
+      "peakEntities": 23,
+      "peakFragments": 10,
+      "p95StepMs": 0.33225799999854644
+    },
+    {
+      "id": "orbital-08",
+      "steps": 256,
+      "peakEntities": 22,
+      "peakFragments": 16,
+      "p95StepMs": 0.7493470000008529
+    },
+    {
+      "id": "orbital-09",
+      "steps": 617,
+      "peakEntities": 23,
+      "peakFragments": 12,
+      "p95StepMs": 0.2857640000001993
+    },
+    {
+      "id": "orbital-10",
+      "steps": 3651,
+      "peakEntities": 78,
+      "peakFragments": 44,
+      "p95StepMs": 1.3834530000003724
+    }
+  ],
+  "note": "Node fixed-step CPU timings on this cloud host, not iPad frame-rate measurements."
+}

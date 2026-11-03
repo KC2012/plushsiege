@@ -1,0 +1,830 @@
+{
+  "version": 1,
+  "note": "Independently replayed accepted expansion witnesses; unproven candidates are excluded.",
+  "levels": [
+    {
+      "id": "meadow-25",
+      "shots": [
+        {
+          "x": -95.32530823229386,
+          "y": 36.291674119805606,
+          "abilityAt": null
+        },
+        {
+          "x": -90.06065447161055,
+          "y": 47.88609940416086,
+          "abilityAt": null
+        }
+      ],
+      "score": 26800,
+      "stars": 3,
+      "peakBodies": 17,
+      "maxSteps": 459
+    },
+    {
+      "id": "meadow-26",
+      "shots": [
+        {
+          "x": -93.74985862325634,
+          "y": 40.186614788004306,
+          "abilityAt": null
+        }
+      ],
+      "score": 24000,
+      "stars": 3,
+      "peakBodies": 7,
+      "maxSteps": 478
+    },
+    {
+      "id": "meadow-27",
+      "shots": [
+        {
+          "x": -95.26563932505913,
+          "y": 36.44801728472687,
+          "abilityAt": null
+        }
+      ],
+      "score": 21900,
+      "stars": 3,
+      "peakBodies": 13,
+      "maxSteps": 396
+    },
+    {
+      "id": "meadow-28",
+      "shots": [
+        {
+          "x": -98.91886054822949,
+          "y": 24.88089684557066,
+          "abilityAt": 35
+        }
+      ],
+      "score": 30900,
+      "stars": 3,
+      "peakBodies": 21,
+      "maxSteps": 221
+    },
+    {
+      "id": "meadow-29",
+      "shots": [
+        {
+          "x": -101.23970746741485,
+          "y": 12.430673027325042,
+          "abilityAt": null
+        },
+        {
+          "x": -101.01484602645097,
+          "y": 14.142166816029434,
+          "abilityAt": 20
+        }
+      ],
+      "score": 47000,
+      "stars": 3,
+      "peakBodies": 38,
+      "maxSteps": 382
+    },
+    {
+      "id": "meadow-30",
+      "shots": [
+        {
+          "x": -90.06065447161055,
+          "y": 47.88609940416086,
+          "abilityAt": 20
+        },
+        {
+          "x": -72.12489168102785,
+          "y": 72.12489168102785,
+          "abilityAt": 65
+        },
+        {
+          "x": -94.57275316581232,
+          "y": 38.20987252842303,
+          "abilityAt": null
+        },
+        {
+          "x": -42.63693201038984,
+          "y": 92.66116785763816,
+          "abilityAt": 35
+        },
+        {
+          "x": -90.06065447161055,
+          "y": 47.88609940416086,
+          "abilityAt": 35
+        },
+        {
+          "x": -89.93528663494243,
+          "y": 48.1211410701237,
+          "abilityAt": 22
+        }
+      ],
+      "score": 75200,
+      "stars": 3,
+      "peakBodies": 89,
+      "maxSteps": 496
+    },
+    {
+      "id": "frozen-01",
+      "shots": [
+        {
+          "x": -101.99994125587041,
+          "y": 0.10947053934891668,
+          "abilityAt": 22
+        }
+      ],
+      "score": 12200,
+      "stars": 3,
+      "peakBodies": 8,
+      "maxSteps": 149
+    },
+    {
+      "id": "frozen-02",
+      "shots": [
+        {
+          "x": -94.99171696920985,
+          "y": 37.15607227952829,
+          "abilityAt": 35
+        }
+      ],
+      "score": 19600,
+      "stars": 3,
+      "peakBodies": 12,
+      "maxSteps": 278
+    },
+    {
+      "id": "frozen-03",
+      "shots": [
+        {
+          "x": -101.02250304221691,
+          "y": 14.08736593850232,
+          "abilityAt": 35
+        }
+      ],
+      "score": 15200,
+      "stars": 3,
+      "peakBodies": 9,
+      "maxSteps": 129
+    },
+    {
+      "id": "frozen-04",
+      "shots": [
+        {
+          "x": -98.97016408015163,
+          "y": 24.676033351166108,
+          "abilityAt": null
+        },
+        {
+          "x": -39.6262401103735,
+          "y": 93.98809017484622,
+          "abilityAt": 20
+        }
+      ],
+      "score": 26300,
+      "stars": 3,
+      "peakBodies": 16,
+      "maxSteps": 381
+    },
+    {
+      "id": "frozen-05",
+      "shots": [
+        {
+          "x": -93.17490549550936,
+          "y": 41.50225278105875,
+          "abilityAt": null
+        }
+      ],
+      "score": 24000,
+      "stars": 3,
+      "peakBodies": 7,
+      "maxSteps": 202
+    },
+    {
+      "id": "frozen-06",
+      "shots": [
+        {
+          "x": -35.190792889992714,
+          "y": 95.737182409833,
+          "abilityAt": null
+        }
+      ],
+      "score": 23700,
+      "stars": 3,
+      "peakBodies": 14,
+      "maxSteps": 287
+    },
+    {
+      "id": "frozen-07",
+      "shots": [
+        {
+          "x": -94.2331393197159,
+          "y": 39.03992128515388,
+          "abilityAt": 35
+        }
+      ],
+      "score": 39400,
+      "stars": 3,
+      "peakBodies": 25,
+      "maxSteps": 240
+    },
+    {
+      "id": "frozen-08",
+      "shots": [
+        {
+          "x": -97.71910678661344,
+          "y": 29.239975527117625,
+          "abilityAt": 35
+        }
+      ],
+      "score": 63600,
+      "stars": 3,
+      "peakBodies": 44,
+      "maxSteps": 312
+    },
+    {
+      "id": "frozen-09",
+      "shots": [
+        {
+          "x": -72.12489168102785,
+          "y": 72.12489168102785,
+          "abilityAt": 35
+        }
+      ],
+      "score": 49400,
+      "stars": 3,
+      "peakBodies": 40,
+      "maxSteps": 411
+    },
+    {
+      "id": "frozen-10",
+      "shots": [
+        {
+          "x": -98.80230109307172,
+          "y": 25.339796737819295,
+          "abilityAt": 20
+        }
+      ],
+      "score": 75800,
+      "stars": 3,
+      "peakBodies": 76,
+      "maxSteps": 336
+    },
+    {
+      "id": "molten-01",
+      "shots": [
+        {
+          "x": -99.88417128099174,
+          "y": 20.667663813539882,
+          "abilityAt": null
+        }
+      ],
+      "score": 19500,
+      "stars": 3,
+      "peakBodies": 9,
+      "maxSteps": 192
+    },
+    {
+      "id": "molten-02",
+      "shots": [
+        {
+          "x": -97.3359330744178,
+          "y": 30.49124681826671,
+          "abilityAt": 35
+        }
+      ],
+      "score": 15200,
+      "stars": 3,
+      "peakBodies": 9,
+      "maxSteps": 185
+    },
+    {
+      "id": "molten-03",
+      "shots": [
+        {
+          "x": -98.97016408015163,
+          "y": 24.676033351166108,
+          "abilityAt": 20
+        }
+      ],
+      "score": 19500,
+      "stars": 3,
+      "peakBodies": 12,
+      "maxSteps": 207
+    },
+    {
+      "id": "molten-04",
+      "shots": [
+        {
+          "x": -93.50100210905761,
+          "y": 40.7622693750238,
+          "abilityAt": null
+        }
+      ],
+      "score": 24000,
+      "stars": 3,
+      "peakBodies": 8,
+      "maxSteps": 550
+    },
+    {
+      "id": "molten-05",
+      "shots": [
+        {
+          "x": -96.225855607937,
+          "y": 33.83171164041894,
+          "abilityAt": null
+        }
+      ],
+      "score": 27500,
+      "stars": 3,
+      "peakBodies": 15,
+      "maxSteps": 364
+    },
+    {
+      "id": "molten-06",
+      "shots": [
+        {
+          "x": -101.23970746741485,
+          "y": 12.430673027325042,
+          "abilityAt": 20
+        }
+      ],
+      "score": 37100,
+      "stars": 3,
+      "peakBodies": 19,
+      "maxSteps": 545
+    },
+    {
+      "id": "molten-07",
+      "shots": [
+        {
+          "x": -101.965580615815,
+          "y": -2.6495980222918294,
+          "abilityAt": 20
+        }
+      ],
+      "score": 33800,
+      "stars": 3,
+      "peakBodies": 24,
+      "maxSteps": 490
+    },
+    {
+      "id": "molten-08",
+      "shots": [
+        {
+          "x": -64.30167749430852,
+          "y": 50.23797638657371,
+          "abilityAt": 35
+        }
+      ],
+      "score": 59300,
+      "stars": 3,
+      "peakBodies": 41,
+      "maxSteps": 398
+    },
+    {
+      "id": "molten-09",
+      "shots": [
+        {
+          "x": -35.62784339121802,
+          "y": 95.57539837892826,
+          "abilityAt": null
+        }
+      ],
+      "score": 24100,
+      "stars": 3,
+      "peakBodies": 12,
+      "maxSteps": 402
+    },
+    {
+      "id": "molten-10",
+      "shots": [
+        {
+          "x": -94.5749531093949,
+          "y": 38.2044270256178,
+          "abilityAt": 20
+        },
+        {
+          "x": -44.80330671024152,
+          "y": 91.63331112552916,
+          "abilityAt": null
+        },
+        {
+          "x": -90.06065447161055,
+          "y": 47.88609940416086,
+          "abilityAt": 35
+        },
+        {
+          "x": -102,
+          "y": 0,
+          "abilityAt": null
+        }
+      ],
+      "score": 62700,
+      "stars": 3,
+      "peakBodies": 67,
+      "maxSteps": 1008
+    },
+    {
+      "id": "haunted-01",
+      "shots": [
+        {
+          "x": -93.39470102570392,
+          "y": 41.00524137618723,
+          "abilityAt": null
+        }
+      ],
+      "score": 24000,
+      "stars": 3,
+      "peakBodies": 7,
+      "maxSteps": 315
+    },
+    {
+      "id": "haunted-02",
+      "shots": [
+        {
+          "x": -100.515293047013,
+          "y": 17.34000760302885,
+          "abilityAt": 35
+        }
+      ],
+      "score": 14600,
+      "stars": 3,
+      "peakBodies": 7,
+      "maxSteps": 214
+    },
+    {
+      "id": "haunted-03",
+      "shots": [
+        {
+          "x": -98.97016408015163,
+          "y": 24.676033351166108,
+          "abilityAt": 20
+        },
+        {
+          "x": -40.40419458113627,
+          "y": 93.65629215514394,
+          "abilityAt": 20
+        }
+      ],
+      "score": 23200,
+      "stars": 3,
+      "peakBodies": 18,
+      "maxSteps": 248
+    },
+    {
+      "id": "haunted-04",
+      "shots": [
+        {
+          "x": -57.699913344822285,
+          "y": 57.69991334482228,
+          "abilityAt": null
+        }
+      ],
+      "score": 24200,
+      "stars": 3,
+      "peakBodies": 15,
+      "maxSteps": 249
+    },
+    {
+      "id": "haunted-05",
+      "shots": [
+        {
+          "x": -100.35309316749056,
+          "y": 18.255319545736842,
+          "abilityAt": null
+        },
+        {
+          "x": -99.88478600160107,
+          "y": 20.664692724895755,
+          "abilityAt": null
+        }
+      ],
+      "score": 58600,
+      "stars": 3,
+      "peakBodies": 51,
+      "maxSteps": 258
+    },
+    {
+      "id": "haunted-06",
+      "shots": [
+        {
+          "x": -99.72432070115201,
+          "y": 21.425682269038322,
+          "abilityAt": 20
+        }
+      ],
+      "score": 20700,
+      "stars": 3,
+      "peakBodies": 14,
+      "maxSteps": 182
+    },
+    {
+      "id": "haunted-07",
+      "shots": [
+        {
+          "x": -90.06065447161055,
+          "y": 47.88609940416086,
+          "abilityAt": 35
+        },
+        {
+          "x": -72.33938718109708,
+          "y": 56.517723434895416,
+          "abilityAt": null
+        }
+      ],
+      "score": 45700,
+      "stars": 3,
+      "peakBodies": 19,
+      "maxSteps": 605
+    },
+    {
+      "id": "haunted-08",
+      "shots": [
+        {
+          "x": -98.97016408015163,
+          "y": 24.676033351166108,
+          "abilityAt": 35
+        }
+      ],
+      "score": 33800,
+      "stars": 3,
+      "peakBodies": 20,
+      "maxSteps": 232
+    },
+    {
+      "id": "haunted-09",
+      "shots": [
+        {
+          "x": -99.65036322797704,
+          "y": 21.767064766114913,
+          "abilityAt": null
+        },
+        {
+          "x": -90.06065447161055,
+          "y": 47.88609940416086,
+          "abilityAt": null
+        },
+        {
+          "x": -38.42951819545927,
+          "y": 94.48371357681103,
+          "abilityAt": 35
+        }
+      ],
+      "score": 54800,
+      "stars": 3,
+      "peakBodies": 58,
+      "maxSteps": 724
+    },
+    {
+      "id": "haunted-10",
+      "shots": [
+        {
+          "x": -36.96372670960436,
+          "y": 95.06672871061505,
+          "abilityAt": 35
+        },
+        {
+          "x": -49.4703424162514,
+          "y": 89.2002534818082,
+          "abilityAt": null
+        },
+        {
+          "x": -101.35482727375766,
+          "y": 11.454212688209951,
+          "abilityAt": 20
+        },
+        {
+          "x": -90.06065447161055,
+          "y": 47.88609940416086,
+          "abilityAt": null
+        },
+        {
+          "x": -92.92255585807095,
+          "y": 42.064220102168576,
+          "abilityAt": null
+        }
+      ],
+      "score": 70700,
+      "stars": 3,
+      "peakBodies": 100,
+      "maxSteps": 654
+    },
+    {
+      "id": "orbital-01",
+      "shots": [
+        {
+          "x": -102,
+          "y": 0,
+          "abilityAt": null
+        },
+        {
+          "x": -101.82558369754902,
+          "y": -5.962424393939012,
+          "abilityAt": 35
+        }
+      ],
+      "score": 18300,
+      "stars": 3,
+      "peakBodies": 15,
+      "maxSteps": 379
+    },
+    {
+      "id": "orbital-02",
+      "shots": [
+        {
+          "x": -101.75153312650207,
+          "y": -7.115160321900781,
+          "abilityAt": 35
+        }
+      ],
+      "score": 20200,
+      "stars": 3,
+      "peakBodies": 13,
+      "maxSteps": 281
+    },
+    {
+      "id": "orbital-03",
+      "shots": [
+        {
+          "x": -101.9996447593552,
+          "y": -0.26920060427711656,
+          "abilityAt": 35
+        },
+        {
+          "x": -43.24141196142953,
+          "y": 69.20072464636438,
+          "abilityAt": 20
+        },
+        {
+          "x": -101.9322137585569,
+          "y": -3.7180368852208714,
+          "abilityAt": 35
+        }
+      ],
+      "score": 27800,
+      "stars": 2,
+      "peakBodies": 23,
+      "maxSteps": 703
+    },
+    {
+      "id": "orbital-04",
+      "shots": [
+        {
+          "x": -101.56900454585806,
+          "y": 9.366819927993886,
+          "abilityAt": 20
+        },
+        {
+          "x": -101.16917017549518,
+          "y": 12.99226716172724,
+          "abilityAt": 35
+        }
+      ],
+      "score": 26300,
+      "stars": 3,
+      "peakBodies": 18,
+      "maxSteps": 354
+    },
+    {
+      "id": "orbital-05",
+      "shots": [
+        {
+          "x": -89.07314767213647,
+          "y": 22.208430016049498,
+          "abilityAt": null
+        },
+        {
+          "x": -102,
+          "y": 0,
+          "abilityAt": null
+        }
+      ],
+      "score": 21000,
+      "stars": 3,
+      "peakBodies": 8,
+      "maxSteps": 363
+    },
+    {
+      "id": "orbital-06",
+      "shots": [
+        {
+          "x": -101.73274002472373,
+          "y": 7.378997700363788,
+          "abilityAt": 35
+        },
+        {
+          "x": -101.99856409738715,
+          "y": 0.541222755625981,
+          "abilityAt": 20
+        },
+        {
+          "x": -101.9644896874263,
+          "y": 2.6912530135120125,
+          "abilityAt": null
+        }
+      ],
+      "score": 45000,
+      "stars": 3,
+      "peakBodies": 34,
+      "maxSteps": 608
+    },
+    {
+      "id": "orbital-07",
+      "shots": [
+        {
+          "x": -96.28657776250272,
+          "y": 33.65850476158319,
+          "abilityAt": null
+        },
+        {
+          "x": -101.77512630204734,
+          "y": 6.76931800126945,
+          "abilityAt": null
+        }
+      ],
+      "score": 31300,
+      "stars": 3,
+      "peakBodies": 23,
+      "maxSteps": 507
+    },
+    {
+      "id": "orbital-08",
+      "shots": [
+        {
+          "x": -101.00949564241031,
+          "y": -14.180331098598923,
+          "abilityAt": null
+        }
+      ],
+      "score": 27500,
+      "stars": 3,
+      "peakBodies": 22,
+      "maxSteps": 256
+    },
+    {
+      "id": "orbital-09",
+      "shots": [
+        {
+          "x": -101.23970746741485,
+          "y": 12.430673027325042,
+          "abilityAt": 20
+        },
+        {
+          "x": -101.8079071438221,
+          "y": 6.256999520129184,
+          "abilityAt": 35
+        }
+      ],
+      "score": 26400,
+      "stars": 3,
+      "peakBodies": 23,
+      "maxSteps": 364
+    },
+    {
+      "id": "orbital-10",
+      "shots": [
+        {
+          "x": -94.57275316581232,
+          "y": 38.20987252842303,
+          "abilityAt": null
+        },
+        {
+          "x": -101.123776996028,
+          "y": 13.340979201602808,
+          "abilityAt": null
+        },
+        {
+          "x": -101.23970746741485,
+          "y": 12.430673027325042,
+          "abilityAt": 20
+        },
+        {
+          "x": -100.99098584365356,
+          "y": -14.311561002454102,
+          "abilityAt": null
+        },
+        {
+          "x": -101.23970746741485,
+          "y": 12.430673027325042,
+          "abilityAt": null
+        },
+        {
+          "x": -94.57275316581232,
+          "y": 38.20987252842303,
+          "abilityAt": null
+        },
+        {
+          "x": -101.82695204164995,
+          "y": -5.939009842349376,
+          "abilityAt": null
+        },
+        {
+          "x": -94.57275316581232,
+          "y": 38.20987252842303,
+          "abilityAt": 50
+        }
+      ],
+      "score": 68800,
+      "stars": 2,
+      "peakBodies": 78,
+      "maxSteps": 754
+    }
+  ]
+}

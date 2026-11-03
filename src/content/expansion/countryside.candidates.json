@@ -1,0 +1,1641 @@
+[
+  {
+    "version": 1,
+    "id": "meadow-25",
+    "world": "countryside",
+    "name": "The Tollbooth",
+    "subtitle": "Shoot the glass trestle, then let the bridge carry the trouble.",
+    "bounds": {
+      "width": 2200,
+      "height": 1035,
+      "ground": 900
+    },
+    "sling": {
+      "x": 235,
+      "y": 755
+    },
+    "projectiles": [
+      "duck",
+      "bear",
+      "sheep",
+      "rabbit"
+    ],
+    "blocks": [
+      {
+        "id": "toll-deck-left",
+        "x": 900,
+        "y": 720,
+        "w": 298.6,
+        "h": 22,
+        "material": "wood"
+      },
+      {
+        "id": "toll-deck-right",
+        "x": 1200,
+        "y": 720,
+        "w": 298.6,
+        "h": 22,
+        "material": "wood"
+      },
+      {
+        "id": "toll-trestle",
+        "x": 1050,
+        "y": 815.5,
+        "w": 22,
+        "h": 169,
+        "material": "glass"
+      },
+      {
+        "id": "gate-l0",
+        "x": 1470,
+        "y": 852,
+        "w": 18,
+        "h": 96,
+        "material": "wood"
+      },
+      {
+        "id": "gate-r0",
+        "x": 1590,
+        "y": 852,
+        "w": 18,
+        "h": 96,
+        "material": "wood"
+      },
+      {
+        "id": "gate-roof0",
+        "x": 1530,
+        "y": 795,
+        "w": 160,
+        "h": 18,
+        "material": "stone"
+      },
+      {
+        "id": "gate-l1",
+        "x": 1470,
+        "y": 738,
+        "w": 18,
+        "h": 96,
+        "material": "wood"
+      },
+      {
+        "id": "gate-r1",
+        "x": 1590,
+        "y": 738,
+        "w": 18,
+        "h": 96,
+        "material": "wood"
+      },
+      {
+        "id": "gate-roof1",
+        "x": 1530,
+        "y": 681,
+        "w": 160,
+        "h": 18,
+        "material": "stone"
+      }
+    ],
+    "monsters": [
+      {
+        "id": "toll-left",
+        "x": 918,
+        "y": 691,
+        "radius": 18,
+        "kind": "horn"
+      },
+      {
+        "id": "toll-right",
+        "x": 1182,
+        "y": 691,
+        "radius": 18,
+        "kind": "bat"
+      },
+      {
+        "id": "gate-m0",
+        "x": 1530,
+        "y": 882,
+        "radius": 18,
+        "kind": "horn"
+      },
+      {
+        "id": "gate-m1",
+        "x": 1530,
+        "y": 768,
+        "radius": 18,
+        "kind": "blob"
+      }
+    ],
+    "hazards": [
+      {
+        "id": "toll-powder",
+        "x": 1285,
+        "y": 880,
+        "kind": "tnt"
+      }
+    ],
+    "terrain": [
+      {
+        "id": "toll-left-bank",
+        "x": 772,
+        "y": 815.5,
+        "w": 44,
+        "h": 169,
+        "material": "stone"
+      },
+      {
+        "id": "toll-right-bank",
+        "x": 1328,
+        "y": 815.5,
+        "w": 44,
+        "h": 169,
+        "material": "stone"
+      }
+    ],
+    "props": [],
+    "joints": [],
+    "mechanisms": [],
+    "zones": [],
+    "thresholds": [
+      20000,
+      23000,
+      26000
+    ],
+    "par": 2,
+    "camera": {
+      "start": "overview"
+    },
+    "metadata": {
+      "category": "siege",
+      "idea": "Shoot the glass trestle, then let the bridge carry the trouble.",
+      "mechanics": [
+        "bridge",
+        "glass weak point",
+        "falling roof"
+      ],
+      "author": "Plush Siege production pass 4"
+    }
+  },
+  {
+    "version": 1,
+    "id": "meadow-26",
+    "world": "countryside",
+    "name": "Swinging Lunch",
+    "subtitle": "A cable-linked picnic walkway has three very nervous guests.",
+    "bounds": {
+      "width": 1900,
+      "height": 935,
+      "ground": 800
+    },
+    "sling": {
+      "x": 235,
+      "y": 655
+    },
+    "projectiles": [
+      "sheep",
+      "duck",
+      "bear",
+      "rabbit"
+    ],
+    "blocks": [
+      {
+        "id": "picnic-deck0",
+        "x": 1006,
+        "y": 590,
+        "w": 100,
+        "h": 18,
+        "material": "wood"
+      },
+      {
+        "id": "picnic-deck1",
+        "x": 1110,
+        "y": 590,
+        "w": 100,
+        "h": 18,
+        "material": "wood"
+      },
+      {
+        "id": "picnic-deck2",
+        "x": 1214,
+        "y": 590,
+        "w": 100,
+        "h": 18,
+        "material": "wood"
+      }
+    ],
+    "monsters": [
+      {
+        "id": "picnic-rider0",
+        "x": 1006,
+        "y": 563,
+        "radius": 18,
+        "kind": "horn"
+      },
+      {
+        "id": "picnic-rider1",
+        "x": 1110,
+        "y": 563,
+        "radius": 18,
+        "kind": "blob"
+      },
+      {
+        "id": "picnic-rider2",
+        "x": 1214,
+        "y": 563,
+        "radius": 18,
+        "kind": "horn"
+      }
+    ],
+    "hazards": [],
+    "terrain": [],
+    "props": [],
+    "joints": [
+      {
+        "id": "picnic-cable0--1",
+        "kind": "rope",
+        "pointA": {
+          "x": 971,
+          "y": 440
+        },
+        "bodyB": "picnic-deck0",
+        "pointB": {
+          "x": -35,
+          "y": 0
+        },
+        "length": 150,
+        "stiffness": 0.85,
+        "damping": 0.12,
+        "breakForce": 0.065
+      },
+      {
+        "id": "picnic-cable0-1",
+        "kind": "rope",
+        "pointA": {
+          "x": 1041,
+          "y": 440
+        },
+        "bodyB": "picnic-deck0",
+        "pointB": {
+          "x": 35,
+          "y": 0
+        },
+        "length": 150,
+        "stiffness": 0.85,
+        "damping": 0.12,
+        "breakForce": 0.065
+      },
+      {
+        "id": "picnic-cable1--1",
+        "kind": "rope",
+        "pointA": {
+          "x": 1075,
+          "y": 440
+        },
+        "bodyB": "picnic-deck1",
+        "pointB": {
+          "x": -35,
+          "y": 0
+        },
+        "length": 150,
+        "stiffness": 0.85,
+        "damping": 0.12,
+        "breakForce": 0.065
+      },
+      {
+        "id": "picnic-cable1-1",
+        "kind": "rope",
+        "pointA": {
+          "x": 1145,
+          "y": 440
+        },
+        "bodyB": "picnic-deck1",
+        "pointB": {
+          "x": 35,
+          "y": 0
+        },
+        "length": 150,
+        "stiffness": 0.85,
+        "damping": 0.12,
+        "breakForce": 0.065
+      },
+      {
+        "id": "picnic-link1",
+        "kind": "rope",
+        "bodyA": "picnic-deck0",
+        "pointA": {
+          "x": 50,
+          "y": 0
+        },
+        "bodyB": "picnic-deck1",
+        "pointB": {
+          "x": -50,
+          "y": 0
+        },
+        "length": 4,
+        "stiffness": 0.7,
+        "damping": 0.1,
+        "breakForce": 0.09
+      },
+      {
+        "id": "picnic-cable2--1",
+        "kind": "rope",
+        "pointA": {
+          "x": 1179,
+          "y": 440
+        },
+        "bodyB": "picnic-deck2",
+        "pointB": {
+          "x": -35,
+          "y": 0
+        },
+        "length": 150,
+        "stiffness": 0.85,
+        "damping": 0.12,
+        "breakForce": 0.065
+      },
+      {
+        "id": "picnic-cable2-1",
+        "kind": "rope",
+        "pointA": {
+          "x": 1249,
+          "y": 440
+        },
+        "bodyB": "picnic-deck2",
+        "pointB": {
+          "x": 35,
+          "y": 0
+        },
+        "length": 150,
+        "stiffness": 0.85,
+        "damping": 0.12,
+        "breakForce": 0.065
+      },
+      {
+        "id": "picnic-link2",
+        "kind": "rope",
+        "bodyA": "picnic-deck1",
+        "pointA": {
+          "x": 50,
+          "y": 0
+        },
+        "bodyB": "picnic-deck2",
+        "pointB": {
+          "x": -50,
+          "y": 0
+        },
+        "length": 4,
+        "stiffness": 0.7,
+        "damping": 0.1,
+        "breakForce": 0.09
+      }
+    ],
+    "mechanisms": [],
+    "zones": [],
+    "thresholds": [
+      15000,
+      18000,
+      21000
+    ],
+    "par": 2,
+    "camera": {
+      "start": "overview"
+    },
+    "metadata": {
+      "category": "puzzle",
+      "idea": "A cable-linked picnic walkway has three very nervous guests.",
+      "mechanics": [
+        "ropes",
+        "breakable joints",
+        "suspended platform"
+      ],
+      "author": "Plush Siege production pass 4"
+    }
+  },
+  {
+    "version": 1,
+    "id": "meadow-27",
+    "world": "countryside",
+    "name": "An Unbalanced Friendship",
+    "subtitle": "The heavy end is held up by one small glass foot.",
+    "bounds": {
+      "width": 1900,
+      "height": 985,
+      "ground": 850
+    },
+    "sling": {
+      "x": 235,
+      "y": 705
+    },
+    "projectiles": [
+      "bear",
+      "sheep",
+      "duck",
+      "rabbit"
+    ],
+    "blocks": [
+      {
+        "id": "balance-lever",
+        "x": 1040,
+        "y": 660,
+        "w": 350,
+        "h": 22,
+        "material": "wood"
+      },
+      {
+        "id": "balance-weak-foot",
+        "x": 895,
+        "y": 760.5,
+        "w": 20,
+        "h": 179,
+        "material": "glass"
+      },
+      {
+        "id": "balance-right-foot",
+        "x": 1185,
+        "y": 760.5,
+        "w": 24,
+        "h": 179,
+        "material": "wood"
+      },
+      {
+        "id": "neighbor-l0",
+        "x": 1360,
+        "y": 802,
+        "w": 18,
+        "h": 96,
+        "material": "glass"
+      },
+      {
+        "id": "neighbor-r0",
+        "x": 1480,
+        "y": 802,
+        "w": 18,
+        "h": 96,
+        "material": "glass"
+      },
+      {
+        "id": "neighbor-roof0",
+        "x": 1420,
+        "y": 745,
+        "w": 160,
+        "h": 18,
+        "material": "wood"
+      }
+    ],
+    "monsters": [
+      {
+        "id": "balance-rider",
+        "x": 1145,
+        "y": 631,
+        "radius": 18,
+        "kind": "blob"
+      },
+      {
+        "id": "neighbor-m0",
+        "x": 1420,
+        "y": 832,
+        "radius": 18,
+        "kind": "horn"
+      }
+    ],
+    "hazards": [
+      {
+        "id": "balance-blast",
+        "x": 1290,
+        "y": 830,
+        "kind": "tnt"
+      }
+    ],
+    "terrain": [],
+    "props": [
+      {
+        "id": "balance-weight",
+        "x": 935,
+        "y": 617,
+        "kind": "boulder",
+        "radius": 32,
+        "material": "stone"
+      }
+    ],
+    "joints": [
+      {
+        "id": "balance-pivot",
+        "kind": "hinge",
+        "pointA": {
+          "x": 1040,
+          "y": 660
+        },
+        "bodyB": "balance-lever",
+        "pointB": {
+          "x": 0,
+          "y": 0
+        },
+        "length": 0,
+        "stiffness": 1,
+        "damping": 0.04
+      }
+    ],
+    "mechanisms": [],
+    "zones": [],
+    "thresholds": [
+      10000,
+      13000,
+      16000
+    ],
+    "par": 2,
+    "camera": {
+      "start": "overview"
+    },
+    "metadata": {
+      "category": "puzzle",
+      "idea": "The heavy end is held up by one small glass foot.",
+      "mechanics": [
+        "counterweight",
+        "hinge",
+        "weak support"
+      ],
+      "author": "Plush Siege production pass 4"
+    }
+  },
+  {
+    "version": 1,
+    "id": "meadow-28",
+    "world": "countryside",
+    "name": "Stone Delivery",
+    "subtitle": "Give the parked stone a push. The hillside will do the rest.",
+    "bounds": {
+      "width": 2500,
+      "height": 1185,
+      "ground": 1050
+    },
+    "sling": {
+      "x": 235,
+      "y": 905
+    },
+    "projectiles": [
+      "duck",
+      "bear",
+      "duck",
+      "rabbit",
+      "sheep"
+    ],
+    "blocks": [
+      {
+        "id": "delivery-stop",
+        "x": 896,
+        "y": 760,
+        "w": 22,
+        "h": 58,
+        "material": "glass"
+      },
+      {
+        "id": "postal-l0",
+        "x": 1340,
+        "y": 1002,
+        "w": 18,
+        "h": 96,
+        "material": "glass"
+      },
+      {
+        "id": "postal-r0",
+        "x": 1460,
+        "y": 1002,
+        "w": 18,
+        "h": 96,
+        "material": "glass"
+      },
+      {
+        "id": "postal-roof0",
+        "x": 1400,
+        "y": 945,
+        "w": 160,
+        "h": 18,
+        "material": "wood"
+      },
+      {
+        "id": "postal-l1",
+        "x": 1340,
+        "y": 888,
+        "w": 18,
+        "h": 96,
+        "material": "glass"
+      },
+      {
+        "id": "postal-r1",
+        "x": 1460,
+        "y": 888,
+        "w": 18,
+        "h": 96,
+        "material": "glass"
+      },
+      {
+        "id": "postal-roof1",
+        "x": 1400,
+        "y": 831,
+        "w": 160,
+        "h": 18,
+        "material": "wood"
+      },
+      {
+        "id": "sorting-l0",
+        "x": 1650,
+        "y": 1002,
+        "w": 18,
+        "h": 96,
+        "material": "wood"
+      },
+      {
+        "id": "sorting-r0",
+        "x": 1770,
+        "y": 1002,
+        "w": 18,
+        "h": 96,
+        "material": "wood"
+      },
+      {
+        "id": "sorting-roof0",
+        "x": 1710,
+        "y": 945,
+        "w": 160,
+        "h": 18,
+        "material": "glass"
+      }
+    ],
+    "monsters": [
+      {
+        "id": "postal-m0",
+        "x": 1400,
+        "y": 1032,
+        "radius": 18,
+        "kind": "horn"
+      },
+      {
+        "id": "postal-m1",
+        "x": 1400,
+        "y": 918,
+        "radius": 18,
+        "kind": "blob"
+      },
+      {
+        "id": "sorting-m0",
+        "x": 1710,
+        "y": 1032,
+        "radius": 18,
+        "kind": "horn"
+      }
+    ],
+    "hazards": [
+      {
+        "id": "delivery-charge",
+        "x": 1550,
+        "y": 1030,
+        "kind": "tnt"
+      }
+    ],
+    "terrain": [
+      {
+        "id": "delivery-ledge",
+        "x": 850,
+        "y": 800,
+        "w": 160,
+        "h": 22,
+        "material": "stone"
+      },
+      {
+        "id": "delivery-ramp",
+        "x": 1085,
+        "y": 845,
+        "w": 360,
+        "h": 22,
+        "angle": 0.28,
+        "material": "stone",
+        "friction": 0.025
+      }
+    ],
+    "props": [
+      {
+        "id": "delivery-ball",
+        "kind": "boulder",
+        "x": 840,
+        "y": 749,
+        "radius": 40,
+        "material": "stone"
+      }
+    ],
+    "joints": [],
+    "mechanisms": [],
+    "zones": [],
+    "thresholds": [
+      15000,
+      19500,
+      24000
+    ],
+    "par": 2,
+    "camera": {
+      "start": "overview"
+    },
+    "metadata": {
+      "category": "siege",
+      "idea": "Give the parked stone a push. The hillside will do the rest.",
+      "mechanics": [
+        "rolling boulder",
+        "ramp",
+        "chain reaction"
+      ],
+      "author": "Plush Siege production pass 4"
+    }
+  },
+  {
+    "version": 1,
+    "id": "meadow-29",
+    "world": "countryside",
+    "name": "The Crooked Aqueduct",
+    "subtitle": "A corbelled arch protects the courtyard. The upper storey is less confident.",
+    "bounds": {
+      "width": 2450,
+      "height": 1235,
+      "ground": 1100
+    },
+    "sling": {
+      "x": 235,
+      "y": 955
+    },
+    "projectiles": [
+      "bear",
+      "duck",
+      "rabbit",
+      "bear",
+      "sheep"
+    ],
+    "blocks": [
+      {
+        "id": "aqueduct-pier-1",
+        "x": 978,
+        "y": 1030,
+        "w": 48,
+        "h": 140,
+        "material": "stone"
+      },
+      {
+        "id": "aqueduct-shoulder-1",
+        "x": 990,
+        "y": 948,
+        "w": 68,
+        "h": 24,
+        "material": "stone"
+      },
+      {
+        "id": "aqueduct-pier1",
+        "x": 1182,
+        "y": 1030,
+        "w": 48,
+        "h": 140,
+        "material": "stone"
+      },
+      {
+        "id": "aqueduct-shoulder1",
+        "x": 1170,
+        "y": 948,
+        "w": 68,
+        "h": 24,
+        "material": "stone"
+      },
+      {
+        "id": "aqueduct-keystone",
+        "x": 1080,
+        "y": 926,
+        "w": 172,
+        "h": 20,
+        "material": "stone"
+      },
+      {
+        "id": "left-l0",
+        "x": 730,
+        "y": 1052,
+        "w": 18,
+        "h": 96,
+        "material": "wood"
+      },
+      {
+        "id": "left-r0",
+        "x": 850,
+        "y": 1052,
+        "w": 18,
+        "h": 96,
+        "material": "wood"
+      },
+      {
+        "id": "left-roof0",
+        "x": 790,
+        "y": 995,
+        "w": 160,
+        "h": 18,
+        "material": "glass"
+      },
+      {
+        "id": "left-l1",
+        "x": 730,
+        "y": 938,
+        "w": 18,
+        "h": 96,
+        "material": "wood"
+      },
+      {
+        "id": "left-r1",
+        "x": 850,
+        "y": 938,
+        "w": 18,
+        "h": 96,
+        "material": "wood"
+      },
+      {
+        "id": "left-roof1",
+        "x": 790,
+        "y": 881,
+        "w": 160,
+        "h": 18,
+        "material": "glass"
+      },
+      {
+        "id": "left-l2",
+        "x": 730,
+        "y": 824,
+        "w": 18,
+        "h": 96,
+        "material": "wood"
+      },
+      {
+        "id": "left-r2",
+        "x": 850,
+        "y": 824,
+        "w": 18,
+        "h": 96,
+        "material": "wood"
+      },
+      {
+        "id": "left-roof2",
+        "x": 790,
+        "y": 767,
+        "w": 160,
+        "h": 18,
+        "material": "glass"
+      },
+      {
+        "id": "right-l0",
+        "x": 1360,
+        "y": 1052,
+        "w": 18,
+        "h": 96,
+        "material": "glass"
+      },
+      {
+        "id": "right-r0",
+        "x": 1480,
+        "y": 1052,
+        "w": 18,
+        "h": 96,
+        "material": "glass"
+      },
+      {
+        "id": "right-roof0",
+        "x": 1420,
+        "y": 995,
+        "w": 160,
+        "h": 18,
+        "material": "wood"
+      },
+      {
+        "id": "right-l1",
+        "x": 1360,
+        "y": 938,
+        "w": 18,
+        "h": 96,
+        "material": "glass"
+      },
+      {
+        "id": "right-r1",
+        "x": 1480,
+        "y": 938,
+        "w": 18,
+        "h": 96,
+        "material": "glass"
+      },
+      {
+        "id": "right-roof1",
+        "x": 1420,
+        "y": 881,
+        "w": 160,
+        "h": 18,
+        "material": "wood"
+      },
+      {
+        "id": "right-l2",
+        "x": 1360,
+        "y": 824,
+        "w": 18,
+        "h": 96,
+        "material": "glass"
+      },
+      {
+        "id": "right-r2",
+        "x": 1480,
+        "y": 824,
+        "w": 18,
+        "h": 96,
+        "material": "glass"
+      },
+      {
+        "id": "right-roof2",
+        "x": 1420,
+        "y": 767,
+        "w": 160,
+        "h": 18,
+        "material": "wood"
+      }
+    ],
+    "monsters": [
+      {
+        "id": "aqueduct-keeper",
+        "x": 1080,
+        "y": 1082,
+        "radius": 18,
+        "kind": "horn"
+      },
+      {
+        "id": "left-m0",
+        "x": 790,
+        "y": 1082,
+        "radius": 18,
+        "kind": "horn"
+      },
+      {
+        "id": "left-m1",
+        "x": 790,
+        "y": 968,
+        "radius": 18,
+        "kind": "blob"
+      },
+      {
+        "id": "left-m2",
+        "x": 790,
+        "y": 854,
+        "radius": 18,
+        "kind": "bat"
+      },
+      {
+        "id": "right-m0",
+        "x": 1420,
+        "y": 1082,
+        "radius": 18,
+        "kind": "horn"
+      },
+      {
+        "id": "right-m1",
+        "x": 1420,
+        "y": 968,
+        "radius": 18,
+        "kind": "blob"
+      },
+      {
+        "id": "right-m2",
+        "x": 1420,
+        "y": 854,
+        "radius": 18,
+        "kind": "bat"
+      }
+    ],
+    "hazards": [],
+    "terrain": [
+      {
+        "id": "back-wall",
+        "x": 1750,
+        "y": 1000,
+        "w": 80,
+        "h": 200,
+        "material": "stone"
+      }
+    ],
+    "props": [],
+    "joints": [],
+    "mechanisms": [],
+    "zones": [],
+    "thresholds": [
+      35000,
+      39500,
+      44000
+    ],
+    "par": 2,
+    "camera": {
+      "start": "overview"
+    },
+    "metadata": {
+      "category": "siege",
+      "idea": "A corbelled arch protects the courtyard. The upper storey is less confident.",
+      "mechanics": [
+        "arch",
+        "multi-story",
+        "material choice"
+      ],
+      "author": "Plush Siege production pass 4"
+    }
+  },
+  {
+    "version": 1,
+    "id": "meadow-30",
+    "world": "countryside",
+    "name": "The Meadow Machine",
+    "subtitle": "The stepped halls share their glass piers. Break a load-bearing foot to bring the upper castle into the powder vaults.",
+    "bounds": {
+      "width": 3000,
+      "height": 1435,
+      "ground": 1300
+    },
+    "sling": {
+      "x": 235,
+      "y": 1155
+    },
+    "projectiles": [
+      "duck",
+      "bear",
+      "duck",
+      "rabbit",
+      "bear",
+      "sheep",
+      "duck",
+      "bear"
+    ],
+    "blocks": [
+      {
+        "id": "grand-pier-0-0",
+        "x": 890,
+        "y": 1249,
+        "w": 44,
+        "h": 102,
+        "material": "wood"
+      },
+      {
+        "id": "grand-pier-0-1",
+        "x": 1110,
+        "y": 1249,
+        "w": 44,
+        "h": 102,
+        "material": "glass"
+      },
+      {
+        "id": "grand-pier-0-2",
+        "x": 1330,
+        "y": 1249,
+        "w": 44,
+        "h": 102,
+        "material": "wood"
+      },
+      {
+        "id": "grand-pier-0-3",
+        "x": 1550,
+        "y": 1249,
+        "w": 44,
+        "h": 102,
+        "material": "glass"
+      },
+      {
+        "id": "grand-pier-0-4",
+        "x": 1770,
+        "y": 1249,
+        "w": 44,
+        "h": 102,
+        "material": "wood"
+      },
+      {
+        "id": "grand-pier-0-5",
+        "x": 1990,
+        "y": 1249,
+        "w": 44,
+        "h": 102,
+        "material": "glass"
+      },
+      {
+        "id": "grand-floor-0-0",
+        "x": 1000,
+        "y": 1186,
+        "w": 218.6,
+        "h": 24,
+        "material": "wood"
+      },
+      {
+        "id": "grand-floor-0-1",
+        "x": 1220,
+        "y": 1186,
+        "w": 218.6,
+        "h": 24,
+        "material": "wood"
+      },
+      {
+        "id": "grand-floor-0-2",
+        "x": 1440,
+        "y": 1186,
+        "w": 218.6,
+        "h": 24,
+        "material": "wood"
+      },
+      {
+        "id": "grand-floor-0-3",
+        "x": 1660,
+        "y": 1186,
+        "w": 218.6,
+        "h": 24,
+        "material": "wood"
+      },
+      {
+        "id": "grand-floor-0-4",
+        "x": 1880,
+        "y": 1186,
+        "w": 218.6,
+        "h": 24,
+        "material": "wood"
+      },
+      {
+        "id": "grand-pier-1-0",
+        "x": 890,
+        "y": 1123,
+        "w": 44,
+        "h": 102,
+        "material": "wood"
+      },
+      {
+        "id": "grand-pier-1-1",
+        "x": 1110,
+        "y": 1123,
+        "w": 44,
+        "h": 102,
+        "material": "wood"
+      },
+      {
+        "id": "grand-pier-1-2",
+        "x": 1330,
+        "y": 1123,
+        "w": 44,
+        "h": 102,
+        "material": "wood"
+      },
+      {
+        "id": "grand-pier-1-3",
+        "x": 1550,
+        "y": 1123,
+        "w": 44,
+        "h": 102,
+        "material": "wood"
+      },
+      {
+        "id": "grand-pier-1-4",
+        "x": 1770,
+        "y": 1123,
+        "w": 44,
+        "h": 102,
+        "material": "wood"
+      },
+      {
+        "id": "grand-pier-1-5",
+        "x": 1990,
+        "y": 1123,
+        "w": 44,
+        "h": 102,
+        "material": "wood"
+      },
+      {
+        "id": "grand-floor-1-0",
+        "x": 1000,
+        "y": 1060,
+        "w": 218.6,
+        "h": 24,
+        "material": "wood"
+      },
+      {
+        "id": "grand-floor-1-1",
+        "x": 1220,
+        "y": 1060,
+        "w": 218.6,
+        "h": 24,
+        "material": "wood"
+      },
+      {
+        "id": "grand-floor-1-2",
+        "x": 1440,
+        "y": 1060,
+        "w": 218.6,
+        "h": 24,
+        "material": "wood"
+      },
+      {
+        "id": "grand-floor-1-3",
+        "x": 1660,
+        "y": 1060,
+        "w": 218.6,
+        "h": 24,
+        "material": "wood"
+      },
+      {
+        "id": "grand-floor-1-4",
+        "x": 1880,
+        "y": 1060,
+        "w": 218.6,
+        "h": 24,
+        "material": "wood"
+      },
+      {
+        "id": "grand-pier-2-0",
+        "x": 890,
+        "y": 997,
+        "w": 44,
+        "h": 102,
+        "material": "wood"
+      },
+      {
+        "id": "grand-pier-2-1",
+        "x": 1110,
+        "y": 997,
+        "w": 44,
+        "h": 102,
+        "material": "wood"
+      },
+      {
+        "id": "grand-pier-2-2",
+        "x": 1330,
+        "y": 997,
+        "w": 44,
+        "h": 102,
+        "material": "wood"
+      },
+      {
+        "id": "grand-pier-2-3",
+        "x": 1550,
+        "y": 997,
+        "w": 44,
+        "h": 102,
+        "material": "wood"
+      },
+      {
+        "id": "grand-pier-2-4",
+        "x": 1770,
+        "y": 997,
+        "w": 44,
+        "h": 102,
+        "material": "wood"
+      },
+      {
+        "id": "grand-pier-2-5",
+        "x": 1990,
+        "y": 997,
+        "w": 44,
+        "h": 102,
+        "material": "wood"
+      },
+      {
+        "id": "grand-floor-2-0",
+        "x": 1000,
+        "y": 934,
+        "w": 218.6,
+        "h": 24,
+        "material": "wood"
+      },
+      {
+        "id": "grand-floor-2-1",
+        "x": 1220,
+        "y": 934,
+        "w": 218.6,
+        "h": 24,
+        "material": "wood"
+      },
+      {
+        "id": "grand-floor-2-3",
+        "x": 1660,
+        "y": 934,
+        "w": 218.6,
+        "h": 24,
+        "material": "wood"
+      },
+      {
+        "id": "grand-floor-2-4",
+        "x": 1880,
+        "y": 934,
+        "w": 218.6,
+        "h": 24,
+        "material": "wood"
+      },
+      {
+        "id": "grand-pier-3-1",
+        "x": 1110,
+        "y": 871,
+        "w": 44,
+        "h": 102,
+        "material": "wood"
+      },
+      {
+        "id": "grand-pier-3-2",
+        "x": 1330,
+        "y": 871,
+        "w": 44,
+        "h": 102,
+        "material": "wood"
+      },
+      {
+        "id": "grand-pier-3-3",
+        "x": 1550,
+        "y": 871,
+        "w": 44,
+        "h": 102,
+        "material": "wood"
+      },
+      {
+        "id": "grand-pier-3-4",
+        "x": 1770,
+        "y": 871,
+        "w": 44,
+        "h": 102,
+        "material": "wood"
+      },
+      {
+        "id": "grand-floor-3-1",
+        "x": 1220,
+        "y": 808,
+        "w": 218.6,
+        "h": 24,
+        "material": "wood"
+      },
+      {
+        "id": "grand-floor-3-3",
+        "x": 1660,
+        "y": 808,
+        "w": 218.6,
+        "h": 24,
+        "material": "wood"
+      },
+      {
+        "id": "west-gate-l0",
+        "x": 720,
+        "y": 1252,
+        "w": 18,
+        "h": 96,
+        "material": "stone"
+      },
+      {
+        "id": "west-gate-r0",
+        "x": 840,
+        "y": 1252,
+        "w": 18,
+        "h": 96,
+        "material": "stone"
+      },
+      {
+        "id": "west-gate-roof0",
+        "x": 780,
+        "y": 1195,
+        "w": 160,
+        "h": 18,
+        "material": "wood"
+      },
+      {
+        "id": "west-gate-l1",
+        "x": 720,
+        "y": 1138,
+        "w": 18,
+        "h": 96,
+        "material": "stone"
+      },
+      {
+        "id": "west-gate-r1",
+        "x": 840,
+        "y": 1138,
+        "w": 18,
+        "h": 96,
+        "material": "stone"
+      },
+      {
+        "id": "west-gate-roof1",
+        "x": 780,
+        "y": 1081,
+        "w": 160,
+        "h": 18,
+        "material": "wood"
+      },
+      {
+        "id": "west-gate-l2",
+        "x": 720,
+        "y": 1024,
+        "w": 18,
+        "h": 96,
+        "material": "stone"
+      },
+      {
+        "id": "west-gate-r2",
+        "x": 840,
+        "y": 1024,
+        "w": 18,
+        "h": 96,
+        "material": "stone"
+      },
+      {
+        "id": "west-gate-roof2",
+        "x": 780,
+        "y": 967,
+        "w": 160,
+        "h": 18,
+        "material": "wood"
+      },
+      {
+        "id": "east-gate-l0",
+        "x": 2040,
+        "y": 1252,
+        "w": 18,
+        "h": 96,
+        "material": "stone"
+      },
+      {
+        "id": "east-gate-r0",
+        "x": 2160,
+        "y": 1252,
+        "w": 18,
+        "h": 96,
+        "material": "stone"
+      },
+      {
+        "id": "east-gate-roof0",
+        "x": 2100,
+        "y": 1195,
+        "w": 160,
+        "h": 18,
+        "material": "wood"
+      },
+      {
+        "id": "east-gate-l1",
+        "x": 2040,
+        "y": 1138,
+        "w": 18,
+        "h": 96,
+        "material": "stone"
+      },
+      {
+        "id": "east-gate-r1",
+        "x": 2160,
+        "y": 1138,
+        "w": 18,
+        "h": 96,
+        "material": "stone"
+      },
+      {
+        "id": "east-gate-roof1",
+        "x": 2100,
+        "y": 1081,
+        "w": 160,
+        "h": 18,
+        "material": "wood"
+      },
+      {
+        "id": "east-gate-l2",
+        "x": 2040,
+        "y": 1024,
+        "w": 18,
+        "h": 96,
+        "material": "stone"
+      },
+      {
+        "id": "east-gate-r2",
+        "x": 2160,
+        "y": 1024,
+        "w": 18,
+        "h": 96,
+        "material": "stone"
+      },
+      {
+        "id": "east-gate-roof2",
+        "x": 2100,
+        "y": 967,
+        "w": 160,
+        "h": 18,
+        "material": "wood"
+      }
+    ],
+    "monsters": [
+      {
+        "id": "grand-tenant-0-2",
+        "x": 1440,
+        "y": 1282,
+        "radius": 18,
+        "kind": "bat"
+      },
+      {
+        "id": "grand-tenant-1-0",
+        "x": 1000,
+        "y": 1156,
+        "radius": 18,
+        "kind": "blob"
+      },
+      {
+        "id": "grand-tenant-1-1",
+        "x": 1220,
+        "y": 1156,
+        "radius": 18,
+        "kind": "bat"
+      },
+      {
+        "id": "grand-tenant-1-2",
+        "x": 1440,
+        "y": 1156,
+        "radius": 18,
+        "kind": "horn"
+      },
+      {
+        "id": "grand-tenant-1-3",
+        "x": 1660,
+        "y": 1156,
+        "radius": 18,
+        "kind": "blob"
+      },
+      {
+        "id": "grand-tenant-1-4",
+        "x": 1880,
+        "y": 1156,
+        "radius": 18,
+        "kind": "bat"
+      },
+      {
+        "id": "grand-tenant-2-0",
+        "x": 1000,
+        "y": 1030,
+        "radius": 18,
+        "kind": "bat"
+      },
+      {
+        "id": "grand-tenant-2-1",
+        "x": 1220,
+        "y": 1030,
+        "radius": 18,
+        "kind": "horn"
+      },
+      {
+        "id": "grand-tenant-2-3",
+        "x": 1660,
+        "y": 1030,
+        "radius": 18,
+        "kind": "bat"
+      },
+      {
+        "id": "grand-tenant-2-4",
+        "x": 1880,
+        "y": 1030,
+        "radius": 18,
+        "kind": "horn"
+      },
+      {
+        "id": "grand-tenant-3-1",
+        "x": 1220,
+        "y": 904,
+        "radius": 18,
+        "kind": "blob"
+      },
+      {
+        "id": "grand-tenant-3-3",
+        "x": 1660,
+        "y": 904,
+        "radius": 18,
+        "kind": "horn"
+      }
+    ],
+    "hazards": [
+      {
+        "id": "underfloor-west",
+        "x": 1000,
+        "y": 1280,
+        "kind": "tnt"
+      },
+      {
+        "id": "underfloor-east",
+        "x": 1880,
+        "y": 1280,
+        "kind": "tnt"
+      }
+    ],
+    "terrain": [],
+    "props": [],
+    "joints": [],
+    "mechanisms": [],
+    "zones": [],
+    "thresholds": [
+      60000,
+      66000,
+      72000
+    ],
+    "par": 4,
+    "camera": {
+      "start": "overview"
+    },
+    "metadata": {
+      "category": "spectacle",
+      "idea": "The stepped halls share their glass piers. Break a load-bearing foot to bring the upper castle into the powder vaults.",
+      "mechanics": [
+        "shared piers",
+        "4-storey arcade",
+        "load-bearing floors",
+        "underfloor powder"
+      ],
+      "author": "Plush Siege production pass 4"
+    }
+  }
+]

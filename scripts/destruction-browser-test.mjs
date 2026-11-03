@@ -7,7 +7,7 @@ const browser = await chromium.launch({
     process.env.CHROMIUM_PATH ||
     (existsSync('/usr/bin/chromium') ? '/usr/bin/chromium' : undefined),
   headless: true,
-  args: ['--no-sandbox'],
+  args: ['--no-sandbox', '--disable-dev-shm-usage', ...(process.env.CANVAS_CI ? ['--disable-webgl'] : [])],
 });
 const url = (process.env.GAME_URL || 'http://127.0.0.1:5173').replace(/\/$/, '');
 let checks = 0;

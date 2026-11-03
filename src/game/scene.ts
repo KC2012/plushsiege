@@ -1,4 +1,6 @@
 import Phaser from 'phaser';
+import Matter from 'matter-js';
+import { CameraRig } from './camera';
 import { Simulation } from './physics';
 import {
   drawBackground,
@@ -8,6 +10,11 @@ import {
   drawFragment,
   drawHazard,
   drawSling,
+  drawWorldGround,
+  drawTerrain,
+  drawProp,
+  drawZone,
+  drawMechanism,
 } from './art';
 import { PHYSICS, STUFFIES } from './config';
 import { Effects } from './effects';
@@ -17,7 +24,31 @@ import { getTheme } from '../content/themes';
 export class SiegeScene extends Phaser.Scene {
   sim?: Simulation;
   mode: 'home' | 'play' = 'home';
-  paused = false;
+  private _paused = false;
+  get paused() {
+    return this._paused;
+  }
+  set paused(value: boolean) {
+    this._paused = value;
+    const audio = this.audio as AudioSystem & { setPaused?: (paused: boolean) => void };
+    audio?.setPaused?.(value);
+  }
+  cameraRig = new CameraRig();
+  get viewState() {
+    return this.cameraRig.state;
+  }
+  private backgroundCamera!: Phaser.Cameras.Scene2D.Camera;
+  private worldCamera!: Phaser.Cameras.Scene2D.Camera;
+  private pointers = new Map<number, { x: number; y: number }>();
+  private inspectDrag?: {
+    id: number;
+    startX: number;
+    startY: number;
+    lastX: number;
+    lastY: number;
+    moved: boolean;
+  };
+  private pinch?: { distance: number; zoom: number };
   preview = true;
   reducedMotion = false;
   onState: () => void = () => {};
@@ -41,6 +72,7 @@ export class SiegeScene extends Phaser.Scene {
   private reactions = new Map<number, number>();
   private trails: { x: number; y: number; at: number; color: number }[] = [];
   private trailAt = 0;
+  private lastStretchAt = 0;
   /** Coordinates passed to the real monster painter, for visual/physics regression inspection. */
   renderedMonsters: { id: string; x: number; y: number; angle: number; healthRatio: number }[] = [];
   private monsterLooks = new Map<number, { kind: string; radius: number; angle: number }>();
@@ -57,58 +89,136 @@ export class SiegeScene extends Phaser.Scene {
   }
   create() {
     const backdrop = this.add.graphics();
-    drawBackground(backdrop, 0);
+    drawBackground(backdrop, 0, 'countryside', true);
     backdrop.generateTexture('plush-bg-countryside', 1440, 810);
     backdrop.destroy();
     this.background = this.add.image(0, 0, 'plush-bg-countryside').setOrigin(0);
     this.objects = this.add.graphics();
     this.fx = this.add.graphics();
+    this.backgroundCamera = this.cameras.main;
+    this.worldCamera = this.cameras.add(0, 0, 1440, 810, true, 'world');
+    this.worldCamera.ignore(this.background);
+    this.backgroundCamera.ignore([this.objects, this.fx]);
     this.input.on('pointerdown', (p: Phaser.Input.Pointer) => {
       if (this.mode !== 'play' || this.paused || !this.sim) return;
+      if (p.event instanceof MouseEvent && p.button !== 0) return;
+      this.pointers.set(p.id, { x: p.x, y: p.y });
       this.heldPointers.add(p.id);
-      if (this.heldPointers.size > 1) {
+      if (this.pointers.size > 1) {
         this.pull = undefined;
         this.pointerId = undefined;
         this.abilityTap = undefined;
+        this.inspectDrag = undefined;
+        const points = [...this.pointers.values()];
+        this.pinch = {
+          distance: Math.max(1, Math.hypot(points[0].x - points[1].x, points[0].y - points[1].y)),
+          zoom: this.cameraRig.zoom,
+        };
+        this.cameraRig.freeze();
         return;
       }
       if (this.pointerId !== undefined || this.abilityTap) return;
-      if (p.event instanceof MouseEvent && p.button !== 0) return;
       this.audio.unlock();
-      if (this.sim.phase === 'flying') {
-        if (this.elapsed - this.releaseAt > 180 && this.sim.canActivate)
-          this.abilityTap = { id: p.id, x: p.x, y: p.y, at: this.elapsed };
-        return;
-      }
+      const w = this.cameraRig.screenToWorld(p);
+      const sling = this.sim.level.sling;
       if (
         this.sim.phase === 'aiming' &&
-        Math.hypot(p.x - this.sim.level.sling.x, p.y - this.sim.level.sling.y) < 65
+        Math.hypot(w.x - sling.x, w.y - sling.y) * this.cameraRig.zoom < this.inputThreshold(65)
       ) {
+        if (this.cameraRig.zoom < 0.72) {
+          this.focusSling();
+          this.pointers.delete(p.id);
+          this.heldPointers.delete(p.id);
+          return;
+        }
+        this.cameraRig.freeze();
         this.pointerId = p.id;
         this.pull = { x: 0, y: 0 };
+        return;
       }
+      this.inspectDrag = {
+        id: p.id,
+        startX: p.x,
+        startY: p.y,
+        lastX: p.x,
+        lastY: p.y,
+        moved: false,
+      };
+      if (
+        this.sim.phase === 'flying' &&
+        this.elapsed - this.releaseAt > 180 &&
+        this.sim.canActivate
+      )
+        this.abilityTap = { id: p.id, x: p.x, y: p.y, at: this.elapsed };
     });
     this.input.on('pointermove', (p: Phaser.Input.Pointer) => {
-      if (
-        this.abilityTap?.id === p.id &&
-        Math.hypot(p.x - this.abilityTap.x, p.y - this.abilityTap.y) > 14
-      )
-        this.abilityTap = undefined;
-      if (this.pointerId === p.id && this.pull && this.sim) this.setPull(p.x, p.y);
+      if (!this.pointers.has(p.id)) return;
+      this.pointers.set(p.id, { x: p.x, y: p.y });
+      if (this.pointers.size > 1 && this.pinch) {
+        const points = [...this.pointers.values()],
+          distance = Math.max(1, Math.hypot(points[0].x - points[1].x, points[0].y - points[1].y)),
+          mid = { x: (points[0].x + points[1].x) / 2, y: (points[0].y + points[1].y) / 2 };
+        const desired = (this.pinch.zoom * distance) / this.pinch.distance;
+        this.cameraRig.zoomAt(desired / this.cameraRig.zoom, mid);
+        this.applyCamera();
+        this.onState();
+        return;
+      }
+      if (this.pointerId === p.id && this.pull && this.sim) {
+        const w = this.cameraRig.screenToWorld(p);
+        this.setPull(w.x, w.y);
+        return;
+      }
+      const drag = this.inspectDrag;
+      if (drag?.id === p.id) {
+        if (Math.hypot(p.x - drag.startX, p.y - drag.startY) > this.inputThreshold(12)) {
+          drag.moved = true;
+          this.abilityTap = undefined;
+        }
+        if (drag.moved) {
+          this.cameraRig.panBy(p.x - drag.lastX, p.y - drag.lastY);
+          this.applyCamera();
+        }
+        drag.lastX = p.x;
+        drag.lastY = p.y;
+      }
     });
     this.input.on('pointerup', (p: Phaser.Input.Pointer) => {
+      this.pointers.delete(p.id);
       this.heldPointers.delete(p.id);
+      if (this.pinch) {
+        if (!this.pointers.size) this.pinch = undefined;
+        this.inspectDrag = undefined;
+        this.abilityTap = undefined;
+        return;
+      }
       if (this.abilityTap?.id === p.id) {
         const tap = this.abilityTap;
         this.abilityTap = undefined;
-        if (this.elapsed - tap.at < 450 && Math.hypot(p.x - tap.x, p.y - tap.y) < 14)
+        this.inspectDrag = undefined;
+        if (
+          this.elapsed - tap.at < 450 &&
+          Math.hypot(p.x - tap.x, p.y - tap.y) < this.inputThreshold(14)
+        )
           this.useAbility();
         return;
       }
+      this.inspectDrag = undefined;
       if (this.pointerId !== p.id || !this.pull || !this.sim) return;
-      this.setPull(p.x, p.y);
-      if (this.sim.launch(this.pull)) this.releaseAt = this.elapsed;
+      const w = this.cameraRig.screenToWorld(p);
+      this.setPull(w.x, w.y);
+      if (this.sim.launch(this.pull)) {
+        this.releaseAt = this.elapsed;
+        this.cameraRig.tracking = this.cameraRig.minZoom < 0.99;
+      }
       this.cancelAim();
+      this.onState();
+    });
+    this.input.on('wheel', (p: Phaser.Input.Pointer, _over: unknown, _dx: number, dy: number) => {
+      if (this.mode !== 'play' || this.paused) return;
+      this.cancelAim();
+      this.cameraRig.zoomAt(Math.exp(-dy * 0.0013), p);
+      this.applyCamera();
       this.onState();
     });
     this.input.on('gameout', () => this.cancelAim());
@@ -119,6 +229,37 @@ export class SiegeScene extends Phaser.Scene {
     );
     this.game.events.emit('ready');
   }
+  /** Input distances are CSS-pixel sized even when Phaser FIT scales the canvas. */
+  private inputThreshold(pixels: number) {
+    return pixels * (this.scale.displayScale.x || 1);
+  }
+  overview() {
+    if (!this.sim) return;
+    this.cancelAim();
+    this.cameraRig.overview();
+    this.onState();
+  }
+  focusSling() {
+    if (!this.sim) return;
+    this.cancelAim();
+    this.cameraRig.focusSling(this.sim.level.sling, this.sim.level.camera?.zoom || 1);
+    this.onState();
+  }
+  zoomBy(factor: number) {
+    this.cancelAim();
+    this.cameraRig.zoomAt(factor);
+    this.applyCamera();
+    this.onState();
+  }
+  toWorld(x: number, y: number) {
+    return this.cameraRig.screenToWorld({ x, y });
+  }
+  private applyCamera() {
+    if (this.worldCamera) {
+      this.worldCamera.setZoom(this.cameraRig.zoom);
+      this.worldCamera.centerOn(this.cameraRig.x, this.cameraRig.y);
+    }
+  }
   private setPull(x: number, y: number) {
     if (!this.sim) return;
     const p = this.sim.level.sling,
@@ -127,6 +268,11 @@ export class SiegeScene extends Phaser.Scene {
       l = Math.hypot(dx, dy),
       s = Math.min(1, PHYSICS.maxPull / (l || 1));
     this.pull = { x: dx * s, y: dy * s };
+    const length = Math.hypot(this.pull.x, this.pull.y);
+    if (length > 12 && this.elapsed - this.lastStretchAt > 85) {
+      this.lastStretchAt = this.elapsed;
+      this.audio.play('stretch', undefined, length / 6);
+    }
   }
   useAbility() {
     if (this.paused || this.mode !== 'play') return false;
@@ -136,6 +282,9 @@ export class SiegeScene extends Phaser.Scene {
   }
   cancelAim() {
     this.heldPointers.clear();
+    this.pointers.clear();
+    this.inspectDrag = undefined;
+    this.pinch = undefined;
     this.abilityTap = undefined;
     this.pull = undefined;
     this.pointerId = undefined;
@@ -145,10 +294,13 @@ export class SiegeScene extends Phaser.Scene {
     this.sim?.dispose();
     this.sim = new Simulation(structuredClone(level));
     this.mode = mode;
+    this.cameraRig.begin(level, mode);
+    this.applyCamera();
+    (this.audio as AudioSystem & { setWorld?: (id: string) => void }).setWorld?.(level.world);
     const bgKey = 'plush-bg-' + getTheme(level.world).id;
     if (!this.textures.exists(bgKey)) {
       const painted = this.add.graphics();
-      drawBackground(painted, 0, level.world);
+      drawBackground(painted, 0, level.world, true);
       painted.generateTexture(bgKey, 1440, 810);
       painted.destroy();
     }
@@ -171,6 +323,13 @@ export class SiegeScene extends Phaser.Scene {
   update(_time: number, delta: number) {
     if (!this.background) return;
     this.elapsed += delta;
+    this.backgroundCamera.ignore(this.children.list.filter((child) => child !== this.background));
+    if (!this.paused) {
+      if (this.mode === 'play' && this.sim?.phase === 'flying' && this.sim.current)
+        this.cameraRig.follow(this.sim.current.body.position);
+      this.cameraRig.update(delta);
+    }
+    this.applyCamera();
     const sim = this.sim;
     if (!sim) return;
     if (this.mode === 'play' && !this.paused) {
@@ -204,10 +363,11 @@ export class SiegeScene extends Phaser.Scene {
             if (Math.random() < evil.chance) this.evilUntil = this.elapsed + evil.duration;
           }
         }
-        if ((e.type as string) === 'damage') this.audio.play('impact', e.material);
-        else this.audio.play(e.type, e.material);
+        if (e.type === 'ready' && this.mode === 'play') this.focusSling();
+        if ((e.type as string) === 'damage') this.audio.play('impact', e.material, e.power ?? 1);
+        else this.audio.play(e.type, e.material || e.projectileKind, e.power ?? 1);
       }
-      const state = `${sim.phase}:${sim.score}:${sim.shots}:${sim.remainingMonsters}:${sim.abilityUsed}:${sim.canActivate}`;
+      const state = `${sim.phase}:${sim.score}:${sim.shots}:${sim.remainingMonsters}:${sim.abilityUsed}:${sim.canActivate}:${this.viewState.isOverview}`;
       if (state !== this.lastState) {
         this.lastState = state;
         this.onState();
@@ -220,6 +380,71 @@ export class SiegeScene extends Phaser.Scene {
     const g = this.objects;
     g.clear();
     this.renderedMonsters = [];
+    if (sim.level.environment?.ground !== false) {
+      const left = Math.min(0, this.cameraRig.x - 720 / this.cameraRig.zoom),
+        right = Math.max(sim.level.bounds.width, this.cameraRig.x + 720 / this.cameraRig.zoom);
+      drawWorldGround(
+        g,
+        {
+          ...sim.level.bounds,
+          width: right - left,
+          height: Math.max(
+            sim.level.bounds.height,
+            this.cameraRig.y + 405 / this.cameraRig.zoom + 100,
+          ),
+        },
+        sim.level.world,
+        left,
+      );
+    }
+    for (const zone of sim.level.zones || []) drawZone(g, zone, this.elapsed);
+    for (const mechanism of sim.mechanisms?.values() || [])
+      drawMechanism(
+        g,
+        {
+          ...mechanism.def,
+          x: mechanism.body?.position.x ?? mechanism.def.x,
+          y: mechanism.body?.position.y ?? mechanism.def.y,
+        },
+        this.elapsed,
+        mechanism.active,
+      );
+    for (const [id, constraint] of sim.constraints || []) {
+      const a = Matter.Constraint.pointAWorld(constraint),
+        b = Matter.Constraint.pointBWorld(constraint),
+        def = sim.level.joints?.find((j) => j.id === id);
+      if (def?.kind === 'hinge') {
+        g.fillStyle(0xffd44e);
+        g.fillCircle(a.x, a.y, 7);
+        g.lineStyle(3, 0x242139);
+        g.strokeCircle(a.x, a.y, 7);
+        g.fillStyle(0x242139);
+        g.fillCircle(a.x, a.y, 2);
+      } else if (def?.kind === 'spring') {
+        const dx = b.x - a.x,
+          dy = b.y - a.y,
+          l = Math.hypot(dx, dy) || 1;
+        const points = Array.from({ length: 13 }, (_, i) => ({
+          x: a.x + (dx * i) / 12 + (i && i < 12 ? (i % 2 ? 1 : -1) * (-dy / l) * 7 : 0),
+          y: a.y + (dy * i) / 12 + (i && i < 12 ? (i % 2 ? 1 : -1) * (dx / l) * 7 : 0),
+        }));
+        g.lineStyle(5, 0x242139);
+        g.strokePoints(points);
+        g.lineStyle(2, 0x9fe5e4);
+        g.strokePoints(points);
+      } else {
+        g.lineStyle(5, 0x242139, 0.8);
+        g.lineBetween(a.x, a.y, b.x, b.y);
+        g.lineStyle(2, 0xffe4ac, 0.95);
+        g.lineBetween(a.x, a.y, b.x, b.y);
+      }
+      if (def?.breakForce) {
+        g.fillStyle(0xff765c);
+        g.fillCircle((a.x + b.x) / 2, (a.y + b.y) / 2, 4);
+        g.lineStyle(1, 0x242139);
+        g.strokeCircle((a.x + b.x) / 2, (a.y + b.y) / 2, 4);
+      }
+    }
     this.trails = this.trails.filter((p) => this.elapsed - p.at < 300);
     if (!this.reducedMotion && this.mode === 'play') {
       if (this.elapsed - this.trailAt > 30 && !this.paused) {
@@ -240,8 +465,26 @@ export class SiegeScene extends Phaser.Scene {
         g.fillCircle(t.x, t.y, 5);
       }
     }
+    const visible = {
+      x: this.cameraRig.x - 720 / this.cameraRig.zoom - 120,
+      y: this.cameraRig.y - 405 / this.cameraRig.zoom - 120,
+      w: 1440 / this.cameraRig.zoom + 240,
+      h: 810 / this.cameraRig.zoom + 240,
+    };
     for (const e of sim.entities.values()) {
       const p = e.body.position;
+      const bounds = e.body.bounds;
+      if (
+        bounds.max.x < visible.x ||
+        bounds.min.x > visible.x + visible.w ||
+        bounds.max.y < visible.y ||
+        bounds.min.y > visible.y + visible.h
+      )
+        continue;
+      if (e.type === 'terrain' && e.terrainDef)
+        drawTerrain(g, { ...e.terrainDef, x: p.x, y: p.y, angle: e.body.angle });
+      if (e.type === 'prop' && e.propDef)
+        drawProp(g, { ...e.propDef, x: p.x, y: p.y }, e.body.angle);
       if (e.type === 'block' || e.type === 'fragment')
         (e.type === 'fragment' ? drawFragment : drawBlock)(
           g,
@@ -285,6 +528,8 @@ export class SiegeScene extends Phaser.Scene {
       if (e.type === 'projectile')
         drawStuffie(g, p.x, p.y, e.body.circleRadius || 23, e.kind!, e.body.angle, {
           evil: this.elapsed < this.evilUntil,
+          alpha:
+            e.exhaustedAt === undefined ? 1 : Math.max(0, 1 - (sim.time - e.exhaustedAt) / 450),
           stretch:
             this.elapsed - (this.reactions.get(e.body.id) || -10000) < 300
               ? -0.27 *
@@ -325,7 +570,7 @@ export class SiegeScene extends Phaser.Scene {
         drawStuffie(
           g,
           x,
-          669 - r + Math.sin(idle / 600 + x) * 2,
+          sim.level.bounds.ground - 6 - r + Math.sin(idle / 600 + x) * 2,
           r,
           kind,
           Math.sin(idle / 1100 + x) * 0.035,
@@ -367,7 +612,14 @@ export class SiegeScene extends Phaser.Scene {
       sim.level.projectiles
         .slice(sim.shots + 1)
         .forEach((kind, i) =>
-          drawStuffie(g, 140 - i * 48, 652, 18, kind, Math.sin(this.elapsed / 600 + i) * 0.04),
+          drawStuffie(
+            g,
+            anchor.x - 95 - i * 48,
+            sim.level.bounds.ground - 23,
+            18,
+            kind,
+            Math.sin(this.elapsed / 600 + i) * 0.04,
+          ),
         );
       if (this.pull && this.preview) {
         let x = anchor.x,
@@ -376,14 +628,19 @@ export class SiegeScene extends Phaser.Scene {
           vy = -this.pull.y * PHYSICS.launchScale;
         for (let i = 0; i < 100; i++) {
           vx *= 0.9985;
-          vy = vy * 0.9985 + 0.2778;
+          const acceleration = sim.accelerationAt({ x, y });
+          vy = vy * 0.9985 + acceleration.y;
+          vx += acceleration.x;
           x += vx;
           y += vy;
-          if (i % 5 === 0 && y < 675) {
+          if (
+            i % 5 === 0 &&
+            (sim.level.environment?.ground === false || y < sim.level.bounds.ground)
+          ) {
             g.fillStyle(0x242139, Math.max(0.08, 0.55 - i / 200));
             g.fillCircle(x, y, 4 - i * 0.025);
           }
-          if (y > 700) break;
+          if (y > sim.level.bounds.height || x > sim.level.bounds.width || x < 0) break;
         }
         g.lineStyle(1, 0x242139, 0.18);
         g.strokeCircle(anchor.x, anchor.y, PHYSICS.maxPull);

@@ -1,0 +1,34 @@
+import test from 'node:test';
+import assert from 'node:assert/strict';
+import type { Level } from '../src/game/types';
+import { validateLevel } from '../src/content/validate';
+const production = (): Level => ({
+  version:1,id:'production-fixture',name:'The workshop fixture',subtitle:'A real connected assembly.',world:'frozen',
+  bounds:{width:2400,height:1400,ground:1200},sling:{x:235,y:1050},projectiles:['sheep','duck','bear','rabbit'],
+  blocks:[{id:'beam',x:1400,y:1080,w:180,h:40,material:'metal'}],
+  monsters:[{id:'target',x:1800,y:1182,radius:18,kind:'horn'}],hazards:[{id:'release',x:2000,y:1180,kind:'tnt'}],
+  terrain:[{id:'pier',x:1400,y:1150,w:200,h:100,material:'stone'},{id:'ramp',x:1000,y:1000,w:300,h:30,angle:.2,material:'ice'}],
+  props:[{id:'boulder',kind:'boulder',x:700,y:1165,radius:35,material:'stone'}],
+  joints:[{id:'rope',kind:'rope',bodyB:'beam',pointA:{x:1400,y:850},pointB:{x:0,y:0},length:230,stiffness:1,damping:.1,breakForce:.05}],
+  mechanisms:[{id:'platform',kind:'platform',body:'beam',range:100,speed:.2,axis:'x',trigger:'release'},{id:'vent',kind:'vent',x:2150,y:1050,w:150,h:250,force:.003}],
+  zones:[{id:'ice-lake',kind:'ice',x:700,y:1180,w:400,h:40},{id:'gravity',kind:'gravity',x:1450,y:400,w:400,h:500,center:{x:1450,y:400},radius:250,strength:1}],
+  thresholds:[5000,8000,12000],environment:{gravity:{x:0,y:1},groundFriction:.03},camera:{start:'overview',zoom:.7},
+  metadata:{category:'siege',idea:'Release a suspended deck and use the frozen ramp.',mechanics:['rope','ice','platform'],author:'workshop test'},
+});
+const paths=(level:unknown)=>validateLevel(level).map(issue=>issue.path);
+test('production level validates real terrain, props, connections, mechanisms and sensor zones',()=>assert.deepEqual(validateLevel(production()),[]));
+test('all five worlds and both new materials are supported',()=>{for(const world of['countryside','frozen','molten','haunted','orbital']){const level=production();level.world=world;assert.deepEqual(validateLevel(level),[]);}const level=production();level.blocks[0].material='ice';assert.deepEqual(validateLevel(level),[]);});
+test('zero-ground orbital levels permit physical bodies below the legacy ground line',()=>{const level=production();level.world='orbital';level.bounds.ground=675;level.environment={ground:false,gravity:{x:0,y:0}};assert.deepEqual(validateLevel(level),[]);level.environment.ground=true;assert.ok(validateLevel(level).some(issue=>issue.message.includes('below ground')));});
+test('static terrain may tessellate but dynamic solids may not spawn inside it',()=>{const level=production();level.terrain!.push({...level.terrain![0],id:'overlapping-static-pier'});assert.deepEqual(validateLevel(level),[]);level.blocks[0].y=1150;assert.ok(validateLevel(level).some(issue=>issue.message.includes('Overlaps')));});
+test('environment zones are sensors and can overlap bodies, terrain and one another',()=>{const level=production();level.zones=[{id:'heat',kind:'heat',x:1400,y:1100,w:400,h:400,rate:3},{id:'lava',kind:'lava',x:1400,y:1100,w:400,h:400,rate:50}];assert.deepEqual(validateLevel(level),[]);});
+test('joint endpoints and actuator triggers resolve only existing physical IDs',()=>{const level=production();level.joints![0].bodyB='missing';level.mechanisms![0].trigger='missing-trigger';const result=paths(level);assert.ok(result.includes('joints[0].bodyB'));assert.ok(result.includes('mechanisms[0].trigger'));});
+test('joints cannot attach sensors, themselves, or two world anchors without a body',()=>{const level=production();level.joints![0].bodyB='ice-lake';assert.ok(paths(level).includes('joints[0].bodyB'));level.joints![0].bodyB=undefined;assert.ok(paths(level).includes('joints[0]'));level.joints![0].bodyA='beam';level.joints![0].bodyB='beam';assert.ok(paths(level).includes('joints[0]'));});
+test('constraint anchors may lie within their bodies and do not create fake overlap errors',()=>{const level=production();level.joints=[{id:'hinge',kind:'hinge',bodyB:'beam',pointA:{x:1400,y:1080},pointB:{x:0,y:0},length:0,stiffness:1}];assert.deepEqual(validateLevel(level),[]);});
+test('joint coefficients, anchors and all new numerics must be finite and bounded',()=>{const level=production();level.joints![0].pointA.x=Infinity;level.joints![0].stiffness=1.5;level.mechanisms![0].speed=NaN;level.zones![0].rate=Infinity;level.props![0].radius=NaN;const result=paths(level);for(const path of['joints[0].pointA','joints[0].stiffness','mechanisms[0].speed','zones[0].rate','props[0].radius'])assert.ok(result.includes(path),path);});
+test('IDs remain unique across bodies, mechanisms, zones and joints',()=>{const level=production();level.zones![0].id='beam';level.joints![0].id='release';assert.equal(validateLevel(level).filter(issue=>issue.message.includes('unique')).length,2);});
+test('actuators require real bodies and vents require positive, in-bounds dimensions',()=>{const level=production();level.mechanisms![0].body=undefined;level.mechanisms![1].w=-1;const result=paths(level);assert.ok(result.includes('mechanisms[0].body'));assert.ok(result.includes('mechanisms[1].w'));});
+test('removed-object triggers cannot reference permanent static terrain',()=>{const level=production();level.mechanisms![0].trigger='pier';assert.ok(paths(level).includes('mechanisms[0].trigger'));});
+test('projectile spawn cannot intersect a solid or dangerous object',()=>{const level=production();level.terrain!.push({id:'spawn-obstruction',x:235,y:1050,w:60,h:60});assert.ok(validateLevel(level).some(issue=>issue.path==='sling'&&issue.message.includes('spawn')));});
+test('new fields reject unknown kinds, malformed arrays and unsupported metadata',()=>{const level=production();level.props![0].kind='balloon' as never;level.zones![0].kind='acid' as never;level.metadata!.category='story' as never;(level as unknown as Record<string,unknown>).terrain='not-an-array';const result=paths(level);for(const path of['props[0].kind','zones[0].kind','metadata.category','terrain'])assert.ok(result.includes(path),path);});
+test('static physical props and environmental zones remain within world bounds',()=>{const level=production();level.props![0].static=true;level.props![0].x=-5;level.zones![0].w=5000;const result=validateLevel(level);assert.ok(result.some(issue=>issue.path==='props[0]'&&issue.message.includes('bounds')));assert.ok(result.some(issue=>issue.path==='zones[0].w'));});
+test('collective physics object load is bounded even across individually legal collections',()=>{const level=production();level.blocks=Array.from({length:250},(_,i)=>({id:`block-${i}`,x:30+i*5,y:100,w:4,h:4,material:'wood'}));level.props=Array.from({length:151},(_,i)=>({id:`prop-${i}`,x:30+i*10,y:300,radius:8,kind:'boulder'}));assert.ok(validateLevel(level).some(issue=>issue.message==='Maximum 400 physics objects per level.'));});

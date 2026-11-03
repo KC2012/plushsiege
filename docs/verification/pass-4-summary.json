@@ -1,0 +1,40 @@
+{
+  "version": "0.4.0",
+  "levels": 70,
+  "newLevels": 46,
+  "worlds": {
+    "countryside": 30,
+    "frozen": 10,
+    "molten": 10,
+    "haunted": 10,
+    "orbital": 10
+  },
+  "unitTests": 119,
+  "browserChecks": 380,
+  "browserSuites": {
+    "game": 19,
+    "editor": 50,
+    "destruction": 36,
+    "monsters": 43,
+    "presentation": 40,
+    "camera": 13,
+    "audio": 13,
+    "worlds": 140,
+    "offline": 18,
+    "showcase": 8
+  },
+  "expansionAccepted": 46,
+  "expansionRejected": 0,
+  "physics": {
+    "levels": 70,
+    "peakEntities": 100,
+    "peakFragments": 50,
+    "maxP95StepMs": 2.6900739999991856
+  },
+  "archiveSha256": "496be8f9a439cc1d0c3775d793aade1e80274fcac414a8dc22314b0bbcadcad0",
+  "remainingTargetLevels": 80,
+  "notes": [
+    "Node and browser collision details can vary; the recorded rendered ice-city route uses a follow-up shot.",
+    "Physical iPad Safari testing remains outstanding."
+  ]
+}

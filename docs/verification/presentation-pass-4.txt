@@ -1,0 +1,41 @@
+PASS 1440x900 title controls fit the viewport
+PASS 1440x900 primary Play target is touch-friendly
+PASS 1440x900 map has exactly eight touch nodes
+PASS 1440x900 map buttons and labels fit the viewport
+PASS 1440x900 map labels do not overlap
+PASS 1440x900 gameplay HUD and queue fit the viewport
+PASS 1440x900 home control remains visible in gameplay
+PASS 1440x900 settings dialog fits the viewport
+PASS 1440x900 workshop canvas and placement tools render
+PASS 1440x900 no uncaught browser errors
+PASS 1180x820 title controls fit the viewport
+PASS 1180x820 primary Play target is touch-friendly
+PASS 1180x820 map has exactly eight touch nodes
+PASS 1180x820 map buttons and labels fit the viewport
+PASS 1180x820 map labels do not overlap
+PASS 1180x820 gameplay HUD and queue fit the viewport
+PASS 1180x820 home control remains visible in gameplay
+PASS 1180x820 settings dialog fits the viewport
+PASS 1180x820 workshop canvas and placement tools render
+PASS 1180x820 no uncaught browser errors
+PASS 844x390 title controls fit the viewport
+PASS 844x390 primary Play target is touch-friendly
+PASS 844x390 map has exactly eight touch nodes
+PASS 844x390 map buttons and labels fit the viewport
+PASS 844x390 map labels do not overlap
+PASS 844x390 gameplay HUD and queue fit the viewport
+PASS 844x390 home control remains visible in gameplay
+PASS 844x390 settings dialog fits the viewport
+PASS 844x390 workshop canvas and placement tools render
+PASS 844x390 no uncaught browser errors
+PASS 390x844 title controls fit the viewport
+PASS 390x844 primary Play target is touch-friendly
+PASS 390x844 map has exactly eight touch nodes
+PASS 390x844 map buttons and labels fit the viewport
+PASS 390x844 map labels do not overlap
+PASS 390x844 gameplay HUD and queue fit the viewport
+PASS 390x844 home control remains visible in gameplay
+PASS 390x844 settings dialog fits the viewport
+PASS 390x844 workshop canvas and placement tools render
+PASS 390x844 no uncaught browser errors
+Responsive presentation: 40 checks passed.

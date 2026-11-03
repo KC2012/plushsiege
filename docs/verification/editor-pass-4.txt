@@ -1,0 +1,51 @@
+PASS editor opens with original campaign data
+PASS valid original level can playtest
+PASS selected block material is editable
+PASS undo restores selected block material
+PASS redo restores change
+PASS drag moves a selected block in world coordinates
+PASS undo restores drag as a single operation
+PASS new level clears pieces
+PASS missing targets block playtest
+PASS overlapping structures block playtest
+PASS invalid overlap never enters callback
+PASS level name is rendered as input text
+PASS level name never injects markup
+PASS incomplete local drafts can be recovered
+PASS valid portable JSON imports
+PASS invalid external JSON is rejected
+PASS world, variable dimensions and ground-free environment export
+PASS metadata authoring persists the central idea and mechanics
+PASS SVG viewBox follows the authored world dimensions
+PASS terrain ramp authors a real angled static body
+PASS boulders and planetoids author physical circular props
+PASS environment sensors and pressure vents author runtime data
+PASS rope bridge template produces five planks, abutments and six real constraints
+PASS assembly copy/paste duplicates objects and internal connections with new IDs
+PASS multi-selected assembly drag moves all copied structural bodies
+PASS assembly drag translates world rope anchors with the structure
+PASS group drag is one undo operation
+PASS redo restores the group transform
+PASS zoomed canvas can be panned to inspect larger levels
+PASS camera panning does not alter authored objects
+PASS Shift selection combines two authoring objects
+PASS alignment acts on the whole selection
+PASS alignment is reversible
+PASS touch-friendly Multi-select checkbox combines objects without a keyboard
+PASS arch template passes portable level validation
+PASS arch template loads into the actual physics engine with its real constraints
+PASS suspended template passes portable level validation
+PASS suspended template loads into the actual physics engine with its real constraints
+PASS suspended deck uses two body-connected ropes
+PASS counterweight template passes portable level validation
+PASS counterweight template loads into the actual physics engine with its real constraints
+PASS counterweight template has a real pivot and ballast
+PASS moving template passes portable level validation
+PASS moving template loads into the actual physics engine with its real constraints
+PASS authored moving platform actually moves in runtime physics
+PASS moving platform has a real actuator
+PASS advanced authored level enters the same playtest callback
+PASS advanced data inspector rejects broken body references
+PASS cleanup removes editor surface
+PASS editor produced no uncaught browser errors
+Editor: 50 checks passed.

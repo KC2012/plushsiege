@@ -1,0 +1,141 @@
+PASS 1440: five world portals
+PASS 1440: touch-friendly portals fit horizontally
+PASS 1440 countryside: local map numbering and total stars
+PASS 1440 countryside: map theme
+PASS 1440 countryside: playable world stage opens with local chapter
+PASS 1440 countryside: camera controls consume no shot
+PASS 1440 countryside: 44px camera controls fit the viewport
+PASS 1440 countryside: Levels returns to same world
+PASS 1440 frozen: local map numbering and total stars
+PASS 1440 frozen: map theme
+PASS 1440 frozen: playable world stage opens with local chapter
+PASS 1440 frozen: camera controls consume no shot
+PASS 1440 frozen: 44px camera controls fit the viewport
+PASS 1440 frozen: Levels returns to same world
+PASS 1440 molten: local map numbering and total stars
+PASS 1440 molten: map theme
+PASS 1440 molten: playable world stage opens with local chapter
+PASS 1440 molten: camera controls consume no shot
+PASS 1440 molten: 44px camera controls fit the viewport
+PASS 1440 molten: Levels returns to same world
+PASS 1440 haunted: local map numbering and total stars
+PASS 1440 haunted: map theme
+PASS 1440 haunted: playable world stage opens with local chapter
+PASS 1440 haunted: camera controls consume no shot
+PASS 1440 haunted: 44px camera controls fit the viewport
+PASS 1440 haunted: Levels returns to same world
+PASS 1440 orbital: local map numbering and total stars
+PASS 1440 orbital: map theme
+PASS 1440 orbital: playable world stage opens with local chapter
+PASS 1440 orbital: camera controls consume no shot
+PASS 1440 orbital: 44px camera controls fit the viewport
+PASS 1440 orbital: Levels returns to same world
+PASS 1440: old progress retained
+PASS 1440: independent volumes persist with old scores
+PASS 1440: no uncaught errors
+PASS 1180: five world portals
+PASS 1180: touch-friendly portals fit horizontally
+PASS 1180 countryside: local map numbering and total stars
+PASS 1180 countryside: map theme
+PASS 1180 countryside: playable world stage opens with local chapter
+PASS 1180 countryside: camera controls consume no shot
+PASS 1180 countryside: 44px camera controls fit the viewport
+PASS 1180 countryside: Levels returns to same world
+PASS 1180 frozen: local map numbering and total stars
+PASS 1180 frozen: map theme
+PASS 1180 frozen: playable world stage opens with local chapter
+PASS 1180 frozen: camera controls consume no shot
+PASS 1180 frozen: 44px camera controls fit the viewport
+PASS 1180 frozen: Levels returns to same world
+PASS 1180 molten: local map numbering and total stars
+PASS 1180 molten: map theme
+PASS 1180 molten: playable world stage opens with local chapter
+PASS 1180 molten: camera controls consume no shot
+PASS 1180 molten: 44px camera controls fit the viewport
+PASS 1180 molten: Levels returns to same world
+PASS 1180 haunted: local map numbering and total stars
+PASS 1180 haunted: map theme
+PASS 1180 haunted: playable world stage opens with local chapter
+PASS 1180 haunted: camera controls consume no shot
+PASS 1180 haunted: 44px camera controls fit the viewport
+PASS 1180 haunted: Levels returns to same world
+PASS 1180 orbital: local map numbering and total stars
+PASS 1180 orbital: map theme
+PASS 1180 orbital: playable world stage opens with local chapter
+PASS 1180 orbital: camera controls consume no shot
+PASS 1180 orbital: 44px camera controls fit the viewport
+PASS 1180 orbital: Levels returns to same world
+PASS 1180: old progress retained
+PASS 1180: independent volumes persist with old scores
+PASS 1180: no uncaught errors
+PASS 844: five world portals
+PASS 844: touch-friendly portals fit horizontally
+PASS 844 countryside: local map numbering and total stars
+PASS 844 countryside: map theme
+PASS 844 countryside: playable world stage opens with local chapter
+PASS 844 countryside: camera controls consume no shot
+PASS 844 countryside: 44px camera controls fit the viewport
+PASS 844 countryside: Levels returns to same world
+PASS 844 frozen: local map numbering and total stars
+PASS 844 frozen: map theme
+PASS 844 frozen: playable world stage opens with local chapter
+PASS 844 frozen: camera controls consume no shot
+PASS 844 frozen: 44px camera controls fit the viewport
+PASS 844 frozen: Levels returns to same world
+PASS 844 molten: local map numbering and total stars
+PASS 844 molten: map theme
+PASS 844 molten: playable world stage opens with local chapter
+PASS 844 molten: camera controls consume no shot
+PASS 844 molten: 44px camera controls fit the viewport
+PASS 844 molten: Levels returns to same world
+PASS 844 haunted: local map numbering and total stars
+PASS 844 haunted: map theme
+PASS 844 haunted: playable world stage opens with local chapter
+PASS 844 haunted: camera controls consume no shot
+PASS 844 haunted: 44px camera controls fit the viewport
+PASS 844 haunted: Levels returns to same world
+PASS 844 orbital: local map numbering and total stars
+PASS 844 orbital: map theme
+PASS 844 orbital: playable world stage opens with local chapter
+PASS 844 orbital: camera controls consume no shot
+PASS 844 orbital: 44px camera controls fit the viewport
+PASS 844 orbital: Levels returns to same world
+PASS 844: old progress retained
+PASS 844: independent volumes persist with old scores
+PASS 844: no uncaught errors
+PASS 390: five world portals
+PASS 390: touch-friendly portals fit horizontally
+PASS 390 countryside: local map numbering and total stars
+PASS 390 countryside: map theme
+PASS 390 countryside: playable world stage opens with local chapter
+PASS 390 countryside: camera controls consume no shot
+PASS 390 countryside: 44px camera controls fit the viewport
+PASS 390 countryside: Levels returns to same world
+PASS 390 frozen: local map numbering and total stars
+PASS 390 frozen: map theme
+PASS 390 frozen: playable world stage opens with local chapter
+PASS 390 frozen: camera controls consume no shot
+PASS 390 frozen: 44px camera controls fit the viewport
+PASS 390 frozen: Levels returns to same world
+PASS 390 molten: local map numbering and total stars
+PASS 390 molten: map theme
+PASS 390 molten: playable world stage opens with local chapter
+PASS 390 molten: camera controls consume no shot
+PASS 390 molten: 44px camera controls fit the viewport
+PASS 390 molten: Levels returns to same world
+PASS 390 haunted: local map numbering and total stars
+PASS 390 haunted: map theme
+PASS 390 haunted: playable world stage opens with local chapter
+PASS 390 haunted: camera controls consume no shot
+PASS 390 haunted: 44px camera controls fit the viewport
+PASS 390 haunted: Levels returns to same world
+PASS 390 orbital: local map numbering and total stars
+PASS 390 orbital: map theme
+PASS 390 orbital: playable world stage opens with local chapter
+PASS 390 orbital: camera controls consume no shot
+PASS 390 orbital: 44px camera controls fit the viewport
+PASS 390 orbital: Levels returns to same world
+PASS 390: old progress retained
+PASS 390: independent volumes persist with old scores
+PASS 390: no uncaught errors
+World integration: 140 checks passed.

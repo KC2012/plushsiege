@@ -1,6 +1,6 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
-import { campaign, worlds } from '../src/content/campaign';
+import { introCampaign as campaign, campaign as allCampaign, worlds } from '../src/content/campaign';
 import { validateLevel } from '../src/content/validate';
 import solutions from './fixtures/campaign-solutions.json';
 
@@ -125,5 +125,14 @@ test('all24 campaign solution fixtures replay efficient three-star wins with rea
     assert.equal(sim.phase, 'won', `${level.id}: solution failed`);
     assert.equal(starsFor(sim.score, level.thresholds), 3, `${level.id}: ${sim.score} points below three-star threshold`);
     sim.dispose();
+  }
+});
+
+test('expanded campaign levels have unique IDs, valid data and registered worlds', () => {
+  assert.ok(allCampaign.length >= campaign.length);
+  assert.equal(new Set(allCampaign.map(level => level.id)).size, allCampaign.length);
+  for (const level of allCampaign) {
+    assert.deepEqual(validateLevel(level), [], `${level.id}: ${JSON.stringify(validateLevel(level))}`);
+    assert.ok(worlds.some(world => world.id === level.world), level.id);
   }
 });

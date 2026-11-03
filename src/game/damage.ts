@@ -1,6 +1,6 @@
 import type Matter from 'matter-js';
 import { PHYSICS } from './config';
-export type DamageSource = 'projectile' | 'structure' | 'fall' | 'monster' | 'explosion' | 'crush';
+export type DamageSource = 'projectile' | 'structure' | 'fall' | 'monster' | 'explosion' | 'crush' | 'lava' | 'heat';
 export interface DamageRecord {
   amount: number;
   source: DamageSource;
@@ -50,4 +50,14 @@ export function impactDamage(
   return closing < floor
     ? 0
     : energy * PHYSICS.damageEnergyScale * (monster ? PHYSICS.monsterDamageScale : 1);
+}
+
+/** A supported target cannot freely recoil away from an incoming vertical load.
+ * Use the striking body's contact inertia, rather than the two-free-body reduced
+ * mass, for the compressive work transferred into an opposed support reaction. */
+export function pinnedImpactEnergy(striker:Matter.Body,point:Matter.Vector,normal:Matter.Vector,closing:number) {
+  const r={x:point.x-striker.position.x,y:point.y-striker.position.y};
+  const cross=r.x*normal.y-r.y*normal.x;
+  const inverse=striker.inverseMass+cross*cross*striker.inverseInertia;
+  return inverse>0?.5*closing*closing/inverse:0;
 }

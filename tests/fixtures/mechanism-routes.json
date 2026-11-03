@@ -1,0 +1,67 @@
+[
+  {
+    "id": "molten-03",
+    "shot": {
+      "x": -102,
+      "y": 0,
+      "abilityAt": null
+    },
+    "active": true,
+    "causal": 7.208116771295944,
+    "motion": 139.8191636658333,
+    "remaining": 1,
+    "score": 5600
+  },
+  {
+    "id": "molten-07",
+    "shot": {
+      "x": -102,
+      "y": 0,
+      "abilityAt": null
+    },
+    "active": true,
+    "causal": 6.572063149579171,
+    "motion": 139.67263907288492,
+    "remaining": 4,
+    "score": 600
+  },
+  {
+    "id": "molten-09",
+    "shot": {
+      "x": -102,
+      "y": 0,
+      "abilityAt": null
+    },
+    "active": true,
+    "causal": 9.203218021787505,
+    "motion": 0,
+    "remaining": 0,
+    "score": 26300
+  },
+  {
+    "id": "haunted-06",
+    "shot": {
+      "x": -102,
+      "y": 0,
+      "abilityAt": null
+    },
+    "active": true,
+    "causal": 1.5753143026236036,
+    "motion": 0,
+    "remaining": 0,
+    "score": 21400
+  },
+  {
+    "id": "orbital-08",
+    "shot": {
+      "x": -61.199999999999996,
+      "y": 0,
+      "abilityAt": null
+    },
+    "active": true,
+    "causal": 80.98352755426168,
+    "motion": 0,
+    "remaining": 1,
+    "score": 12900
+  }
+]

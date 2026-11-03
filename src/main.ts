@@ -3,12 +3,12 @@ import { SiegeScene } from './game/scene';
 import { ProgressStore } from './game/save';
 import { starsFor } from './game/physics';
 import { STUFFIES } from './game/config';
-import { campaign } from './content/campaign';
+import { campaign,worlds,worldLevels,worldForLevel } from './content/campaign';
 import { openEditor } from './editor/editor';
 import { portrait } from './ui/icons';
 import type { Level, StuffieKind } from './game/types';
 import './style.css';
-import { titleMenu, campaignMenu } from './ui/menus';
+import { titleMenu, campaignMenu, worldMenu } from './ui/menus';
 import './ui/menus.css';
 const ui = document.querySelector<HTMLElement>('#ui')!;
 const store = new ProgressStore();
@@ -19,6 +19,7 @@ let active = 0,
   editorCleanup: (() => void) | undefined;
 let screen = 'home';
 let mapPage = 0;
+let selectedWorld='countryside';
 const game = new Phaser.Game({
   type: Phaser.AUTO,
   parent: 'game',
@@ -39,6 +40,7 @@ scene.onState = () => {
 scene.onResult = result;
 function settingsApply() {
   scene.audio.enabled = store.data.sound;
+  scene.audio.setVolumes(store.data.musicVolume,store.data.effectsVolume);
   scene.preview = store.data.trajectory;
   scene.reducedMotion = store.data.reducedMotion;
   ui.classList.toggle('gentle-motion', store.data.reducedMotion);
@@ -70,27 +72,32 @@ function home() {
   scene.loadLevel(campaign[23] || campaign[0], 'home');
   ui.className = 'home-screen title-screen' + (store.data.reducedMotion ? ' gentle-motion' : '');
   ui.innerHTML = header() + titleMenu();
+  scene.audio.setWorld('countryside');
 }
+function selectWorlds(){screen='worlds';scene.cancelAim();scene.paused=true;scene.audio.setPaused(false);ui.className='menu-screen world-screen'+(store.data.reducedMotion?' gentle-motion':'');ui.innerHTML=header()+worldMenu(worlds,store.data.scores);}
 function levels(page = mapPage) {
   screen = 'levels';
   scene.cancelAim();
   scene.paused = true;
-  mapPage = Math.max(0, Math.min(Math.ceil(campaign.length / 8) - 1, page));
+  const stages=worldLevels(selectedWorld);
+  mapPage = Math.max(0, Math.min(Math.ceil(stages.length / 8) - 1, page));
   ui.className = 'menu-screen campaign-screen' + (store.data.reducedMotion ? ' gentle-motion' : '');
-  ui.innerHTML = header() + campaignMenu(campaign, store.data.scores, mapPage);
+  ui.innerHTML = header() + campaignMenu(stages, store.data.scores, mapPage,worlds.find(w=>w.id===selectedWorld),stages.map(l=>campaign.findIndex(c=>c.id===l.id)));
+  scene.audio.setWorld(selectedWorld);scene.audio.setPaused(false);
 }
 function play(index: number, level?: Level) {
   active = index;
-  if (!level) mapPage = Math.floor(index / 8);
+  if(!level){selectedWorld=campaign[index].world;mapPage=Math.floor(worldLevels(selectedWorld).findIndex(l=>l.id===campaign[index].id)/8);}
   custom = level;
   screen = 'game';
   ui.className = 'game-screen' + (store.data.reducedMotion ? ' gentle-motion' : '');
   settingsApply();
   scene.loadLevel(level || campaign[index]);
-  ui.innerHTML = `${header(button('levels', '▦ <span>Levels</span>', 'pill-button'))}<div class="level-heading"><span class="eyebrow" id="level-chapter"></span><h2 id="level-title"></h2></div><div class="scoreboard"><span>SCORE</span><strong id="score">0</strong><div id="score-stars" class="score-stars">☆☆☆</div></div><div class="hud-bottom"><div class="queue-panel"><div class="hud-caption">YOUR LITTLE TROUBLEMAKERS</div><div id="queue"></div></div><div class="shot-message" id="shot-message" role="status"></div><div class="game-actions">${custom ? button('return-editor', '← Workshop', 'pill-button') : ''}${button('restart', '↻', 'icon-button')}${button('pause', 'Ⅱ', 'icon-button')}</div></div><div id="modal-root"></div>`;
+  scene.audio.setWorld((level||campaign[index]).world);
+  ui.innerHTML = `${header(button('levels', '▦ <span>Levels</span>', 'pill-button'))}<div class="level-heading"><span class="eyebrow" id="level-chapter"></span><h2 id="level-title"></h2></div><div class="camera-tools" aria-label="Level inspection">${button('overview','Overview','pill-button')}${button('sling','Sling','pill-button')}${button('zoom-out','−','icon-button')}${button('zoom-in','+','icon-button')}</div><div class="scoreboard"><span>SCORE</span><strong id="score">0</strong><div id="score-stars" class="score-stars">☆☆☆</div></div><div class="hud-bottom"><div class="queue-panel"><div class="hud-caption">YOUR LITTLE TROUBLEMAKERS</div><div id="queue"></div></div><div class="shot-message" id="shot-message" role="status"></div><div class="game-actions">${custom ? button('return-editor', '← Workshop', 'pill-button') : ''}${button('restart', '↻', 'icon-button')}${button('pause', 'Ⅱ', 'icon-button')}</div></div><div id="modal-root"></div>`;
   document.querySelector('#level-chapter')!.textContent = custom
     ? 'WORKSHOP · PLAYTEST'
-    : `MEADOW MISCHIEF · ${String(index + 1).padStart(2, '0')} / 24`;
+    : `${worldForLevel(campaign[index]).name.toUpperCase()} · ${String(worldLevels(selectedWorld).findIndex(l=>l.id===campaign[index].id)+1).padStart(2,'0')} / ${worldLevels(selectedWorld).length}`;
   document.querySelector('#level-title')!.textContent = (level || campaign[index]).name;
   updateHUD();
 }
@@ -112,8 +119,8 @@ function updateHUD() {
   const hint = document.querySelector('#shot-message')!;
   hint.textContent =
     sim.phase === 'aiming'
-      ? sim.shots === 0 && sim.level.tutorial
-        ? sim.level.tutorial
+      ? scene.viewState.zoom<.72 ? 'Drag to inspect · pinch or + to zoom · tap Sling to aim.' : sim.shots === 0 && (sim.level.tutorial || sim.level.metadata?.idea)
+        ? sim.level.tutorial || sim.level.metadata!.idea
         : 'Drag your stuffie back. Release to launch.'
       : sim.phase === 'flying'
         ? sim.canActivate
@@ -140,29 +147,32 @@ function result(won: boolean) {
   if (screen !== 'game' || !scene.sim) return;
   const sim = scene.sim;
   const stars = starsFor(sim.score, sim.level.thresholds);
+  const atWorldEnd=!custom && worldLevels(selectedWorld).at(-1)?.id===sim.level.id;
   if (won && !custom) store.record(sim.level.id, sim.score, stars);
   modal(
-    `<div class="result-face">${portrait(won ? sim.current?.kind || 'sheep' : 'rabbit')}</div><span class="eyebrow">${won ? 'A BEAUTIFUL LITTLE MESS' : 'ONE MORE LITTLE PULL?'}</span><h2>${won ? 'Softies for the win.' : 'Almost had them.'}</h2><p>${won ? 'The meadow is a little quieter. The stuffies look suspiciously pleased.' : 'Try a different angle, or tap in flight to use your stuffie’s ability.'}</p>${won ? `<div class="result-stars">${[1, 2, 3].map((i) => `<span class="${i <= stars ? 'earned' : ''}">★</span>`).join('')}</div><div class="result-score">${sim.score.toLocaleString()}<small>POINTS · ${sim.unused} UNUSED × 3,000 INCLUDED</small></div>` : ''}<div class="modal-actions">${won ? button(custom ? 'return-editor' : active < campaign.length - 1 ? 'next' : 'levels', custom ? 'Back to workshop' : active < campaign.length - 1 ? 'On to the next ↗' : 'Back to the meadow', 'primary') : button('restart', 'Give it another go ↻', 'primary')}${button(won ? 'restart' : 'levels', won ? 'Play it again' : 'Choose a level', 'text-button')}</div>${!store.available ? '<p class="save-warning">Browser storage is unavailable. Progress lasts for this visit.</p>' : ''}`,
+    `<div class="result-face">${portrait(won ? sim.current?.kind || 'sheep' : 'rabbit')}</div><span class="eyebrow">${won ? 'A BEAUTIFUL LITTLE MESS' : 'ONE MORE LITTLE PULL?'}</span><h2>${won ? 'Softies for the win.' : 'Almost had them.'}</h2><p>${won ? 'The castle is a little quieter. The stuffies look suspiciously pleased.' : 'Try a different angle, or tap in flight to use your stuffie’s ability.'}</p>${won ? `<div class="result-stars">${[1, 2, 3].map((i) => `<span class="${i <= stars ? 'earned' : ''}">★</span>`).join('')}</div><div class="result-score">${sim.score.toLocaleString()}<small>POINTS · ${sim.unused} UNUSED × 3,000 INCLUDED</small></div>` : ''}<div class="modal-actions">${won ? button(custom ? 'return-editor' : 'next', custom ? 'Back to workshop' : atWorldEnd ? 'Choose a world' : 'On to the next ↗', 'primary') : button('restart', 'Give it another go ↻', 'primary')}${button(won ? 'restart' : 'levels', won ? 'Play it again' : 'Choose a level', 'text-button')}</div>${!store.available ? '<p class="save-warning">Browser storage is unavailable. Progress lasts for this visit.</p>' : ''}`,
     'result-modal',
   );
 }
 function settings() {
   const wasPaused = scene.paused;
+  const wasAudioPaused=scene.audio.diagnostics.paused;
   scene.paused = true;
   scene.cancelAim();
   modal(
-    `<span class="eyebrow">MAKE YOURSELF COMFORTABLE</span><h2>The little details.</h2><p>All fun. No fuss.</p><div class="settings-list">${(['sound', 'trajectory', 'reducedMotion'] as const).map((key, i) => `<label><span>${['Sound effects', 'Show aiming guide', 'Gentle motion'][i]}</span><input type="checkbox" data-setting="${key}" ${store.data[key] ? 'checked' : ''}></label>`).join('')}</div><p class="settings-note">Glass 600 · Wood 500 · Stone 800<br>Monsters 5,000 · Unused stuffies 3,000<br>Progress saves on this device. No account needed.</p>${button('close-settings', 'All set ✓', 'primary')}`,
+    `<span class="eyebrow">MAKE YOURSELF COMFORTABLE</span><h2>The little details.</h2><p>All fun. No fuss.</p><div class="settings-list">${(['sound', 'trajectory', 'reducedMotion'] as const).map((key, i) => `<label><span>${['Master sound', 'Show aiming guide', 'Gentle motion'][i]}</span><input type="checkbox" data-setting="${key}" ${store.data[key] ? 'checked' : ''}></label>`).join('')}</div><div class="volume-settings"><label>Music <input type="range" data-volume="music" min="0" max="100" value="${Math.round(store.data.musicVolume*100)}" aria-label="Music volume"></label><label>Effects <input type="range" data-volume="effects" min="0" max="100" value="${Math.round(store.data.effectsVolume*100)}" aria-label="Effects volume"></label></div><p class="settings-note">Glass 600 · Wood 500 · Stone 800<br>Monsters 5,000 · Unused stuffies 3,000<br>Progress saves on this device. No account needed.</p>${button('close-settings', 'All set ✓', 'primary')}`,
   );
   document.querySelector('[data-action="close-settings"]')?.addEventListener(
     'click',
     () => {
       closeModal();
       scene.paused = wasPaused;
+      scene.audio.setPaused(wasAudioPaused);
     },
     { once: true },
   );
 }
-function editor(level = editorDraft || campaign[0]) {
+function editor(level = editorDraft || worldLevels(selectedWorld)[0] || campaign[0]) {
   screen = 'editor';
   scene.paused = true;
   editorCleanup?.();
@@ -189,9 +199,10 @@ ui.addEventListener('pointerdown', (e) => {
     scene.audio.unlock();
 });
 ui.addEventListener('click', (e) => {
-  const el = (e.target as Element).closest<HTMLElement>('[data-action],[data-level],[data-crew]');
+  const el = (e.target as Element).closest<HTMLElement>('[data-action],[data-level],[data-crew],[data-world]');
   if (!el) return;
-  scene.audio.unlock();
+  scene.audio.unlock();scene.audio.play('menu');
+  if(el.dataset.world){selectedWorld=el.dataset.world;mapPage=0;levels(0);return;}
   if (el.dataset.level !== undefined) {
     play(Number(el.dataset.level));
     return;
@@ -204,6 +215,11 @@ ui.addEventListener('click', (e) => {
     return;
   }
   switch (el.dataset.action) {
+    case 'worlds':selectWorlds();break;
+    case 'overview':scene.overview();updateHUD();break;
+    case 'sling':scene.focusSling();updateHUD();break;
+    case 'zoom-in':scene.zoomBy(1.25);updateHUD();break;
+    case 'zoom-out':scene.zoomBy(.8);updateHUD();break;
     case 'home':
       home();
       break;
@@ -232,7 +248,7 @@ ui.addEventListener('click', (e) => {
       play(active, custom);
       break;
     case 'next':
-      play(Math.min(active + 1, campaign.length - 1));
+      {const stages=worldLevels(selectedWorld),local=stages.findIndex(l=>l.id===campaign[active].id);if(local>=0&&local<stages.length-1)play(campaign.findIndex(l=>l.id===stages[local+1].id));else selectWorlds();}
       break;
     case 'pause':
       scene.paused = true;
@@ -265,6 +281,7 @@ ui.addEventListener('click', (e) => {
       break;
   }
 });
+ui.addEventListener('input',e=>{const el=e.target as HTMLInputElement;if(el.dataset.volume){const v=Math.max(0,Math.min(1,Number(el.value)/100));if(el.dataset.volume==='music')store.data.musicVolume=v;else store.data.effectsVolume=v;store.persist();scene.audio.setVolumes(store.data.musicVolume,store.data.effectsVolume);}});
 ui.addEventListener('change', (e) => {
   const el = e.target as HTMLInputElement;
   const key = el.dataset.setting as 'sound' | 'trajectory' | 'reducedMotion' | undefined;
@@ -287,8 +304,8 @@ window.addEventListener('keydown', (e) => {
   }
 });
 document.addEventListener('visibilitychange', () => {
-  if (document.hidden && screen === 'game' && !scene.paused)
-    document.querySelector<HTMLButtonElement>('[data-action="pause"]')?.click();
+  if (document.hidden){if(screen==='game'&&!scene.paused)document.querySelector<HTMLButtonElement>('[data-action="pause"]')?.click();else scene.audio.setPaused(true);}
+  else scene.audio.setPaused(screen==='game'?scene.paused:screen==='editor');
 });
 game.events.once('ready', home);
 // The worker precaches the exact Vite output; it never depends on a CDN at play time.

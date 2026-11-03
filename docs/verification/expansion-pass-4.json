@@ -1,0 +1,2209 @@
+{
+  "durationMs": 26930,
+  "reports": [
+    {
+      "id": "meadow-25",
+      "accepted": true,
+      "idle": {
+        "stable": true,
+        "peak": 16,
+        "maxStructureMotion": 4.574941244626542,
+        "maxTargetMotion": 3.6708062297012853,
+        "missing": [],
+        "remaining": 4,
+        "score": 0
+      },
+      "misses": {
+        "nontrivial": true,
+        "outcomes": [
+          {
+            "remaining": 4,
+            "score": 0,
+            "phase": "aiming"
+          },
+          {
+            "remaining": 4,
+            "score": 0,
+            "phase": "aiming"
+          }
+        ]
+      },
+      "witness": {
+        "id": "meadow-25",
+        "shots": [
+          {
+            "x": -95.32530823229386,
+            "y": 36.291674119805606,
+            "abilityAt": null
+          },
+          {
+            "x": -90.06065447161055,
+            "y": 47.88609940416086,
+            "abilityAt": null
+          }
+        ],
+        "score": 26800,
+        "stars": 3,
+        "peakBodies": 17,
+        "maxSteps": 459
+      },
+      "attempts": 1,
+      "unresolved": 0
+    },
+    {
+      "id": "meadow-26",
+      "accepted": true,
+      "idle": {
+        "stable": true,
+        "peak": 6,
+        "maxStructureMotion": 0.3880716386249063,
+        "maxTargetMotion": 0.9600673341735436,
+        "missing": [],
+        "remaining": 3,
+        "score": 0
+      },
+      "misses": {
+        "nontrivial": true,
+        "outcomes": [
+          {
+            "remaining": 3,
+            "score": 0,
+            "phase": "aiming"
+          },
+          {
+            "remaining": 3,
+            "score": 0,
+            "phase": "aiming"
+          }
+        ]
+      },
+      "witness": {
+        "id": "meadow-26",
+        "shots": [
+          {
+            "x": -93.74985862325634,
+            "y": 40.186614788004306,
+            "abilityAt": null
+          }
+        ],
+        "score": 24000,
+        "stars": 3,
+        "peakBodies": 7,
+        "maxSteps": 478
+      },
+      "attempts": 1,
+      "unresolved": 0
+    },
+    {
+      "id": "meadow-27",
+      "accepted": true,
+      "idle": {
+        "stable": true,
+        "peak": 10,
+        "maxStructureMotion": 1.3362468078981116,
+        "maxTargetMotion": 0.8929827810936284,
+        "missing": [],
+        "remaining": 2,
+        "score": 0
+      },
+      "misses": {
+        "nontrivial": true,
+        "outcomes": [
+          {
+            "remaining": 2,
+            "score": 0,
+            "phase": "aiming"
+          },
+          {
+            "remaining": 2,
+            "score": 0,
+            "phase": "aiming"
+          }
+        ]
+      },
+      "witness": {
+        "id": "meadow-27",
+        "shots": [
+          {
+            "x": -95.26563932505913,
+            "y": 36.44801728472687,
+            "abilityAt": null
+          }
+        ],
+        "score": 21900,
+        "stars": 3,
+        "peakBodies": 13,
+        "maxSteps": 396
+      },
+      "attempts": 1,
+      "unresolved": 0
+    },
+    {
+      "id": "meadow-28",
+      "accepted": true,
+      "idle": {
+        "stable": true,
+        "peak": 17,
+        "maxStructureMotion": 5.159315680766717,
+        "maxTargetMotion": 3.682908851352475,
+        "missing": [],
+        "remaining": 3,
+        "score": 0
+      },
+      "misses": {
+        "nontrivial": true,
+        "outcomes": [
+          {
+            "remaining": 3,
+            "score": 0,
+            "phase": "aiming"
+          },
+          {
+            "remaining": 3,
+            "score": 0,
+            "phase": "aiming"
+          }
+        ]
+      },
+      "witness": {
+        "id": "meadow-28",
+        "shots": [
+          {
+            "x": -98.91886054822949,
+            "y": 24.88089684557066,
+            "abilityAt": 35
+          }
+        ],
+        "score": 30900,
+        "stars": 3,
+        "peakBodies": 21,
+        "maxSteps": 221
+      },
+      "attempts": 1,
+      "unresolved": 0
+    },
+    {
+      "id": "meadow-29",
+      "accepted": true,
+      "idle": {
+        "stable": true,
+        "peak": 31,
+        "maxStructureMotion": 11.659845072703416,
+        "maxTargetMotion": 10.208756259996873,
+        "missing": [],
+        "remaining": 7,
+        "score": 0
+      },
+      "misses": {
+        "nontrivial": true,
+        "outcomes": [
+          {
+            "remaining": 7,
+            "score": 0,
+            "phase": "aiming"
+          },
+          {
+            "remaining": 7,
+            "score": 0,
+            "phase": "aiming"
+          }
+        ]
+      },
+      "witness": {
+        "id": "meadow-29",
+        "shots": [
+          {
+            "x": -101.23970746741485,
+            "y": 12.430673027325042,
+            "abilityAt": null
+          },
+          {
+            "x": -101.01484602645097,
+            "y": 14.142166816029434,
+            "abilityAt": 20
+          }
+        ],
+        "score": 47000,
+        "stars": 3,
+        "peakBodies": 38,
+        "maxSteps": 382
+      },
+      "attempts": 1,
+      "unresolved": 0
+    },
+    {
+      "id": "meadow-30",
+      "accepted": true,
+      "idle": {
+        "stable": true,
+        "peak": 70,
+        "maxStructureMotion": 10.512344031056822,
+        "maxTargetMotion": 5.737077519416857,
+        "missing": [],
+        "remaining": 12,
+        "score": 0
+      },
+      "misses": {
+        "nontrivial": true,
+        "outcomes": [
+          {
+            "remaining": 12,
+            "score": 0,
+            "phase": "aiming"
+          },
+          {
+            "remaining": 12,
+            "score": 0,
+            "phase": "aiming"
+          }
+        ]
+      },
+      "witness": {
+        "id": "meadow-30",
+        "shots": [
+          {
+            "x": -90.06065447161055,
+            "y": 47.88609940416086,
+            "abilityAt": 20
+          },
+          {
+            "x": -72.12489168102785,
+            "y": 72.12489168102785,
+            "abilityAt": 65
+          },
+          {
+            "x": -94.57275316581232,
+            "y": 38.20987252842303,
+            "abilityAt": null
+          },
+          {
+            "x": -42.63693201038984,
+            "y": 92.66116785763816,
+            "abilityAt": 35
+          },
+          {
+            "x": -90.06065447161055,
+            "y": 47.88609940416086,
+            "abilityAt": 35
+          },
+          {
+            "x": -89.93528663494243,
+            "y": 48.1211410701237,
+            "abilityAt": 22
+          }
+        ],
+        "score": 75200,
+        "stars": 3,
+        "peakBodies": 89,
+        "maxSteps": 496
+      },
+      "attempts": 1,
+      "unresolved": 0
+    },
+    {
+      "id": "frozen-01",
+      "accepted": true,
+      "idle": {
+        "stable": true,
+        "peak": 4,
+        "maxStructureMotion": 1.279187618478636,
+        "maxTargetMotion": 0.08341395822264985,
+        "missing": [],
+        "remaining": 1,
+        "score": 0
+      },
+      "misses": {
+        "nontrivial": true,
+        "outcomes": [
+          {
+            "remaining": 1,
+            "score": 0,
+            "phase": "aiming"
+          },
+          {
+            "remaining": 1,
+            "score": 0,
+            "phase": "aiming"
+          }
+        ]
+      },
+      "witness": {
+        "id": "frozen-01",
+        "shots": [
+          {
+            "x": -101.99994125587041,
+            "y": 0.10947053934891668,
+            "abilityAt": 22
+          }
+        ],
+        "score": 12200,
+        "stars": 3,
+        "peakBodies": 8,
+        "maxSteps": 149
+      },
+      "attempts": 1,
+      "unresolved": 0
+    },
+    {
+      "id": "frozen-02",
+      "accepted": true,
+      "idle": {
+        "stable": true,
+        "peak": 7,
+        "maxStructureMotion": 0.3528170521256287,
+        "maxTargetMotion": 3.31875889772604,
+        "missing": [],
+        "remaining": 2,
+        "score": 0
+      },
+      "misses": {
+        "nontrivial": true,
+        "outcomes": [
+          {
+            "remaining": 2,
+            "score": 0,
+            "phase": "aiming"
+          },
+          {
+            "remaining": 2,
+            "score": 0,
+            "phase": "aiming"
+          }
+        ]
+      },
+      "witness": {
+        "id": "frozen-02",
+        "shots": [
+          {
+            "x": -94.99171696920985,
+            "y": 37.15607227952829,
+            "abilityAt": 35
+          }
+        ],
+        "score": 19600,
+        "stars": 3,
+        "peakBodies": 12,
+        "maxSteps": 278
+      },
+      "attempts": 1,
+      "unresolved": 0
+    },
+    {
+      "id": "frozen-03",
+      "accepted": true,
+      "idle": {
+        "stable": true,
+        "peak": 5,
+        "maxStructureMotion": 1.3430725819893277,
+        "maxTargetMotion": 0.08341395822264985,
+        "missing": [],
+        "remaining": 1,
+        "score": 0
+      },
+      "misses": {
+        "nontrivial": true,
+        "outcomes": [
+          {
+            "remaining": 1,
+            "score": 0,
+            "phase": "aiming"
+          },
+          {
+            "remaining": 1,
+            "score": 0,
+            "phase": "aiming"
+          }
+        ]
+      },
+      "witness": {
+        "id": "frozen-03",
+        "shots": [
+          {
+            "x": -101.02250304221691,
+            "y": 14.08736593850232,
+            "abilityAt": 35
+          }
+        ],
+        "score": 15200,
+        "stars": 3,
+        "peakBodies": 9,
+        "maxSteps": 129
+      },
+      "attempts": 1,
+      "unresolved": 0
+    },
+    {
+      "id": "frozen-04",
+      "accepted": true,
+      "idle": {
+        "stable": true,
+        "peak": 10,
+        "maxStructureMotion": 3.5701082948229486,
+        "maxTargetMotion": 96.99633628085166,
+        "missing": [],
+        "remaining": 3,
+        "score": 0
+      },
+      "misses": {
+        "nontrivial": true,
+        "outcomes": [
+          {
+            "remaining": 3,
+            "score": 0,
+            "phase": "aiming"
+          },
+          {
+            "remaining": 3,
+            "score": 0,
+            "phase": "aiming"
+          }
+        ]
+      },
+      "witness": {
+        "id": "frozen-04",
+        "shots": [
+          {
+            "x": -98.97016408015163,
+            "y": 24.676033351166108,
+            "abilityAt": null
+          },
+          {
+            "x": -39.6262401103735,
+            "y": 93.98809017484622,
+            "abilityAt": 20
+          }
+        ],
+        "score": 26300,
+        "stars": 3,
+        "peakBodies": 16,
+        "maxSteps": 381
+      },
+      "attempts": 1,
+      "unresolved": 0
+    },
+    {
+      "id": "frozen-05",
+      "accepted": true,
+      "idle": {
+        "stable": true,
+        "peak": 6,
+        "maxStructureMotion": 0.4348862333311931,
+        "maxTargetMotion": 1.0470635658797731,
+        "missing": [],
+        "remaining": 3,
+        "score": 0
+      },
+      "misses": {
+        "nontrivial": true,
+        "outcomes": [
+          {
+            "remaining": 3,
+            "score": 0,
+            "phase": "aiming"
+          },
+          {
+            "remaining": 3,
+            "score": 0,
+            "phase": "aiming"
+          }
+        ]
+      },
+      "witness": {
+        "id": "frozen-05",
+        "shots": [
+          {
+            "x": -93.17490549550936,
+            "y": 41.50225278105875,
+            "abilityAt": null
+          }
+        ],
+        "score": 24000,
+        "stars": 3,
+        "peakBodies": 7,
+        "maxSteps": 202
+      },
+      "attempts": 1,
+      "unresolved": 0
+    },
+    {
+      "id": "frozen-06",
+      "accepted": true,
+      "idle": {
+        "stable": true,
+        "peak": 10,
+        "maxStructureMotion": 3.532061658547212,
+        "maxTargetMotion": 2.923467631643185,
+        "missing": [],
+        "remaining": 2,
+        "score": 0
+      },
+      "misses": {
+        "nontrivial": true,
+        "outcomes": [
+          {
+            "remaining": 2,
+            "score": 0,
+            "phase": "aiming"
+          },
+          {
+            "remaining": 2,
+            "score": 0,
+            "phase": "aiming"
+          }
+        ]
+      },
+      "witness": {
+        "id": "frozen-06",
+        "shots": [
+          {
+            "x": -35.190792889992714,
+            "y": 95.737182409833,
+            "abilityAt": null
+          }
+        ],
+        "score": 23700,
+        "stars": 3,
+        "peakBodies": 14,
+        "maxSteps": 287
+      },
+      "attempts": 1,
+      "unresolved": 0
+    },
+    {
+      "id": "frozen-07",
+      "accepted": true,
+      "idle": {
+        "stable": true,
+        "peak": 20,
+        "maxStructureMotion": 4.6352084177667905,
+        "maxTargetMotion": 3.7362144061096565,
+        "missing": [],
+        "remaining": 5,
+        "score": 0
+      },
+      "misses": {
+        "nontrivial": true,
+        "outcomes": [
+          {
+            "remaining": 5,
+            "score": 0,
+            "phase": "aiming"
+          },
+          {
+            "remaining": 5,
+            "score": 0,
+            "phase": "aiming"
+          }
+        ]
+      },
+      "witness": {
+        "id": "frozen-07",
+        "shots": [
+          {
+            "x": -94.2331393197159,
+            "y": 39.03992128515388,
+            "abilityAt": 35
+          }
+        ],
+        "score": 39400,
+        "stars": 3,
+        "peakBodies": 25,
+        "maxSteps": 240
+      },
+      "attempts": 1,
+      "unresolved": 0
+    },
+    {
+      "id": "frozen-08",
+      "accepted": true,
+      "idle": {
+        "stable": true,
+        "peak": 38,
+        "maxStructureMotion": 5.848584777785008,
+        "maxTargetMotion": 5.67005449370538,
+        "missing": [],
+        "remaining": 7,
+        "score": 0
+      },
+      "misses": {
+        "nontrivial": true,
+        "outcomes": [
+          {
+            "remaining": 7,
+            "score": 0,
+            "phase": "aiming"
+          },
+          {
+            "remaining": 7,
+            "score": 0,
+            "phase": "aiming"
+          }
+        ]
+      },
+      "witness": {
+        "id": "frozen-08",
+        "shots": [
+          {
+            "x": -97.71910678661344,
+            "y": 29.239975527117625,
+            "abilityAt": 35
+          }
+        ],
+        "score": 63600,
+        "stars": 3,
+        "peakBodies": 44,
+        "maxSteps": 312
+      },
+      "attempts": 1,
+      "unresolved": 0
+    },
+    {
+      "id": "frozen-09",
+      "accepted": true,
+      "idle": {
+        "stable": true,
+        "peak": 29,
+        "maxStructureMotion": 9.263913237997391,
+        "maxTargetMotion": 9.728504789152343,
+        "missing": [],
+        "remaining": 7,
+        "score": 0
+      },
+      "misses": {
+        "nontrivial": true,
+        "outcomes": [
+          {
+            "remaining": 7,
+            "score": 0,
+            "phase": "aiming"
+          },
+          {
+            "remaining": 7,
+            "score": 0,
+            "phase": "aiming"
+          }
+        ]
+      },
+      "witness": {
+        "id": "frozen-09",
+        "shots": [
+          {
+            "x": -72.12489168102785,
+            "y": 72.12489168102785,
+            "abilityAt": 35
+          }
+        ],
+        "score": 49400,
+        "stars": 3,
+        "peakBodies": 40,
+        "maxSteps": 411
+      },
+      "attempts": 1,
+      "unresolved": 0
+    },
+    {
+      "id": "frozen-10",
+      "accepted": true,
+      "idle": {
+        "stable": true,
+        "peak": 48,
+        "maxStructureMotion": 12.172430580013156,
+        "maxTargetMotion": 11.025030344790611,
+        "missing": [],
+        "remaining": 10,
+        "score": 0
+      },
+      "misses": {
+        "nontrivial": true,
+        "outcomes": [
+          {
+            "remaining": 10,
+            "score": 0,
+            "phase": "aiming"
+          },
+          {
+            "remaining": 10,
+            "score": 0,
+            "phase": "aiming"
+          }
+        ]
+      },
+      "witness": {
+        "id": "frozen-10",
+        "shots": [
+          {
+            "x": -98.80230109307172,
+            "y": 25.339796737819295,
+            "abilityAt": 20
+          }
+        ],
+        "score": 75800,
+        "stars": 3,
+        "peakBodies": 76,
+        "maxSteps": 336
+      },
+      "attempts": 1,
+      "unresolved": 0
+    },
+    {
+      "id": "molten-01",
+      "accepted": true,
+      "idle": {
+        "stable": true,
+        "peak": 8,
+        "maxStructureMotion": 4.849070632392722,
+        "maxTargetMotion": 3.2415621099072864,
+        "missing": [],
+        "remaining": 2,
+        "score": 0
+      },
+      "misses": {
+        "nontrivial": true,
+        "outcomes": [
+          {
+            "remaining": 2,
+            "score": 0,
+            "phase": "aiming"
+          },
+          {
+            "remaining": 2,
+            "score": 0,
+            "phase": "aiming"
+          }
+        ]
+      },
+      "witness": {
+        "id": "molten-01",
+        "shots": [
+          {
+            "x": -99.88417128099174,
+            "y": 20.667663813539882,
+            "abilityAt": null
+          }
+        ],
+        "score": 19500,
+        "stars": 3,
+        "peakBodies": 9,
+        "maxSteps": 192
+      },
+      "attempts": 1,
+      "unresolved": 0
+    },
+    {
+      "id": "molten-02",
+      "accepted": true,
+      "idle": {
+        "stable": true,
+        "peak": 5,
+        "maxStructureMotion": 1.3362468078981116,
+        "maxTargetMotion": 0.08341395822264985,
+        "missing": [],
+        "remaining": 1,
+        "score": 0
+      },
+      "misses": {
+        "nontrivial": true,
+        "outcomes": [
+          {
+            "remaining": 1,
+            "score": 0,
+            "phase": "aiming"
+          },
+          {
+            "remaining": 1,
+            "score": 0,
+            "phase": "aiming"
+          }
+        ]
+      },
+      "witness": {
+        "id": "molten-02",
+        "shots": [
+          {
+            "x": -97.3359330744178,
+            "y": 30.49124681826671,
+            "abilityAt": 35
+          }
+        ],
+        "score": 15200,
+        "stars": 3,
+        "peakBodies": 9,
+        "maxSteps": 185
+      },
+      "attempts": 1,
+      "unresolved": 0
+    },
+    {
+      "id": "molten-03",
+      "accepted": true,
+      "idle": {
+        "stable": true,
+        "peak": 11,
+        "maxStructureMotion": 4.912622193103436,
+        "maxTargetMotion": 4.438934266476365,
+        "missing": [],
+        "remaining": 2,
+        "score": 0
+      },
+      "misses": {
+        "nontrivial": true,
+        "outcomes": [
+          {
+            "remaining": 2,
+            "score": 0,
+            "phase": "aiming"
+          },
+          {
+            "remaining": 2,
+            "score": 0,
+            "phase": "aiming"
+          }
+        ]
+      },
+      "witness": {
+        "id": "molten-03",
+        "shots": [
+          {
+            "x": -98.97016408015163,
+            "y": 24.676033351166108,
+            "abilityAt": 20
+          }
+        ],
+        "score": 19500,
+        "stars": 3,
+        "peakBodies": 12,
+        "maxSteps": 207
+      },
+      "attempts": 1,
+      "unresolved": 0
+    },
+    {
+      "id": "molten-04",
+      "accepted": true,
+      "idle": {
+        "stable": true,
+        "peak": 7,
+        "maxStructureMotion": 0.388071638614908,
+        "maxTargetMotion": 0.9600673334296534,
+        "missing": [],
+        "remaining": 3,
+        "score": 0
+      },
+      "misses": {
+        "nontrivial": true,
+        "outcomes": [
+          {
+            "remaining": 3,
+            "score": 0,
+            "phase": "aiming"
+          },
+          {
+            "remaining": 3,
+            "score": 0,
+            "phase": "aiming"
+          }
+        ]
+      },
+      "witness": {
+        "id": "molten-04",
+        "shots": [
+          {
+            "x": -93.50100210905761,
+            "y": 40.7622693750238,
+            "abilityAt": null
+          }
+        ],
+        "score": 24000,
+        "stars": 3,
+        "peakBodies": 8,
+        "maxSteps": 550
+      },
+      "attempts": 1,
+      "unresolved": 0
+    },
+    {
+      "id": "molten-05",
+      "accepted": true,
+      "idle": {
+        "stable": true,
+        "peak": 14,
+        "maxStructureMotion": 8.352666212273764,
+        "maxTargetMotion": 5.472372687789195,
+        "missing": [],
+        "remaining": 3,
+        "score": 0
+      },
+      "misses": {
+        "nontrivial": true,
+        "outcomes": [
+          {
+            "remaining": 3,
+            "score": 0,
+            "phase": "aiming"
+          },
+          {
+            "remaining": 3,
+            "score": 0,
+            "phase": "aiming"
+          }
+        ]
+      },
+      "witness": {
+        "id": "molten-05",
+        "shots": [
+          {
+            "x": -96.225855607937,
+            "y": 33.83171164041894,
+            "abilityAt": null
+          }
+        ],
+        "score": 27500,
+        "stars": 3,
+        "peakBodies": 15,
+        "maxSteps": 364
+      },
+      "attempts": 1,
+      "unresolved": 0
+    },
+    {
+      "id": "molten-06",
+      "accepted": true,
+      "idle": {
+        "stable": true,
+        "peak": 16,
+        "maxStructureMotion": 7.697612534051824,
+        "maxTargetMotion": 6.357577699639511,
+        "missing": [],
+        "remaining": 4,
+        "score": 0
+      },
+      "misses": {
+        "nontrivial": true,
+        "outcomes": [
+          {
+            "remaining": 4,
+            "score": 0,
+            "phase": "aiming"
+          },
+          {
+            "remaining": 4,
+            "score": 0,
+            "phase": "aiming"
+          }
+        ]
+      },
+      "witness": {
+        "id": "molten-06",
+        "shots": [
+          {
+            "x": -101.23970746741485,
+            "y": 12.430673027325042,
+            "abilityAt": 20
+          }
+        ],
+        "score": 37100,
+        "stars": 3,
+        "peakBodies": 19,
+        "maxSteps": 545
+      },
+      "attempts": 1,
+      "unresolved": 0
+    },
+    {
+      "id": "molten-07",
+      "accepted": true,
+      "idle": {
+        "stable": true,
+        "peak": 21,
+        "maxStructureMotion": 5.159315680784571,
+        "maxTargetMotion": 3.6829088513435164,
+        "missing": [],
+        "remaining": 4,
+        "score": 0
+      },
+      "misses": {
+        "nontrivial": true,
+        "outcomes": [
+          {
+            "remaining": 4,
+            "score": 0,
+            "phase": "aiming"
+          },
+          {
+            "remaining": 4,
+            "score": 0,
+            "phase": "aiming"
+          }
+        ]
+      },
+      "witness": {
+        "id": "molten-07",
+        "shots": [
+          {
+            "x": -101.965580615815,
+            "y": -2.6495980222918294,
+            "abilityAt": 20
+          }
+        ],
+        "score": 33800,
+        "stars": 3,
+        "peakBodies": 24,
+        "maxSteps": 490
+      },
+      "attempts": 1,
+      "unresolved": 0
+    },
+    {
+      "id": "molten-08",
+      "accepted": true,
+      "idle": {
+        "stable": true,
+        "peak": 33,
+        "maxStructureMotion": 9.973331408696621,
+        "maxTargetMotion": 6.183795798488102,
+        "missing": [],
+        "remaining": 7,
+        "score": 0
+      },
+      "misses": {
+        "nontrivial": true,
+        "outcomes": [
+          {
+            "remaining": 7,
+            "score": 0,
+            "phase": "aiming"
+          },
+          {
+            "remaining": 7,
+            "score": 0,
+            "phase": "aiming"
+          }
+        ]
+      },
+      "witness": {
+        "id": "molten-08",
+        "shots": [
+          {
+            "x": -64.30167749430852,
+            "y": 50.23797638657371,
+            "abilityAt": 35
+          }
+        ],
+        "score": 59300,
+        "stars": 3,
+        "peakBodies": 41,
+        "maxSteps": 398
+      },
+      "attempts": 1,
+      "unresolved": 0
+    },
+    {
+      "id": "molten-09",
+      "accepted": true,
+      "idle": {
+        "stable": true,
+        "peak": 11,
+        "maxStructureMotion": 4.912622193097851,
+        "maxTargetMotion": 4.438934266696183,
+        "missing": [],
+        "remaining": 2,
+        "score": 0
+      },
+      "misses": {
+        "nontrivial": true,
+        "outcomes": [
+          {
+            "remaining": 2,
+            "score": 0,
+            "phase": "aiming"
+          },
+          {
+            "remaining": 2,
+            "score": 0,
+            "phase": "aiming"
+          }
+        ]
+      },
+      "witness": {
+        "id": "molten-09",
+        "shots": [
+          {
+            "x": -35.62784339121802,
+            "y": 95.57539837892826,
+            "abilityAt": null
+          }
+        ],
+        "score": 24100,
+        "stars": 3,
+        "peakBodies": 12,
+        "maxSteps": 402
+      },
+      "attempts": 1,
+      "unresolved": 0
+    },
+    {
+      "id": "molten-10",
+      "accepted": true,
+      "idle": {
+        "stable": true,
+        "peak": 60,
+        "maxStructureMotion": 12.172430580013156,
+        "maxTargetMotion": 9.77013189900299,
+        "missing": [],
+        "remaining": 9,
+        "score": 0
+      },
+      "misses": {
+        "nontrivial": true,
+        "outcomes": [
+          {
+            "remaining": 9,
+            "score": 0,
+            "phase": "aiming"
+          },
+          {
+            "remaining": 9,
+            "score": 0,
+            "phase": "aiming"
+          }
+        ]
+      },
+      "witness": {
+        "id": "molten-10",
+        "shots": [
+          {
+            "x": -94.5749531093949,
+            "y": 38.2044270256178,
+            "abilityAt": 20
+          },
+          {
+            "x": -44.80330671024152,
+            "y": 91.63331112552916,
+            "abilityAt": null
+          },
+          {
+            "x": -90.06065447161055,
+            "y": 47.88609940416086,
+            "abilityAt": 35
+          },
+          {
+            "x": -102,
+            "y": 0,
+            "abilityAt": null
+          }
+        ],
+        "score": 62700,
+        "stars": 3,
+        "peakBodies": 67,
+        "maxSteps": 1008
+      },
+      "attempts": 1,
+      "unresolved": 0
+    },
+    {
+      "id": "haunted-01",
+      "accepted": true,
+      "idle": {
+        "stable": true,
+        "peak": 6,
+        "maxStructureMotion": 0.38807163861751903,
+        "maxTargetMotion": 0.9600673333253925,
+        "missing": [],
+        "remaining": 3,
+        "score": 0
+      },
+      "misses": {
+        "nontrivial": true,
+        "outcomes": [
+          {
+            "remaining": 3,
+            "score": 0,
+            "phase": "aiming"
+          },
+          {
+            "remaining": 3,
+            "score": 0,
+            "phase": "aiming"
+          }
+        ]
+      },
+      "witness": {
+        "id": "haunted-01",
+        "shots": [
+          {
+            "x": -93.39470102570392,
+            "y": 41.00524137618723,
+            "abilityAt": null
+          }
+        ],
+        "score": 24000,
+        "stars": 3,
+        "peakBodies": 7,
+        "maxSteps": 315
+      },
+      "attempts": 1,
+      "unresolved": 0
+    },
+    {
+      "id": "haunted-02",
+      "accepted": true,
+      "idle": {
+        "stable": true,
+        "peak": 5,
+        "maxStructureMotion": 1.3362468078981515,
+        "maxTargetMotion": 0.08341395822264985,
+        "missing": [],
+        "remaining": 1,
+        "score": 0
+      },
+      "misses": {
+        "nontrivial": true,
+        "outcomes": [
+          {
+            "remaining": 1,
+            "score": 0,
+            "phase": "aiming"
+          },
+          {
+            "remaining": 1,
+            "score": 0,
+            "phase": "aiming"
+          }
+        ]
+      },
+      "witness": {
+        "id": "haunted-02",
+        "shots": [
+          {
+            "x": -100.515293047013,
+            "y": 17.34000760302885,
+            "abilityAt": 35
+          }
+        ],
+        "score": 14600,
+        "stars": 3,
+        "peakBodies": 7,
+        "maxSteps": 214
+      },
+      "attempts": 1,
+      "unresolved": 0
+    },
+    {
+      "id": "haunted-03",
+      "accepted": true,
+      "idle": {
+        "stable": true,
+        "peak": 10,
+        "maxStructureMotion": 4.912622193096475,
+        "maxTargetMotion": 147.12883426387526,
+        "missing": [],
+        "remaining": 3,
+        "score": 0
+      },
+      "misses": {
+        "nontrivial": true,
+        "outcomes": [
+          {
+            "remaining": 3,
+            "score": 0,
+            "phase": "aiming"
+          },
+          {
+            "remaining": 3,
+            "score": 0,
+            "phase": "aiming"
+          }
+        ]
+      },
+      "witness": {
+        "id": "haunted-03",
+        "shots": [
+          {
+            "x": -98.97016408015163,
+            "y": 24.676033351166108,
+            "abilityAt": 20
+          },
+          {
+            "x": -40.40419458113627,
+            "y": 93.65629215514394,
+            "abilityAt": 20
+          }
+        ],
+        "score": 23200,
+        "stars": 3,
+        "peakBodies": 18,
+        "maxSteps": 248
+      },
+      "attempts": 1,
+      "unresolved": 0
+    },
+    {
+      "id": "haunted-04",
+      "accepted": true,
+      "idle": {
+        "stable": true,
+        "peak": 9,
+        "maxStructureMotion": 2.058113445592296,
+        "maxTargetMotion": 0.8929827811708019,
+        "missing": [],
+        "remaining": 2,
+        "score": 0
+      },
+      "misses": {
+        "nontrivial": true,
+        "outcomes": [
+          {
+            "remaining": 2,
+            "score": 0,
+            "phase": "aiming"
+          },
+          {
+            "remaining": 2,
+            "score": 0,
+            "phase": "aiming"
+          }
+        ]
+      },
+      "witness": {
+        "id": "haunted-04",
+        "shots": [
+          {
+            "x": -57.699913344822285,
+            "y": 57.69991334482228,
+            "abilityAt": null
+          }
+        ],
+        "score": 24200,
+        "stars": 3,
+        "peakBodies": 15,
+        "maxSteps": 249
+      },
+      "attempts": 1,
+      "unresolved": 0
+    },
+    {
+      "id": "haunted-05",
+      "accepted": true,
+      "idle": {
+        "stable": true,
+        "peak": 30,
+        "maxStructureMotion": 4.764117559714617,
+        "maxTargetMotion": 4.567268563462138,
+        "missing": [],
+        "remaining": 9,
+        "score": 0
+      },
+      "misses": {
+        "nontrivial": true,
+        "outcomes": [
+          {
+            "remaining": 9,
+            "score": 0,
+            "phase": "aiming"
+          },
+          {
+            "remaining": 9,
+            "score": 0,
+            "phase": "aiming"
+          }
+        ]
+      },
+      "witness": {
+        "id": "haunted-05",
+        "shots": [
+          {
+            "x": -100.35309316749056,
+            "y": 18.255319545736842,
+            "abilityAt": null
+          },
+          {
+            "x": -99.88478600160107,
+            "y": 20.664692724895755,
+            "abilityAt": null
+          }
+        ],
+        "score": 58600,
+        "stars": 3,
+        "peakBodies": 51,
+        "maxSteps": 258
+      },
+      "attempts": 1,
+      "unresolved": 0
+    },
+    {
+      "id": "haunted-06",
+      "accepted": true,
+      "idle": {
+        "stable": true,
+        "peak": 10,
+        "maxStructureMotion": 5.159315680789158,
+        "maxTargetMotion": 3.682908851393534,
+        "missing": [],
+        "remaining": 2,
+        "score": 0
+      },
+      "misses": {
+        "nontrivial": true,
+        "outcomes": [
+          {
+            "remaining": 2,
+            "score": 0,
+            "phase": "aiming"
+          },
+          {
+            "remaining": 2,
+            "score": 0,
+            "phase": "aiming"
+          }
+        ]
+      },
+      "witness": {
+        "id": "haunted-06",
+        "shots": [
+          {
+            "x": -99.72432070115201,
+            "y": 21.425682269038322,
+            "abilityAt": 20
+          }
+        ],
+        "score": 20700,
+        "stars": 3,
+        "peakBodies": 14,
+        "maxSteps": 182
+      },
+      "attempts": 1,
+      "unresolved": 0
+    },
+    {
+      "id": "haunted-07",
+      "accepted": true,
+      "idle": {
+        "stable": true,
+        "peak": 18,
+        "maxStructureMotion": 5.159315680782731,
+        "maxTargetMotion": 3.6829088513935395,
+        "missing": [],
+        "remaining": 7,
+        "score": 0
+      },
+      "misses": {
+        "nontrivial": true,
+        "outcomes": [
+          {
+            "remaining": 7,
+            "score": 0,
+            "phase": "aiming"
+          },
+          {
+            "remaining": 7,
+            "score": 0,
+            "phase": "aiming"
+          }
+        ]
+      },
+      "witness": {
+        "id": "haunted-07",
+        "shots": [
+          {
+            "x": -90.06065447161055,
+            "y": 47.88609940416086,
+            "abilityAt": 35
+          },
+          {
+            "x": -72.33938718109708,
+            "y": 56.517723434895416,
+            "abilityAt": null
+          }
+        ],
+        "score": 45700,
+        "stars": 3,
+        "peakBodies": 19,
+        "maxSteps": 605
+      },
+      "attempts": 1,
+      "unresolved": 0
+    },
+    {
+      "id": "haunted-08",
+      "accepted": true,
+      "idle": {
+        "stable": true,
+        "peak": 16,
+        "maxStructureMotion": 11.319746736461383,
+        "maxTargetMotion": 5.652426264843263,
+        "missing": [],
+        "remaining": 4,
+        "score": 0
+      },
+      "misses": {
+        "nontrivial": true,
+        "outcomes": [
+          {
+            "remaining": 4,
+            "score": 0,
+            "phase": "aiming"
+          },
+          {
+            "remaining": 4,
+            "score": 0,
+            "phase": "aiming"
+          }
+        ]
+      },
+      "witness": {
+        "id": "haunted-08",
+        "shots": [
+          {
+            "x": -98.97016408015163,
+            "y": 24.676033351166108,
+            "abilityAt": 35
+          }
+        ],
+        "score": 33800,
+        "stars": 3,
+        "peakBodies": 20,
+        "maxSteps": 232
+      },
+      "attempts": 1,
+      "unresolved": 0
+    },
+    {
+      "id": "haunted-09",
+      "accepted": true,
+      "idle": {
+        "stable": true,
+        "peak": 39,
+        "maxStructureMotion": 5.839694752927127,
+        "maxTargetMotion": 6.145358170862138,
+        "missing": [],
+        "remaining": 8,
+        "score": 0
+      },
+      "misses": {
+        "nontrivial": true,
+        "outcomes": [
+          {
+            "remaining": 8,
+            "score": 0,
+            "phase": "aiming"
+          },
+          {
+            "remaining": 8,
+            "score": 0,
+            "phase": "aiming"
+          }
+        ]
+      },
+      "witness": {
+        "id": "haunted-09",
+        "shots": [
+          {
+            "x": -99.65036322797704,
+            "y": 21.767064766114913,
+            "abilityAt": null
+          },
+          {
+            "x": -90.06065447161055,
+            "y": 47.88609940416086,
+            "abilityAt": null
+          },
+          {
+            "x": -38.42951819545927,
+            "y": 94.48371357681103,
+            "abilityAt": 35
+          }
+        ],
+        "score": 54800,
+        "stars": 3,
+        "peakBodies": 58,
+        "maxSteps": 724
+      },
+      "attempts": 1,
+      "unresolved": 0
+    },
+    {
+      "id": "haunted-10",
+      "accepted": true,
+      "idle": {
+        "stable": true,
+        "peak": 68,
+        "maxStructureMotion": 11.859652389099915,
+        "maxTargetMotion": 9.77013189900299,
+        "missing": [],
+        "remaining": 11,
+        "score": 0
+      },
+      "misses": {
+        "nontrivial": true,
+        "outcomes": [
+          {
+            "remaining": 11,
+            "score": 0,
+            "phase": "aiming"
+          },
+          {
+            "remaining": 11,
+            "score": 0,
+            "phase": "aiming"
+          }
+        ]
+      },
+      "witness": {
+        "id": "haunted-10",
+        "shots": [
+          {
+            "x": -36.96372670960436,
+            "y": 95.06672871061505,
+            "abilityAt": 35
+          },
+          {
+            "x": -49.4703424162514,
+            "y": 89.2002534818082,
+            "abilityAt": null
+          },
+          {
+            "x": -101.35482727375766,
+            "y": 11.454212688209951,
+            "abilityAt": 20
+          },
+          {
+            "x": -90.06065447161055,
+            "y": 47.88609940416086,
+            "abilityAt": null
+          },
+          {
+            "x": -92.92255585807095,
+            "y": 42.064220102168576,
+            "abilityAt": null
+          }
+        ],
+        "score": 70700,
+        "stars": 3,
+        "peakBodies": 100,
+        "maxSteps": 654
+      },
+      "attempts": 1,
+      "unresolved": 0
+    },
+    {
+      "id": "orbital-01",
+      "accepted": true,
+      "idle": {
+        "stable": true,
+        "peak": 8,
+        "maxStructureMotion": 5.720311214320487,
+        "maxTargetMotion": 1.7813798001607488,
+        "missing": [],
+        "remaining": 2,
+        "score": 0
+      },
+      "misses": {
+        "nontrivial": true,
+        "outcomes": [
+          {
+            "remaining": 2,
+            "score": 0,
+            "phase": "aiming"
+          },
+          {
+            "remaining": 2,
+            "score": 0,
+            "phase": "aiming"
+          }
+        ]
+      },
+      "witness": {
+        "id": "orbital-01",
+        "shots": [
+          {
+            "x": -102,
+            "y": 0,
+            "abilityAt": null
+          },
+          {
+            "x": -101.82558369754902,
+            "y": -5.962424393939012,
+            "abilityAt": 35
+          }
+        ],
+        "score": 18300,
+        "stars": 3,
+        "peakBodies": 15,
+        "maxSteps": 379
+      },
+      "attempts": 1,
+      "unresolved": 0
+    },
+    {
+      "id": "orbital-02",
+      "accepted": true,
+      "idle": {
+        "stable": true,
+        "peak": 9,
+        "maxStructureMotion": 5.720311214309431,
+        "maxTargetMotion": 1.78137980013979,
+        "missing": [],
+        "remaining": 2,
+        "score": 0
+      },
+      "misses": {
+        "nontrivial": true,
+        "outcomes": [
+          {
+            "remaining": 2,
+            "score": 0,
+            "phase": "aiming"
+          },
+          {
+            "remaining": 2,
+            "score": 0,
+            "phase": "aiming"
+          }
+        ]
+      },
+      "witness": {
+        "id": "orbital-02",
+        "shots": [
+          {
+            "x": -101.75153312650207,
+            "y": -7.115160321900781,
+            "abilityAt": 35
+          }
+        ],
+        "score": 20200,
+        "stars": 3,
+        "peakBodies": 13,
+        "maxSteps": 281
+      },
+      "attempts": 1,
+      "unresolved": 0
+    },
+    {
+      "id": "orbital-03",
+      "accepted": true,
+      "idle": {
+        "stable": true,
+        "peak": 18,
+        "maxStructureMotion": 5.871188453855853,
+        "maxTargetMotion": 1.7964113316799584,
+        "missing": [],
+        "remaining": 4,
+        "score": 0
+      },
+      "misses": {
+        "nontrivial": true,
+        "outcomes": [
+          {
+            "remaining": 4,
+            "score": 0,
+            "phase": "aiming"
+          },
+          {
+            "remaining": 4,
+            "score": 0,
+            "phase": "aiming"
+          }
+        ]
+      },
+      "witness": {
+        "id": "orbital-03",
+        "shots": [
+          {
+            "x": -101.9996447593552,
+            "y": -0.26920060427711656,
+            "abilityAt": 35
+          },
+          {
+            "x": -43.24141196142953,
+            "y": 69.20072464636438,
+            "abilityAt": 20
+          },
+          {
+            "x": -101.9322137585569,
+            "y": -3.7180368852208714,
+            "abilityAt": 35
+          }
+        ],
+        "score": 27800,
+        "stars": 2,
+        "peakBodies": 23,
+        "maxSteps": 703
+      },
+      "attempts": 1,
+      "unresolved": 0
+    },
+    {
+      "id": "orbital-04",
+      "accepted": true,
+      "idle": {
+        "stable": true,
+        "peak": 12,
+        "maxStructureMotion": 8.603432979186891,
+        "maxTargetMotion": 2.7819973177151636,
+        "missing": [],
+        "remaining": 3,
+        "score": 0
+      },
+      "misses": {
+        "nontrivial": true,
+        "outcomes": [
+          {
+            "remaining": 3,
+            "score": 0,
+            "phase": "aiming"
+          },
+          {
+            "remaining": 3,
+            "score": 0,
+            "phase": "aiming"
+          }
+        ]
+      },
+      "witness": {
+        "id": "orbital-04",
+        "shots": [
+          {
+            "x": -101.56900454585806,
+            "y": 9.366819927993886,
+            "abilityAt": 20
+          },
+          {
+            "x": -101.16917017549518,
+            "y": 12.99226716172724,
+            "abilityAt": 35
+          }
+        ],
+        "score": 26300,
+        "stars": 3,
+        "peakBodies": 18,
+        "maxSteps": 354
+      },
+      "attempts": 1,
+      "unresolved": 0
+    },
+    {
+      "id": "orbital-05",
+      "accepted": true,
+      "idle": {
+        "stable": true,
+        "peak": 7,
+        "maxStructureMotion": 0.19469724965785798,
+        "maxTargetMotion": 0.28310497149655345,
+        "missing": [],
+        "remaining": 3,
+        "score": 0
+      },
+      "misses": {
+        "nontrivial": true,
+        "outcomes": [
+          {
+            "remaining": 3,
+            "score": 0,
+            "phase": "aiming"
+          },
+          {
+            "remaining": 3,
+            "score": 0,
+            "phase": "aiming"
+          }
+        ]
+      },
+      "witness": {
+        "id": "orbital-05",
+        "shots": [
+          {
+            "x": -89.07314767213647,
+            "y": 22.208430016049498,
+            "abilityAt": null
+          },
+          {
+            "x": -102,
+            "y": 0,
+            "abilityAt": null
+          }
+        ],
+        "score": 21000,
+        "stars": 3,
+        "peakBodies": 8,
+        "maxSteps": 363
+      },
+      "attempts": 1,
+      "unresolved": 0
+    },
+    {
+      "id": "orbital-06",
+      "accepted": true,
+      "idle": {
+        "stable": true,
+        "peak": 30,
+        "maxStructureMotion": 8.704635399272114,
+        "maxTargetMotion": 3.3296056448662394,
+        "missing": [],
+        "remaining": 6,
+        "score": 0
+      },
+      "misses": {
+        "nontrivial": true,
+        "outcomes": [
+          {
+            "remaining": 6,
+            "score": 0,
+            "phase": "aiming"
+          },
+          {
+            "remaining": 6,
+            "score": 0,
+            "phase": "aiming"
+          }
+        ]
+      },
+      "witness": {
+        "id": "orbital-06",
+        "shots": [
+          {
+            "x": -101.73274002472373,
+            "y": 7.378997700363788,
+            "abilityAt": 35
+          },
+          {
+            "x": -101.99856409738715,
+            "y": 0.541222755625981,
+            "abilityAt": 20
+          },
+          {
+            "x": -101.9644896874263,
+            "y": 2.6912530135120125,
+            "abilityAt": null
+          }
+        ],
+        "score": 45000,
+        "stars": 3,
+        "peakBodies": 34,
+        "maxSteps": 608
+      },
+      "attempts": 1,
+      "unresolved": 0
+    },
+    {
+      "id": "orbital-07",
+      "accepted": true,
+      "idle": {
+        "stable": true,
+        "peak": 18,
+        "maxStructureMotion": 5.720311214321349,
+        "maxTargetMotion": 2.144015485511819,
+        "missing": [],
+        "remaining": 4,
+        "score": 0
+      },
+      "misses": {
+        "nontrivial": true,
+        "outcomes": [
+          {
+            "remaining": 4,
+            "score": 0,
+            "phase": "aiming"
+          },
+          {
+            "remaining": 4,
+            "score": 0,
+            "phase": "aiming"
+          }
+        ]
+      },
+      "witness": {
+        "id": "orbital-07",
+        "shots": [
+          {
+            "x": -96.28657776250272,
+            "y": 33.65850476158319,
+            "abilityAt": null
+          },
+          {
+            "x": -101.77512630204734,
+            "y": 6.76931800126945,
+            "abilityAt": null
+          }
+        ],
+        "score": 31300,
+        "stars": 3,
+        "peakBodies": 23,
+        "maxSteps": 507
+      },
+      "attempts": 1,
+      "unresolved": 0
+    },
+    {
+      "id": "orbital-08",
+      "accepted": true,
+      "idle": {
+        "stable": true,
+        "peak": 14,
+        "maxStructureMotion": 8.603432979260871,
+        "maxTargetMotion": 2.7819973177140325,
+        "missing": [],
+        "remaining": 3,
+        "score": 0
+      },
+      "misses": {
+        "nontrivial": true,
+        "outcomes": [
+          {
+            "remaining": 3,
+            "score": 0,
+            "phase": "aiming"
+          },
+          {
+            "remaining": 3,
+            "score": 0,
+            "phase": "aiming"
+          }
+        ]
+      },
+      "witness": {
+        "id": "orbital-08",
+        "shots": [
+          {
+            "x": -101.00949564241031,
+            "y": -14.180331098598923,
+            "abilityAt": null
+          }
+        ],
+        "score": 27500,
+        "stars": 3,
+        "peakBodies": 22,
+        "maxSteps": 256
+      },
+      "attempts": 1,
+      "unresolved": 0
+    },
+    {
+      "id": "orbital-09",
+      "accepted": true,
+      "idle": {
+        "stable": true,
+        "peak": 14,
+        "maxStructureMotion": 9.70925742604216,
+        "maxTargetMotion": 3.3717551001687576,
+        "missing": [],
+        "remaining": 3,
+        "score": 0
+      },
+      "misses": {
+        "nontrivial": true,
+        "outcomes": [
+          {
+            "remaining": 3,
+            "score": 0,
+            "phase": "aiming"
+          },
+          {
+            "remaining": 3,
+            "score": 0,
+            "phase": "aiming"
+          }
+        ]
+      },
+      "witness": {
+        "id": "orbital-09",
+        "shots": [
+          {
+            "x": -101.23970746741485,
+            "y": 12.430673027325042,
+            "abilityAt": 20
+          },
+          {
+            "x": -101.8079071438221,
+            "y": 6.256999520129184,
+            "abilityAt": 35
+          }
+        ],
+        "score": 26400,
+        "stars": 3,
+        "peakBodies": 23,
+        "maxSteps": 364
+      },
+      "attempts": 1,
+      "unresolved": 0
+    },
+    {
+      "id": "orbital-10",
+      "accepted": true,
+      "idle": {
+        "stable": true,
+        "peak": 56,
+        "maxStructureMotion": 5.718113391499969,
+        "maxTargetMotion": 4.668309463567885,
+        "missing": [],
+        "remaining": 12,
+        "score": 0
+      },
+      "misses": {
+        "nontrivial": true,
+        "outcomes": [
+          {
+            "remaining": 12,
+            "score": 0,
+            "phase": "aiming"
+          },
+          {
+            "remaining": 12,
+            "score": 0,
+            "phase": "aiming"
+          }
+        ]
+      },
+      "witness": {
+        "id": "orbital-10",
+        "shots": [
+          {
+            "x": -94.57275316581232,
+            "y": 38.20987252842303,
+            "abilityAt": null
+          },
+          {
+            "x": -101.123776996028,
+            "y": 13.340979201602808,
+            "abilityAt": null
+          },
+          {
+            "x": -101.23970746741485,
+            "y": 12.430673027325042,
+            "abilityAt": 20
+          },
+          {
+            "x": -100.99098584365356,
+            "y": -14.311561002454102,
+            "abilityAt": null
+          },
+          {
+            "x": -101.23970746741485,
+            "y": 12.430673027325042,
+            "abilityAt": null
+          },
+          {
+            "x": -94.57275316581232,
+            "y": 38.20987252842303,
+            "abilityAt": null
+          },
+          {
+            "x": -101.82695204164995,
+            "y": -5.939009842349376,
+            "abilityAt": null
+          },
+          {
+            "x": -94.57275316581232,
+            "y": 38.20987252842303,
+            "abilityAt": 50
+          }
+        ],
+        "score": 68800,
+        "stars": 2,
+        "peakBodies": 78,
+        "maxSteps": 754
+      },
+      "attempts": 1,
+      "unresolved": 0
+    }
+  ]
+}

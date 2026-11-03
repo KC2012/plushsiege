@@ -1,18 +1,18 @@
 # Architecture
 
-The current game uses TypeScript, Phaser 3.90 for rendering/input, Matter.js 0.20 for rigid bodies, and Vite for development and production builds. The simulation is independent of Phaser so campaign audits and physics tests exercise the same rules as browser play. There is no backend.
+The current game uses TypeScript, Phaser 3.90 for rendering/input, Matter.js 0.20 for rigid bodies, and Vite for development and production builds. The simulation is independent of Phaser so campaign audits and physics tests exercise the same rules as browser play. There is no backend. The current release is described in [Pass 4](pass-4-report.md).
 
 ## Modules
 
 | Area | Files | Responsibility |
 | --- | --- | --- |
-| Simulation | `src/game/physics.ts`, `damage.ts` | Matter world, support-aware sleeping/waking, unified damage, turn resolution, abilities, explosions, scoring and win/fail state |
+| Simulation | `src/game/physics.ts`, `damage.ts`, `world-physics.ts` | Matter world, support-aware sleeping/waking, unified damage, turn resolution, abilities, explosions, scoring and win/fail state |
 | Definitions | `src/game/types.ts`, `config.ts` | Portable content types, material properties, stuffie stats and physics constants |
-| Scene | `src/game/scene.ts` | Fixed-step accumulator, aiming input, rendering, camera feedback and event routing |
-| Artwork | `src/game/art.ts`, `src/ui/icons.ts` | Original procedural countryside, plushes, monsters, materials and menu portraits |
-| Feedback | `src/game/effects.ts`, `audio.ts` | Bounded particles and Web Audio effects unlocked by interaction |
+| Scene | `src/game/scene.ts` | Fixed-step accumulator, aiming input, rendering, camera rig (`camera.ts`), culling and event routing |
+| Artwork | `src/game/art.ts`, `src/ui/icons.ts` | Five original world geometries, plushes, monsters, materials and menu portraits |
+| Feedback | `src/game/effects.ts`, `audio.ts`, `music.ts` | Bounded particles and Web Audio effects unlocked by interaction |
 | Persistence | `src/game/save.ts` | Versioned local scores/settings; best scores and stars never regress |
-| Content | `src/content/campaign.json`, `campaign.ts` | 24 authored level definitions and initial world metadata |
+| Content | `src/content/campaign.json`, `campaign.ts` | Original 24-level introduction, accepted expansion JSON, templates/generator, and five world registries |
 | Themes | `src/content/themes.ts` | Extensible environment palette registry with a countryside default |
 | Validation | `src/content/validate.ts`, `level.schema.json` | Runtime validation of imported content, plus portable JSON Schema |
 | Workshop | `src/editor/editor.ts`, `editor.css` | SVG authoring surface, selection, transforms, history, queue editing, JSON I/O and playtest callback |
@@ -38,11 +38,11 @@ A new `Simulation` implements restart; disposing the previous simulation clears 
 
 ## Content and authoring
 
-Level JSON uses format `version: 1` and includes an ID, display text, world ID, bounds/ground, sling, projectile queue, blocks, monsters, TNT hazards, score thresholds, and optional par/tutorial metadata. Coordinates are world pixels; positive Y points down. Block angles are **radians** in JSON and **degrees** in workshop controls. The current renderer and workshop are designed around 1440 × 810 with ground Y=675.
+Level JSON uses format `version: 1` and includes an ID, display text, world ID, bounds/ground, sling, projectile queue, blocks, monsters, TNT hazards, score thresholds, and optional par/tutorial metadata. Coordinates are world pixels; positive Y points down. Block angles are **radians** in JSON and **degrees** in workshop controls. The rendering viewport is 1440 × 810, independently scaled to the browser. Levels can extend to 10,000 × 5,000 world pixels; camera inspection does not change simulation coordinates.
 
 `validateLevel(unknown)` checks shape, finite numbers, supported types, bounds, unique IDs, score ordering, and overlaps. Rotated rectangles use separating axes; circle/rectangle and circle/circle cases use geometric intersection tests. A small tolerance allows flush structural contact. JSON Schema documents the format; runtime checks also enforce cross-object geometric constraints.
 
-Keep accepted campaign levels in `campaign.json`, then run both the campaign audit and human playtests. The stability audit measures peak displacement and rotation against authored coordinates, including initial-frame motion. The headless beam search samples pull strengths, launch angles and ability timings using the actual game simulator. It replays prior shots while finding a sequence and records successful solutions. This is reproducible evidence of solvability, not a difficulty or quality oracle.
+Keep the original introduction in `campaign.json` and promote new candidates into `expansion/accepted.json`, then run both the campaign audit and human playtests. The stability audit measures peak displacement and rotation against authored coordinates, including initial-frame motion. The headless beam search samples pull strengths, launch angles and ability timings using the actual game simulator. It replays prior shots while finding a sequence and records successful solutions. This is reproducible evidence of solvability, not a difficulty or quality oracle.
 
 The workshop calls a playtest callback with a structured clone and returns a cleanup function. Its authoring state is separate from the running simulation. Imported files are validated before use; unfinished local drafts have a narrow recovery path so work can be resumed. Exported JSON has the same format as campaign levels.
 
@@ -50,9 +50,9 @@ The workshop calls a playtest callback with a structured clone and returns a cle
 
 - **Stuffies:** Extend the `StuffieKind` union, config, ability dispatch, character renderer, UI portrait and workshop roster. Keep gameplay stats separate from appearance and animation tuning.
 - **Materials:** Extend `MaterialKind`, config, validation/schema and material rendering; add characteristic audio/particle treatment and collision tests.
-- **Worlds:** Register a reviewed `EnvironmentTheme` with `registerTheme()` in `src/content/themes.ts`. `getTheme(level.world)` resolves sky, sun, clouds, hills, foliage, terrain and decoration colors; unknown IDs fall back to countryside. The read-only `themes` registry has no fixed world cap and supports 15 or more palettes without physics changes. Only countryside ships today. Additional biome geometry and a multi-world selector remain future work; no world roster is finalized.
+- **Worlds:** Register a reviewed `EnvironmentTheme` with `registerTheme()` in `src/content/themes.ts`. `getTheme(level.world)` resolves sky, sun, clouds, hills, foliage, terrain and decoration colors; unknown IDs fall back to countryside. The read-only `themes` registry has no fixed world cap and supports 15 or more palettes without physics changes. Five worlds ship with separate background geometry, music, maps and environmental mechanics.
 - **Levels:** Add validated JSON with deliberate challenge progression. The data format does not impose a 600-level limit; future content should be indexed/lazy-loaded by world rather than repeatedly inflating startup work.
-- **Mechanisms:** Matter supports compound bodies and constraints, but rope, joints, moving structures and their authoring controls are not implemented in this slice. Introduce explicit versioned data for these rather than special-casing campaign IDs.
+- **Mechanisms:** Optional v1 data defines ropes, hinges, springs, break forces, motors, moving platforms, vents and removal-triggered actuators. Terrain, boulders and planetoids are real bodies. Zones define ice, heat, lava, vector gravity, radial fields and zero gravity; rectangles use center coordinates. Joints use local anchors when attached to bodies, world anchors otherwise. Later overlapping gravity zones take precedence, so put broad fields before local wells.
 - **Art and motion:** `art.ts` uses a shared immediate-mode drawing layer and transformed local geometry. The scene caches the static background for the current level world rather than regenerating its scenery geometry every frame; changing the loaded world refreshes that drawing. Background drawing also accepts a time parameter if animated scenery is added later. Expressions, blinking, stretch and rare sinister flashes are cosmetic. Replace or supplement artwork without changing collision rules.
 - **Persistence:** The local save has a version tag. Add migrations before changing its structure; never assume local storage is available or permanent.
 
@@ -63,3 +63,11 @@ Vite bundles all runtime dependencies and content. Its offline plugin writes a c
 ## Graphic asset pipeline
 
 All game artwork uses a shared local-coordinate vector painter (`Pen`) and a common ink/palette language. Characters retain plush patches/stitches while using bold silhouettes and expressive faces. The countryside is geometric and quieter than the outlined gameplay bodies; cached background textures avoid repainting scenery every frame. Blocks and fractured pieces use their live rigid-body transform. SVG UI portraits share palettes and original designs; install icons are rasterized from the new sheep portrait. No external artwork or show assets are bundled.
+
+## Expansion limits and lifecycle
+
+The hard budget is 240 physical entities, 72 fragments and 140 cosmetic particles. Offscreen bodies continue simulating. A periodic platform may finish a turn while a monster remains safely in actual support contact; a dislodged rider still defers resolution. Space victory may settle after all targets are defeated. Isolated spent space projectiles fade after 30 seconds only when clear of supports, nearby bodies and constraints. Ordinary moving-target resolution retains the uncapped meaningful-motion rule.
+
+Heat affects vulnerable materials after launch; lava applies continuous contact damage. Vents apply force to bodies, motors drive real hinged bodies, and triggers activate only when their referenced body is removed. No level-specific monster deaths are scripted. Trajectory previews sample the same local acceleration field as live flight.
+
+Audio uses original composed motifs, a look-ahead scheduler, reused noise, and a 36-voice cap. Menu audio resumes after physics is paused; active gameplay, settings and background visibility share an explicit pause lifecycle. The existing version-1 save key is preserved, with clamped optional music/effects gain fields.

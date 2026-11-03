@@ -1,0 +1,16 @@
+{
+  "id": "frozen-10",
+  "shots": [
+    {
+      "x": -98.80230109307172,
+      "y": 25.339796737819295,
+      "abilityAt": 20
+    },
+    {
+      "x": -98.97016408015163,
+      "y": 24.676033351166108,
+      "abilityAt": null
+    }
+  ],
+  "note": "Browser real-engine route. Small collision differences from Node may require a follow-up shot."
+}

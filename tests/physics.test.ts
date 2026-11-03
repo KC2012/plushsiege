@@ -2,7 +2,7 @@ import { test } from 'node:test';
 import assert from 'node:assert/strict';
 import Matter from 'matter-js';
 import { Simulation } from '../src/game/physics';
-import { campaign } from '../src/content/campaign';
+import { introCampaign as campaign } from '../src/content/campaign';
 import { PHYSICS, MATERIALS, STUFFIES } from '../src/game/config';
 import type { Level, MaterialKind, StuffieKind } from '../src/game/types';
 const run = (s: Simulation, n = 1400) => {

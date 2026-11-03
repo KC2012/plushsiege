@@ -7,7 +7,7 @@ const browser = await chromium.launch({
     process.env.CHROMIUM_PATH ||
     (existsSync('/usr/bin/chromium') ? '/usr/bin/chromium' : undefined),
   headless: true,
-  args: ['--no-sandbox'],
+  args: ['--no-sandbox', '--disable-dev-shm-usage', ...(process.env.CANVAS_CI ? ['--disable-webgl'] : [])],
 });
 let checks = 0;
 const check = (name, value) => {
