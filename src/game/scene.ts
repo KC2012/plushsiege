@@ -41,6 +41,17 @@ export class SiegeScene extends Phaser.Scene {
   private reactions = new Map<number, number>();
   private trails: { x: number; y: number; at: number; color: number }[] = [];
   private trailAt = 0;
+  /** Coordinates passed to the real monster painter, for visual/physics regression inspection. */
+  renderedMonsters: { id: string; x: number; y: number; angle: number; healthRatio: number }[] = [];
+  private monsterLooks = new Map<number, { kind: string; radius: number; angle: number }>();
+  private monsterGhosts: {
+    x: number;
+    y: number;
+    kind: string;
+    radius: number;
+    angle: number;
+    at: number;
+  }[] = [];
   constructor() {
     super('siege');
   }
@@ -147,6 +158,9 @@ export class SiegeScene extends Phaser.Scene {
     this.accumulator = 0;
     this.effects.clear();
     this.reactions.clear();
+    this.renderedMonsters = [];
+    this.monsterLooks.clear();
+    this.monsterGhosts = [];
     this.trails = [];
     this.abilityUntil = 0;
     this.evilUntil = 0;
@@ -166,6 +180,14 @@ export class SiegeScene extends Phaser.Scene {
         this.accumulator -= PHYSICS.step;
       }
       for (const e of sim.drainEvents()) {
+        if ((e.type === 'impact' || (e.type as string) === 'damage') && e.bodyId !== undefined)
+          this.reactions.set(e.bodyId, this.elapsed);
+        if (e.type === 'monster' && e.bodyId !== undefined) {
+          const look = this.monsterLooks.get(e.bodyId);
+          if (look && !this.reducedMotion)
+            this.monsterGhosts.push({ ...look, x: e.x, y: e.y, at: this.elapsed });
+          this.monsterLooks.delete(e.bodyId);
+        }
         if (e.type === 'impact' && e.projectileId !== undefined)
           this.reactions.set(e.projectileId, this.elapsed);
         if (e.type === 'ability') {
@@ -182,7 +204,8 @@ export class SiegeScene extends Phaser.Scene {
             if (Math.random() < evil.chance) this.evilUntil = this.elapsed + evil.duration;
           }
         }
-        this.audio.play(e.type, e.material);
+        if ((e.type as string) === 'damage') this.audio.play('impact', e.material);
+        else this.audio.play(e.type, e.material);
       }
       const state = `${sim.phase}:${sim.score}:${sim.shots}:${sim.remainingMonsters}:${sim.abilityUsed}:${sim.canActivate}`;
       if (state !== this.lastState) {
@@ -196,6 +219,7 @@ export class SiegeScene extends Phaser.Scene {
     }
     const g = this.objects;
     g.clear();
+    this.renderedMonsters = [];
     this.trails = this.trails.filter((p) => this.elapsed - p.at < 300);
     if (!this.reducedMotion && this.mode === 'play') {
       if (this.elapsed - this.trailAt > 30 && !this.paused) {
@@ -206,7 +230,7 @@ export class SiegeScene extends Phaser.Scene {
               x: e.body.position.x,
               y: e.body.position.y,
               at: this.elapsed,
-              color: e.kind === 'duck' ? 0xf4ca4f : e.kind === 'rabbit' ? 0xdab5d5 : 0xf5e5bd,
+              color: e.kind === 'duck' ? 0xffd44e : e.kind === 'rabbit' ? 0xc29aee : 0xfff2ce,
             });
           }
         this.trails = this.trails.slice(-30);
@@ -224,25 +248,39 @@ export class SiegeScene extends Phaser.Scene {
           { ...(e.def as BlockDef), x: p.x, y: p.y, angle: e.body.angle },
           e.health / e.maxHealth,
         );
-      if (e.type === 'monster')
-        drawMonster(
-          g,
-          p.x,
+      if (e.type === 'monster') {
+        const d = e.def as MonsterDef,
+          r = d.radius || 18;
+        const renderY =
           p.y +
-            (this.mode === 'home' && !this.reducedMotion
-              ? Math.sin(this.elapsed / 650 + p.x) * 1.5
-              : 0),
-          (e.def as MonsterDef).radius || 18,
-          (e.def as MonsterDef).kind,
-          e.body.angle,
-          e.body.speed > 0.4 ||
-            [...sim.entities.values()].some(
-              (other) =>
-                other.type !== 'monster' &&
-                other.body.speed > 2 &&
-                Math.hypot(other.body.position.x - p.x, other.body.position.y - p.y) < 160,
-            ),
+          (this.mode === 'home' && !this.reducedMotion
+            ? Math.sin(this.elapsed / 650 + p.x) * 1.5
+            : 0);
+        const hit = this.elapsed - (this.reactions.get(e.body.id) || -10000) < 250;
+        const danger = [...sim.entities.values()].some(
+          (other) =>
+            other.type !== 'monster' &&
+            other.body.speed > 2 &&
+            Math.hypot(other.body.position.x - p.x, other.body.position.y - p.y) < 160,
         );
+        drawMonster(g, p.x, renderY, r, d.kind, e.body.angle, danger, {
+          falling: !e.body.isSleeping && e.body.velocity.y > 1.2,
+          hit,
+          healthRatio: Math.max(0, e.health / e.maxHealth),
+        });
+        this.renderedMonsters.push({
+          id: e.id,
+          x: p.x,
+          y: renderY,
+          angle: e.body.angle,
+          healthRatio: e.health / e.maxHealth,
+        });
+        this.monsterLooks.set(e.body.id, {
+          kind: d.kind || 'horn',
+          radius: r,
+          angle: e.body.angle,
+        });
+      }
       if (e.type === 'tnt') drawHazard(g, p.x, p.y, e.body.angle);
       if (e.type === 'projectile')
         drawStuffie(g, p.x, p.y, e.body.circleRadius || 23, e.kind!, e.body.angle, {
@@ -256,8 +294,23 @@ export class SiegeScene extends Phaser.Scene {
                 ? 0.12
                 : 0,
           celebrate: sim.phase === 'won',
+          impact: this.elapsed - (this.reactions.get(e.body.id) || -10000) < 140,
           blink: Math.sin(this.elapsed / 330) > 0.995,
         });
+    }
+    this.monsterGhosts = this.monsterGhosts.filter((m) => this.elapsed - m.at < 220).slice(-20);
+    for (const m of this.monsterGhosts) {
+      const age = (this.elapsed - m.at) / 220;
+      drawMonster(
+        g,
+        m.x,
+        m.y - age * 15,
+        m.radius * (1 - age * 0.7),
+        m.kind,
+        m.angle + age * 0.4,
+        false,
+        { defeated: true },
+      );
     }
     const anchor = sim.level.sling;
     if (this.mode === 'home') {
@@ -286,9 +339,9 @@ export class SiegeScene extends Phaser.Scene {
         [825, 432],
         [1130, 405],
       ]) {
-        g.lineStyle(3, 0x795d55);
+        g.lineStyle(4, 0x242139);
         g.lineBetween(x, y + 5, x, y - 60);
-        g.fillStyle(0xa06c91);
+        g.fillStyle(0xff765c);
         g.fillTriangle(x, y - 60, x + 45, y - 48 + Math.sin(idle / 700) * 3, x, y - 35);
       }
       // A few lightweight ambient sprites over the cached countryside, never a redraw of the scenery.
@@ -296,7 +349,7 @@ export class SiegeScene extends Phaser.Scene {
         for (let i = 0; i < 3; i++) {
           const x = 320 + i * 360 + Math.sin(idle / 3500 + i) * 24,
             y = 390 + Math.sin(idle / 1900 + i) * 25;
-          g.fillStyle(i % 2 ? 0xe8b656 : 0xdab7dc, 0.7);
+          g.fillStyle(i % 2 ? 0xffd44e : 0x965fea, 0.7);
           g.fillEllipse(x - 3, y, 7, Math.abs(Math.sin(idle / 140)) * 9 + 2);
           g.fillEllipse(x + 3, y, 7, Math.abs(Math.sin(idle / 140)) * 9 + 2);
         }
@@ -327,12 +380,12 @@ export class SiegeScene extends Phaser.Scene {
           x += vx;
           y += vy;
           if (i % 5 === 0 && y < 675) {
-            g.fillStyle(0x355c53, Math.max(0.08, 0.55 - i / 200));
+            g.fillStyle(0x242139, Math.max(0.08, 0.55 - i / 200));
             g.fillCircle(x, y, 4 - i * 0.025);
           }
           if (y > 700) break;
         }
-        g.lineStyle(1, 0x50796b, 0.18);
+        g.lineStyle(1, 0x242139, 0.18);
         g.strokeCircle(anchor.x, anchor.y, PHYSICS.maxPull);
       }
     }
@@ -343,11 +396,11 @@ export class SiegeScene extends Phaser.Scene {
       g.lineStyle(
         3,
         kind === 'duck'
-          ? 0xf5cc4f
+          ? 0xffd44e
           : kind === 'rabbit'
-            ? 0xd6acd6
+            ? 0xc29aee
             : kind === 'bear'
-              ? 0xbd8256
+              ? 0xdf9253
               : 0xffedc3,
         fade,
       );

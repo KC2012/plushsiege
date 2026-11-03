@@ -4,7 +4,7 @@ Little plushes. Big trouble.
 
 A self-contained browser slingshot game about four stuffed animals and some very wobbly monster castles. This first playable slice contains **24 authored countryside levels**, destructible wood, glass and stone, explosive chain reactions, local progress, and a visual level workshop. It uses original procedural artwork and synthesized audio; ordinary play needs no account, API, CDN, or game server.
 
-> Current release: **0.2.0 — Physics and gameplay feel**. See [Pass 2 report](docs/pass-2-report.md) for the changes and verification.
+> Current release: **0.3.0 — Monster physics and graphic cartoon overhaul**. See [Pass 3 report](docs/pass-3-report.md) for the changes and verification.
 
 ## Run locally
 
@@ -47,6 +47,12 @@ The title screen opens the illustrated Level map, which shows eight numbered lev
 
 Monsters award 5,000 points; broken wood 500, glass 600, stone 800; TNT 1,000; each unused stuffie 3,000. Completion earns at least one star; each level defines the higher score thresholds. Best scores and stars are stored on this browser/device, alongside settings. Browser storage restrictions can prevent persistence; there is no cloud save.
 
+## Physics lab
+
+While the dev or production server is running, open `/physics-lab.html` on that same server. Select one of eleven deterministic rigs, then Run, Pause, Step, or Reset. The body overlay, live position/rotation, sleep state, health, damage source and outcome show the actual game simulation. The lab includes support loss, falling stone/wood, monster falls, push-off, chain reactions, explosions, harmless contact, stable rest, and meaningful crushing. It is also included in the offline build.
+
+[GAMEPLAY_RULES.md](GAMEPLAY_RULES.md) separates reference behavior from our implementation choices and documents the reference-access limitation. Existing scores/settings remain compatible; no save migration is required.
+
 ## The workshop
 
 Open **The workshop** from the home screen, or **Build your own** from level selection.
@@ -73,6 +79,8 @@ With `npm run dev` running in a separate terminal:
 npm run test:browser # Integrated game navigation, input, scoring and other browser checks
 npm run test:editor  # Editing, drag, undo/redo, draft/import/export and validation checks
 npm run test:destruction # Rendered physical collapse/fragment and ability-input regressions
+npm run test:monsters # Eleven rendered monster rigs and body/sprite synchronization
+npm run test:presentation # Four responsive layouts (defaults to production preview)
 ```
 
 The browser scripts use the pinned Playwright development dependency and headless Chromium. The cloud image supplies `/usr/bin/chromium`; on another machine install the browser once:
@@ -93,4 +101,4 @@ npm run test:offline
 
 Production builds generate a service worker that caches the built shell, scripts, campaign and artwork code. Use HTTPS (or localhost), load the production app online once, allow the worker to activate, then reload before testing offline. Supported browsers can install it as a PWA; on iPad use Safari's **Add to Home Screen**. Development mode deliberately does not register the worker. Installation UX and persistence on a physical iPad still need checking.
 
-See [Pass 2 report](docs/pass-2-report.md), [architecture](docs/architecture.md) for extension points and [development report](docs/development-report.md) for verification evidence, limitations, and the next milestone. Dependency license notices remain with their packages: Phaser is MIT-licensed and Matter.js is MIT-licensed.
+See [Pass 3 report](docs/pass-3-report.md), [gameplay rules](GAMEPLAY_RULES.md), [architecture](docs/architecture.md) for extension points and [development report](docs/development-report.md) for verification evidence, limitations, and the next milestone. Dependency license notices remain with their packages: Phaser is MIT-licensed and Matter.js is MIT-licensed.

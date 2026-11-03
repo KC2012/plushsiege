@@ -1,0 +1,729 @@
+{
+  "generatedAt": "2026-11-03T09:27:58.074Z",
+  "checks": 36,
+  "errors": [],
+  "observations": [
+    {
+      "material": "wood",
+      "before": {
+        "time": 966.6666666666658,
+        "phase": "flying",
+        "abilityUsed": false,
+        "canActivate": true,
+        "shots": 1,
+        "entities": [
+          {
+            "id": "support",
+            "type": "block",
+            "material": "wood",
+            "x": 800.1763719154891,
+            "y": 600.0816285475238,
+            "angle": 0.0022456756629430567,
+            "speed": 0,
+            "health": 38,
+            "maxHealth": 38,
+            "sleeping": true
+          },
+          {
+            "id": "spectator",
+            "type": "monster",
+            "x": 1300,
+            "y": 657.0834139582226,
+            "angle": 0,
+            "speed": 0,
+            "health": 3.5,
+            "maxHealth": 3.5,
+            "sleeping": true
+          },
+          {
+            "id": "shot-0",
+            "type": "projectile",
+            "x": 541.5142524550548,
+            "y": 536.1014042047095,
+            "angle": 0.8553886115024802,
+            "speed": 17.998984259484224,
+            "health": 999,
+            "maxHealth": 999,
+            "sleeping": false
+          }
+        ]
+      },
+      "intact": {
+        "time": 1233.3333333333333,
+        "phase": "flying",
+        "abilityUsed": false,
+        "canActivate": false,
+        "shots": 1,
+        "entities": [
+          {
+            "id": "support",
+            "type": "block",
+            "material": "wood",
+            "x": 837.1757093444974,
+            "y": 598.5623593880287,
+            "angle": 0.11973245120680448,
+            "speed": 5.9619148489355975,
+            "health": -25.507232524528415,
+            "maxHealth": 38,
+            "fractureAt": 1283.333333333333,
+            "sleeping": false
+          },
+          {
+            "id": "spectator",
+            "type": "monster",
+            "x": 1300,
+            "y": 657.0834139582226,
+            "angle": 0,
+            "speed": 0,
+            "health": 3.5,
+            "maxHealth": 3.5,
+            "sleeping": true
+          },
+          {
+            "id": "shot-0",
+            "type": "projectile",
+            "x": 791.0386973792259,
+            "y": 606.435512978351,
+            "angle": 1.4260743368340252,
+            "speed": 9.225647590432127,
+            "health": 999,
+            "maxHealth": 999,
+            "sleeping": false
+          }
+        ]
+      },
+      "fractured": {
+        "time": 1283.3333333333335,
+        "phase": "flying",
+        "abilityUsed": false,
+        "canActivate": false,
+        "shots": 1,
+        "entities": [
+          {
+            "id": "spectator",
+            "type": "monster",
+            "x": 1300,
+            "y": 657.0834139582226,
+            "angle": 0,
+            "speed": 0,
+            "health": 3.5,
+            "maxHealth": 3.5,
+            "sleeping": true
+          },
+          {
+            "id": "shot-0",
+            "type": "projectile",
+            "x": 814.1508630147882,
+            "y": 620.6390279323941,
+            "angle": 1.3575201663134677,
+            "speed": 6.628387408979098,
+            "health": 999,
+            "maxHealth": 999,
+            "sleeping": false
+          },
+          {
+            "id": "support:f0",
+            "parentId": "support",
+            "type": "fragment",
+            "material": "wood",
+            "x": 871.0007549041585,
+            "y": 562.9248440267917,
+            "angle": 0.2953732422308564,
+            "speed": 10.703949663021804,
+            "health": 17.1,
+            "maxHealth": 17.1,
+            "sleeping": false
+          },
+          {
+            "id": "support:f1",
+            "parentId": "support",
+            "type": "fragment",
+            "material": "wood",
+            "x": 849.1684837419092,
+            "y": 634.6768609733418,
+            "angle": 0.2953732422308564,
+            "speed": 7.81237076470462,
+            "health": 17.1,
+            "maxHealth": 17.1,
+            "sleeping": false
+          }
+        ]
+      },
+      "later": {
+        "time": 1333.3333333333337,
+        "phase": "flying",
+        "abilityUsed": false,
+        "canActivate": false,
+        "shots": 1,
+        "entities": [
+          {
+            "id": "spectator",
+            "type": "monster",
+            "x": 1300,
+            "y": 657.0834139582226,
+            "angle": 0,
+            "speed": 0,
+            "health": 3.5,
+            "maxHealth": 3.5,
+            "sleeping": true
+          },
+          {
+            "id": "shot-0",
+            "type": "projectile",
+            "x": 827.7414582165486,
+            "y": 628.427061176657,
+            "angle": 1.186820282493746,
+            "speed": 3.352284094403002,
+            "health": 999,
+            "maxHealth": 999,
+            "sleeping": false
+          },
+          {
+            "id": "support:f0",
+            "parentId": "support",
+            "type": "fragment",
+            "material": "wood",
+            "x": 902.956282173073,
+            "y": 569.1829051979694,
+            "angle": 0.42185550668223953,
+            "speed": 10.914958794236647,
+            "health": 17.1,
+            "maxHealth": 17.1,
+            "sleeping": false
+          },
+          {
+            "id": "support:f1",
+            "parentId": "support",
+            "type": "fragment",
+            "material": "wood",
+            "x": 867.1360009074004,
+            "y": 635.4548148043654,
+            "angle": 0.5085136008621555,
+            "speed": 5.198834942330639,
+            "health": 13.956150754385064,
+            "maxHealth": 17.1,
+            "sleeping": false
+          }
+        ]
+      }
+    },
+    {
+      "material": "glass",
+      "before": {
+        "time": 2549.999999999999,
+        "phase": "flying",
+        "abilityUsed": false,
+        "canActivate": true,
+        "shots": 1,
+        "entities": [
+          {
+            "id": "support",
+            "type": "block",
+            "material": "glass",
+            "x": 800.1597807366292,
+            "y": 600.084564227026,
+            "angle": 0.002452761435152896,
+            "speed": 0,
+            "health": 9,
+            "maxHealth": 9,
+            "sleeping": true
+          },
+          {
+            "id": "spectator",
+            "type": "monster",
+            "x": 1300,
+            "y": 657.0834139582226,
+            "angle": 0,
+            "speed": 0,
+            "health": 3.5,
+            "maxHealth": 3.5,
+            "sleeping": true
+          },
+          {
+            "id": "shot-0",
+            "type": "projectile",
+            "x": 577.0632029735076,
+            "y": 542.0630616605328,
+            "angle": 0.9545949850423489,
+            "speed": 18.032671143653072,
+            "health": 999,
+            "maxHealth": 999,
+            "sleeping": false
+          }
+        ]
+      },
+      "intact": {
+        "time": 2816.6666666666633,
+        "phase": "flying",
+        "abilityUsed": false,
+        "canActivate": false,
+        "shots": 1,
+        "entities": [
+          {
+            "id": "support",
+            "type": "block",
+            "material": "glass",
+            "x": 862.4093191578519,
+            "y": 598.3583666393774,
+            "angle": 0.274387696812194,
+            "speed": 12.201991955073032,
+            "health": -45.205452817847316,
+            "maxHealth": 9,
+            "fractureAt": 2833.3333333333308,
+            "sleeping": false
+          },
+          {
+            "id": "spectator",
+            "type": "monster",
+            "x": 1300,
+            "y": 657.0834139582226,
+            "angle": 0,
+            "speed": 0,
+            "health": 3.5,
+            "maxHealth": 3.5,
+            "sleeping": true
+          },
+          {
+            "id": "shot-0",
+            "type": "projectile",
+            "x": 816.5485390372108,
+            "y": 622.4457935374949,
+            "angle": 1.5507730624382166,
+            "speed": 9.080484425693193,
+            "health": 999,
+            "maxHealth": 999,
+            "sleeping": false
+          }
+        ]
+      },
+      "fractured": {
+        "time": 2883.3333333333294,
+        "phase": "flying",
+        "abilityUsed": false,
+        "canActivate": false,
+        "shots": 1,
+        "entities": [
+          {
+            "id": "spectator",
+            "type": "monster",
+            "x": 1300,
+            "y": 657.0834139582226,
+            "angle": 0,
+            "speed": 0,
+            "health": 3.5,
+            "maxHealth": 3.5,
+            "sleeping": true
+          },
+          {
+            "id": "shot-0",
+            "type": "projectile",
+            "x": 841.9081690212374,
+            "y": 637.8520074706792,
+            "angle": 1.4603620002056232,
+            "speed": 5.963759854088972,
+            "health": 999,
+            "maxHealth": 999,
+            "sleeping": false
+          },
+          {
+            "id": "support:f0",
+            "parentId": "support",
+            "type": "fragment",
+            "material": "glass",
+            "x": 932.0334374502131,
+            "y": 562.2759398163947,
+            "angle": 0.49560787116064703,
+            "speed": 13.892196938017168,
+            "health": 4.05,
+            "maxHealth": 4.05,
+            "sleeping": false
+          },
+          {
+            "id": "support:f1",
+            "parentId": "support",
+            "type": "fragment",
+            "material": "glass",
+            "x": 909.2392002990036,
+            "y": 604.7897299400405,
+            "angle": 0.49560787116064703,
+            "speed": 10.953862062435892,
+            "health": 4.05,
+            "maxHealth": 4.05,
+            "sleeping": false
+          },
+          {
+            "id": "support:f2",
+            "parentId": "support",
+            "type": "fragment",
+            "material": "glass",
+            "x": 881.3149529779402,
+            "y": 646.5195552168188,
+            "angle": 0.5772988437740278,
+            "speed": 7.913295548969067,
+            "health": 1.4742651480528661,
+            "maxHealth": 4.05,
+            "sleeping": false
+          }
+        ]
+      },
+      "later": {
+        "time": 3066.666666666661,
+        "phase": "flying",
+        "abilityUsed": false,
+        "canActivate": false,
+        "shots": 1,
+        "entities": [
+          {
+            "id": "spectator",
+            "type": "monster",
+            "x": 1300,
+            "y": 657.0834139582226,
+            "angle": 0,
+            "speed": 0,
+            "health": 3.5,
+            "maxHealth": 3.5,
+            "sleeping": true
+          },
+          {
+            "id": "shot-0",
+            "type": "projectile",
+            "x": 875.5181737674056,
+            "y": 652.2404973859873,
+            "angle": 1.3111873529674563,
+            "speed": 1.3223458239100043,
+            "health": 999,
+            "maxHealth": 999,
+            "sleeping": false
+          },
+          {
+            "id": "support:f0",
+            "parentId": "support",
+            "type": "fragment",
+            "material": "glass",
+            "x": 1075.0585777266704,
+            "y": 618.0544661487098,
+            "angle": 1.0985920696307956,
+            "speed": 13.750803089230914,
+            "health": 4.05,
+            "maxHealth": 4.05,
+            "sleeping": false
+          },
+          {
+            "id": "support:f1",
+            "parentId": "support",
+            "type": "fragment",
+            "material": "glass",
+            "x": 1015.4425750785572,
+            "y": 651.6655304357489,
+            "angle": 1.3836285254669751,
+            "speed": 10.557247283758645,
+            "health": 4.05,
+            "maxHealth": 4.05,
+            "sleeping": false
+          },
+          {
+            "id": "support:f2:f0",
+            "parentId": "support",
+            "type": "fragment",
+            "material": "glass",
+            "x": 951.1480022661575,
+            "y": 659.3465752612783,
+            "angle": 1.7005537720071262,
+            "speed": 1.815371918301058,
+            "health": 1.4085212112736163,
+            "maxHealth": 2,
+            "sleeping": false
+          },
+          {
+            "id": "support:f2:f1",
+            "parentId": "support",
+            "type": "fragment",
+            "material": "glass",
+            "x": 934.7078416252576,
+            "y": 659.3465752610646,
+            "angle": 1.7005537720071262,
+            "speed": 2.229815225196115,
+            "health": 1.7681919367852899,
+            "maxHealth": 2,
+            "sleeping": false
+          },
+          {
+            "id": "support:f2:f2",
+            "parentId": "support",
+            "type": "fragment",
+            "material": "glass",
+            "x": 918.2676809843579,
+            "y": 658.2694274733551,
+            "angle": 1.7005537720071262,
+            "speed": 3.340974073048345,
+            "health": 2,
+            "maxHealth": 2,
+            "sleeping": false
+          }
+        ]
+      }
+    },
+    {
+      "material": "stone",
+      "before": {
+        "time": 2916.6666666666624,
+        "phase": "flying",
+        "abilityUsed": false,
+        "canActivate": true,
+        "shots": 1,
+        "entities": [
+          {
+            "id": "support",
+            "type": "block",
+            "material": "stone",
+            "x": 800.1848142482623,
+            "y": 600.0836651409873,
+            "angle": 0.0023893630921809914,
+            "speed": 0,
+            "health": 110,
+            "maxHealth": 110,
+            "sleeping": true
+          },
+          {
+            "id": "spectator",
+            "type": "monster",
+            "x": 1300,
+            "y": 657.0834139582226,
+            "angle": 0,
+            "speed": 0,
+            "health": 3.5,
+            "maxHealth": 3.5,
+            "sleeping": true
+          },
+          {
+            "id": "shot-0",
+            "type": "projectile",
+            "x": 594.7976956690472,
+            "y": 545.4537476235976,
+            "angle": 1.0040865925647855,
+            "speed": 18.05571883000712,
+            "health": 999,
+            "maxHealth": 999,
+            "sleeping": false
+          }
+        ]
+      },
+      "intact": {
+        "time": 3183.3333333333267,
+        "phase": "flying",
+        "abilityUsed": false,
+        "canActivate": false,
+        "shots": 1,
+        "entities": [
+          {
+            "id": "support",
+            "type": "block",
+            "material": "stone",
+            "x": 844.8466256433009,
+            "y": 598.94703796018,
+            "angle": 0.16536114227660967,
+            "speed": 3.7700161751773993,
+            "health": 20.202609871826755,
+            "maxHealth": 110,
+            "sleeping": false
+          },
+          {
+            "id": "spectator",
+            "type": "monster",
+            "x": 1300,
+            "y": 657.0834139582226,
+            "angle": 0,
+            "speed": 0,
+            "health": 3.5,
+            "maxHealth": 3.5,
+            "sleeping": true
+          },
+          {
+            "id": "shot-0",
+            "type": "projectile",
+            "x": 790.2572280898535,
+            "y": 616.2259428380931,
+            "angle": 1.2118151890821665,
+            "speed": 5.856536540838101,
+            "health": 999,
+            "maxHealth": 999,
+            "sleeping": false
+          }
+        ]
+      },
+      "later": {
+        "time": 3633.3333333333226,
+        "phase": "flying",
+        "abilityUsed": false,
+        "canActivate": false,
+        "shots": 1,
+        "entities": [
+          {
+            "id": "support",
+            "type": "block",
+            "material": "stone",
+            "x": 938.3431589749009,
+            "y": 627.6098405202741,
+            "angle": 1.0925296125133648,
+            "speed": 3.330803168433615,
+            "health": 14.932870393526281,
+            "maxHealth": 110,
+            "sleeping": false
+          },
+          {
+            "id": "spectator",
+            "type": "monster",
+            "x": 1300,
+            "y": 657.0834139582226,
+            "angle": 0,
+            "speed": 0,
+            "health": 3.5,
+            "maxHealth": 3.5,
+            "sleeping": true
+          },
+          {
+            "id": "shot-0",
+            "type": "projectile",
+            "x": 796.0430962932711,
+            "y": 652.2099126247513,
+            "angle": -0.012996045202934348,
+            "speed": 0.8606509758680811,
+            "health": 999,
+            "maxHealth": 999,
+            "sleeping": false
+          }
+        ]
+      }
+    },
+    {
+      "scenario": "campaign-support-collapse",
+      "during": {
+        "time": 3116.6666666666606,
+        "phase": "flying",
+        "abilityUsed": false,
+        "canActivate": false,
+        "shots": 1,
+        "entities": [
+          {
+            "id": "b1",
+            "type": "block",
+            "material": "wood",
+            "x": 928.3442929985973,
+            "y": 624.4764099036153,
+            "angle": -0.20825976683722136,
+            "speed": 3.0887708907197675,
+            "health": -4.986844332061206,
+            "maxHealth": 38,
+            "fractureAt": 3166.666666666661,
+            "sleeping": false
+          },
+          {
+            "id": "b2",
+            "type": "block",
+            "material": "wood",
+            "x": 971.4461236180365,
+            "y": 625.1269068703323,
+            "angle": 0.008758626555741751,
+            "speed": 0,
+            "health": 38,
+            "maxHealth": 38,
+            "sleeping": true
+          },
+          {
+            "id": "b3",
+            "type": "block",
+            "material": "wood",
+            "x": 930.0270564272831,
+            "y": 565.2684507073695,
+            "angle": -0.017659951465313677,
+            "speed": 3.5320148184123608,
+            "health": 38,
+            "maxHealth": 38,
+            "sleeping": false
+          },
+          {
+            "id": "shot-0",
+            "type": "projectile",
+            "x": 900.2364066410125,
+            "y": 645.0814788987806,
+            "angle": 2.789642580842833,
+            "speed": 2.6629365501573212,
+            "health": 999,
+            "maxHealth": 999,
+            "sleeping": false
+          }
+        ]
+      },
+      "after": {
+        "time": 5283.33333333334,
+        "phase": "won",
+        "abilityUsed": false,
+        "canActivate": false,
+        "shots": 1,
+        "entities": [
+          {
+            "id": "b2",
+            "type": "block",
+            "material": "wood",
+            "x": 1048.224919373378,
+            "y": 666.2082447370507,
+            "angle": 1.576069200520636,
+            "speed": 0,
+            "health": 33.52284396299519,
+            "maxHealth": 38,
+            "sleeping": true
+          },
+          {
+            "id": "b3",
+            "type": "block",
+            "material": "wood",
+            "x": 1078.9312356731946,
+            "y": 635.9493123027177,
+            "angle": 0.4582966496647787,
+            "speed": 0.001068825376015664,
+            "health": 37.02258341180056,
+            "maxHealth": 38,
+            "sleeping": false
+          },
+          {
+            "id": "shot-0",
+            "type": "projectile",
+            "x": 926.8034784908274,
+            "y": 652.2225183758857,
+            "angle": 5.227473541273016,
+            "speed": 0.0000022942862306560626,
+            "health": 999,
+            "maxHealth": 999,
+            "sleeping": false
+          },
+          {
+            "id": "b1:f0",
+            "parentId": "b1",
+            "type": "fragment",
+            "material": "wood",
+            "x": 1042.1083533752014,
+            "y": 648.4502482372253,
+            "angle": 1.5742123466996618,
+            "speed": 0.0009765272780728663,
+            "health": 16.488085394544385,
+            "maxHealth": 17.1,
+            "sleeping": false
+          },
+          {
+            "id": "b1:f1",
+            "parentId": "b1",
+            "type": "fragment",
+            "material": "wood",
+            "x": 974.6598450793216,
+            "y": 657.561312222796,
+            "angle": 1.1801603460268162,
+            "speed": 4.092796006254393e-7,
+            "health": 16.360575048008744,
+            "maxHealth": 17.1,
+            "sleeping": false
+          }
+        ]
+      }
+    }
+  ]
+}

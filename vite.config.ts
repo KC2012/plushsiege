@@ -1,20 +1,36 @@
 import { defineConfig } from 'vite';
 import { createHash } from 'node:crypto';
 import { readFileSync } from 'node:fs';
+import { fileURLToPath } from 'node:url';
 /** Generate a content-addressed offline shell from the actual build manifest. */
 export default defineConfig({
   build: {
-    rollupOptions: { output: { manualChunks: { phaser: ['phaser'], physics: ['matter-js'] } } },
+    rollupOptions: {
+      input: {
+        game: fileURLToPath(new URL('./index.html', import.meta.url)),
+        physicsLab: fileURLToPath(new URL('./physics-lab.html', import.meta.url)),
+      },
+      output: { manualChunks: { phaser: ['phaser'], physics: ['matter-js'] } },
+    },
     chunkSizeWarningLimit: 1600,
   },
   plugins: [
     {
       name: 'plush-offline',
       generateBundle(_options, bundle) {
+        const publicFiles = [
+          '/manifest.webmanifest',
+          '/icon.svg',
+          '/icon-192.png',
+          '/icon-512.png',
+          '/apple-touch-icon.png',
+          '/third-party-notices.txt',
+        ];
         const files = [
           ...new Set([
             '/',
             '/index.html',
+            '/physics-lab.html',
             '/manifest.webmanifest',
             '/icon.svg',
             '/icon-192.png',
@@ -27,13 +43,16 @@ export default defineConfig({
           ]),
         ];
         const hash = createHash('sha256');
-        for(const [name, output] of Object.entries(bundle)) {
+        for (const [name, output] of Object.entries(bundle)) {
           hash.update(name);
           hash.update(output.type === 'chunk' ? output.code : output.source);
         }
-        for(const file of files.filter(path => !path.startsWith('/assets/') && path !== '/' && path !== '/index.html')) {
-          hash.update(readFileSync(new URL('public'+file, import.meta.url)));
+        for (const file of publicFiles) {
+          hash.update(readFileSync(new URL('public' + file, import.meta.url)));
         }
+        // Vite emits HTML after this hook; hash the entry sources explicitly too.
+        hash.update(readFileSync(new URL('./index.html',import.meta.url)));
+        hash.update(readFileSync(new URL('./physics-lab.html',import.meta.url)));
         const version = hash.digest('hex').slice(0, 16);
         this.emitFile({
           type: 'asset',

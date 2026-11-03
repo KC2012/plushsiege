@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
+    <meta name="theme-color" content="#242139" />
+    <title>Plush Siege · Physics lab</title>
+  </head>
+  <body>
+    <header class="lab-header">
+      <a href="/">← GAME</a>
+      <div>
+        <h1>PHYSICS LAB</h1>
+        <p>Real bodies. Reproducible rigs. No visual-only motion.</p>
+      </div>
+      <label>Scenario<select id="scenario" aria-label="Physics scenario"></select></label>
+    </header>
+    <main>
+      <div class="lab-toolbar">
+        <button id="run">RUN</button><button id="step">STEP ×1</button
+        ><button id="reset">RESET</button
+        ><label><input id="bodies" type="checkbox" checked /> Bodies</label
+        ><span id="frame">Frame 0</span>
+      </div>
+      <section id="game" aria-label="Live physics scenario"></section>
+      <section class="lab-info">
+        <div>
+          <h2 id="name"></h2>
+          <p id="description"></p>
+          <strong id="outcome" role="status">Ready</strong>
+        </div>
+        <pre id="details" aria-label="Monster physics diagnostics"></pre>
+      </section>
+      <details>
+        <summary>Rig actions and verification</summary>
+        <p>
+          Each case uses the normal game simulation and renderer. A rig may withdraw a physical
+          shelf or give a block an initial impulse; it never teleports a monster or injects defeat.
+          Warm-up establishes real resting contacts. RUN advances to the fixed observation limit;
+          RESET repeats the same case. Bodies outlines show the actual collider, while the
+          health/sleep data below comes directly from that same body.
+        </p>
+        <pre id="events"></pre>
+      </details>
+    </main>
+    <script type="module" src="/src/dev/physics-lab.ts"></script>
+  </body>
+</html>

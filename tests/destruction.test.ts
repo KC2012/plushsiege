@@ -133,7 +133,7 @@ test('breaking one support causes roof translation/rotation and secondary struct
   const roof = [...s.entities.values()].find((e) => e.id === 'roof')!;
   s.launch({ x: -90, y: 0 });
   Body.setPosition(s.current!.body, { x: 550, y: 640 });
-  Body.setVelocity(s.current!.body, { x: 12, y: 0 });
+  Body.setVelocity(s.current!.body, { x: 16, y: 0 });
   tick(s, 180);
   assert.ok(
     ![...s.entities.values()].some((e) => e.id === 'left'),

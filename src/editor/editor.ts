@@ -6,7 +6,7 @@ type Selection = { type: 'blocks' | 'monsters' | 'hazards'; id: string } | null;
 type Tool = 'select' | 'beam' | 'post' | 'square' | 'monster' | 'tnt';
 const NS = 'http://www.w3.org/2000/svg';
 const SAVE_KEY = 'plush-siege-editor-v1';
-const palette = { wood: '#c38b50', glass: '#97e2e5', stone: '#9aa4ac' };
+const palette = { wood: '#f5ad58', glass: '#5dd7e3', stone: '#a29ab9' };
 const copy = <T>(value: T): T => structuredClone(value);
 
 /** Standalone authoring surface. The returned function releases listeners and removes its DOM. */
@@ -93,21 +93,21 @@ export function openEditor(
   }
   function renderScene() {
     svg.replaceChildren();
-    node('rect', { width: 1440, height: 810, fill: '#e5f1e7' });
+    node('rect', { width: 1440, height: 810, fill: '#94e5de' });
     node('path', {
-      d: 'M0 585 Q180 365 400 545 Q650 330 880 540 Q1160 360 1440 515 L1440 810H0Z',
-      fill: '#c3d4b1',
+      d: 'M0 585 150 360 320 510 510 330 730 560 960 380 1160 520 1330 350 1440 510V810H0Z',
+      fill: '#78b2bb',
     });
     node('rect', {
       x: 0,
       y: level.bounds.ground,
       width: 1440,
       height: 810 - level.bounds.ground,
-      fill: '#4c8068',
+      fill: '#486d76',
     });
     node('path', {
       d: `M${level.sling.x - 18} ${level.bounds.ground}L${level.sling.x - 12} ${level.sling.y - 20}M${level.sling.x - 12} ${level.sling.y + 15}L${level.sling.x + 25} ${level.sling.y - 20}`,
-      stroke: '#8c613e',
+      stroke: '#d58c44',
       'stroke-width': 16,
       'stroke-linecap': 'round',
       fill: 'none',
@@ -115,7 +115,7 @@ export function openEditor(
     const guide = node('text', {
       x: 45,
       y: 65,
-      fill: '#698477',
+      fill: '#242139',
       'font-size': 25,
       'font-family': 'sans-serif',
     });
@@ -132,7 +132,7 @@ export function openEditor(
           rx: 3,
           transform: `rotate(${((block.angle ?? 0) * 180) / Math.PI} ${block.x} ${block.y})`,
           fill: palette[block.material],
-          stroke: block.material === 'wood' ? '#83582f' : '#647d87',
+          stroke: '#242139',
           'stroke-width': 3,
         },
         group,
@@ -143,13 +143,12 @@ export function openEditor(
       const group = node('g', {});
       const r = monster.radius ?? 18;
       node(
-        'circle',
+        'path',
         {
-          cx: monster.x,
-          cy: monster.y,
-          r,
-          fill: monster.kind === 'blob' ? '#71b59d' : '#ad8bbd',
-          stroke: '#5a4b6e',
+          d: `M${monster.x - r * 0.9} ${monster.y + r * 0.5}L${monster.x - r} ${monster.y - r}L${monster.x - r * 0.25} ${monster.y - r * 0.65}L${monster.x + r * 0.25} ${monster.y - r * 0.75}L${monster.x + r * 0.85} ${monster.y - r * 1.2}L${monster.x + r} ${monster.y + r * 0.45}L${monster.x + r * 0.5} ${monster.y + r}L${monster.x - r * 0.5} ${monster.y + r}Z`,
+          fill:
+            monster.kind === 'blob' ? '#b8e94e' : monster.kind === 'bat' ? '#ff765c' : '#ac80e9',
+          stroke: '#242139',
           'stroke-width': 3,
         },
         group,
@@ -178,8 +177,8 @@ export function openEditor(
           width: 40,
           height: 40,
           rx: 4,
-          fill: '#d96950',
-          stroke: '#9d4036',
+          fill: '#ff765c',
+          stroke: '#242139',
           'stroke-width': 3,
         },
         group,

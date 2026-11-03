@@ -54,7 +54,7 @@ export const STUFFIES: Record<
     role: 'Tap in flight for a little hop.',
     radius: 23,
     density: 0.006,
-    color: '#fff3d8',
+    color: '#fff2ce',
     evil: { chance: 0.022, duration: 100 },
   },
   duck: {
@@ -62,7 +62,7 @@ export const STUFFIES: Record<
     role: 'Tap in flight to dash.',
     radius: 22,
     density: 0.005,
-    color: '#ffcf4a',
+    color: '#ffd44e',
     evil: { chance: 0.025, duration: 95 },
   },
   bear: {
@@ -70,7 +70,7 @@ export const STUFFIES: Record<
     role: 'Tap in flight for a mighty stomp.',
     radius: 29,
     density: 0.012,
-    color: '#b67b55',
+    color: '#df9253',
     evil: { chance: 0.018, duration: 110 },
   },
   rabbit: {
@@ -78,7 +78,7 @@ export const STUFFIES: Record<
     role: 'Tap in flight to split into three.',
     radius: 22,
     density: 0.005,
-    color: '#e4bbd9',
+    color: '#c29aee',
     evil: { chance: 0.025, duration: 90 },
   },
 };
@@ -95,6 +95,10 @@ export const PHYSICS = {
   fractureDelayMs: 100,
   damageSpeedFloor: 1.6,
   damageEnergyScale: 0.09,
-  monsterDamageScale: 1.8,
+  monsterDamageScale: 2.1,
   monsterHealth: 3.5,
+  // Ordinary short drops (~25px) are harmless; substantial landings still hurt.
+  monsterFallSpeedFloor: 3.8,
+  crushSpeedFloor: 0.65,
+  crushMassRatio: 1.4,
 };

@@ -171,6 +171,11 @@ try {
     'offline earned stars survive reload',
     (await page.locator('[data-level="0"] .map-node .earned').count()) === 3,
   );
+  await page.goto(url.replace(/\/$/, '') + '/physics-lab.html');
+  await page.waitForFunction(() => window.plushPhysicsLab && document.querySelector('#details').textContent.length > 0);
+  check('physics lab and all eleven scenario definitions load offline', await page.locator('#scenario option').count() === 11);
+  await page.locator('#step').click();
+  check('offline physics lab steps the real simulation', await page.evaluate(() => window.plushPhysicsLab.snapshot().frame === 1));
   check('production play made no external runtime requests', externalRequests.length === 0);
   check('online and offline play produced no uncaught browser errors', errors.length === 0);
   console.log(`Offline production: ${passed} checks passed.`);

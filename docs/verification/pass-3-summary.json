@@ -1,0 +1,50 @@
+{
+  "version": "0.3.0",
+  "productionBuild": "passed",
+  "unitAndPhysicsTests": {
+    "passed": 61,
+    "failed": 0
+  },
+  "browserChecks": {
+    "integratedGame": 19,
+    "editor": 18,
+    "destructionAndAbilities": 36,
+    "responsiveProduction": 40,
+    "monsterScenarios": 43,
+    "offlineProduction": 18,
+    "totalPassed": 174,
+    "failed": 0
+  },
+  "campaign": {
+    "levels": 24,
+    "invalid": 0,
+    "unstable": 0,
+    "solved": 24,
+    "threeStars": 24,
+    "inefficient": 0,
+    "unsolved": 0,
+    "replayFailures": 0,
+    "peakBodies": 28,
+    "maxP95StepMs": 0.5034360000001925
+  },
+  "contentChanges": {
+    "newLevels": 0,
+    "newWorlds": 0,
+    "geometryChanges": 0,
+    "ammunitionChanges": 0,
+    "scoreThresholdChanges": 0,
+    "parChanges": 0,
+    "solutionWitnessesRefreshed": 9
+  },
+  "saveMigrationRequired": false,
+  "referenceResearch": {
+    "freshExternalPages": "HTTP 403 for all three attempted references",
+    "freshVideoOrNumericalCapture": false
+  },
+  "notVerified": [
+    "Physical iPad Safari",
+    "Device frame rate/audio latency",
+    "Hands-on reference timing comparison"
+  ],
+  "siteDeployed": false
+}

@@ -4,11 +4,12 @@ import { getTheme } from '../content/themes';
 
 type G = Phaser.GameObjects.Graphics;
 type Point = { x: number; y: number };
-const INK = 0x493e45;
+const INK = 0x242139;
+const CREAM = 0xfff2ce;
 const TAU = Math.PI * 2;
 
-/** Small immediate-mode painter. Geometry, rather than display objects, is transformed,
- * so it is safe to draw many characters onto a shared Graphics layer. */
+/** One coherent vector asset pipeline: all local geometry follows the same body
+ * transform. Stroke weight scales with the character, including menu/title sizes. */
 class Pen {
   constructor(
     public g: G,
@@ -26,13 +27,17 @@ class Pen {
       y: this.y + x * this.sx * s + y * this.sy * c,
     };
   }
+  get weight() {
+    return Math.sqrt(Math.abs(this.sx * this.sy));
+  }
   polygon(points: number[][], color: number, stroke?: number, width = 1.5, alpha = 1) {
     const p = points.map(([x, y]) => this.point(x, y));
     this.g.fillStyle(color, alpha).fillPoints(p, true);
-    if (stroke !== undefined) this.g.lineStyle(width, stroke, alpha).strokePoints(p, true);
+    if (stroke !== undefined)
+      this.g.lineStyle(width * this.weight, stroke, alpha).strokePoints(p, true);
   }
   line(points: number[][], color: number, width = 1.5, alpha = 1) {
-    this.g.lineStyle(width, color, alpha).strokePoints(
+    this.g.lineStyle(width * this.weight, color, alpha).strokePoints(
       points.map(([x, y]) => this.point(x, y)),
       false,
     );
@@ -47,12 +52,12 @@ class Pen {
     width = 1.5,
     alpha = 1,
   ) {
-    const points: number[][] = [];
-    for (let i = 0; i < 24; i++) {
-      const t = (i / 24) * TAU;
-      points.push([x + Math.cos(t) * rx, y + Math.sin(t) * ry]);
+    const p: number[][] = [];
+    for (let i = 0; i < 20; i++) {
+      const a = (i * TAU) / 20;
+      p.push([x + Math.cos(a) * rx, y + Math.sin(a) * ry]);
     }
-    this.polygon(points, color, stroke, width, alpha);
+    this.polygon(p, color, stroke, width, alpha);
   }
   roundRect(
     x: number,
@@ -67,205 +72,411 @@ class Pen {
   ) {
     r = Math.min(w / 2, h / 2, r);
     const points: number[][] = [];
-    const corners = [
+    for (const [cx, cy, start] of [
       [x + w - r, y + r, -Math.PI / 2],
       [x + w - r, y + h - r, 0],
       [x + r, y + h - r, Math.PI / 2],
       [x + r, y + r, Math.PI],
-    ];
-    for (const [cx, cy, start] of corners)
-      for (let i = 0; i <= 4; i++) {
-        const a = start + ((i / 4) * Math.PI) / 2;
+    ])
+      for (let i = 0; i <= 3; i++) {
+        const a = start + (i * Math.PI) / 6;
         points.push([cx + Math.cos(a) * r, cy + Math.sin(a) * r]);
       }
     this.polygon(points, color, stroke, width, alpha);
   }
 }
 
-function cloud(g: G, x: number, y: number, scale: number, alpha = 0.68, color = 0xffffff) {
-  g.fillStyle(color, alpha);
-  g.fillEllipse(x, y + 12 * scale, 140 * scale, 39 * scale);
-  g.fillCircle(x - 35 * scale, y + 1 * scale, 29 * scale);
-  g.fillCircle(x + 4 * scale, y - 14 * scale, 38 * scale);
-  g.fillCircle(x + 45 * scale, y + 1 * scale, 26 * scale);
-}
-
-function tree(
+function graphicTree(
   g: G,
   x: number,
   y: number,
-  scale: number,
+  size: number,
   color: number,
-  trunk = 0x8a8570,
-  highlight = 0xffffff,
+  trunk: number,
+  highlight: number,
+  lean = 0,
 ) {
-  const p = new Pen(g, x, y, 0, scale, scale);
+  const p = new Pen(g, x, y, lean, size, size);
   p.polygon(
     [
-      [-7, 0],
-      [-5, -82],
-      [3, -97],
-      [9, 0],
+      [-6, 0],
+      [-4, -108],
+      [4, -112],
+      [8, 0],
     ],
     trunk,
   );
   p.line(
     [
-      [0, -41],
-      [-26, -77],
+      [1, -43],
+      [-22, -68],
     ],
     trunk,
-    6 * scale,
+    5,
   );
-  p.ellipse(-25, -92, 36, 44, color);
-  p.ellipse(15, -116, 43, 50, color);
-  p.ellipse(43, -85, 32, 37, color);
-  p.ellipse(-4, -65, 43, 39, color);
-  p.ellipse(-15, -112, 20, 14, highlight, undefined, 1, 0.07);
+  p.polygon(
+    [
+      [-38, -53],
+      [-14, -82],
+      [-36, -77],
+      [-8, -113],
+      [-22, -108],
+      [6, -158],
+      [24, -112],
+      [12, -115],
+      [38, -74],
+      [17, -80],
+      [42, -47],
+    ],
+    color,
+  );
+  p.polygon(
+    [
+      [6, -158],
+      [12, -112],
+      [3, -118],
+      [-6, -83],
+      [-18, -83],
+    ],
+    highlight,
+    undefined,
+    1,
+    0.45,
+  );
 }
 
-/** Original layered environment. Palette comes from the extensible world registry.
- * The scene may cache this drawing at time=0; passing time also supports animated scenery. */
+/** Bold geometric countryside. Decorative silhouettes avoid the central target
+ * area and have no gameplay ink outline. The scene caches this by world ID. */
 export function drawBackground(g: G, time: number, theme = 'countryside'): void {
-  const p = new Pen(g);
-  const colors = getTheme(theme).palette;
-  g.fillStyle(colors.skyBottom).fillRect(0, 0, 1440, 810);
-  // A stepped gradient is fast and deterministic in both Canvas and WebGL renderers.
-  for (let i = 0; i < 30; i++) {
-    const mix = i / 29;
-    const blend = (shift: number) =>
-      Math.round(
-        ((colors.skyTop >> shift) & 255) * (1 - mix) + ((colors.skyBottom >> shift) & 255) * mix,
-      );
-    const r = blend(16),
-      green = blend(8),
-      b = blend(0);
-    g.fillStyle((r << 16) | (green << 8) | b).fillRect(0, i * 20, 1440, 21);
+  const p = new Pen(g),
+    c = getTheme(theme).palette;
+  g.fillStyle(c.skyBottom).fillRect(0, 0, 1440, 810);
+  for (let i = 0; i < 20; i++) {
+    const t = i / 19,
+      blend = (shift: number) =>
+        Math.round(((c.skyTop >> shift) & 255) * (1 - t) + ((c.skyBottom >> shift) & 255) * t);
+    g.fillStyle((blend(16) << 16) | (blend(8) << 8) | blend(0)).fillRect(0, i * 31, 1440, 32);
   }
-  g.fillStyle(colors.sun.halo, 0.38).fillCircle(1165, 174, 93);
-  g.fillStyle(colors.sun.glow, 0.8).fillCircle(1165, 174, 61);
-  g.fillStyle(colors.sun.center).fillCircle(1165, 174, 46);
-  const drift = Math.sin(time / 90000) * 14;
-  cloud(g, 175 + drift, 152, 0.75, 0.62, colors.clouds);
-  cloud(g, 630 + drift * 0.6, 205, 1.12, 0.7, colors.clouds);
-  cloud(g, 998 + drift * 0.7, 104, 0.52, 0.52, colors.clouds);
-  cloud(g, 1390 + drift, 267, 0.85, 0.65, colors.clouds);
-
-  // Distant hedgerows and soft hill silhouettes.
-  g.fillStyle(colors.hills[0]).fillEllipse(175, 543, 900, 460);
-  g.fillStyle(colors.hills[1]).fillEllipse(1070, 575, 1090, 560);
-  g.fillStyle(colors.hills[2]).fillEllipse(691, 652, 1190, 415);
-  g.fillStyle(colors.hills[3]).fillEllipse(1409, 634, 700, 395);
+  // A large graphic sun and cut-paper rays establish a bright, mischievous day.
+  const sun = new Pen(g, 1168, 172);
+  sun.polygon(
+    [
+      [0, -92],
+      [25, -49],
+      [66, -66],
+      [49, -23],
+      [93, 0],
+      [51, 23],
+      [68, 67],
+      [25, 51],
+      [0, 94],
+      [-24, 50],
+      [-66, 67],
+      [-50, 24],
+      [-94, 0],
+      [-50, -24],
+      [-67, -65],
+      [-24, -50],
+    ],
+    c.sun.halo,
+  );
+  sun.ellipse(0, 0, 57, 57, c.sun.glow);
+  sun.ellipse(-7, -8, 43, 43, c.sun.center);
+  const drift = Math.sin(time / 90000) * 12;
+  const cloud = (x: number, y: number, s: number) => {
+    const q = new Pen(g, x, y, 0, s, s);
+    q.polygon(
+      [
+        [-81, 10],
+        [-57, -4],
+        [-37, -3],
+        [-20, -24],
+        [3, -24],
+        [23, -6],
+        [49, -12],
+        [79, 10],
+        [40, 14],
+        [-16, 13],
+      ],
+      c.clouds,
+      undefined,
+      1,
+      0.85,
+    );
+    q.line(
+      [
+        [-28, 2],
+        [12, 2],
+        [23, 9],
+      ],
+      c.skyBottom,
+      2,
+      0.6,
+    );
+  };
+  cloud(157 + drift, 132, 0.95);
+  cloud(648 + drift * 0.7, 178, 1.2);
+  cloud(979 + drift * 0.4, 80, 0.55);
+  cloud(1388 + drift, 278, 0.8);
+  // Exaggerated angular peaks occupy the edges. Pale facets keep active bodies legible.
+  p.polygon(
+    [
+      [0, 486],
+      [80, 352],
+      [158, 416],
+      [261, 241],
+      [414, 459],
+      [566, 361],
+      [768, 544],
+      [0, 630],
+    ],
+    c.hills[0],
+  );
+  p.polygon(
+    [
+      [261, 241],
+      [287, 390],
+      [331, 365],
+      [414, 459],
+      [350, 401],
+    ],
+    c.hills[1],
+  );
+  p.polygon(
+    [
+      [1440, 343],
+      [1339, 279],
+      [1230, 403],
+      [1124, 330],
+      [958, 510],
+      [1440, 617],
+    ],
+    c.hills[1],
+  );
+  p.polygon(
+    [
+      [1339, 279],
+      [1358, 420],
+      [1392, 392],
+      [1440, 470],
+      [1440, 343],
+    ],
+    c.hills[0],
+  );
   p.polygon(
     [
       [0, 566],
-      [190, 570],
-      [453, 675],
-      [348, 675],
-      [135, 592],
-      [0, 586],
+      [188, 477],
+      [358, 519],
+      [513, 440],
+      [693, 533],
+      [934, 476],
+      [1116, 539],
+      [1320, 454],
+      [1440, 527],
+      [1440, 675],
+      [0, 675],
     ],
-    colors.path,
-    undefined,
-    1,
-    0.6,
+    c.hills[2],
   );
-  // Faraway roof and windmill: scenery, never confused with level bodies.
-  const mill = new Pen(g, 515, 498, -0.025);
+  p.polygon(
+    [
+      [0, 615],
+      [249, 557],
+      [478, 607],
+      [723, 552],
+      [957, 598],
+      [1204, 552],
+      [1440, 608],
+      [1440, 675],
+      [0, 675],
+    ],
+    c.hills[3],
+  );
+  p.polygon(
+    [
+      [0, 588],
+      [178, 583],
+      [464, 675],
+      [335, 675],
+      [142, 609],
+      [0, 608],
+    ],
+    c.path,
+  );
+  // Quiet, small landmark. It never shares the heavy outlines of a physics object.
+  const mill = new Pen(g, 499, 482, -0.03);
   mill.polygon(
     [
-      [-12, 28],
-      [-7, -14],
-      [8, -14],
-      [13, 28],
+      [-14, 46],
+      [-7, -13],
+      [9, -13],
+      [18, 46],
     ],
-    colors.landmark.body,
+    c.landmark.body,
   );
   mill.polygon(
     [
-      [-12, -12],
-      [0, -26],
-      [13, -12],
+      [-15, -13],
+      [1, -31],
+      [17, -13],
     ],
-    colors.landmark.roof,
+    c.landmark.roof,
   );
-  const rotor = new Pen(g, 515, 481, time / 35000);
   for (let i = 0; i < 4; i++) {
-    const a = (i * Math.PI) / 2;
-    const blade = new Pen(g, 515, 481, a + rotor.angle);
+    const blade = new Pen(g, 500, 467, (i * Math.PI) / 2 + time / 35000);
     blade.polygon(
       [
         [0, 0],
-        [3, -34],
-        [11, -35],
-        [7, -9],
+        [3, -32],
+        [12, -32],
+        [7, -8],
       ],
-      colors.landmark.blades,
+      c.landmark.blades,
     );
   }
-  g.fillStyle(colors.landmark.hub).fillCircle(515, 481, 3);
-  tree(g, 78, 610, 0.91, colors.foliage[0], colors.trunk, colors.leafHighlight);
-  tree(g, 1331, 610, 1.11, colors.foliage[1], colors.trunk, colors.leafHighlight);
-  tree(g, 1424, 629, 0.75, colors.foliage[2], colors.trunk, colors.leafHighlight);
-  tree(g, 1192, 576, 0.39, colors.foliage[3], colors.trunk, colors.leafHighlight);
-
-  // Meadow: shape language echoes stitched fabric, with a clean collision edge.
-  g.fillStyle(colors.meadow[0]).fillEllipse(265, 687, 1050, 150);
-  g.fillStyle(colors.meadow[1]).fillEllipse(1110, 700, 1250, 188);
-  g.fillStyle(colors.ground.grassEdge).fillRect(0, 669, 1440, 12);
-  g.fillStyle(colors.ground.grassLip).fillRect(0, 670, 1440, 5);
-  g.fillStyle(colors.ground.topsoil).fillRect(0, 681, 1440, 129);
-  g.fillStyle(colors.ground.soil).fillRect(0, 690, 1440, 120);
-  g.fillStyle(colors.ground.seam, 0.5).fillRect(0, 704, 1440, 2);
-  g.fillStyle(colors.ground.seamHighlight, 0.7).fillRect(0, 706, 1440, 3);
-  // Quiet ground speckles and grassy tufts use fixed positions, never random flicker.
-  for (let i = 0; i < 44; i++) {
-    const x = (i * 137 + 24) % 1440,
-      y = 719 + ((i * 37) % 76);
-    g.fillStyle(i % 3 ? colors.ground.speckles[0] : colors.ground.speckles[1], 0.35).fillEllipse(
-      x,
-      y,
-      3 + (i % 4),
-      2,
-    );
-  }
-  for (let i = 0; i < 23; i++) {
-    const x = (i * 157 + 45) % 1440;
-    p.line(
+  g.fillStyle(c.landmark.hub).fillCircle(500, 467, 3);
+  graphicTree(g, 66, 625, 1.17, c.foliage[0], c.trunk, c.leafHighlight, -0.04);
+  graphicTree(g, 1388, 632, 1.24, c.foliage[1], c.trunk, c.leafHighlight, 0.07);
+  graphicTree(g, 1312, 596, 0.53, c.foliage[2], c.trunk, c.leafHighlight, -0.13);
+  p.polygon(
+    [
+      [0, 647],
+      [126, 620],
+      [291, 638],
+      [431, 612],
+      [631, 644],
+      [832, 618],
+      [1035, 644],
+      [1254, 615],
+      [1440, 639],
+      [1440, 675],
+      [0, 675],
+    ],
+    c.meadow[0],
+  );
+  p.polygon(
+    [
+      [0, 665],
+      [214, 650],
+      [415, 660],
+      [626, 642],
+      [881, 662],
+      [1131, 646],
+      [1440, 659],
+      [1440, 678],
+      [0, 678],
+    ],
+    c.meadow[1],
+  );
+  // Actual contact surface is y=675. Decorative cuts below it do not imply ledges.
+  g.fillStyle(c.ground.grassEdge).fillRect(0, 673, 1440, 9);
+  g.fillStyle(c.ground.grassLip).fillRect(0, 671, 1440, 4);
+  g.fillStyle(c.ground.topsoil).fillRect(0, 682, 1440, 128);
+  p.polygon(
+    [
+      [0, 706],
+      [150, 721],
+      [324, 707],
+      [489, 730],
+      [688, 716],
+      [901, 733],
+      [1121, 714],
+      [1290, 733],
+      [1440, 718],
+      [1440, 810],
+      [0, 810],
+    ],
+    c.ground.soil,
+  );
+  p.polygon(
+    [
+      [0, 753],
+      [226, 769],
+      [415, 748],
+      [664, 773],
+      [920, 756],
+      [1141, 776],
+      [1440, 752],
+      [1440, 767],
+      [1138, 790],
+      [920, 768],
+      [663, 785],
+      [416, 761],
+      [224, 781],
+      [0, 765],
+    ],
+    c.ground.seam,
+  );
+  p.line(
+    [
+      [0, 698],
+      [198, 711],
+      [364, 698],
+      [544, 714],
+      [716, 703],
+      [913, 719],
+      [1131, 703],
+      [1325, 718],
+      [1440, 707],
+    ],
+    c.ground.seamHighlight,
+    3,
+  );
+  for (let i = 0; i < 29; i++) {
+    const x = (i * 137 + 31) % 1440,
+      y = 726 + ((i * 31) % 78);
+    p.polygon(
       [
-        [x - 5, 671],
-        [x - 10, 659],
-        [x - 3, 664],
-        [x, 653],
-        [x + 3, 664],
-        [x + 9, 660],
-        [x + 6, 671],
+        [x - 3, y],
+        [x + 2, y - 2],
+        [x + 6, y + 1],
+        [x, y + 3],
       ],
-      colors.grass,
-      1.7,
+      c.ground.speckles[i % 2],
     );
   }
-  // Scattered flower heads sit outside the main target zone.
+  for (const x of [22, 119, 358, 441, 583, 1338, 1423]) {
+    p.polygon(
+      [
+        [x - 9, 673],
+        [x - 15, 659],
+        [x - 3, 666],
+        [x + 2, 649],
+        [x + 6, 667],
+        [x + 16, 659],
+        [x + 12, 673],
+      ],
+      c.grass,
+    );
+  }
   for (const [x, y] of [
-    [35, 651],
-    [102, 656],
-    [374, 653],
-    [421, 660],
-    [1356, 653],
-    [1408, 658],
+    [38, 650],
+    [399, 658],
+    [1371, 648],
   ]) {
     p.line(
       [
-        [x, y + 15],
+        [x, y + 21],
         [x, y],
       ],
-      colors.flowers.stem,
-      2,
+      c.flowers.stem,
+      2.5,
     );
-    g.fillStyle(colors.flowers.petals);
-    for (let j = 0; j < 5; j++)
-      g.fillCircle(x + Math.cos((j * TAU) / 5) * 3, y + Math.sin((j * TAU) / 5) * 3, 2.6);
-    g.fillStyle(colors.flowers.center).fillCircle(x, y, 2);
+    p.polygon(
+      [
+        [x, y - 7],
+        [x + 3, y - 2],
+        [x + 9, y],
+        [x + 3, y + 3],
+        [x, y + 9],
+        [x - 3, y + 3],
+        [x - 9, y],
+        [x - 3, y - 2],
+      ],
+      c.flowers.petals,
+    );
+    p.ellipse(x, y, 2.5, 2.5, c.flowers.center);
   }
 }
 
@@ -274,57 +485,175 @@ export interface StuffieExpression {
   evil?: boolean;
   blink?: boolean;
   celebrate?: boolean;
+  impact?: boolean;
 }
-
-function eyes(p: Pen, y: number, spread: number, state: StuffieExpression, scale = 1) {
-  if (state.blink || state.celebrate) {
+function patch(p: Pen, x: number, y: number, w: number, h: number, color: number) {
+  p.polygon(
+    [
+      [x - w / 2, y - h / 2],
+      [x + w / 2 - 1, y - h / 2 - 1],
+      [x + w / 2, y + h / 2],
+      [x - w / 2 + 1, y + h / 2 + 1],
+    ],
+    color,
+    INK,
+    1.1,
+  );
+  for (const side of [-1, 1]) {
     p.line(
       [
-        [-spread - 2 * scale, y],
-        [-spread, y - 1.4 * scale],
-        [-spread + 2 * scale, y],
+        [x + side * w * 0.5 - 1.3, y - 2],
+        [x + side * w * 0.5 + 1.3, y - 1],
       ],
       INK,
-      1.8,
+      0.85,
     );
     p.line(
       [
-        [spread - 2 * scale, y],
-        [spread, y - 1.4 * scale],
-        [spread + 2 * scale, y],
+        [x + side * w * 0.5 - 1.3, y + 2],
+        [x + side * w * 0.5 + 1.3, y + 3],
       ],
       INK,
-      1.8,
+      0.85,
     );
-  } else {
-    p.ellipse(-spread, y, 2.15 * scale, 3 * scale, state.evil ? 0xce344e : INK);
-    p.ellipse(spread, y, 2.15 * scale, 3 * scale, state.evil ? 0xce344e : INK);
-    if (!state.evil) {
-      p.ellipse(-spread - 0.65 * scale, y - 1 * scale, 0.7 * scale, 0.9 * scale, 0xffffff);
-      p.ellipse(spread - 0.65 * scale, y - 1 * scale, 0.7 * scale, 0.9 * scale, 0xffffff);
-    } else {
+  }
+}
+function eyes(p: Pen, y: number, spread: number, state: StuffieExpression, white = CREAM) {
+  if (state.impact) {
+    for (const side of [-1, 1]) {
+      const x = side * spread;
       p.line(
         [
-          [-spread - 3, y - 7],
-          [-spread + 3, y - 4],
+          [x - 3, y - 3],
+          [x + 3, y + 3],
         ],
-        0x692c41,
+        INK,
         2.3,
       );
       p.line(
         [
-          [spread - 3, y - 4],
-          [spread + 3, y - 7],
+          [x + 3, y - 3],
+          [x - 3, y + 3],
         ],
-        0x692c41,
+        INK,
         2.3,
       );
     }
+    return;
   }
+  if (state.blink || state.celebrate) {
+    for (const side of [-1, 1]) {
+      const x = side * spread;
+      p.line(
+        [
+          [x - 3.5, y + 1],
+          [x, y - 2],
+          [x + 3.5, y + 1],
+        ],
+        INK,
+        2.1,
+      );
+    }
+    return;
+  }
+  if (state.evil) {
+    p.polygon(
+      [
+        [-spread - 4, y - 4],
+        [-spread + 4, y - 1],
+        [-spread + 2, y + 3],
+        [-spread - 3, y + 2],
+      ],
+      0xff3459,
+      INK,
+      1,
+    );
+    p.polygon(
+      [
+        [spread - 4, y - 1],
+        [spread + 4, y - 4],
+        [spread + 3, y + 2],
+        [spread - 2, y + 3],
+      ],
+      0xff3459,
+      INK,
+      1,
+    );
+    p.line(
+      [
+        [-spread - 5, y - 7],
+        [-spread + 4, y - 3],
+      ],
+      INK,
+      2.7,
+    );
+    p.line(
+      [
+        [spread - 4, y - 3],
+        [spread + 5, y - 7],
+      ],
+      INK,
+      2.7,
+    );
+    return;
+  }
+  p.ellipse(-spread, y, 5.8, 7.2, white, INK, 1.4);
+  p.ellipse(spread, y - 0.3, 5.1, 6.4, white, INK, 1.4);
+  p.ellipse(-spread + 1.3, y + 0.6, 2.4, 3.7, INK);
+  p.ellipse(spread + 1.1, y + 0.4, 2.3, 3.3, INK);
+  p.ellipse(-spread + 2, y - 0.8, 0.8, 1.2, 0xffffff);
+  p.ellipse(spread + 1.7, y - 1, 0.7, 1.1, 0xffffff);
+}
+function evilFace(p: Pen) {
+  p.polygon(
+    [
+      [-18, -16],
+      [-20, -31],
+      [-10, -22],
+    ],
+    0xff3459,
+    INK,
+    1.5,
+  );
+  p.polygon(
+    [
+      [10, -22],
+      [20, -31],
+      [18, -16],
+    ],
+    0xff3459,
+    INK,
+    1.5,
+  );
+  p.polygon(
+    [
+      [-10, 9],
+      [0, 12],
+      [11, 7],
+      [7, 16],
+      [-5, 18],
+    ],
+    INK,
+  );
+  p.polygon(
+    [
+      [-6, 11],
+      [-1, 12],
+      [-3, 15],
+    ],
+    CREAM,
+  );
+  p.polygon(
+    [
+      [3, 11],
+      [8, 9],
+      [6, 14],
+    ],
+    CREAM,
+  );
 }
 
-/** Original plush character art. A circular body remains readable while ears, seams,
- * cheeks, small limbs and squash/stretch give the projectile a toy-like personality. */
+/** Four original cloth-toy silhouettes share bold ink, fabric patches and seams. */
 export function drawStuffie(
   g: G,
   x: number,
@@ -334,318 +663,629 @@ export function drawStuffie(
   angle: number,
   state: StuffieExpression = {},
 ): void {
-  const stretch = Math.max(-0.4, Math.min(0.7, state.stretch || 0));
-  const size = r / 24;
-  const p = new Pen(g, x, y, angle, size * (1 + stretch), size / (1 + stretch * 0.75));
+  const stretch = Math.max(-0.4, Math.min(0.65, state.stretch || 0)),
+    scale = r / 24;
+  const p = new Pen(g, x, y, angle, scale * (1 + stretch), scale / (1 + stretch * 0.8));
   if (kind === 'sheep') {
-    // Tiny fabric legs, ears and a soft scalloped wool silhouette.
-    p.ellipse(-11, 20, 5, 7, 0x72605a, INK, 1.4);
-    p.ellipse(11, 20, 5, 7, 0x72605a, INK, 1.4);
-    p.ellipse(0, 0, 23, 23, 0xf1e5cd, 0x9b8976, 1.6);
-    for (let i = 0; i < 10; i++) {
-      const a = (i * TAU) / 10;
-      p.ellipse(Math.cos(a) * 17.5, Math.sin(a) * 17.5, 8.2, 8.2, 0xfff8e6, 0xb6a18c, 1.1);
-    }
-    p.ellipse(0, 0, 20, 19, 0xfff8e6);
-    p.ellipse(-20, -2, 7, 4.8, 0x8d7a70, INK, 1.2);
-    p.ellipse(20, -2, 7, 4.8, 0x8d7a70, INK, 1.2);
-    p.ellipse(0, 4, 14.5, 15.5, 0x78675e, INK, 1.5);
-    p.ellipse(-4, -10, 8, 6.5, 0xfff8e6);
-    p.ellipse(5, -10, 7, 6, 0xfff8e6);
-    // Light eye sockets prevent dark facial features disappearing into the muzzle.
-    p.ellipse(-6, 1, 4.5, 5.8, 0xfff9e7);
-    p.ellipse(6, 1, 4.5, 5.8, 0xfff9e7);
-    eyes(p, 1, 6, state, 0.8);
-    p.ellipse(-10, 8, 3, 1.8, 0xdc9e97, undefined, 1, 0.7);
-    p.ellipse(10, 8, 3, 1.8, 0xdc9e97, undefined, 1, 0.7);
     p.polygon(
       [
-        [-2, 7],
-        [2, 7],
-        [0, 10],
+        [-16, 16],
+        [-8, 17],
+        [-8, 26],
+        [-15, 25],
       ],
-      0x483c3c,
+      0x39344c,
+      INK,
+      2.2,
     );
-    p.line(
-      [
-        [-4, 12],
-        [-1, 14],
-        [2, 14],
-        [5, 11],
-      ],
-      0x493b3a,
-      1.2,
-    );
-    // A sewn little curl.
-    p.line(
-      [
-        [-10, -15],
-        [-14, -13],
-        [-13, -9],
-      ],
-      0xdac8b1,
-      1.2,
-    );
-  } else if (kind === 'duck') {
-    p.ellipse(-10, 20, 8, 4, 0xe7a046, 0xa4713d, 1.2);
-    p.ellipse(9, 20, 8, 4, 0xe7a046, 0xa4713d, 1.2);
     p.polygon(
       [
-        [-8, -19],
-        [-11, -30],
-        [-3, -25],
-        [0, -32],
-        [7, -25],
-        [12, -20],
+        [7, 17],
+        [15, 16],
+        [16, 25],
+        [8, 26],
       ],
-      0xffd64d,
-      0xad8237,
-      1.5,
+      0x39344c,
+      INK,
+      2.2,
     );
-    p.ellipse(0, 0, 24, 23, 0xf6c84e, 0x9d783c, 1.8);
-    p.ellipse(-4, -5, 18, 16, 0xffdb68);
-    p.ellipse(-17, 7, 6, 10, 0xf2b747, 0xd49c3d, 1);
+    p.polygon(
+      [
+        [-23, -5],
+        [-27, -13],
+        [-19, -17],
+        [-18, -24],
+        [-8, -24],
+        [-2, -28],
+        [7, -24],
+        [17, -25],
+        [20, -16],
+        [27, -11],
+        [24, -3],
+        [27, 7],
+        [20, 13],
+        [16, 23],
+        [6, 23],
+        [0, 27],
+        [-9, 23],
+        [-19, 23],
+        [-21, 14],
+        [-28, 8],
+      ],
+      CREAM,
+      INK,
+      2.8,
+    );
+    p.polygon(
+      [
+        [-24, 7],
+        [-17, 11],
+        [-14, 20],
+        [-5, 20],
+        [1, 24],
+        [8, 21],
+        [16, 21],
+        [21, 13],
+        [18, 23],
+        [6, 23],
+        [0, 27],
+        [-9, 23],
+        [-19, 23],
+        [-21, 14],
+      ],
+      0xe6d6ad,
+    );
+    p.polygon(
+      [
+        [-17, -6],
+        [-28, -9],
+        [-26, 0],
+        [-17, 4],
+      ],
+      0x39344c,
+      INK,
+      2,
+    );
+    p.polygon(
+      [
+        [17, -6],
+        [27, -10],
+        [27, -1],
+        [17, 5],
+      ],
+      0x39344c,
+      INK,
+      2,
+    );
+    p.polygon(
+      [
+        [-14, -9],
+        [-5, -14],
+        [10, -12],
+        [16, -5],
+        [14, 14],
+        [5, 20],
+        [-7, 18],
+        [-14, 9],
+      ],
+      0x39344c,
+      INK,
+      2.3,
+    );
+    p.polygon(
+      [
+        [-15, -12],
+        [-10, -18],
+        [-4, -14],
+        [2, -20],
+        [8, -15],
+        [15, -17],
+        [15, -10],
+        [4, -8],
+        [-3, -9],
+      ],
+      CREAM,
+      INK,
+      1.8,
+    );
+    eyes(p, 0, 6.3, state);
+    p.ellipse(-11, 9, 2.8, 1.6, 0xff8a87);
+    p.ellipse(11, 9, 2.8, 1.6, 0xff8a87);
+    p.polygon(
+      [
+        [-3, 8],
+        [3, 8],
+        [0, 11],
+      ],
+      0x1b172e,
+    );
     p.line(
       [
-        [-19, 5],
-        [-15, 11],
+        [0, 11],
+        [0, 14],
+        [-4, 15],
       ],
-      0xffdb68,
+      0x1b172e,
       1.4,
     );
-    p.ellipse(16, 8, 5, 9, 0xf2b747, 0xd49c3d, 1);
-    eyes(p, -4, 7.3, state);
-    p.ellipse(-13, 4, 3.5, 2, 0xf2a176, undefined, 1, 0.8);
-    p.ellipse(13, 4, 3.5, 2, 0xf2a176, undefined, 1, 0.8);
-    p.ellipse(3, 7, 10, 5.5, 0xf0a142, 0xb87735, 1.3);
     p.line(
       [
-        [-5, 7],
-        [11, 7],
-      ],
-      0xb87735,
-      1.1,
-    );
-    p.ellipse(0, 4, 1, 0.6, 0xb87735);
-    p.ellipse(5, 4, 1, 0.6, 0xb87735);
-    p.line(
-      [
-        [-4, 19],
-        [-2, 16],
-        [2, 18],
+        [0, 14],
         [4, 15],
-        [7, 17],
       ],
-      0xcda24c,
-      1.1,
+      0x1b172e,
+      1.4,
+    );
+    patch(p, 18, 10, 8, 10, 0xff765c);
+    p.line(
+      [
+        [-19, -10],
+        [-17, -5],
+        [-21, -1],
+      ],
+      0xc7b587,
+      1,
+    );
+  } else if (kind === 'duck') {
+    p.polygon(
+      [
+        [-15, 17],
+        [-5, 18],
+        [-7, 25],
+        [-20, 24],
+      ],
+      0xff8b3d,
+      INK,
+      2,
+    );
+    p.polygon(
+      [
+        [5, 18],
+        [14, 17],
+        [21, 23],
+        [7, 25],
+      ],
+      0xff8b3d,
+      INK,
+      2,
+    );
+    p.polygon(
+      [
+        [-12, -18],
+        [-15, -31],
+        [-6, -25],
+        [-1, -33],
+        [6, -24],
+        [13, -24],
+        [16, -16],
+      ],
+      0xffd44e,
+      INK,
+      2.4,
+    );
+    p.polygon(
+      [
+        [-22, -9],
+        [-12, -22],
+        [9, -22],
+        [22, -12],
+        [24, 7],
+        [15, 21],
+        [-4, 24],
+        [-20, 15],
+        [-25, 2],
+      ],
+      0xffd44e,
+      INK,
+      2.8,
+    );
+    p.polygon(
+      [
+        [-22, 5],
+        [-12, 15],
+        [9, 20],
+        [20, 12],
+        [15, 21],
+        [-4, 24],
+        [-20, 15],
+      ],
+      0xe5a839,
+    );
+    p.polygon(
+      [
+        [-20, 0],
+        [-12, 6],
+        [-13, 15],
+        [-20, 11],
+      ],
+      0xf1b638,
+      INK,
+      1.8,
+    );
+    eyes(p, -6, 7.2, state);
+    p.ellipse(-15, 3, 2.6, 1.4, 0xff9976);
+    p.ellipse(15, 3, 2.6, 1.4, 0xff9976);
+    p.polygon(
+      [
+        [-6, 4],
+        [11, 2],
+        [22, 8],
+        [11, 13],
+        [-5, 11],
+      ],
+      0xff8b3d,
+      INK,
+      2.1,
+    );
+    p.line(
+      [
+        [-4, 8],
+        [11, 8],
+        [19, 8],
+      ],
+      INK,
+      1.3,
+    );
+    p.ellipse(5, 5, 1, 0.7, INK);
+    p.ellipse(10, 5, 1, 0.7, INK);
+    patch(p, -9, 15, 9, 8, 0x4497ef);
+    p.line(
+      [
+        [8, 18],
+        [12, 16],
+        [15, 19],
+      ],
+      0x9b772f,
+      1,
     );
   } else if (kind === 'bear') {
-    p.ellipse(-17, -18, 9, 10, 0xb7805b, 0x755344, 1.7);
-    p.ellipse(17, -18, 9, 10, 0xb7805b, 0x755344, 1.7);
-    p.ellipse(-17, -19, 5, 6, 0xdeaf85);
-    p.ellipse(17, -19, 5, 6, 0xdeaf85);
-    p.ellipse(-13, 19, 8, 7, 0xb07953, 0x755344, 1.4);
-    p.ellipse(13, 19, 8, 7, 0xb07953, 0x755344, 1.4);
-    p.ellipse(0, 0, 24, 24, 0xb9825c, 0x755344, 1.8);
-    p.ellipse(-5, -7, 17, 15, 0xc28e67);
-    p.ellipse(-21, 5, 5, 9, 0xa67150, 0x755344, 1.2);
-    p.ellipse(21, 5, 5, 9, 0xa67150, 0x755344, 1.2);
-    p.ellipse(0, 7, 13, 10, 0xe9c6a1, 0x9b7256, 1);
-    eyes(p, -4, 8, state);
-    p.ellipse(-14, 4, 3, 1.8, 0xd59e87);
-    p.ellipse(14, 4, 3, 1.8, 0xd59e87);
     p.polygon(
       [
-        [-4, 4],
-        [4, 4],
-        [3, 7],
+        [-23, -12],
+        [-27, -23],
+        [-20, -29],
+        [-10, -25],
+        [-8, -16],
+      ],
+      0xdf9253,
+      INK,
+      2.5,
+    );
+    p.polygon(
+      [
+        [10, -23],
+        [21, -29],
+        [29, -23],
+        [26, -13],
+        [17, -12],
+      ],
+      0xdf9253,
+      INK,
+      2.5,
+    );
+    p.polygon(
+      [
+        [-21, -23],
+        [-17, -25],
+        [-12, -21],
+        [-16, -16],
+      ],
+      0xffdda4,
+    );
+    p.polygon(
+      [
+        [17, -23],
+        [22, -25],
+        [25, -21],
+        [21, -16],
+      ],
+      0xffdda4,
+    );
+    p.polygon(
+      [
+        [-14, 16],
+        [-5, 18],
+        [-5, 26],
+        [-17, 25],
+        [-21, 20],
+      ],
+      0xc77b42,
+      INK,
+      2.1,
+    );
+    p.polygon(
+      [
+        [6, 18],
+        [16, 16],
+        [22, 21],
+        [17, 26],
+        [6, 26],
+      ],
+      0xc77b42,
+      INK,
+      2.1,
+    );
+    p.polygon(
+      [
+        [-22, -10],
+        [-12, -23],
+        [10, -24],
+        [22, -13],
+        [25, 8],
+        [14, 23],
+        [-10, 24],
+        [-23, 12],
+      ],
+      0xdf9253,
+      INK,
+      2.8,
+    );
+    p.polygon(
+      [
+        [-22, 4],
+        [-12, 15],
+        [8, 19],
+        [22, 10],
+        [14, 23],
+        [-10, 24],
+        [-23, 12],
+      ],
+      0xc87b46,
+    );
+    p.polygon(
+      [
+        [-23, -1],
+        [-16, 2],
+        [-18, 12],
+        [-24, 10],
+      ],
+      0xd0844a,
+      INK,
+      1.8,
+    );
+    p.polygon(
+      [
+        [20, -1],
+        [26, 3],
+        [23, 14],
+        [17, 10],
+      ],
+      0xd0844a,
+      INK,
+      1.8,
+    );
+    p.polygon(
+      [
+        [-13, 1],
+        [-3, -2],
+        [11, 1],
+        [15, 8],
+        [10, 16],
+        [-8, 17],
+        [-15, 10],
+      ],
+      0xffdda4,
+      INK,
+      1.8,
+    );
+    eyes(p, -7, 8.2, state);
+    p.polygon(
+      [
+        [-5, 4],
+        [4, 3],
+        [6, 6],
+        [0, 10],
+        [-5, 8],
+      ],
+      INK,
+    );
+    p.line(
+      [
         [0, 9],
-        [-3, 7],
+        [0, 13],
+        [-5, 14],
       ],
-      0x59413b,
+      INK,
+      1.5,
     );
     p.line(
       [
-        [0, 8],
-        [0, 12],
-        [-4, 14],
+        [0, 13],
+        [5, 13],
       ],
-      0x785448,
+      INK,
+      1.5,
+    );
+    patch(p, -13, 14, 8, 10, 0x27c5bd);
+    p.line(
+      [
+        [1, -23],
+        [1, -16],
+      ],
+      0x975838,
+      1.3,
+    );
+    p.line(
+      [
+        [-2, -20],
+        [4, -20],
+      ],
+      INK,
       1.2,
-    );
-    p.line(
-      [
-        [0, 12],
-        [4, 14],
-      ],
-      0x785448,
-      1.2,
-    );
-    p.line(
-      [
-        [-1, -22],
-        [-1, -17],
-      ],
-      0x835e49,
-      1,
-    );
-    p.line(
-      [
-        [-4, -20],
-        [2, -20],
-      ],
-      0x835e49,
-      1,
-    );
-    p.line(
-      [
-        [-3, 20],
-        [3, 20],
-      ],
-      0x835e49,
-      1,
-    );
-    p.line(
-      [
-        [0, 17],
-        [0, 23],
-      ],
-      0x835e49,
-      1,
     );
   } else {
-    // Floppy ears have contrasting fabric panels and individually tilted tips.
     p.polygon(
       [
-        [-15, -13],
-        [-22, -31],
-        [-21, -44],
-        [-15, -47],
-        [-10, -39],
-        [-8, -15],
+        [-17, -11],
+        [-25, -35],
+        [-23, -49],
+        [-15, -53],
+        [-9, -42],
+        [-7, -14],
       ],
-      0xe4c8df,
-      0x9a7895,
+      0xc29aee,
+      INK,
+      2.6,
+    );
+    p.polygon(
+      [
+        [-17, -24],
+        [-21, -39],
+        [-18, -45],
+        [-14, -38],
+        [-12, -22],
+      ],
+      0xf98db4,
+    );
+    p.polygon(
+      [
+        [5, -17],
+        [7, -45],
+        [16, -52],
+        [25, -43],
+        [26, -31],
+        [19, -26],
+        [17, -12],
+      ],
+      0xc29aee,
+      INK,
+      2.6,
+    );
+    p.polygon(
+      [
+        [11, -25],
+        [12, -42],
+        [16, -45],
+        [21, -39],
+        [21, -33],
+        [16, -29],
+      ],
+      0xf98db4,
+    );
+    p.polygon(
+      [
+        [-14, 17],
+        [-5, 18],
+        [-5, 25],
+        [-19, 25],
+        [-21, 21],
+      ],
+      0xae81d8,
+      INK,
+      2,
+    );
+    p.polygon(
+      [
+        [5, 18],
+        [14, 17],
+        [21, 22],
+        [18, 26],
+        [5, 25],
+      ],
+      0xae81d8,
+      INK,
+      2,
+    );
+    p.polygon(
+      [
+        [-22, -10],
+        [-11, -23],
+        [11, -23],
+        [22, -10],
+        [24, 9],
+        [13, 23],
+        [-10, 24],
+        [-23, 12],
+      ],
+      0xc29aee,
+      INK,
+      2.8,
+    );
+    p.polygon(
+      [
+        [-22, 7],
+        [-11, 15],
+        [9, 19],
+        [23, 10],
+        [13, 23],
+        [-10, 24],
+        [-23, 12],
+      ],
+      0xa77ad4,
+    );
+    p.polygon(
+      [
+        [-11, 3],
+        [0, 0],
+        [13, 4],
+        [15, 12],
+        [7, 18],
+        [-8, 17],
+        [-15, 11],
+      ],
+      0xf4d7f0,
+      INK,
       1.5,
     );
+    eyes(p, -6, 7.4, state);
+    p.ellipse(-14, 4, 3, 1.5, 0xee76a8);
+    p.ellipse(14, 4, 3, 1.5, 0xee76a8);
     p.polygon(
       [
-        [-17, -21],
-        [-18, -35],
-        [-16, -40],
-        [-13, -34],
-        [-12, -20],
-      ],
-      0xc79cbe,
-    );
-    p.polygon(
-      [
-        [6, -17],
-        [9, -41],
-        [15, -46],
-        [21, -42],
-        [23, -30],
-        [17, -25],
-        [15, -15],
-      ],
-      0xe4c8df,
-      0x9a7895,
-      1.5,
-    );
-    p.polygon(
-      [
-        [12, -23],
-        [13, -36],
-        [16, -39],
-        [18, -33],
-        [16, -27],
-      ],
-      0xc79cbe,
-    );
-    p.ellipse(-11, 20, 7, 5, 0xd5afd0, 0x9a7895, 1.4);
-    p.ellipse(11, 20, 7, 5, 0xd5afd0, 0x9a7895, 1.4);
-    p.ellipse(0, 0, 23, 23, 0xe4c8df, 0x9a7895, 1.8);
-    p.ellipse(-4, -5, 17, 16, 0xefdaea);
-    p.ellipse(0, 9, 13, 9, 0xf8e9ef);
-    eyes(p, -3, 7.5, state);
-    p.ellipse(-14, 5, 3.5, 2.3, 0xd598b5, undefined, 1, 0.7);
-    p.ellipse(14, 5, 3.5, 2.3, 0xd598b5, undefined, 1, 0.7);
-    p.polygon(
-      [
-        [-3, 5],
-        [3, 5],
+        [-3, 4],
+        [3, 4],
         [0, 8],
       ],
-      0xb47799,
+      0xb64682,
+      INK,
+      1,
     );
     p.line(
       [
         [0, 8],
-        [0, 11],
+        [0, 12],
         [-4, 13],
       ],
-      0x94718c,
-      1.1,
+      INK,
+      1.3,
     );
     p.line(
       [
-        [0, 11],
+        [0, 12],
         [4, 13],
       ],
-      0x94718c,
-      1.1,
+      INK,
+      1.3,
     );
     p.line(
       [
         [-21, 5],
-        [-15, 7],
+        [-16, 7],
       ],
-      0xb79bab,
-      0.9,
+      INK,
+      1,
     );
     p.line(
       [
-        [15, 7],
-        [21, 5],
+        [16, 7],
+        [22, 4],
       ],
-      0xb79bab,
-      0.9,
-    );
-    p.line(
-      [
-        [-5, 20],
-        [-2, 18],
-        [1, 21],
-        [4, 18],
-      ],
-      0xb79bab,
+      INK,
       1,
     );
+    patch(p, -14, 13, 8, 9, 0xf98db4);
   }
-  if (state.evil) {
-    p.polygon(
-      [
-        [-17, -18],
-        [-19, -31],
-        [-9, -23],
-      ],
-      0x942f49,
-      0x6b283b,
-      1,
-    );
-    p.polygon(
-      [
-        [9, -23],
-        [19, -31],
-        [17, -18],
-      ],
-      0x942f49,
-      0x6b283b,
-      1,
-    );
-  }
+  if (state.evil) evilFace(p);
 }
 
+export interface MonsterReaction {
+  falling?: boolean;
+  hit?: boolean;
+  healthRatio?: number;
+  defeated?: boolean;
+}
+/** The main silhouette remains within the physics radius. Horn tips are decorative;
+ * all posing, facial reactions and tumble rotate around the true rigid-body center. */
 export function drawMonster(
   g: G,
   x: number,
@@ -654,334 +1294,809 @@ export function drawMonster(
   kind = 'horn',
   angle = 0,
   nervous = false,
+  reaction: MonsterReaction = {},
 ): void {
-  const p = new Pen(g, x, y, angle, r / 21, r / 21);
-  const color = kind === 'blob' ? 0x81bcb0 : kind === 'bat' ? 0xdba59c : 0xada0ca;
-  const shade = kind === 'blob' ? 0x559588 : kind === 'bat' ? 0xb77e7e : 0x83759f;
-  const outline = kind === 'blob' ? 0x42796f : kind === 'bat' ? 0x98646b : 0x726282;
-  p.ellipse(-11, 19, 8, 5, shade, outline, 1.5);
-  p.ellipse(11, 19, 8, 5, shade, outline, 1.5);
-  if (kind === 'bat') {
-    p.polygon(
-      [
-        [-15, -5],
-        [-35, -16],
-        [-29, 0],
-        [-22, 0],
-        [-20, 9],
-        [-13, 4],
-      ],
-      color,
-      outline,
-      1.5,
-    );
-    p.polygon(
-      [
-        [15, -5],
-        [35, -16],
-        [29, 0],
-        [22, 0],
-        [20, 9],
-        [13, 4],
-      ],
-      color,
-      outline,
-      1.5,
-    );
-  }
+  const p = new Pen(g, x, y, angle, r / 24, r / 24),
+    falling = !!reaction.falling,
+    hurt = !!reaction.hit;
+  const color = kind === 'blob' ? 0xbdea46 : kind === 'bat' ? 0xff765c : 0xb08be8;
+  const shade = kind === 'blob' ? 0x85bb3c : kind === 'bat' ? 0xd95050 : 0x835bbc;
   if (kind === 'horn') {
     p.polygon(
       [
         [-18, -10],
-        [-22, -31],
-        [-12, -25],
-        [-8, -17],
+        [-24, -29],
+        [-12, -24],
+        [-8, -15],
       ],
-      0xf2dba7,
-      outline,
-      1.5,
+      CREAM,
+      INK,
+      2.3,
     );
     p.polygon(
       [
-        [8, -17],
-        [12, -25],
-        [22, -31],
-        [18, -10],
+        [7, -16],
+        [14, -29],
+        [21, -31],
+        [22, -13],
       ],
-      0xf2dba7,
-      outline,
-      1.5,
+      CREAM,
+      INK,
+      2.3,
+    );
+    p.polygon(
+      [
+        [-23, -5],
+        [-14, -20],
+        [8, -23],
+        [22, -10],
+        [23, 8],
+        [13, 20],
+        [-9, 23],
+        [-22, 11],
+      ],
+      color,
+      INK,
+      2.7,
     );
   } else if (kind === 'blob') {
-    p.ellipse(-10, -20, 5, 8, color, outline, 1.5);
-    p.ellipse(7, -23, 5, 9, color, outline, 1.5);
-  }
-  p.ellipse(0, 0, 22, 22, color, outline, 1.8);
-  p.ellipse(-6, -7, 14, 12, 0xffffff, undefined, 1, 0.1);
-  p.ellipse(-17, 8, 3, 2.2, shade, undefined, 1, 0.5);
-  p.ellipse(16, 7, 3.2, 2.4, shade, undefined, 1, 0.5);
-  const ey = nervous ? -4 : -3;
-  for (const side of [-1, 1]) {
-    p.ellipse(side * 8, ey, 6.5, nervous ? 8 : 7.2, 0xfff9e6, outline, 1);
-    p.ellipse(side * 8 - 1.2, ey + (nervous ? 1.5 : 1), 2.5, 3.5, INK);
-    p.ellipse(side * 8 - 2, ey, 0.8, 1.1, 0xffffff);
-  }
-  if (nervous) {
-    p.ellipse(0, 11, 4.5, 5.3, 0x654c6b, outline, 1);
-    p.line(
+    p.polygon(
       [
-        [-15, -17],
-        [-8, -19],
+        [-18, -13],
+        [-19, -30],
+        [-9, -24],
+        [-6, -16],
       ],
-      outline,
-      1.7,
-    );
-    p.line(
-      [
-        [8, -19],
-        [15, -17],
-      ],
-      outline,
-      1.7,
+      0x8bbe3b,
+      INK,
+      2.1,
     );
     p.polygon(
       [
-        [25, -13],
-        [29, -7],
-        [25, -3],
-        [22, -7],
+        [3, -17],
+        [6, -30],
+        [12, -23],
+        [17, -26],
+        [17, -12],
       ],
-      0x9cced4,
-      0x72afb6,
-      1,
+      0x8bbe3b,
+      INK,
+      2.1,
+    );
+    p.polygon(
+      [
+        [-22, -8],
+        [-11, -22],
+        [8, -23],
+        [23, -7],
+        [20, 12],
+        [7, 23],
+        [-13, 20],
+        [-24, 4],
+      ],
+      color,
+      INK,
+      2.7,
     );
   } else {
+    p.polygon(
+      [
+        [-17, -7],
+        [-28, -23],
+        [-8, -19],
+      ],
+      color,
+      INK,
+      2.2,
+    );
+    p.polygon(
+      [
+        [7, -18],
+        [28, -25],
+        [20, -4],
+      ],
+      color,
+      INK,
+      2.2,
+    );
+    p.polygon(
+      [
+        [-23, -5],
+        [-12, -21],
+        [11, -22],
+        [23, -6],
+        [20, 14],
+        [7, 23],
+        [-15, 18],
+      ],
+      color,
+      INK,
+      2.7,
+    );
+  }
+  p.polygon(
+    [
+      [-22, 6],
+      [-8, 14],
+      [9, 16],
+      [21, 8],
+      [16, 17],
+      [7, 23],
+      [-13, 20],
+    ],
+    shade,
+  );
+  // The eyes are deliberately unequal: expressive, original silhouettes at tiny sizes.
+  if (reaction.defeated) {
+    for (const side of [-1, 1]) {
+      const xx = side * 8;
+      p.line(
+        [
+          [xx - 4, -8],
+          [xx + 4, 0],
+        ],
+        INK,
+        2.5,
+      );
+      p.line(
+        [
+          [xx + 4, -8],
+          [xx - 4, 0],
+        ],
+        INK,
+        2.5,
+      );
+    }
+  } else if (hurt) {
     p.line(
       [
-        [-8, 9],
-        [-5, 13],
-        [0, 15],
-        [5, 13],
-        [8, 9],
+        [-15, -5],
+        [-8, -9],
+        [-3, -4],
       ],
-      outline,
+      INK,
+      2.6,
+    );
+    p.line(
+      [
+        [2, -5],
+        [9, -9],
+        [15, -4],
+      ],
+      INK,
+      2.6,
+    );
+  } else {
+    p.polygon(
+      [
+        [-17, -10],
+        [-8, -13],
+        [-1, -8],
+        [-2, 3],
+        [-11, 5],
+        [-17, 0],
+      ],
+      CREAM,
+      INK,
       1.7,
     );
     p.polygon(
       [
-        [-5, 11],
-        [-1, 12],
-        [-3, 16],
+        [2, -9],
+        [12, -13],
+        [18, -8],
+        [16, 2],
+        [6, 4],
+        [2, 0],
       ],
-      0xfffae3,
-      outline,
-      0.7,
+      CREAM,
+      INK,
+      1.7,
+    );
+    const ey = falling ? -3 : nervous ? 0 : -1;
+    p.ellipse(-8, ey, 2.7, falling ? 4.1 : 3.4, INK);
+    p.ellipse(9, ey - 0.5, 2.5, falling ? 3.9 : 3.1, INK);
+    p.ellipse(-7.3, ey - 1, 0.7, 1, 0xffffff);
+    p.ellipse(9.7, ey - 1.4, 0.7, 1, 0xffffff);
+    if (nervous || falling) {
+      p.line(
+        [
+          [-17, -15],
+          [-8, -17],
+        ],
+        INK,
+        2.2,
+      );
+      p.line(
+        [
+          [7, -17],
+          [17, -15],
+        ],
+        INK,
+        2.2,
+      );
+    } else {
+      p.line(
+        [
+          [-18, -15],
+          [-2, -10],
+        ],
+        INK,
+        2.8,
+      );
+      p.line(
+        [
+          [3, -11],
+          [18, -15],
+        ],
+        INK,
+        2.8,
+      );
+    }
+  }
+  if (falling || hurt || reaction.defeated) {
+    p.polygon(
+      [
+        [-8, 8],
+        [-3, 5],
+        [6, 6],
+        [10, 12],
+        [5, 18],
+        [-5, 17],
+      ],
+      INK,
     );
     p.polygon(
       [
-        [2, 12],
-        [6, 10],
-        [5, 15],
+        [-5, 7],
+        [-1, 7],
+        [-3, 11],
       ],
-      0xfffae3,
-      outline,
-      0.7,
+      CREAM,
     );
+    p.polygon(
+      [
+        [3, 7],
+        [7, 9],
+        [3, 11],
+      ],
+      CREAM,
+    );
+  } else {
+    p.polygon(
+      [
+        [-11, 7],
+        [-2, 11],
+        [12, 5],
+        [7, 15],
+        [-5, 17],
+      ],
+      INK,
+    );
+    p.polygon(
+      [
+        [-8, 9],
+        [-3, 11],
+        [-6, 14],
+      ],
+      CREAM,
+    );
+    p.polygon(
+      [
+        [3, 10],
+        [8, 8],
+        [6, 13],
+      ],
+      CREAM,
+    );
+  }
+  if ((reaction.healthRatio ?? 1) < 0.55) {
+    p.polygon(
+      [
+        [12, 6],
+        [19, 4],
+        [22, 9],
+        [16, 12],
+      ],
+      0x77538e,
+      undefined,
+      1,
+      0.75,
+    );
+    p.line(
+      [
+        [14, 7],
+        [19, 9],
+      ],
+      CREAM,
+      1.1,
+    );
+  } else {
+    p.ellipse(-17, 8, 2.5, 1.4, shade);
+    p.ellipse(17, 6, 2.3, 1.3, shade);
   }
 }
 
+function beveled(p: Pen, w: number, h: number, color: number, outline = INK, width = 2.4) {
+  const x = w / 2,
+    y = h / 2,
+    b = Math.min(3, w * 0.12, h * 0.12);
+  p.polygon(
+    [
+      [-x + b, -y],
+      [x - b, -y],
+      [x, -y + b],
+      [x, y - b],
+      [x - b, y],
+      [-x + b, y],
+      [-x, y - b],
+      [-x, -y + b],
+    ],
+    color,
+    outline,
+    width,
+  );
+}
 export function drawBlock(g: G, def: BlockDef, healthRatio = 1): void {
-  const { x, y, w, h, material } = def;
-  const p = new Pen(g, x, y, def.angle || 0);
-  const left = -w / 2,
-    top = -h / 2;
+  const p = new Pen(g, def.x, def.y, def.angle || 0),
+    { w, h, material } = def,
+    x = w / 2,
+    y = h / 2;
+  const edge = Math.min(2.6, Math.min(w, h) * 0.14 + 0.8);
   if (material === 'wood') {
-    p.roundRect(left, top, w, h, 3, 0xbb8551, 0x815737, 2);
-    p.roundRect(left + 2, top + 2, w - 4, h - 4, 2, 0xd6a26b);
+    beveled(p, w, h, 0xe7a04c, INK, edge);
+    p.polygon(
+      [
+        [-x + 2, y - Math.min(6, h * 0.25)],
+        [x - 2, y - Math.min(6, h * 0.25)],
+        [x - 2, y - 2],
+        [-x + 2, y - 2],
+      ],
+      0xbe733d,
+    );
     p.line(
       [
-        [left + 4, top + 4],
-        [left + w - 4, top + 4],
+        [-x + 4, -y + 3],
+        [x - 4, -y + 3],
       ],
-      0xf2c68c,
+      0xffd274,
       1.5,
     );
     if (w >= h) {
-      for (let j = 0; j < Math.min(4, Math.floor(h / 6)); j++) {
-        const py = top + 9 + j * 7;
+      for (let i = 0; i < Math.min(3, Math.floor(h / 7)); i++) {
+        const yy = -y + 8 + i * 7;
         p.line(
           [
-            [left + 8, py],
-            [left + w * 0.3, py - 1],
-            [left + w * 0.62, py + 1],
-            [left + w - 8, py],
+            [-x + 7, yy],
+            [-w * 0.18, yy - 1],
+            [w * 0.2, yy + 1],
+            [x - 7, yy],
           ],
-          0xae7946,
-          1,
-          0.65,
+          0x9b5438,
+          1.1,
         );
       }
-      if (w > 60) p.ellipse(w * 0.19, 1, 7, Math.min(3, h / 6), 0xb88450, 0xa67344, 0.8);
+      if (w > 55) p.ellipse(w * 0.17, -1, 7, Math.min(3, h * 0.14), 0xc87a3c, 0x9b5438, 1);
     } else {
-      for (let j = 0; j < Math.min(4, Math.floor(w / 6)); j++) {
-        const px = left + 8 + j * 6;
+      for (let i = 0; i < Math.min(3, Math.floor(w / 6)); i++) {
+        const xx = -x + 7 + i * 6;
         p.line(
           [
-            [px, top + 7],
-            [px - 1, 0],
-            [px + 1, h / 2 - 7],
+            [xx, -y + 7],
+            [xx - 1, 0],
+            [xx + 1, y - 7],
           ],
-          0xae7946,
-          1,
-          0.6,
+          0x9b5438,
+          1.1,
         );
       }
-      if (h > 60) p.ellipse(1, h * 0.15, Math.min(3, w / 6), 6, 0xb88450, 0xa67344, 0.8);
+      if (h > 55) p.ellipse(0, h * 0.13, Math.min(3, w * 0.14), 7, 0xc87a3c, 0x9b5438, 1);
     }
-    for (const [px, py] of [
-      [left + 5, top + 5],
-      [w / 2 - 5, h / 2 - 5],
+    for (const [xx, yy] of [
+      [-x + 5, -y + 5],
+      [x - 5, y - 5],
     ]) {
-      p.ellipse(px, py, 1.7, 1.7, 0x8e694a);
-      p.ellipse(px - 0.4, py - 0.4, 0.6, 0.6, 0xe7bd88);
+      p.ellipse(xx, yy, 1.8, 1.8, INK);
+      p.line(
+        [
+          [xx - 1, yy],
+          [xx + 1, yy],
+        ],
+        0xffd274,
+        0.7,
+      );
     }
   } else if (material === 'glass') {
-    p.roundRect(left, top, w, h, 3, 0x86cbd2, 0x4b929f, 2);
-    p.roundRect(left + 3, top + 3, w - 6, h - 6, 1, 0xb7e8e7);
-    p.line(
+    beveled(p, w, h, 0x5dd7e3, INK, edge);
+    p.polygon(
       [
-        [left + 5, h / 2 - 5],
-        [left + 5, top + 5],
-        [w / 2 - 5, top + 5],
+        [-x + 2, -y + 2],
+        [-x + w * 0.45, -y + 2],
+        [-x + w * 0.24, y - 2],
+        [-x + 2, y - 2],
       ],
-      0xeffff3,
-      2,
+      0xc8fff0,
+      undefined,
+      1,
+      0.65,
     );
     p.polygon(
       [
-        [left + w * 0.22, top + 3],
-        [left + w * 0.4, top + 3],
-        [left + w * 0.65, h / 2 - 3],
-        [left + w * 0.49, h / 2 - 3],
+        [x - w * 0.3, -y + 2],
+        [x - 2, -y + 2],
+        [x - 2, y - 2],
+        [x - w * 0.53, y - 2],
       ],
-      0xf2fff5,
+      0x29a9c6,
       undefined,
       1,
-      0.52,
+      0.7,
     );
-    if (w > 70)
+    p.line(
+      [
+        [-x + 4, y - 4],
+        [-x + 4, -y + 4],
+        [x - 4, -y + 4],
+      ],
+      0xeaffec,
+      1.8,
+    );
+    if (w > 50)
       p.line(
         [
-          [w * 0.27, top + 6],
-          [w * 0.39, h / 2 - 6],
+          [-w * 0.1, -y + 4],
+          [w * 0.08, y - 4],
         ],
-        0xf4fff9,
+        0xe8fff2,
         2,
-        0.7,
       );
   } else {
-    p.roundRect(left, top, w, h, 4, 0x8c939c, 0x636b78, 2);
-    p.roundRect(left + 3, top + 3, w - 6, h - 6, 2, 0xa7adb1);
-    p.line(
+    beveled(p, w, h, 0xa29ab9, INK, edge);
+    p.polygon(
       [
-        [left + 5, h / 2 - 4],
-        [w / 2 - 5, h / 2 - 4],
+        [-x + 2, y - Math.min(8, h * 0.3)],
+        [x - 2, y - Math.min(5, h * 0.2)],
+        [x - 2, y - 2],
+        [-x + 2, y - 2],
       ],
-      0x858d97,
-      2,
+      0x78718f,
     );
     p.line(
       [
-        [left + 5, top + 5],
-        [w / 2 - 5, top + 5],
+        [-x + 4, -y + 4],
+        [x - 4, -y + 4],
       ],
-      0xcbd0ca,
-      1.5,
+      0xd0c8df,
+      1.6,
     );
-    if (w >= h) {
-      for (let i = 1; i < w / 42; i++)
+    if (w >= h)
+      for (let i = 1; i < w / 43; i++)
         p.line(
           [
-            [left + i * 42, top + 3],
-            [left + i * 42 - 3, h / 2 - 3],
+            [-x + i * 43, -y + 2],
+            [-x + i * 43 - 3, y - 2],
           ],
-          0x7e8791,
+          0x69617c,
           1.5,
         );
-    } else {
-      for (let i = 1; i < h / 36; i++)
+    else
+      for (let i = 1; i < h / 37; i++)
         p.line(
           [
-            [left + 3, top + i * 36],
-            [w / 2 - 3, top + i * 36 + 2],
+            [-x + 2, -y + i * 37],
+            [x - 2, -y + i * 37 + 2],
           ],
-          0x7e8791,
+          0x69617c,
           1.5,
         );
-    }
-    p.ellipse(left + w * 0.28, top + h * 0.4, 2, 1.4, 0x8c949b);
-    p.ellipse(left + w * 0.69, top + h * 0.67, 1.4, 1.6, 0x8c949b);
+    p.polygon(
+      [
+        [-w * 0.2, -h * 0.07],
+        [-w * 0.12, -h * 0.15],
+        [-w * 0.08, h * 0.03],
+        [-w * 0.19, h * 0.08],
+      ],
+      0x867d9e,
+    );
   }
   if (healthRatio < 0.76) {
-    const crack = material === 'glass' ? 0x468f9d : material === 'wood' ? 0x775033 : 0x65717b;
+    const crack = material === 'glass' ? 0x146a8d : INK;
     p.line(
       [
-        [left + w * 0.35, top + 1],
-        [left + w * 0.48, top + h * 0.3],
-        [left + w * 0.4, top + h * 0.5],
-        [left + w * 0.6, top + h * 0.72],
+        [-w * 0.18, -y + 1],
+        [-w * 0.05, -h * 0.15],
+        [-w * 0.13, h * 0.04],
+        [w * 0.12, h * 0.22],
       ],
       crack,
-      1.3,
+      1.6,
     );
-    if (healthRatio < 0.38) {
+    if (healthRatio < 0.4) {
       p.line(
         [
-          [left + w * 0.48, top + h * 0.3],
-          [left + w * 0.8, top + h * 0.45],
-          [w / 2, top + h * 0.35],
+          [-w * 0.05, -h * 0.15],
+          [w * 0.23, -h * 0.02],
+          [x - 1, -h * 0.14],
+        ],
+        crack,
+        1.6,
+      );
+      p.line(
+        [
+          [-w * 0.13, h * 0.04],
+          [-w * 0.26, y - 1],
         ],
         crack,
         1.5,
       );
-      p.line(
-        [
-          [left + w * 0.4, top + h * 0.5],
-          [left + w * 0.25, h / 2],
-        ],
-        crack,
-        1.2,
-      );
     }
   }
-  if (def.static) {
-    for (const xx of [-w / 2 + 7, w / 2 - 7]) p.ellipse(xx, -h / 2 + 7, 2, 2, 0x69777c);
+  if (def.static)
+    for (const xx of [-x + 6, x - 6]) {
+      p.ellipse(xx, -y + 6, 2.4, 2.4, INK);
+      p.ellipse(xx - 0.5, -y + 5.5, 0.7, 0.7, CREAM);
+    }
+}
+
+/** Physical fragments use the same material ink/facets as their parent blocks. */
+export function drawFragment(g: G, def: BlockDef, healthRatio = 1): void {
+  const vertical = def.h > def.w,
+    p = new Pen(g, def.x, def.y, (def.angle || 0) + (vertical ? Math.PI / 2 : 0));
+  const l = Math.max(def.w, def.h) / 2,
+    t = Math.min(def.w, def.h) / 2,
+    b = Math.min(4, l * 0.16, Math.max(1, t * 0.4)),
+    stroke = Math.min(2.1, 0.7 + t * 0.16);
+  if (def.material === 'wood') {
+    p.polygon(
+      [
+        [-l + b * 0.3, -t],
+        [l - b * 0.6, -t],
+        [l, -t * 0.65],
+        [l - b, -t * 0.2],
+        [l, t * 0.2],
+        [l - b * 0.6, t * 0.5],
+        [l, t],
+        [-l + b * 0.6, t],
+        [-l, t * 0.55],
+        [-l + b, t * 0.05],
+        [-l, -t * 0.25],
+        [-l + b * 0.6, -t * 0.5],
+      ],
+      0xe7a04c,
+      INK,
+      stroke,
+    );
+    p.polygon(
+      [
+        [-l + b * 0.6, t * 0.5],
+        [l - b * 0.6, t * 0.5],
+        [l, t],
+        [-l + b * 0.6, t],
+        [-l, t * 0.55],
+      ],
+      0xbe733d,
+    );
+    p.line(
+      [
+        [-l + b, -t + 1],
+        [l - b, -t + 1],
+      ],
+      0xffd274,
+      1.1,
+    );
+    for (let i = 0; i < 2; i++) {
+      const yy = -t * 0.3 + i * t * 0.65;
+      p.line(
+        [
+          [-l + b * 1.7, yy],
+          [-l * 0.2, yy - 0.5],
+          [l * 0.3, yy + 0.5],
+          [l - b * 1.7, yy],
+        ],
+        0x995336,
+        1,
+      );
+    }
+    p.line(
+      [
+        [-l + b * 0.5, -t * 0.2],
+        [-l + Math.min(l * 0.5, b * 3.5), t * 0.15],
+        [-l + Math.min(l * 0.7, b * 5), t * 0.05],
+      ],
+      INK,
+      1,
+    );
+    p.polygon(
+      [
+        [l - b * 0.4, -t * 0.6],
+        [l - b * 2, t * 0.05],
+        [l - b * 0.4, t * 0.65],
+        [l - b * 0.1, t * 0.2],
+      ],
+      0xffc56c,
+    );
+  } else if (def.material === 'glass') {
+    p.polygon(
+      [
+        [-l + b, -t],
+        [l - b, -t],
+        [l, -t * 0.35],
+        [l, t * 0.65],
+        [l - b, t],
+        [-l + b * 0.7, t],
+        [-l, t * 0.3],
+        [-l, -t * 0.4],
+      ],
+      0x5dd7e3,
+      INK,
+      stroke,
+    );
+    p.polygon(
+      [
+        [-l + b, -t + 0.8],
+        [l * 0.35, -t + 0.8],
+        [-l * 0.2, t * 0.8],
+        [-l + b * 0.5, t * 0.4],
+      ],
+      0xd2fff0,
+      undefined,
+      1,
+      0.8,
+    );
+    p.polygon(
+      [
+        [l * 0.2, -t * 0.6],
+        [l - b * 0.8, -t * 0.8],
+        [l - b * 0.3, t * 0.5],
+        [l * 0.65, t * 0.75],
+      ],
+      0x28a8c7,
+    );
+    p.line(
+      [
+        [-l, t * 0.3],
+        [-l * 0.2, -t * 0.2],
+        [l * 0.2, t * 0.15],
+        [l * 0.6, -t],
+      ],
+      0x14728e,
+      1.2,
+    );
+    p.line(
+      [
+        [-l + b, -t + 1],
+        [l - b, -t + 1],
+      ],
+      0xecfff0,
+      1.2,
+    );
+  } else {
+    p.polygon(
+      [
+        [-l + b, -t],
+        [-l * 0.1, -t + t * 0.08],
+        [l - b * 0.7, -t],
+        [l, -t * 0.65],
+        [l - b * 0.15, t * 0.7],
+        [l - b, t],
+        [-l * 0.35, t * 0.9],
+        [-l + b * 0.35, t],
+        [-l, t * 0.65],
+        [-l + b * 0.1, -t * 0.7],
+      ],
+      0xa29ab9,
+      INK,
+      stroke,
+    );
+    p.polygon(
+      [
+        [-l + b * 0.3, t * 0.45],
+        [l - b * 0.3, t * 0.4],
+        [l - b, t],
+        [-l * 0.35, t * 0.9],
+        [-l + b * 0.35, t],
+        [-l, t * 0.65],
+      ],
+      0x78718f,
+    );
+    p.line(
+      [
+        [-l + b, -t + 1],
+        [l - b, -t + 1],
+      ],
+      0xd0c8df,
+      1.3,
+    );
+    p.line(
+      [
+        [-l * 0.1, -t],
+        [-l * 0.07, -t * 0.1],
+        [l * 0.1, t * 0.3],
+        [-l * 0.04, t],
+      ],
+      INK,
+      1.2,
+    );
+    p.line(
+      [
+        [l * 0.1, t * 0.3],
+        [l * 0.5, -t * 0.05],
+        [l * 0.75, -t * 0.6],
+      ],
+      0x615873,
+      1.1,
+    );
   }
+  if (healthRatio < 0.4)
+    p.line(
+      [
+        [-l * 0.3, -t],
+        [-l * 0.12, 0],
+        [l * 0.12, t * 0.6],
+      ],
+      INK,
+      1.2,
+    );
 }
 
 export function drawHazard(g: G, x: number, y: number, angle = 0): void {
   const p = new Pen(g, x, y, angle);
-  p.roundRect(-19, -20, 38, 40, 4, 0xc56759, 0x8d4d47, 2);
-  p.roundRect(-15, -17, 30, 34, 2, 0xde8671);
-  p.line(
+  beveled(p, 40, 40, 0xff765c, INK, 2.8);
+  p.polygon(
     [
-      [-10, -17],
-      [-10, 17],
+      [-17, 10],
+      [17, 6],
+      [17, 17],
+      [-17, 17],
     ],
-    0xb76759,
-    1.2,
+    0xd94d53,
   );
-  p.line(
+  p.polygon(
     [
-      [10, -17],
-      [10, 17],
+      [-19, -14],
+      [19, -14],
+      [19, -7],
+      [-19, -7],
     ],
-    0xb76759,
-    1.2,
+    0xffd456,
+    INK,
+    1.3,
   );
-  p.roundRect(-20, -12, 40, 7, 1, 0xeadab9, 0xab8f70, 1);
-  p.roundRect(-20, 7, 40, 7, 1, 0xeadab9, 0xab8f70, 1);
-  // Original fuse + skull-free lightning warning.
+  p.polygon(
+    [
+      [-19, 8],
+      [19, 8],
+      [19, 15],
+      [-19, 15],
+    ],
+    0xffd456,
+    INK,
+    1.3,
+  );
+  for (const yy of [-14, 8])
+    for (const xx of [-15, -3, 9])
+      p.polygon(
+        [
+          [xx, yy],
+          [xx + 5, yy],
+          [xx + 9, yy + 7],
+          [xx + 4, yy + 7],
+        ],
+        INK,
+      );
+  p.polygon(
+    [
+      [1, -6],
+      [-7, 2],
+      [-1, 1],
+      [-2, 8],
+      [7, -1],
+      [1, 0],
+    ],
+    CREAM,
+    INK,
+    1,
+  );
   p.line(
     [
       [3, -20],
@@ -989,389 +2104,141 @@ export function drawHazard(g: G, x: number, y: number, angle = 0): void {
       [12, -31],
       [15, -26],
     ],
-    0x665345,
-    2.5,
+    INK,
+    3,
   );
   p.polygon(
     [
-      [1, -3],
-      [-5, 4],
-      [0, 3],
-      [-1, 8],
-      [6, 0],
-      [1, 1],
+      [15, -32],
+      [17, -28],
+      [22, -29],
+      [19, -24],
+      [20, -20],
+      [15, -23],
+      [10, -21],
+      [12, -26],
+      [9, -29],
     ],
-    0xffedbc,
-  );
-  p.ellipse(15, -26, 2.4, 2.4, 0xf9d177);
-  p.line(
-    [
-      [18, -28],
-      [21, -30],
-    ],
-    0xe7b36c,
-    1.3,
+    0xffcf4e,
   );
 }
 
 export function drawSling(g: G, anchor: Point, pouch?: Point, front = false): void {
-  const { x, y } = anchor;
-  const aim = pouch || anchor;
+  const { x, y } = anchor,
+    aim = pouch || anchor;
   if (!front) {
-    g.fillStyle(0x4c7051, 0.18).fillEllipse(x + 2, 674, 104, 14);
+    g.fillStyle(0x245949, 0.2).fillEllipse(x + 2, 674, 104, 14);
     const p = new Pen(g, x, y);
     p.polygon(
       [
-        [-11, 141],
-        [-12, 66],
-        [-27, 35],
-        [-31, -10],
-        [-20, -14],
-        [-15, 29],
-        [1, 55],
-        [14, 27],
-        [21, -12],
-        [32, -9],
-        [27, 36],
-        [10, 67],
-        [12, 141],
+        [-12, 141],
+        [-13, 66],
+        [-29, 34],
+        [-33, -11],
+        [-20, -16],
+        [-15, 27],
+        [0, 54],
+        [14, 26],
+        [20, -15],
+        [34, -10],
+        [28, 35],
+        [11, 67],
+        [13, 141],
       ],
-      0x9f704a,
-      0x654b3a,
+      0xd58c44,
+      INK,
+      3.4,
+    );
+    p.polygon(
+      [
+        [0, 59],
+        [9, 68],
+        [11, 139],
+        [3, 139],
+      ],
+      0xac583e,
+    );
+    p.line(
+      [
+        [-6, 134],
+        [-6, 68],
+        [-22, 29],
+        [-26, -7],
+      ],
+      0xffc96c,
       3,
     );
     p.line(
       [
-        [-5, 132],
-        [-4, 67],
-        [-20, 29],
-        [-24, -5],
+        [6, 70],
+        [20, 34],
+        [25, -5],
       ],
-      0xc49663,
-      3,
-    );
-    p.line(
-      [
-        [6, 71],
-        [19, 36],
-        [24, -3],
-      ],
-      0xc49663,
+      0xf2ad53,
       2,
     );
-    p.ellipse(-2, 98, 4, 7, 0x946442, 0x7b553b, 1);
+    p.ellipse(-2, 100, 4, 7, 0xb96c3d, INK, 1);
     p.line(
       [
         [-11, 125],
         [11, 122],
       ],
-      0x7b553b,
-      1.1,
-    );
-    // Two wraps attach the elastic to the fork.
-    p.roundRect(16, -8, 20, 10, 3, 0xd1b18a, 0x987757, 1);
-    p.line(
-      [
-        [17, -5],
-        [34, -5],
-      ],
-      0xe6c69a,
-      1,
-    );
-    g.lineStyle(8, 0x6d4a45).lineBetween(x + 25, y - 3, aim.x, aim.y + 4);
-    g.lineStyle(3, 0x9d6c59).lineBetween(x + 25, y - 5, aim.x, aim.y + 2);
-  } else {
-    g.lineStyle(8, 0x704b43).lineBetween(x - 25, y - 4, aim.x, aim.y + 7);
-    g.lineStyle(2, 0xb17c60).lineBetween(x - 25, y - 6, aim.x, aim.y + 5);
-    const p = new Pen(g, x, y);
-    p.roundRect(-36, -11, 21, 11, 3, 0xd1b18a, 0x987757, 1.3);
-    p.line(
-      [
-        [-34, -7],
-        [-16, -7],
-      ],
-      0xe7c99c,
-      1,
-    );
-    // Pouch lies under the loaded character and travels with the pull.
-    const q = new Pen(g, aim.x, aim.y);
-    q.line(
-      [
-        [-11, 14],
-        [-5, 20],
-        [5, 20],
-        [12, 14],
-      ],
-      0x6d4940,
-      5,
-    );
-  }
-}
-
-/** Large physical fragments retain a broad silhouette around their rectangular
- * collider, with exposed broken edges rather than the intact block's finished trim.
- * All chips/grain are deterministic per entity, so debris never flickers in flight. */
-export function drawFragment(g: G, def: BlockDef, healthRatio = 1): void {
-  const vertical = def.h > def.w;
-  const p = new Pen(g, def.x, def.y, (def.angle || 0) + (vertical ? Math.PI / 2 : 0));
-  const long = Math.max(def.w, def.h) / 2;
-  const thick = Math.min(def.w, def.h) / 2;
-  let seed = 0;
-  for (let i = 0; i < def.id.length; i++) seed = (seed * 31 + def.id.charCodeAt(i)) >>> 0;
-  const variation = (seed % 11) / 10;
-  const bite = Math.min(4, long * 0.16, Math.max(1, thick * 0.4));
-  const chip = Math.min(3, thick * 0.28);
-  const stroke = Math.min(1.65, 0.65 + thick * 0.11);
-
-  if (def.material === 'wood') {
-    // Small alternating notches show splintered cuts at both ends, while preserving
-    // nearly all of the broad physical shape for readable contact and support.
-    p.polygon(
-      [
-        [-long + bite * 0.3, -thick],
-        [long - bite * 0.55, -thick],
-        [long, -thick * 0.72],
-        [long - bite, -thick * 0.28],
-        [long, thick * 0.1],
-        [long - bite * 0.65, thick * 0.48],
-        [long, thick],
-        [-long + bite * 0.55, thick],
-        [-long, thick * 0.62],
-        [-long + bite, thick * 0.18],
-        [-long, -thick * 0.13],
-        [-long + bite * 0.7, -thick * 0.54],
-      ],
-      0xc3935c,
-      0x805a39,
-      stroke,
-    );
-    p.polygon(
-      [
-        [-long + bite * 0.7, thick * 0.52],
-        [long - bite * 0.55, thick * 0.52],
-        [long, thick],
-        [-long + bite * 0.55, thick],
-        [-long, thick * 0.62],
-      ],
-      0xad7a49,
-    );
-    p.line(
-      [
-        [-long + bite, -thick + 1.3],
-        [long - bite, -thick + 1.3],
-      ],
-      0xe9bb7e,
-      Math.min(1.4, thick * 0.24),
-    );
-    p.polygon(
-      [
-        [-long + bite * 0.7, -thick * 0.54],
-        [-long + bite * 1.2, -thick * 0.2],
-        [-long + bite * 0.5, thick * 0.62],
-        [-long + bite * 2.1, thick * 0.1],
-      ],
-      0xe0b37b,
-    );
-    p.polygon(
-      [
-        [long - bite * 0.6, -thick * 0.75],
-        [long - bite * 1.6, -thick * 0.1],
-        [long - bite * 0.5, thick * 0.65],
-        [long - bite * 0.2, thick * 0.1],
-      ],
-      0xe2b77f,
-    );
-    for (let i = 0; i < (thick > 7 ? 3 : 2); i++) {
-      const y = -thick * 0.48 + i * thick * 0.45;
-      p.line(
-        [
-          [-long + bite * 1.8, y],
-          [-long * 0.25, y - 0.7],
-          [long * 0.35, y + 0.7],
-          [long - bite * 1.8, y - 0.3],
-        ],
-        0x9c6d40,
-        0.8,
-        0.7,
-      );
-    }
-    p.line(
-      [
-        [-long + bite * 0.6, -thick * 0.25],
-        [-long + Math.min(long * 0.42, bite * 3.5), thick * (0.18 + variation * 0.2)],
-        [-long + Math.min(long * 0.64, bite * 5), thick * 0.03],
-      ],
-      0x795131,
-      1,
-    );
-    p.line(
-      [
-        [long - bite * 0.2, thick * 0.44],
-        [long - Math.min(long * 0.5, bite * 3), thick * 0.12],
-      ],
-      0x92643a,
-      0.9,
-    );
-    if (healthRatio < 0.45)
-      p.line(
-        [
-          [-long * 0.2, -thick],
-          [-long * 0.1, -thick * 0.1],
-          [long * 0.1, thick * 0.2],
-          [long * 0.17, thick],
-        ],
-        0x785035,
-        1.2,
-      );
-  } else if (def.material === 'glass') {
-    // Only the corners taper: the visible shard still occupies the rectangle used
-    // by the collision solver, avoiding a misleading needle-shaped silhouette.
-    p.polygon(
-      [
-        [-long + bite, -thick],
-        [long - bite * 1.2, -thick],
-        [long, -thick * 0.35],
-        [long, thick * 0.65],
-        [long - bite, thick],
-        [-long + bite * 0.7, thick],
-        [-long, thick * 0.3],
-        [-long, -thick * 0.45],
-      ],
-      0x99d6d8,
-      0x4c939f,
-      stroke,
-      0.95,
-    );
-    p.polygon(
-      [
-        [-long + bite, -thick + 0.7],
-        [long * 0.35, -thick + 0.7],
-        [-long * 0.25, thick * 0.8],
-        [-long + bite * 0.5, thick * 0.4],
-      ],
-      0xe5fff5,
-      undefined,
-      1,
-      0.65,
-    );
-    p.polygon(
-      [
-        [long * 0.2, -thick * 0.6],
-        [long - bite * 0.9, -thick * 0.85],
-        [long - bite * 0.3, thick * 0.55],
-        [long * 0.72, thick * 0.75],
-      ],
-      0xbdece8,
-      undefined,
-      1,
-      0.8,
-    );
-    p.line(
-      [
-        [-long + bite * 1.2, -thick + 1],
-        [long - bite * 1.2, -thick + 1],
-      ],
-      0xf2fff6,
+      INK,
       1.2,
     );
-    p.line(
+    p.polygon(
       [
-        [-long, thick * 0.3],
-        [-long * 0.18, -thick * 0.2],
-        [long * 0.19, thick * 0.15],
-        [long * 0.56, -thick],
+        [17, -10],
+        [36, -8],
+        [36, 2],
+        [16, 0],
       ],
-      0x68a9b5,
-      0.95,
+      0xffd165,
+      INK,
+      1.6,
     );
     p.line(
       [
-        [-long * 0.18, -thick * 0.2],
-        [-long * 0.27, -thick],
+        [18, -6],
+        [34, -4],
       ],
-      0xf2fffa,
-      1,
+      0xfff2ce,
+      1.4,
     );
-    if (healthRatio < 0.45)
-      p.line(
-        [
-          [long * 0.19, thick * 0.15],
-          [long * 0.55, thick],
-        ],
-        0x5796a4,
-        1.2,
-      );
+    g.lineStyle(9, INK).lineBetween(x + 25, y - 3, aim.x, aim.y + 4);
+    g.lineStyle(4, 0xf27859).lineBetween(x + 25, y - 4, aim.x, aim.y + 3);
   } else {
+    g.lineStyle(9, INK).lineBetween(x - 25, y - 4, aim.x, aim.y + 7);
+    g.lineStyle(4, 0xff9467).lineBetween(x - 25, y - 5, aim.x, aim.y + 6);
+    const p = new Pen(g, x, y);
     p.polygon(
       [
-        [-long + bite, -thick],
-        [-long * 0.1, -thick + chip * 0.35],
-        [long - bite * 0.7, -thick],
-        [long, -thick + chip],
-        [long - bite * 0.15, thick - chip],
-        [long - bite, thick],
-        [-long * 0.37, thick - chip * 0.3],
-        [-long + bite * 0.35, thick],
-        [-long, thick - chip * 0.8],
-        [-long + bite * 0.1, -thick + chip],
+        [-37, -12],
+        [-15, -10],
+        [-16, 1],
+        [-36, -1],
       ],
-      0x9ba3a8,
-      0x626e79,
-      stroke,
-    );
-    p.polygon(
-      [
-        [-long + bite * 0.3, thick * 0.5],
-        [long - bite * 0.3, thick * 0.45],
-        [long - bite, thick],
-        [-long * 0.37, thick - chip * 0.3],
-        [-long + bite * 0.35, thick],
-        [-long, thick - chip * 0.8],
-      ],
-      0x838e98,
+      0xffd165,
+      INK,
+      1.8,
     );
     p.line(
       [
-        [-long + bite, -thick + 1.2],
-        [-long * 0.1, -thick + chip * 0.35 + 1.2],
-        [long - bite, -thick + 1.2],
+        [-34, -8],
+        [-18, -6],
       ],
-      0xc4ccc9,
-      1.1,
+      CREAM,
+      1.5,
     );
-    const seam = long * (0.08 + variation * 0.14);
-    p.line(
+    new Pen(g, aim.x, aim.y).line(
       [
-        [-seam, -thick],
-        [-seam * 0.6, -thick * 0.2],
-        [seam * 0.2, thick * 0.25],
-        [-seam * 0.2, thick],
+        [-12, 14],
+        [-6, 20],
+        [6, 20],
+        [12, 14],
       ],
-      0x66737e,
-      1.15,
+      INK,
+      5,
     );
-    p.line(
-      [
-        [seam * 0.2, thick * 0.25],
-        [long * 0.48, -thick * 0.08],
-        [long * 0.72, -thick * 0.62],
-      ],
-      0x74818a,
-      1,
-    );
-    if (long > 9) {
-      p.ellipse(-long * 0.55, -thick * 0.17, 1.3, 0.85, 0x84919b);
-      p.ellipse(long * 0.6, thick * 0.22, 0.8, 1.1, 0xbac3c2);
-    }
-    if (healthRatio < 0.45)
-      p.line(
-        [
-          [-seam * 0.6, -thick * 0.2],
-          [-long * 0.52, thick * 0.12],
-          [-long * 0.8, thick * 0.5],
-        ],
-        0x65727b,
-        1.3,
-      );
   }
 }

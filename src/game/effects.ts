@@ -33,14 +33,14 @@ export class Effects {
                 : 16;
     const colors =
       e.type === 'monster' || e.type === 'won'
-        ? [0xb9d6a6, 0xf5d15a, 0xf2b295, 0xffffff]
+        ? [0xd5ed44, 0xffd44e, 0xff765c, 0xffffff]
         : ability
-          ? [0xffefd0, 0xe2b4d6, 0xe8c552]
+          ? [0xffefd0, 0xc29aee, 0xe8c552]
           : e.material === 'glass'
-            ? [0x7bcad2, 0xc1edef, 0xffffff]
+            ? [0x5dd7e3, 0xbffff0, 0xffffff]
             : e.material === 'stone'
-              ? [0x929d9a, 0x6d7e7a]
-              : [0xb17b45, 0xddad70, 0xf2d2a5];
+              ? [0xa29ab9, 0x68627e]
+              : [0xbd6b3e, 0xf5ad58, 0xffd394];
     for (let i = 0; i < count && this.particles.length < PHYSICS.debrisLimit; i++) {
       const a = Math.random() * Math.PI * 2,
         s = (e.type === 'impact' ? 1 : 2) + Math.random() * (e.type === 'explosion' ? 7 : 4),

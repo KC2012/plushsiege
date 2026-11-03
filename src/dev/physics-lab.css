@@ -1,0 +1,192 @@
+:root {
+  font-family: 'Trebuchet MS', sans-serif;
+  background: #d8f2df;
+  color: #242139;
+  font-synthesis: none;
+}
+* {
+  box-sizing: border-box;
+}
+body {
+  margin: 0;
+}
+button,
+select {
+  font: inherit;
+  min-height: 44px;
+  border: 3px solid #242139;
+  border-radius: 5px;
+  color: #242139;
+  background: #e1f96d;
+  font-weight: 800;
+  padding: 8px 14px;
+  cursor: pointer;
+  box-shadow: 3px 3px 0 #242139;
+}
+button:focus-visible,
+select:focus-visible,
+a:focus-visible {
+  outline: 3px solid #fa675c;
+  outline-offset: 3px;
+}
+button:disabled {
+  opacity: 0.4;
+}
+.lab-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 20px 4%;
+  gap: 24px;
+  border-bottom: 4px solid #242139;
+  background: #46d0b8;
+}
+.lab-header a {
+  color: #242139;
+  font-weight: 900;
+  text-decoration: none;
+}
+.lab-header h1 {
+  font-size: 30px;
+  letter-spacing: -1px;
+  margin: 0;
+}
+.lab-header p {
+  font-size: 12px;
+  margin: 6px 0 0;
+}
+.lab-header label {
+  font-size: 11px;
+  font-weight: 800;
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+}
+.lab-header select {
+  max-width: 350px;
+  background: #fff7dc;
+  box-shadow: none;
+}
+main {
+  max-width: 1440px;
+  margin: 20px auto;
+  padding: 0 3% 30px;
+}
+.lab-toolbar {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 18px;
+}
+.lab-toolbar label {
+  margin-left: 12px;
+  font-size: 12px;
+  font-weight: 800;
+}
+.lab-toolbar input {
+  accent-color: #242139;
+}
+#frame {
+  margin-left: auto;
+  font: 12px monospace;
+}
+#game {
+  width: 100%;
+  aspect-ratio: 1440/810;
+  position: relative;
+  border: 4px solid #242139;
+  background: #46d0b8;
+  overflow: hidden;
+}
+#game canvas {
+  display: block;
+  touch-action: none;
+}
+.lab-info {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 25px;
+  margin-top: 20px;
+}
+.lab-info h2 {
+  margin: 0 0 8px;
+  font-size: 22px;
+}
+.lab-info p,
+details p {
+  font-size: 13px;
+  line-height: 1.65;
+}
+.lab-info strong {
+  display: block;
+  border-left: 7px solid #7d5ed2;
+  padding: 12px;
+  background: #fff7dc;
+}
+.lab-info strong[data-result='pass'] {
+  border-color: #27a970;
+}
+.lab-info strong[data-result='fail'] {
+  border-color: #fa675c;
+}
+pre {
+  background: #242139;
+  color: #e1f96d;
+  padding: 15px;
+  border-radius: 5px;
+  overflow: auto;
+  white-space: pre-wrap;
+  font: 11px/1.7 monospace;
+  max-height: 250px;
+  margin: 0;
+}
+details {
+  margin-top: 20px;
+  border-top: 3px solid #242139;
+  padding-top: 15px;
+}
+summary {
+  cursor: pointer;
+  font-weight: 800;
+  font-size: 13px;
+}
+@media (max-width: 800px) {
+  .lab-header {
+    flex-wrap: wrap;
+    padding: 14px;
+  }
+  .lab-header h1 {
+    font-size: 23px;
+  }
+  .lab-header p {
+    font-size: 10px;
+  }
+  .lab-header label {
+    width: 100%;
+  }
+  .lab-header select {
+    max-width: none;
+  }
+  .lab-info {
+    grid-template-columns: 1fr;
+    gap: 15px;
+  }
+  .lab-toolbar {
+    gap: 8px;
+    flex-wrap: wrap;
+  }
+  .lab-toolbar button {
+    font-size: 10px;
+    padding: 7px 10px;
+  }
+  .lab-toolbar label {
+    margin-left: 0;
+    font-size: 10px;
+  }
+  .lab-toolbar #frame {
+    font-size: 10px;
+  }
+  .lab-info h2 {
+    font-size: 19px;
+  }
+}

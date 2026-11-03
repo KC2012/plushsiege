@@ -1,4 +1,4 @@
-/* Game menus sit above the illustrated world; no marketing landing-page surface. */
+/* Flat, inked cartoon panels share the actual playfield's original color language. */
 .home-screen.title-screen {
   background: transparent;
 }
@@ -16,7 +16,7 @@
   inset: 0;
   overflow: hidden;
   pointer-events: none;
-  font-family: 'Avenir Next', Avenir, 'Trebuchet MS', sans-serif;
+  font-family: 'Trebuchet MS', 'Avenir Next', Arial, sans-serif;
 }
 .title-menu button,
 .campaign-menu button {
@@ -33,87 +33,84 @@
 .campaign-screen .header .icon-button {
   width: 51px;
   height: 51px;
-  border: 3px solid #426958;
-  background: #fff1cb;
-  box-shadow: 0 4px 0 #294e43;
-  color: #385c4c;
+  border: 3px solid #242139;
+  background: #fff2ce;
+  box-shadow: 4px 5px 0 #242139;
+  color: #242139;
+  border-radius: 10px;
 }
 .title-emblem {
   position: absolute;
   width: min(470px, 45vw);
-  top: 13%;
+  top: 12%;
   left: 50%;
-  transform: translateX(-50%) rotate(-3deg);
+  transform: translateX(-50%) rotate(-4deg);
   text-align: center;
 }
 .title-lettering {
   margin: 0;
-  font-family: 'Arial Rounded MT Bold', 'Avenir Next', 'Trebuchet MS', sans-serif;
-  font-size: clamp(76px, 7.8vw, 118px);
+  font-family: Impact, 'Arial Black', 'Trebuchet MS', sans-serif;
+  font-size: clamp(76px, 8.1vw, 121px);
   font-weight: 1000;
   line-height: 0.84;
-  letter-spacing: -6px;
-  color: #fff1c8;
-  -webkit-text-stroke: 8px #35594d;
+  letter-spacing: -3px;
+  color: #fff2ce;
+  -webkit-text-stroke: 9px #242139;
   paint-order: stroke fill;
-  text-shadow:
-    0 5px 0 #cdbb8b,
-    0 11px 0 #35594d,
-    0 15px 0 #24473e28;
+  text-shadow: 5px 7px 0 #242139;
 }
 .title-lettering > span {
   display: block;
 }
 .title-lettering > span:last-child {
-  color: #efb45e;
+  color: #d5ed50;
   font-size: 1.13em;
-  letter-spacing: -7px;
-  margin-top: 13px;
+  letter-spacing: -3px;
+  margin-top: 16px;
 }
 .title-ribbon {
   display: inline-block;
   position: relative;
-  margin-top: 21px;
-  padding: 7px 26px;
-  transform: rotate(2deg);
-  background: #f7e5b9;
-  border: 2px solid #789068;
-  border-radius: 5px 8px 5px 8px;
-  box-shadow: 0 3px 0 #31544826;
-  color: #476b4c;
+  margin-top: 24px;
+  padding: 8px 27px;
+  transform: rotate(3deg);
+  background: #ff765c;
+  border: 3px solid #242139;
+  border-radius: 3px 7px 3px 6px;
+  box-shadow: 4px 4px 0 #242139;
+  color: #242139;
   font-size: 11px;
-  font-weight: 900;
-  letter-spacing: 3px;
+  font-weight: 1000;
+  letter-spacing: 2.2px;
 }
 .title-ribbon::before,
 .title-ribbon::after {
   content: '';
   position: absolute;
-  top: 6px;
-  bottom: 6px;
-  width: 10px;
-  border-top: 2px dashed #baa273;
-  border-bottom: 2px dashed #baa273;
+  top: 7px;
+  bottom: 7px;
+  width: 8px;
+  border-top: 2px solid #242139;
+  border-bottom: 2px solid #242139;
 }
 .title-ribbon::before {
-  left: 5px;
+  left: 6px;
 }
 .title-ribbon::after {
-  right: 5px;
+  right: 6px;
 }
 .title-spark {
   position: absolute;
   width: 52px;
   height: 78px;
-  filter: drop-shadow(0 2px 0 #59775b22);
 }
 .title-spark-left {
-  left: -30px;
-  top: 25px;
+  left: -33px;
+  top: 21px;
   transform: rotate(-16deg);
 }
 .title-spark-right {
-  right: -32px;
+  right: -35px;
   bottom: 25px;
   transform: rotate(18deg);
 }
@@ -125,119 +122,115 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 19px;
+  gap: 20px;
 }
 .game-button {
   display: inline-flex;
   align-items: center;
   justify-content: center;
   gap: 10px;
-  border: 3px solid #294e40;
-  border-radius: 20px 23px 19px 24px;
-  background: #428368;
-  color: #fff2ce;
-  box-shadow:
-    0 5px 0 #294e40,
-    inset 0 3px 0 #86b28a70;
-  font-family: 'Avenir Next', Avenir, 'Trebuchet MS', sans-serif;
-  font-weight: 900;
+  border: 3px solid #242139;
+  border-radius: 9px 4px 10px 5px;
+  background: #27c5bd;
+  color: #242139;
+  box-shadow: 4px 5px 0 #242139;
+  font-family: 'Trebuchet MS', 'Avenir Next', Arial, sans-serif;
+  font-weight: 1000;
   min-height: 50px;
   padding: 10px 22px;
   cursor: pointer;
   transition:
-    transform 0.12s,
-    box-shadow 0.12s,
-    background 0.12s;
+    transform 0.1s,
+    box-shadow 0.1s,
+    background 0.1s;
   -webkit-tap-highlight-color: transparent;
 }
 .game-button:hover:not(:disabled) {
-  transform: translateY(-2px) rotate(-1deg);
-  background: #4c9273;
-  box-shadow:
-    0 7px 0 #294e40,
-    inset 0 3px 0 #97c49a70;
+  transform: translateY(-3px) rotate(-2deg);
+  background: #6ce1cf;
+  box-shadow: 5px 8px 0 #242139;
 }
 .game-button:active:not(:disabled) {
   transform: translateY(4px);
-  box-shadow:
-    0 1px 0 #294e40,
-    inset 0 3px 0 #97c49a70;
+  box-shadow: 1px 1px 0 #242139;
 }
 .game-button:focus-visible,
 .map-stop:focus-visible {
-  outline: 4px solid #f6ce65;
+  outline: 4px solid #ff765c;
   outline-offset: 7px;
 }
 .game-button:disabled {
-  opacity: 0.42;
+  opacity: 0.4;
   cursor: default;
 }
 .title-play {
-  width: 236px;
+  width: 240px;
   min-height: 88px;
-  border: 4px solid #2e5848;
-  border-radius: 31px 34px 30px 35px;
-  font-size: 37px;
+  background: #d5ed50;
+  border: 4px solid #242139;
+  border-radius: 13px 6px 14px 7px;
+  font-family: Impact, 'Arial Black', 'Trebuchet MS', sans-serif;
+  font-size: 40px;
   line-height: 1;
-  letter-spacing: 1px;
-  text-shadow: 0 2px 0 #1a4d39;
-  box-shadow:
-    0 7px 0 #2c5444,
-    inset 0 5px 0 #8fbd8c80,
-    0 12px 18px #214c3b29;
+  letter-spacing: 1.5px;
+  box-shadow: 6px 7px 0 #242139;
   animation: play-breathe 3.6s ease-in-out infinite;
+}
+.title-play:hover:not(:disabled) {
+  background: #e5f777;
 }
 .title-play svg {
   width: 26px;
   height: 32px;
   margin-right: 3px;
-  filter: drop-shadow(0 2px 0 #1a4d39);
 }
 .title-secondary {
   display: flex;
-  gap: 14px;
+  gap: 16px;
   white-space: nowrap;
 }
 .game-button-parchment {
-  background: #f7e7be;
-  border-color: #8e8358;
-  color: #4d6448;
+  background: #bcb2ee;
+  color: #242139;
   font-size: 13px;
-  min-height: 46px;
-  border-radius: 16px 18px 16px 19px;
-  box-shadow:
-    0 4px 0 #807752,
-    inset 0 2px 0 #fff7da;
+  min-height: 47px;
+  border-radius: 7px 4px 8px 4px;
+  box-shadow: 4px 4px 0 #242139;
 }
 .game-button-parchment:hover:not(:disabled) {
-  background: #fff1cc;
-  box-shadow:
-    0 6px 0 #807752,
-    inset 0 2px 0 #fff7da;
+  background: #d7c9fa;
 }
-.game-button-parchment:active:not(:disabled) {
-  box-shadow: 0 1px 0 #807752;
+.title-secondary .game-button:last-child {
+  background: #fff2ce;
+  transform: rotate(2deg);
+}
+.title-secondary .game-button:first-child {
+  transform: rotate(-2deg);
+}
+.title-secondary .game-button:hover {
+  transform: translateY(-3px);
 }
 .menu-symbol {
   width: 23px;
   height: 23px;
   flex-shrink: 0;
+  stroke-width: 2.4;
 }
 .menu-star {
   width: 23px;
   height: 23px;
-  fill: #67816a;
-  stroke: #405b4b;
-  stroke-width: 1.2px;
+  fill: #8e85a4;
+  stroke: #242139;
+  stroke-width: 1.6px;
 }
 .menu-star.earned {
-  fill: #f8d16b;
-  stroke: #b1803f;
+  fill: #ffd44e;
+  stroke: #242139;
 }
 .map-landscape {
   position: absolute;
   inset: 0;
-  background: linear-gradient(#deeddb, #c8dfb5 58%, #a5c293);
+  background: #68d5cb;
 }
 .map-landscape > svg {
   width: 100%;
@@ -256,42 +249,44 @@
 .map-world-number {
   width: 66px;
   height: 66px;
-  border: 3px solid #496648;
-  border-radius: 22px 18px 23px 20px;
+  border: 3px solid #242139;
+  border-radius: 8px 4px 10px 6px;
   display: grid;
   place-items: center;
-  background: #678c5d;
-  color: #fff1cb;
-  font-size: 25px;
-  font-weight: 900;
-  box-shadow: 0 5px 0 #426044;
+  background: #ff765c;
+  color: #242139;
+  font-size: 28px;
+  font-weight: 1000;
+  box-shadow: 4px 5px 0 #242139;
   z-index: 1;
-  transform: rotate(-6deg);
+  transform: rotate(-7deg);
   flex-shrink: 0;
 }
 .map-world-ribbon {
-  background: #f5e5b9;
-  border: 3px solid #8b8b5c;
-  border-radius: 12px;
-  box-shadow: 0 4px 0 #778054;
-  padding: 8px 30px 9px 28px;
-  margin-left: -8px;
-  color: #426143;
+  background: #fff2ce;
+  border: 3px solid #242139;
+  border-radius: 4px 8px 5px 7px;
+  box-shadow: 4px 5px 0 #242139;
+  padding: 8px 30px 10px 28px;
+  margin-left: -6px;
+  color: #242139;
   text-align: center;
 }
 .map-world-caption {
   display: block;
   font-size: 8px;
-  letter-spacing: 2.5px;
-  font-weight: 900;
-  color: #7b8254;
+  letter-spacing: 2px;
+  font-weight: 1000;
+  color: #625777;
 }
 .map-world-ribbon h1 {
+  font-family: Impact, 'Arial Black', 'Trebuchet MS', sans-serif;
   margin: 4px 0 0;
-  font-size: clamp(20px, 2.7vw, 33px);
+  font-size: clamp(22px, 2.7vw, 34px);
   font-weight: 1000;
   line-height: 1;
-  letter-spacing: -0.8px;
+  letter-spacing: 0.3px;
+  text-transform: uppercase;
 }
 .map-star-badge {
   display: flex;
@@ -299,12 +294,12 @@
   gap: 7px;
   margin-left: 20px;
   padding: 10px 13px;
-  border: 2px solid #829161;
-  border-radius: 21px 18px 20px 18px;
-  background: #f9edc7;
-  box-shadow: 0 3px 0 #7c895c;
+  border: 3px solid #242139;
+  border-radius: 7px 4px 8px 5px;
+  background: #d5ed50;
+  box-shadow: 4px 4px 0 #242139;
   transform: rotate(4deg);
-  color: #4c6848;
+  color: #242139;
 }
 .map-star-badge .menu-star {
   width: 29px;
@@ -313,13 +308,14 @@
 .map-star-badge strong {
   font-size: 23px;
   line-height: 1;
+  font-weight: 1000;
 }
 .map-star-badge small {
   display: block;
   margin-top: 5px;
   font-size: 10px;
-  font-weight: 800;
-  color: #829064;
+  font-weight: 900;
+  color: #4f4566;
 }
 .map-trail {
   position: absolute;
@@ -347,11 +343,10 @@
   background: transparent;
   text-align: center;
   transform: translate(-50%, calc(var(--node-size) * -0.5));
-  color: #33573d;
+  color: #242139;
   cursor: pointer;
   font: inherit;
   touch-action: manipulation;
-  filter: drop-shadow(0 4px 0 #6b8c6026);
 }
 .map-node {
   position: relative;
@@ -362,22 +357,20 @@
   width: var(--node-size);
   height: var(--node-size);
   margin: 0 auto;
-  background: #fcf0c9;
-  color: #5b714c;
-  border: 3px solid #7f8e5c;
-  border-radius: 28px 24px 29px 25px;
-  box-shadow:
-    0 6px 0 #708050,
-    inset 0 3px 0 #fff9df;
+  background: #fff2ce;
+  color: #242139;
+  border: 3px solid #242139;
+  border-radius: 12px 5px 13px 6px;
+  box-shadow: 4px 6px 0 #242139;
   transition:
-    transform 0.12s,
-    background 0.12s;
+    transform 0.1s,
+    background 0.1s;
 }
 .map-node-number {
-  font-size: 31px;
+  font-family: Impact, 'Arial Black', 'Trebuchet MS', sans-serif;
+  font-size: 33px;
   line-height: 1;
   font-weight: 1000;
-  text-shadow: 0 1px 0 #fff9da;
   padding-top: 1px;
 }
 .map-node-stars {
@@ -389,65 +382,57 @@
 .map-node-stars .menu-star {
   width: 16px;
   height: 16px;
-  fill: #ddd5a9;
-  stroke: #a69f76;
-  stroke-width: 1px;
+  fill: #b4a8bb;
+  stroke: #242139;
+  stroke-width: 1.4px;
 }
 .map-node-stars .menu-star.earned {
-  fill: #efbd4c;
-  stroke: #ba8f41;
+  fill: #ffd44e;
+  stroke: #242139;
 }
 .map-node-name {
   display: block;
   margin: 14px auto 0;
-  padding: 4px 5px;
+  padding: 5px 7px;
   max-width: 140px;
   font-size: 11px;
   line-height: 1.2;
-  font-weight: 900;
+  font-weight: 1000;
   text-wrap: balance;
-  text-shadow: 0 1px 0 #e4eccd;
+  background: #fff2ce;
+  border: 2px solid #242139;
+  border-radius: 3px 6px 3px 5px;
+  box-shadow: 2px 2px 0 #242139;
 }
 .map-stop.is-complete .map-node {
-  background: #699469;
-  border-color: #3d6649;
-  color: #fff3ca;
-  box-shadow:
-    0 6px 0 #3f684b,
-    inset 0 3px 0 #9bbd8e;
-}
-.map-stop.is-complete .map-node-number {
-  text-shadow: 0 2px 0 #47724f;
+  background: #27c5bd;
 }
 .map-stop.is-complete .menu-star:not(.earned) {
-  fill: #517c55;
-  stroke: #395f43;
+  fill: #359b9e;
+  stroke: #242139;
 }
 .map-stop.is-next .map-node {
-  background: #e9a853;
-  border-color: #916c3c;
-  box-shadow:
-    0 6px 0 #8f703e,
-    inset 0 3px 0 #f8ce7b;
-  color: #674a2f;
+  background: #ff765c;
+  transform: rotate(-4deg);
 }
 .map-ready-dot {
   position: absolute;
-  right: -8px;
-  top: -9px;
-  width: 20px;
-  height: 20px;
-  border-radius: 50%;
-  border: 3px solid #fff3cb;
-  background: #467b59;
-  box-shadow: 0 2px 0 #6d6b42;
+  right: -9px;
+  top: -10px;
+  width: 22px;
+  height: 22px;
+  border-radius: 3px 7px 3px 6px;
+  border: 3px solid #242139;
+  background: #d5ed50;
+  box-shadow: 2px 2px 0 #242139;
+  transform: rotate(15deg);
 }
 .map-stop:hover .map-node {
   transform: translateY(-4px) rotate(-4deg);
-  background: #ffe5a2;
+  background: #d5ed50;
 }
 .map-stop.is-complete:hover .map-node {
-  background: #80a677;
+  background: #6ce1cf;
 }
 .map-stop:active .map-node {
   transform: translateY(4px);
@@ -471,16 +456,22 @@
   width: 53px;
   height: 53px;
   padding: 9px;
-  border-radius: 19px;
+  border-radius: 8px 4px 9px 5px;
+  background: #fff2ce;
 }
 .map-page-arrow .menu-symbol {
   width: 25px;
   height: 25px;
 }
 .map-page-indicator {
-  min-width: 80px;
+  min-width: 95px;
   text-align: center;
-  color: #3f6548;
+  color: #242139;
+  background: #fff2ce;
+  border: 3px solid #242139;
+  border-radius: 6px 3px 7px 4px;
+  box-shadow: 3px 4px 0 #242139;
+  padding: 6px 11px;
 }
 .map-page-indicator strong {
   display: block;
@@ -490,15 +481,21 @@
 .map-page-indicator strong i {
   font-size: 16px;
   font-style: normal;
-  color: #698462;
+  color: #7e6b9b;
   padding: 0 8px;
 }
 .map-page-indicator small {
   display: block;
   font-size: 8px;
   letter-spacing: 1px;
-  margin-top: 5px;
-  font-weight: 900;
+  margin-top: 4px;
+  font-weight: 1000;
+}
+.map-home {
+  background: #fff2ce;
+}
+.map-workshop {
+  background: #bcb2ee;
 }
 @keyframes play-breathe {
   0%,
@@ -512,28 +509,28 @@
 }
 @media (max-height: 700px) {
   .title-emblem {
-    top: 11%;
+    top: 10%;
   }
   .title-lettering {
-    font-size: clamp(69px, 7.6vw, 97px);
+    font-size: clamp(69px, 7.8vw, 100px);
   }
   .title-ribbon {
-    margin-top: 18px;
+    margin-top: 20px;
     padding-top: 5px;
     padding-bottom: 5px;
     font-size: 9px;
   }
   .title-controls {
-    gap: 14px;
+    gap: 15px;
     bottom: 5%;
   }
   .title-play {
-    width: 205px;
+    width: 210px;
     min-height: 74px;
-    font-size: 33px;
+    font-size: 35px;
   }
   .title-secondary .game-button {
-    min-height: 42px;
+    min-height: 43px;
     font-size: 12px;
     padding: 7px 18px;
   }
@@ -543,7 +540,7 @@
   .map-world-number {
     width: 54px;
     height: 54px;
-    font-size: 23px;
+    font-size: 24px;
   }
   .map-world-ribbon {
     padding-top: 7px;
@@ -559,11 +556,8 @@
   .map-stop {
     --node-size: 65px;
   }
-  .map-node {
-    border-radius: 23px 21px 24px 21px;
-  }
   .map-node-number {
-    font-size: 25px;
+    font-size: 27px;
   }
   .map-node-stars .menu-star {
     width: 14px;
@@ -589,22 +583,22 @@
   }
   .title-lettering {
     font-size: clamp(70px, 15vw, 100px);
-    -webkit-text-stroke-width: 6px;
-    letter-spacing: -4px;
+    -webkit-text-stroke-width: 7px;
+    letter-spacing: -2px;
   }
   .title-lettering > span:last-child {
-    letter-spacing: -5px;
-    margin-top: 11px;
+    letter-spacing: -2px;
+    margin-top: 13px;
   }
   .title-spark {
     width: 36px;
     height: 57px;
   }
   .title-spark-left {
-    left: -9px;
+    left: -13px;
   }
   .title-spark-right {
-    right: -9px;
+    right: -13px;
   }
   .title-controls {
     bottom: 9%;
@@ -612,10 +606,10 @@
   .title-play {
     width: 210px;
     min-height: 78px;
-    font-size: 34px;
+    font-size: 36px;
   }
   .title-secondary {
-    gap: 11px;
+    gap: 13px;
   }
   .title-secondary .game-button {
     padding: 10px 15px;
@@ -626,15 +620,9 @@
     width: 43px;
     height: 43px;
   }
-  .campaign-screen .header .brand {
-    font-size: 19px;
-  }
   .campaign-screen .header .brand-symbol {
-    width: 35px;
-    height: 35px;
-  }
-  .campaign-screen .header .brand small {
-    display: none;
+    width: 38px;
+    height: 38px;
   }
   .map-heading {
     top: 15%;
@@ -643,25 +631,23 @@
   .map-world-number {
     width: 43px;
     height: 47px;
-    border-radius: 15px;
-    font-size: 19px;
+    font-size: 21px;
   }
   .map-world-ribbon {
-    padding: 8px 14px 8px 16px;
-    border-width: 2px;
+    padding: 8px 13px 8px 16px;
+    border-width: 3px;
   }
   .map-world-ribbon h1 {
     font-size: 20px;
   }
   .map-world-caption {
     font-size: 6px;
-    letter-spacing: 1.5px;
+    letter-spacing: 1.4px;
   }
   .map-star-badge {
     margin-left: 10px;
     padding: 8px;
     gap: 5px;
-    border-radius: 14px;
   }
   .map-star-badge .menu-star {
     width: 23px;
@@ -683,11 +669,8 @@
     --node-size: 61px;
     width: 105px;
   }
-  .map-node {
-    border-radius: 21px 20px 22px 20px;
-  }
   .map-node-number {
-    font-size: 25px;
+    font-size: 26px;
   }
   .map-node-stars .menu-star {
     width: 13px;
@@ -697,6 +680,7 @@
     font-size: 9px;
     max-width: 100px;
     margin-top: 10px;
+    padding: 4px;
   }
   .map-footer {
     left: 5%;
@@ -709,7 +693,6 @@
     width: 45px;
     min-height: 45px;
     padding: 9px;
-    border-radius: 16px;
   }
   .map-home > span,
   .map-workshop > span {
@@ -725,7 +708,8 @@
     padding: 8px;
   }
   .map-page-indicator {
-    min-width: 65px;
+    min-width: 73px;
+    padding: 4px 7px;
   }
   .map-page-indicator strong {
     font-size: 21px;
@@ -742,21 +726,21 @@
     font-size: 63px;
   }
   .title-ribbon {
-    margin-top: 14px;
+    margin-top: 16px;
     font-size: 7px;
+    padding: 5px 21px;
   }
   .title-controls {
     bottom: 4%;
-    gap: 10px;
+    gap: 11px;
   }
   .title-play {
     min-height: 59px;
     width: 180px;
-    font-size: 29px;
-    border-radius: 24px;
+    font-size: 31px;
   }
   .title-secondary .game-button {
-    min-height: 37px;
+    min-height: 38px;
     padding: 5px 14px;
     font-size: 10px;
   }
@@ -788,11 +772,10 @@
     --node-size: 53px;
   }
   .map-node {
-    border-width: 2px;
-    border-radius: 19px;
+    border-width: 3px;
   }
   .map-node-number {
-    font-size: 21px;
+    font-size: 23px;
   }
   .map-node-stars {
     margin-top: 2px;
@@ -815,7 +798,10 @@
     min-height: 38px;
     width: 39px;
     height: 39px;
-    border-radius: 14px;
+  }
+  .map-page-indicator {
+    padding: 3px 9px;
+    min-width: 84px;
   }
   .map-page-indicator strong {
     font-size: 17px;
@@ -826,7 +812,7 @@
   }
   .map-home,
   .map-workshop {
-    min-height: 36px;
+    min-height: 38px;
     padding: 5px 13px;
     font-size: 11px;
   }
@@ -841,5 +827,15 @@
   .campaign-menu * {
     animation: none !important;
     transition: none !important;
+  }
+}
+@media (max-width: 480px) {
+  .map-stop {
+    width: min(82px, 21vw);
+  }
+  .map-node-name {
+    max-width: 100%;
+    font-size: 8.5px;
+    padding: 4px 3px;
   }
 }

@@ -1,3 +1,5 @@
+> Historical Pass 2 report. The current release is documented in [Pass 3](pass-3-report.md).
+
 # Development Pass 2 — Physics and game feel
 
 The 0.2.0 build keeps the same 24-level Meadow Mischief campaign and original character identity. This pass concentrates on physical destruction and reliable controls, with a game-first title and trail map as the secondary presentation change.
