@@ -8,6 +8,8 @@ import { openEditor } from './editor/editor';
 import { portrait } from './ui/icons';
 import type { Level, StuffieKind } from './game/types';
 import './style.css';
+import { titleMenu, campaignMenu } from './ui/menus';
+import './ui/menus.css';
 const ui = document.querySelector<HTMLElement>('#ui')!;
 const store = new ProgressStore();
 const scene = new SiegeScene();
@@ -16,6 +18,7 @@ let active = 0,
   editorDraft: Level | undefined,
   editorCleanup: (() => void) | undefined;
 let screen = 'home';
+let mapPage = 0;
 const game = new Phaser.Game({
   type: Phaser.AUTO,
   parent: 'game',
@@ -34,11 +37,11 @@ scene.onState = () => {
   if (screen === 'game') updateHUD();
 };
 scene.onResult = result;
-const totalStars = () => Object.values(store.data.scores).reduce((s, v) => s + v.stars, 0);
 function settingsApply() {
   scene.audio.enabled = store.data.sound;
   scene.preview = store.data.trajectory;
   scene.reducedMotion = store.data.reducedMotion;
+  ui.classList.toggle('gentle-motion', store.data.reducedMotion);
   document.querySelectorAll('.sound-button').forEach((b) => {
     b.textContent = store.data.sound ? '♪' : '♩';
     b.setAttribute('aria-label', store.data.sound ? 'Mute sound' : 'Enable sound');
@@ -56,7 +59,7 @@ function button(action: string, text: string, cls = '') {
   return `<button data-action="${action}" class="${cls}" ${labels[action] ? `aria-label="${labels[action]}"` : ''}>${text.replaceAll('↗', svgIcon('arrow')).replaceAll('⚙', svgIcon('settings')).replaceAll('Ⅱ', svgIcon('pause')).replaceAll('↻', svgIcon('restart'))}</button>`;
 }
 function header(extra = '') {
-  return `<header class="header"><button class="brand" data-action="home" aria-label="Plush Siege home"><span class="brand-symbol">${portrait('sheep')}</span><span>plush<span class="brand-light">siege</span><small>LITTLE PLUSHES. BIG TROUBLE.</small></span></button><nav>${extra}${button('sound', store.data.sound ? '♪' : '♩', 'icon-button sound-button')}${button('settings', '⚙', 'icon-button')}</nav></header>`;
+  return `<header class="header"><button class="brand" data-action="home" aria-label="Plush Siege home"><span class="brand-symbol">${portrait('sheep')}</span><span>plush<span class="brand-light">siege</span></span></button><nav>${extra}${button('sound', store.data.sound ? '♪' : '♩', 'icon-button sound-button')}${button('settings', '⚙', 'icon-button')}</nav></header>`;
 }
 function home() {
   editorCleanup?.();
@@ -64,28 +67,24 @@ function home() {
   screen = 'home';
   custom = undefined;
   settingsApply();
-  scene.loadLevel(campaign[5] || campaign[0], 'home');
-  ui.className = 'home-screen';
-  ui.innerHTML = `${header('<span class="offline-label"><i></i> A LITTLE OFFLINE ADVENTURE</span>')}<section class="home-copy"><span class="eyebrow"><i></i> THE SOFTEST SIEGE IN HISTORY</span><h1>Small heroes.<br><em>Big trouble.</em></h1><p>Adorable stuffies. Wobbly castles.<br>A perfectly good day to knock things down.</p><div class="home-actions">${button('continue', 'Let’s make a mess <span>↗</span>', 'primary large')}${button('levels', 'Choose a level', 'text-button')}</div><div class="home-fine"><span>↙</span> Pull back. Let go. Oh, the chaos.</div></section><button class="chapter-tag" data-action="levels" aria-label="Select world: Meadow Mischief"><span class="chapter-num">01</span><span><small>YOUR FIRST ADVENTURE</small><strong>Meadow Mischief</strong><span>24 little castles. One big mess.</span></span></button><section class="crew-section"><div class="crew-heading"><span class="eyebrow">MEET YOUR DEMOLITION CREW</span><span>Soft on the outside. <em>Mostly.</em></span></div><div class="crew-grid">${(Object.keys(STUFFIES) as StuffieKind[]).map((k, i) => `<button class="crew-card" data-crew="${k}"><span class="crew-portrait">${portrait(k)}</span><span><strong>${STUFFIES[k].name}</strong><small>${['THE ALL-ROUNDER', 'THE SPEEDSTER', 'THE HEAVY HITTER', 'THE TRIPLE THREAT'][i]}</small></span><span class="crew-plus">${svgIcon('arrow')}</span></button>`).join('')}</div></section><footer class="home-footer"><span>Made for the joy of a little destruction.</span><span>${button('editor', 'The workshop ↗', 'text-button')}<span class="footer-dot">·</span>No ads. No accounts. Just play.</span></footer>`;
+  scene.loadLevel(campaign[23] || campaign[0], 'home');
+  ui.className = 'home-screen title-screen' + (store.data.reducedMotion ? ' gentle-motion' : '');
+  ui.innerHTML = header() + titleMenu();
 }
-function levels() {
+function levels(page = mapPage) {
   screen = 'levels';
+  scene.cancelAim();
   scene.paused = true;
-  ui.className = 'menu-screen';
-  ui.innerHTML = `${header(button('home', '← Back to meadow', 'text-button'))}<section class="level-menu"><div class="menu-top"><div><span class="eyebrow">WORLD 01 · THE COUNTRYSIDE</span><h1>Meadow Mischief<span class="tiny-flower">✳</span></h1><p>A soft landing, then a little more trouble.</p></div><div class="star-count">★ <strong>${totalStars()}</strong><span>/ 72 collected</span></div></div><div class="level-grid">${campaign
-    .map((l, i) => {
-      const r = store.data.scores[l.id];
-      return `<button class="level-tile ${r ? 'completed' : ''}" data-level="${i}" aria-label="Level ${i + 1}: ${l.name}, ${r?.stars || 0} stars"><span class="level-number">${String(i + 1).padStart(2, '0')}</span><strong>${l.name}</strong><span class="tile-stars" aria-hidden="true">${[1, 2, 3].map((n) => `<i class="${n <= (r?.stars || 0) ? 'earned' : ''}">★</i>`).join('')}</span></button>`;
-    })
-    .join(
-      '',
-    )}</div><div class="level-menu-foot"><span>Every level is open. Find your own kind of trouble.</span>${button('editor', 'Build your own ↗', 'text-button')}</div></section>`;
+  mapPage = Math.max(0, Math.min(Math.ceil(campaign.length / 8) - 1, page));
+  ui.className = 'menu-screen campaign-screen' + (store.data.reducedMotion ? ' gentle-motion' : '');
+  ui.innerHTML = header() + campaignMenu(campaign, store.data.scores, mapPage);
 }
 function play(index: number, level?: Level) {
   active = index;
+  if (!level) mapPage = Math.floor(index / 8);
   custom = level;
   screen = 'game';
-  ui.className = 'game-screen';
+  ui.className = 'game-screen' + (store.data.reducedMotion ? ' gentle-motion' : '');
   settingsApply();
   scene.loadLevel(level || campaign[index]);
   ui.innerHTML = `${header(button('levels', '▦ <span>Levels</span>', 'pill-button'))}<div class="level-heading"><span class="eyebrow" id="level-chapter"></span><h2 id="level-title"></h2></div><div class="scoreboard"><span>SCORE</span><strong id="score">0</strong><div id="score-stars" class="score-stars">☆☆☆</div></div><div class="hud-bottom"><div class="queue-panel"><div class="hud-caption">YOUR LITTLE TROUBLEMAKERS</div><div id="queue"></div></div><div class="shot-message" id="shot-message" role="status"></div><div class="game-actions">${custom ? button('return-editor', '← Workshop', 'pill-button') : ''}${button('restart', '↻', 'icon-button')}${button('pause', 'Ⅱ', 'icon-button')}</div></div><div id="modal-root"></div>`;
@@ -117,9 +116,11 @@ function updateHUD() {
         ? sim.level.tutorial
         : 'Drag your stuffie back. Release to launch.'
       : sim.phase === 'flying'
-        ? sim.abilityUsed
-          ? 'Let the little pieces fall where they may…'
-          : `${STUFFIES[sim.current?.kind || 'sheep'].name}: ${STUFFIES[sim.current?.kind || 'sheep'].role} Tap the sky.`
+        ? sim.canActivate
+          ? `${STUFFIES[sim.current?.kind || 'sheep'].name}: ${STUFFIES[sim.current?.kind || 'sheep'].role}`
+          : sim.abilityUsed
+            ? 'Ability used. Watch the castle come down…'
+            : 'Watch the castle — falling pieces still count.'
         : sim.phase === 'won'
           ? 'A lovely bit of trouble.'
           : 'There’s always another way. Give it another go.';
@@ -216,6 +217,12 @@ ui.addEventListener('click', (e) => {
         ),
       );
       break;
+    case 'map-prev':
+      levels(mapPage - 1);
+      break;
+    case 'map-next':
+      levels(mapPage + 1);
+      break;
     case 'levels':
       if (screen === 'editor') break;
       levels();
@@ -276,7 +283,7 @@ window.addEventListener('keydown', (e) => {
   if (e.key.toLowerCase() === 'r' && screen === 'game') play(active, custom);
   if (e.code === 'Space' && screen === 'game' && !scene.paused) {
     e.preventDefault();
-    scene.sim?.activate();
+    scene.useAbility();
   }
 });
 document.addEventListener('visibilitychange', () => {

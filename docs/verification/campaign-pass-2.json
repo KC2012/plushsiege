@@ -1,0 +1,1406 @@
+{
+  "generatedAt": "2026-11-03T08:00:07.671Z",
+  "durationMs": 799,
+  "summary": {
+    "levels": 24,
+    "invalid": 0,
+    "unstable": 0,
+    "solved": 24,
+    "threeStars": 24,
+    "inefficient": 0,
+    "unsolved": 0,
+    "replayFailures": 0,
+    "peakBodies": 29,
+    "maxP95StepMs": 0.17698200000018005
+  },
+  "note": "Finite sampled width-three beam search, including real ability activation. Every reported win is independently replayed. Stability compares authored positions before any constructor warm-up. A search miss is unproven solvability, not proof of impossibility. Human playtesting is still required.",
+  "levels": [
+    {
+      "id": "meadow-01",
+      "name": "A Soft Landing",
+      "valid": true,
+      "stable": true,
+      "initialDisplacement": 0,
+      "maxDisplacement": 1.0911206250829601,
+      "maxRotation": 0.01170426926479449,
+      "displaced": [],
+      "missing": [],
+      "maxBodies": 4,
+      "solved": true,
+      "score": 8500,
+      "shots": [
+        {
+          "x": -81.60000000000001,
+          "y": 0,
+          "abilityAt": 20
+        }
+      ],
+      "attempts": 1,
+      "timedOutAttempts": 0,
+      "threeStars": true,
+      "source": "verified regression fixture",
+      "fullSequence": [
+        {
+          "index": 1,
+          "kind": "sheep",
+          "x": -81.60000000000001,
+          "y": 0,
+          "abilityAt": 20,
+          "abilityAfterMs": 333.3333333333333,
+          "abilityActivated": true,
+          "resultingPhase": "won",
+          "remainingMonsters": 0,
+          "score": 8500
+        }
+      ],
+      "replayVerified": true,
+      "efficient": true,
+      "solutionMetrics": {
+        "fixedSteps": 213,
+        "simulationMs": 3549.99999999999,
+        "wallMs": 8.127820000000042,
+        "peakBodies": 7,
+        "peakFragments": 2,
+        "avgStepMs": 0.03123544131455285,
+        "p95StepMs": 0.11195300000002817
+      }
+    },
+    {
+      "id": "meadow-02",
+      "name": "Double Trouble",
+      "valid": true,
+      "stable": true,
+      "initialDisplacement": 0,
+      "maxDisplacement": 1.091120625083782,
+      "maxRotation": 0.01170426926480365,
+      "displaced": [],
+      "missing": [],
+      "maxBodies": 8,
+      "solved": true,
+      "score": 14000,
+      "shots": [
+        {
+          "x": -81.60000000000001,
+          "y": 0,
+          "abilityAt": 20
+        },
+        {
+          "x": -79.17613126412132,
+          "y": 19.740826680932887,
+          "abilityAt": 35
+        }
+      ],
+      "attempts": 1,
+      "timedOutAttempts": 0,
+      "threeStars": true,
+      "source": "verified regression fixture",
+      "fullSequence": [
+        {
+          "index": 1,
+          "kind": "sheep",
+          "x": -81.60000000000001,
+          "y": 0,
+          "abilityAt": 20,
+          "abilityAfterMs": 333.3333333333333,
+          "abilityActivated": true,
+          "resultingPhase": "aiming",
+          "remainingMonsters": 1,
+          "score": 5500
+        },
+        {
+          "index": 2,
+          "kind": "sheep",
+          "x": -79.17613126412132,
+          "y": 19.740826680932887,
+          "abilityAt": 35,
+          "abilityAfterMs": 583.3333333333334,
+          "abilityActivated": true,
+          "resultingPhase": "won",
+          "remainingMonsters": 0,
+          "score": 14000
+        }
+      ],
+      "replayVerified": true,
+      "efficient": true,
+      "solutionMetrics": {
+        "fixedSteps": 358,
+        "simulationMs": 5966.666666666686,
+        "wallMs": 16.680594999999983,
+        "peakBodies": 12,
+        "peakFragments": 4,
+        "avgStepMs": 0.043157251396645446,
+        "p95StepMs": 0.13832099999996217
+      }
+    },
+    {
+      "id": "meadow-03",
+      "name": "Top of the Morning",
+      "valid": true,
+      "stable": true,
+      "initialDisplacement": 0,
+      "maxDisplacement": 2.173968265374868,
+      "maxRotation": 0.014139381867826841,
+      "displaced": [],
+      "missing": [],
+      "maxBodies": 5,
+      "solved": true,
+      "score": 14000,
+      "shots": [
+        {
+          "x": -101.23970746741485,
+          "y": 12.430673027325042,
+          "abilityAt": null
+        },
+        {
+          "x": -91.8,
+          "y": 0,
+          "abilityAt": 20
+        }
+      ],
+      "attempts": 1,
+      "timedOutAttempts": 0,
+      "threeStars": true,
+      "source": "verified regression fixture",
+      "fullSequence": [
+        {
+          "index": 1,
+          "kind": "sheep",
+          "x": -101.23970746741485,
+          "y": 12.430673027325042,
+          "abilityAt": null,
+          "abilityAfterMs": null,
+          "abilityActivated": false,
+          "resultingPhase": "aiming",
+          "remainingMonsters": 1,
+          "score": 5500
+        },
+        {
+          "index": 2,
+          "kind": "sheep",
+          "x": -91.8,
+          "y": 0,
+          "abilityAt": 20,
+          "abilityAfterMs": 333.3333333333333,
+          "abilityActivated": true,
+          "resultingPhase": "won",
+          "remainingMonsters": 0,
+          "score": 14000
+        }
+      ],
+      "replayVerified": true,
+      "efficient": true,
+      "solutionMetrics": {
+        "fixedSteps": 668,
+        "simulationMs": 11133.333333333287,
+        "wallMs": 11.891381000000024,
+        "peakBodies": 9,
+        "peakFragments": 4,
+        "avgStepMs": 0.01562047455089695,
+        "p95StepMs": 0.03794999999996662
+      }
+    },
+    {
+      "id": "meadow-04",
+      "name": "The Wobbly Duplex",
+      "valid": true,
+      "stable": true,
+      "initialDisplacement": 0,
+      "maxDisplacement": 5.659366251226169,
+      "maxRotation": 0.03861517896963155,
+      "displaced": [],
+      "missing": [],
+      "maxBodies": 8,
+      "solved": true,
+      "score": 16500,
+      "shots": [
+        {
+          "x": -81.60000000000001,
+          "y": 0,
+          "abilityAt": 20
+        }
+      ],
+      "attempts": 1,
+      "timedOutAttempts": 0,
+      "threeStars": true,
+      "source": "verified regression fixture",
+      "fullSequence": [
+        {
+          "index": 1,
+          "kind": "sheep",
+          "x": -81.60000000000001,
+          "y": 0,
+          "abilityAt": 20,
+          "abilityAfterMs": 333.3333333333333,
+          "abilityActivated": true,
+          "resultingPhase": "won",
+          "remainingMonsters": 0,
+          "score": 16500
+        }
+      ],
+      "replayVerified": true,
+      "efficient": true,
+      "solutionMetrics": {
+        "fixedSteps": 165,
+        "simulationMs": 2749.9999999999973,
+        "wallMs": 4.798519999999996,
+        "peakBodies": 11,
+        "peakFragments": 2,
+        "avgStepMs": 0.027203224242424367,
+        "p95StepMs": 0.04262299999999186
+      }
+    },
+    {
+      "id": "meadow-05",
+      "name": "Through the Looking Glass",
+      "valid": true,
+      "stable": true,
+      "initialDisplacement": 0,
+      "maxDisplacement": 1.3735029228152285,
+      "maxRotation": 0.013827750479175064,
+      "displaced": [],
+      "missing": [],
+      "maxBodies": 4,
+      "solved": true,
+      "score": 12200,
+      "shots": [
+        {
+          "x": -81.60000000000001,
+          "y": 0,
+          "abilityAt": 20
+        }
+      ],
+      "attempts": 1,
+      "timedOutAttempts": 0,
+      "threeStars": true,
+      "source": "verified regression fixture",
+      "fullSequence": [
+        {
+          "index": 1,
+          "kind": "sheep",
+          "x": -81.60000000000001,
+          "y": 0,
+          "abilityAt": 20,
+          "abilityAfterMs": 333.3333333333333,
+          "abilityActivated": true,
+          "resultingPhase": "won",
+          "remainingMonsters": 0,
+          "score": 12200
+        }
+      ],
+      "replayVerified": true,
+      "efficient": true,
+      "solutionMetrics": {
+        "fixedSteps": 158,
+        "simulationMs": 2633.3333333333317,
+        "wallMs": 3.110279999999989,
+        "peakBodies": 10,
+        "peakFragments": 6,
+        "avgStepMs": 0.018501917721519913,
+        "p95StepMs": 0.035635000000013406
+      }
+    },
+    {
+      "id": "meadow-06",
+      "name": "Window Shopping",
+      "valid": true,
+      "stable": true,
+      "initialDisplacement": 0,
+      "maxDisplacement": 1.0788780563946574,
+      "maxRotation": 0.011167349758781957,
+      "displaced": [],
+      "missing": [],
+      "maxBodies": 9,
+      "solved": true,
+      "score": 23400,
+      "shots": [
+        {
+          "x": -91.8,
+          "y": 0,
+          "abilityAt": 20
+        },
+        {
+          "x": -43.27493500861671,
+          "y": 43.2749350086167,
+          "abilityAt": 20
+        }
+      ],
+      "attempts": 1,
+      "timedOutAttempts": 0,
+      "threeStars": true,
+      "source": "verified regression fixture",
+      "fullSequence": [
+        {
+          "index": 1,
+          "kind": "sheep",
+          "x": -91.8,
+          "y": 0,
+          "abilityAt": 20,
+          "abilityAfterMs": 333.3333333333333,
+          "abilityActivated": true,
+          "resultingPhase": "aiming",
+          "remainingMonsters": 2,
+          "score": 6800
+        },
+        {
+          "index": 2,
+          "kind": "sheep",
+          "x": -43.27493500861671,
+          "y": 43.2749350086167,
+          "abilityAt": 20,
+          "abilityAfterMs": 333.3333333333333,
+          "abilityActivated": true,
+          "resultingPhase": "won",
+          "remainingMonsters": 0,
+          "score": 23400
+        }
+      ],
+      "replayVerified": true,
+      "efficient": true,
+      "solutionMetrics": {
+        "fixedSteps": 856,
+        "simulationMs": 14266.666666666506,
+        "wallMs": 22.316529000000003,
+        "peakBodies": 18,
+        "peakFragments": 12,
+        "avgStepMs": 0.022259635514018262,
+        "p95StepMs": 0.05925799999999981
+      }
+    },
+    {
+      "id": "meadow-07",
+      "name": "Roof Service",
+      "valid": true,
+      "stable": true,
+      "initialDisplacement": 0,
+      "maxDisplacement": 5.366892265768064,
+      "maxRotation": 0.03372643254995295,
+      "displaced": [],
+      "missing": [],
+      "maxBodies": 12,
+      "solved": true,
+      "score": 22200,
+      "shots": [
+        {
+          "x": -98.97016408015163,
+          "y": 24.676033351166108,
+          "abilityAt": null
+        },
+        {
+          "x": -61.050919875901236,
+          "y": -4.269096193140468,
+          "abilityAt": 20
+        }
+      ],
+      "attempts": 1,
+      "timedOutAttempts": 0,
+      "threeStars": true,
+      "source": "verified regression fixture",
+      "fullSequence": [
+        {
+          "index": 1,
+          "kind": "sheep",
+          "x": -98.97016408015163,
+          "y": 24.676033351166108,
+          "abilityAt": null,
+          "abilityAfterMs": null,
+          "abilityActivated": false,
+          "resultingPhase": "aiming",
+          "remainingMonsters": 1,
+          "score": 11200
+        },
+        {
+          "index": 2,
+          "kind": "sheep",
+          "x": -61.050919875901236,
+          "y": -4.269096193140468,
+          "abilityAt": 20,
+          "abilityAfterMs": 333.3333333333333,
+          "abilityActivated": true,
+          "resultingPhase": "won",
+          "remainingMonsters": 0,
+          "score": 22200
+        }
+      ],
+      "replayVerified": true,
+      "efficient": true,
+      "solutionMetrics": {
+        "fixedSteps": 411,
+        "simulationMs": 6850.0000000000355,
+        "wallMs": 13.098241999999914,
+        "peakBodies": 18,
+        "peakFragments": 6,
+        "avgStepMs": 0.03011601216545357,
+        "p95StepMs": 0.09877999999991971
+      }
+    },
+    {
+      "id": "meadow-08",
+      "name": "Express Delivery",
+      "valid": true,
+      "stable": true,
+      "initialDisplacement": 0,
+      "maxDisplacement": 1.2241499919575762,
+      "maxRotation": 0.012983721722523364,
+      "displaced": [],
+      "missing": [],
+      "maxBodies": 8,
+      "solved": true,
+      "score": 15600,
+      "shots": [
+        {
+          "x": -79.17613126412132,
+          "y": 19.740826680932887,
+          "abilityAt": 20
+        },
+        {
+          "x": -75.65820253264987,
+          "y": 30.567898022738422,
+          "abilityAt": 35
+        }
+      ],
+      "attempts": 1,
+      "timedOutAttempts": 0,
+      "threeStars": true,
+      "source": "verified regression fixture",
+      "fullSequence": [
+        {
+          "index": 1,
+          "kind": "duck",
+          "x": -79.17613126412132,
+          "y": 19.740826680932887,
+          "abilityAt": 20,
+          "abilityAfterMs": 333.3333333333333,
+          "abilityActivated": true,
+          "resultingPhase": "aiming",
+          "remainingMonsters": 1,
+          "score": 6000
+        },
+        {
+          "index": 2,
+          "kind": "duck",
+          "x": -75.65820253264987,
+          "y": 30.567898022738422,
+          "abilityAt": 35,
+          "abilityAfterMs": 583.3333333333334,
+          "abilityActivated": true,
+          "resultingPhase": "won",
+          "remainingMonsters": 0,
+          "score": 15600
+        }
+      ],
+      "replayVerified": true,
+      "efficient": true,
+      "solutionMetrics": {
+        "fixedSteps": 424,
+        "simulationMs": 7066.666666666706,
+        "wallMs": 9.821002000000021,
+        "peakBodies": 17,
+        "peakFragments": 11,
+        "avgStepMs": 0.021487134433965487,
+        "p95StepMs": 0.05501200000003337
+      }
+    },
+    {
+      "id": "meadow-09",
+      "name": "High Society",
+      "valid": true,
+      "stable": true,
+      "initialDisplacement": 0,
+      "maxDisplacement": 5.920463621775725,
+      "maxRotation": 0.03272529458015082,
+      "displaced": [],
+      "missing": [],
+      "maxBodies": 9,
+      "solved": true,
+      "score": 22700,
+      "shots": [
+        {
+          "x": -89.07314767213647,
+          "y": 22.208430016049498,
+          "abilityAt": 35
+        }
+      ],
+      "attempts": 1,
+      "timedOutAttempts": 0,
+      "threeStars": true,
+      "source": "verified regression fixture",
+      "fullSequence": [
+        {
+          "index": 1,
+          "kind": "duck",
+          "x": -89.07314767213647,
+          "y": 22.208430016049498,
+          "abilityAt": 35,
+          "abilityAfterMs": 583.3333333333334,
+          "abilityActivated": true,
+          "resultingPhase": "won",
+          "remainingMonsters": 0,
+          "score": 22700
+        }
+      ],
+      "replayVerified": true,
+      "efficient": true,
+      "solutionMetrics": {
+        "fixedSteps": 169,
+        "simulationMs": 2816.6666666666633,
+        "wallMs": 5.750099000000091,
+        "peakBodies": 16,
+        "peakFragments": 8,
+        "avgStepMs": 0.03038369822484626,
+        "p95StepMs": 0.08101399999998193
+      }
+    },
+    {
+      "id": "meadow-10",
+      "name": "A Gap in the Market",
+      "valid": true,
+      "stable": true,
+      "initialDisplacement": 0,
+      "maxDisplacement": 1.2241499919679142,
+      "maxRotation": 0.012983721722596646,
+      "displaced": [],
+      "missing": [],
+      "maxBodies": 12,
+      "solved": true,
+      "score": 22700,
+      "shots": [
+        {
+          "x": -60.7438244804489,
+          "y": 7.458403816395025,
+          "abilityAt": 20
+        },
+        {
+          "x": -101.23970746741485,
+          "y": 12.430673027325042,
+          "abilityAt": 20
+        }
+      ],
+      "attempts": 1,
+      "timedOutAttempts": 0,
+      "threeStars": true,
+      "source": "verified regression fixture",
+      "fullSequence": [
+        {
+          "index": 1,
+          "kind": "duck",
+          "x": -60.7438244804489,
+          "y": 7.458403816395025,
+          "abilityAt": 20,
+          "abilityAfterMs": 333.3333333333333,
+          "abilityActivated": true,
+          "resultingPhase": "aiming",
+          "remainingMonsters": 2,
+          "score": 5500
+        },
+        {
+          "index": 2,
+          "kind": "duck",
+          "x": -101.23970746741485,
+          "y": 12.430673027325042,
+          "abilityAt": 20,
+          "abilityAfterMs": 333.3333333333333,
+          "abilityActivated": true,
+          "resultingPhase": "won",
+          "remainingMonsters": 0,
+          "score": 22700
+        }
+      ],
+      "replayVerified": true,
+      "efficient": true,
+      "solutionMetrics": {
+        "fixedSteps": 496,
+        "simulationMs": 8266.666666666724,
+        "wallMs": 14.075738000000001,
+        "peakBodies": 18,
+        "peakFragments": 8,
+        "avgStepMs": 0.025781030241935628,
+        "p95StepMs": 0.07943099999999959
+      }
+    },
+    {
+      "id": "meadow-11",
+      "name": "Hard as a Rock",
+      "valid": true,
+      "stable": true,
+      "initialDisplacement": 0,
+      "maxDisplacement": 2.5995959853387833,
+      "maxRotation": 0.02225669380777544,
+      "displaced": [],
+      "missing": [],
+      "maxBodies": 5,
+      "solved": true,
+      "score": 16600,
+      "shots": [
+        {
+          "x": -101.75153312650207,
+          "y": -7.115160321900781,
+          "abilityAt": 20
+        }
+      ],
+      "attempts": 1,
+      "timedOutAttempts": 0,
+      "threeStars": true,
+      "source": "verified regression fixture",
+      "fullSequence": [
+        {
+          "index": 1,
+          "kind": "sheep",
+          "x": -101.75153312650207,
+          "y": -7.115160321900781,
+          "abilityAt": 20,
+          "abilityAfterMs": 333.3333333333333,
+          "abilityActivated": true,
+          "resultingPhase": "won",
+          "remainingMonsters": 0,
+          "score": 16600
+        }
+      ],
+      "replayVerified": true,
+      "efficient": true,
+      "solutionMetrics": {
+        "fixedSteps": 189,
+        "simulationMs": 3149.9999999999936,
+        "wallMs": 4.712075999999911,
+        "peakBodies": 9,
+        "peakFragments": 3,
+        "avgStepMs": 0.022163227513227524,
+        "p95StepMs": 0.041950000000042564
+      }
+    },
+    {
+      "id": "meadow-12",
+      "name": "Bear Necessities",
+      "valid": true,
+      "stable": true,
+      "initialDisplacement": 0,
+      "maxDisplacement": 1.5843352677048683,
+      "maxRotation": 0.01666655590975675,
+      "displaced": [],
+      "missing": [],
+      "maxBodies": 7,
+      "solved": true,
+      "score": 12300,
+      "shots": [
+        {
+          "x": -75.65820253264987,
+          "y": 30.567898022738422,
+          "abilityAt": 45
+        }
+      ],
+      "attempts": 1,
+      "timedOutAttempts": 0,
+      "threeStars": true,
+      "source": "verified regression fixture",
+      "fullSequence": [
+        {
+          "index": 1,
+          "kind": "bear",
+          "x": -75.65820253264987,
+          "y": 30.567898022738422,
+          "abilityAt": 45,
+          "abilityAfterMs": 750,
+          "abilityActivated": true,
+          "resultingPhase": "won",
+          "remainingMonsters": 0,
+          "score": 12300
+        }
+      ],
+      "replayVerified": true,
+      "efficient": true,
+      "solutionMetrics": {
+        "fixedSteps": 194,
+        "simulationMs": 3233.333333333326,
+        "wallMs": 7.466855999999893,
+        "peakBodies": 13,
+        "peakFragments": 6,
+        "avgStepMs": 0.03737797422680385,
+        "p95StepMs": 0.08267299999999977
+      }
+    },
+    {
+      "id": "meadow-13",
+      "name": "The Glass Elevator",
+      "valid": true,
+      "stable": true,
+      "initialDisplacement": 0,
+      "maxDisplacement": 5.71564650380078,
+      "maxRotation": 0.03910380099731529,
+      "displaced": [],
+      "missing": [],
+      "maxBodies": 8,
+      "solved": true,
+      "score": 18000,
+      "shots": [
+        {
+          "x": -85.11547784923108,
+          "y": 34.38888527558072,
+          "abilityAt": 35
+        }
+      ],
+      "attempts": 1,
+      "timedOutAttempts": 0,
+      "threeStars": true,
+      "source": "verified regression fixture",
+      "fullSequence": [
+        {
+          "index": 1,
+          "kind": "bear",
+          "x": -85.11547784923108,
+          "y": 34.38888527558072,
+          "abilityAt": 35,
+          "abilityAfterMs": 583.3333333333334,
+          "abilityActivated": true,
+          "resultingPhase": "won",
+          "remainingMonsters": 0,
+          "score": 18000
+        }
+      ],
+      "replayVerified": true,
+      "efficient": true,
+      "solutionMetrics": {
+        "fixedSteps": 208,
+        "simulationMs": 3466.6666666666574,
+        "wallMs": 7.877058000000034,
+        "peakBodies": 14,
+        "peakFragments": 8,
+        "avgStepMs": 0.036364346153844776,
+        "p95StepMs": 0.11796300000003157
+      }
+    },
+    {
+      "id": "meadow-14",
+      "name": "Knock Knock",
+      "valid": true,
+      "stable": true,
+      "initialDisplacement": 0,
+      "maxDisplacement": 2.380236479384494,
+      "maxRotation": 0.021444124523593944,
+      "displaced": [],
+      "missing": [],
+      "maxBodies": 9,
+      "solved": true,
+      "score": 20300,
+      "shots": [
+        {
+          "x": -69.20072464636436,
+          "y": 43.24141196142953,
+          "abilityAt": 45
+        }
+      ],
+      "attempts": 1,
+      "timedOutAttempts": 0,
+      "threeStars": true,
+      "source": "verified regression fixture",
+      "fullSequence": [
+        {
+          "index": 1,
+          "kind": "bear",
+          "x": -69.20072464636436,
+          "y": 43.24141196142953,
+          "abilityAt": 45,
+          "abilityAfterMs": 750,
+          "abilityActivated": true,
+          "resultingPhase": "won",
+          "remainingMonsters": 0,
+          "score": 20300
+        }
+      ],
+      "replayVerified": true,
+      "efficient": true,
+      "solutionMetrics": {
+        "fixedSteps": 159,
+        "simulationMs": 2649.999999999998,
+        "wallMs": 3.558347000000026,
+        "peakBodies": 14,
+        "peakFragments": 4,
+        "avgStepMs": 0.019945685534591445,
+        "p95StepMs": 0.06377399999996669
+      }
+    },
+    {
+      "id": "meadow-15",
+      "name": "Three Is Company",
+      "valid": true,
+      "stable": true,
+      "initialDisplacement": 0,
+      "maxDisplacement": 0.08341395822264985,
+      "maxRotation": 0,
+      "displaced": [],
+      "missing": [],
+      "maxBodies": 3,
+      "solved": true,
+      "score": 21000,
+      "shots": [
+        {
+          "x": -80.99176597393188,
+          "y": 9.944538421860035,
+          "abilityAt": 20
+        }
+      ],
+      "attempts": 1,
+      "timedOutAttempts": 0,
+      "threeStars": true,
+      "source": "verified regression fixture",
+      "fullSequence": [
+        {
+          "index": 1,
+          "kind": "rabbit",
+          "x": -80.99176597393188,
+          "y": 9.944538421860035,
+          "abilityAt": 20,
+          "abilityAfterMs": 333.3333333333333,
+          "abilityActivated": true,
+          "resultingPhase": "won",
+          "remainingMonsters": 0,
+          "score": 21000
+        }
+      ],
+      "replayVerified": true,
+      "efficient": true,
+      "solutionMetrics": {
+        "fixedSteps": 309,
+        "simulationMs": 5150.000000000005,
+        "wallMs": 6.799441999999999,
+        "peakBodies": 8,
+        "peakFragments": 0,
+        "avgStepMs": 0.019979601941747402,
+        "p95StepMs": 0.039677999999980784
+      }
+    },
+    {
+      "id": "meadow-16",
+      "name": "Rabbit, Rabbit, Rabbit",
+      "valid": true,
+      "stable": true,
+      "initialDisplacement": 0,
+      "maxDisplacement": 2.226859799929089,
+      "maxRotation": 0.014650522067611893,
+      "displaced": [],
+      "missing": [],
+      "maxBodies": 12,
+      "solved": true,
+      "score": 22200,
+      "shots": [
+        {
+          "x": -101.23970746741485,
+          "y": 12.430673027325042,
+          "abilityAt": 20
+        },
+        {
+          "x": -81.60000000000001,
+          "y": 0,
+          "abilityAt": 20
+        }
+      ],
+      "attempts": 1,
+      "timedOutAttempts": 0,
+      "threeStars": true,
+      "source": "verified regression fixture",
+      "fullSequence": [
+        {
+          "index": 1,
+          "kind": "rabbit",
+          "x": -101.23970746741485,
+          "y": 12.430673027325042,
+          "abilityAt": 20,
+          "abilityAfterMs": 333.3333333333333,
+          "abilityActivated": true,
+          "resultingPhase": "aiming",
+          "remainingMonsters": 2,
+          "score": 6200
+        },
+        {
+          "index": 2,
+          "kind": "rabbit",
+          "x": -81.60000000000001,
+          "y": 0,
+          "abilityAt": 20,
+          "abilityAfterMs": 333.3333333333333,
+          "abilityActivated": true,
+          "resultingPhase": "won",
+          "remainingMonsters": 0,
+          "score": 22200
+        }
+      ],
+      "replayVerified": true,
+      "efficient": true,
+      "solutionMetrics": {
+        "fixedSteps": 444,
+        "simulationMs": 7400.0000000000455,
+        "wallMs": 23.896637000000055,
+        "peakBodies": 22,
+        "peakFragments": 6,
+        "avgStepMs": 0.05091008333333197,
+        "p95StepMs": 0.14359300000000985
+      }
+    },
+    {
+      "id": "meadow-17",
+      "name": "Pop Goes the Castle",
+      "valid": true,
+      "stable": true,
+      "initialDisplacement": 0,
+      "maxDisplacement": 1.4771391490368333,
+      "maxRotation": 0.014604321112477987,
+      "displaced": [],
+      "missing": [],
+      "maxBodies": 5,
+      "solved": true,
+      "score": 13000,
+      "shots": [
+        {
+          "x": -60.7438244804489,
+          "y": 7.458403816395025,
+          "abilityAt": 20
+        }
+      ],
+      "attempts": 1,
+      "timedOutAttempts": 0,
+      "threeStars": true,
+      "source": "verified regression fixture",
+      "fullSequence": [
+        {
+          "index": 1,
+          "kind": "duck",
+          "x": -60.7438244804489,
+          "y": 7.458403816395025,
+          "abilityAt": 20,
+          "abilityAfterMs": 333.3333333333333,
+          "abilityActivated": true,
+          "resultingPhase": "won",
+          "remainingMonsters": 0,
+          "score": 13000
+        }
+      ],
+      "replayVerified": true,
+      "efficient": true,
+      "solutionMetrics": {
+        "fixedSteps": 193,
+        "simulationMs": 3216.6666666666597,
+        "wallMs": 6.487920999999915,
+        "peakBodies": 8,
+        "peakFragments": 4,
+        "avgStepMs": 0.03252022279792725,
+        "p95StepMs": 0.07625400000006266
+      }
+    },
+    {
+      "id": "meadow-18",
+      "name": "A Chain of Bad Ideas",
+      "valid": true,
+      "stable": true,
+      "initialDisplacement": 0,
+      "maxDisplacement": 1.604528306631749,
+      "maxRotation": 0.016338156374335448,
+      "displaced": [],
+      "missing": [],
+      "maxBodies": 11,
+      "solved": true,
+      "score": 25400,
+      "shots": [
+        {
+          "x": -101.75153312650207,
+          "y": -7.115160321900781,
+          "abilityAt": null
+        }
+      ],
+      "attempts": 1,
+      "timedOutAttempts": 0,
+      "threeStars": true,
+      "source": "verified regression fixture",
+      "fullSequence": [
+        {
+          "index": 1,
+          "kind": "rabbit",
+          "x": -101.75153312650207,
+          "y": -7.115160321900781,
+          "abilityAt": null,
+          "abilityAfterMs": null,
+          "abilityActivated": false,
+          "resultingPhase": "won",
+          "remainingMonsters": 0,
+          "score": 25400
+        }
+      ],
+      "replayVerified": true,
+      "efficient": true,
+      "solutionMetrics": {
+        "fixedSteps": 315,
+        "simulationMs": 5250.000000000006,
+        "wallMs": 11.127929999999992,
+        "peakBodies": 19,
+        "peakFragments": 16,
+        "avgStepMs": 0.03468466349206196,
+        "p95StepMs": 0.08052300000008472
+      }
+    },
+    {
+      "id": "meadow-19",
+      "name": "Little Towers, Big Feelings",
+      "valid": true,
+      "stable": true,
+      "initialDisplacement": 0,
+      "maxDisplacement": 6.189326334818949,
+      "maxRotation": 0.04045788449817289,
+      "displaced": [],
+      "missing": [],
+      "maxBodies": 16,
+      "solved": true,
+      "score": 28700,
+      "shots": [
+        {
+          "x": -91.11573672067335,
+          "y": 11.187605724592538,
+          "abilityAt": null
+        },
+        {
+          "x": -98.97016408015163,
+          "y": 24.676033351166108,
+          "abilityAt": 20
+        }
+      ],
+      "attempts": 1,
+      "timedOutAttempts": 0,
+      "threeStars": true,
+      "source": "verified regression fixture",
+      "fullSequence": [
+        {
+          "index": 1,
+          "kind": "bear",
+          "x": -91.11573672067335,
+          "y": 11.187605724592538,
+          "abilityAt": null,
+          "abilityAfterMs": null,
+          "abilityActivated": false,
+          "resultingPhase": "aiming",
+          "remainingMonsters": 1,
+          "score": 16600
+        },
+        {
+          "index": 2,
+          "kind": "rabbit",
+          "x": -98.97016408015163,
+          "y": 24.676033351166108,
+          "abilityAt": 20,
+          "abilityAfterMs": 333.3333333333333,
+          "abilityActivated": true,
+          "resultingPhase": "won",
+          "remainingMonsters": 0,
+          "score": 28700
+        }
+      ],
+      "replayVerified": true,
+      "efficient": true,
+      "solutionMetrics": {
+        "fixedSteps": 587,
+        "simulationMs": 9783.333333333336,
+        "wallMs": 33.134546,
+        "peakBodies": 27,
+        "peakFragments": 14,
+        "avgStepMs": 0.05533025042589468,
+        "p95StepMs": 0.1631280000000288
+      }
+    },
+    {
+      "id": "meadow-20",
+      "name": "The Long Way Round",
+      "valid": true,
+      "stable": true,
+      "initialDisplacement": 0,
+      "maxDisplacement": 5.948382661785393,
+      "maxRotation": 0.03877975477458464,
+      "displaced": [],
+      "missing": [],
+      "maxBodies": 9,
+      "solved": true,
+      "score": 24500,
+      "shots": [
+        {
+          "x": -79.17613126412132,
+          "y": 19.740826680932887,
+          "abilityAt": 20
+        }
+      ],
+      "attempts": 1,
+      "timedOutAttempts": 0,
+      "threeStars": true,
+      "source": "verified regression fixture",
+      "fullSequence": [
+        {
+          "index": 1,
+          "kind": "duck",
+          "x": -79.17613126412132,
+          "y": 19.740826680932887,
+          "abilityAt": 20,
+          "abilityAfterMs": 333.3333333333333,
+          "abilityActivated": true,
+          "resultingPhase": "won",
+          "remainingMonsters": 0,
+          "score": 24500
+        }
+      ],
+      "replayVerified": true,
+      "efficient": true,
+      "solutionMetrics": {
+        "fixedSteps": 299,
+        "simulationMs": 4983.333333333335,
+        "wallMs": 6.778155000000083,
+        "peakBodies": 12,
+        "peakFragments": 2,
+        "avgStepMs": 0.021931732441470463,
+        "p95StepMs": 0.03953400000000329
+      }
+    },
+    {
+      "id": "meadow-21",
+      "name": "Fort Pillow",
+      "valid": true,
+      "stable": true,
+      "initialDisplacement": 0,
+      "maxDisplacement": 4.945914398429186,
+      "maxRotation": 0.026691835251531435,
+      "displaced": [],
+      "missing": [],
+      "maxBodies": 12,
+      "solved": true,
+      "score": 22500,
+      "shots": [
+        {
+          "x": -64.91240251292507,
+          "y": 64.91240251292506,
+          "abilityAt": 45
+        }
+      ],
+      "attempts": 1,
+      "timedOutAttempts": 0,
+      "threeStars": true,
+      "source": "verified regression fixture",
+      "fullSequence": [
+        {
+          "index": 1,
+          "kind": "bear",
+          "x": -64.91240251292507,
+          "y": 64.91240251292506,
+          "abilityAt": 45,
+          "abilityAfterMs": 750,
+          "abilityActivated": true,
+          "resultingPhase": "won",
+          "remainingMonsters": 0,
+          "score": 22500
+        }
+      ],
+      "replayVerified": true,
+      "efficient": true,
+      "solutionMetrics": {
+        "fixedSteps": 251,
+        "simulationMs": 4183.33333333332,
+        "wallMs": 8.686001000000033,
+        "peakBodies": 18,
+        "peakFragments": 10,
+        "avgStepMs": 0.03375445019920168,
+        "p95StepMs": 0.10482300000001032
+      }
+    },
+    {
+      "id": "meadow-22",
+      "name": "Cloud Nine",
+      "valid": true,
+      "stable": true,
+      "initialDisplacement": 0,
+      "maxDisplacement": 6.534116251230881,
+      "maxRotation": 0.03223744800923877,
+      "displaced": [],
+      "missing": [],
+      "maxBodies": 13,
+      "solved": true,
+      "score": 27600,
+      "shots": [
+        {
+          "x": -51.900543484773266,
+          "y": 32.43105897107214,
+          "abilityAt": 35
+        },
+        {
+          "x": -79.17613126412132,
+          "y": 19.740826680932887,
+          "abilityAt": null
+        }
+      ],
+      "attempts": 1,
+      "timedOutAttempts": 0,
+      "threeStars": true,
+      "source": "verified regression fixture",
+      "fullSequence": [
+        {
+          "index": 1,
+          "kind": "duck",
+          "x": -51.900543484773266,
+          "y": 32.43105897107214,
+          "abilityAt": 35,
+          "abilityAfterMs": 583.3333333333334,
+          "abilityActivated": true,
+          "resultingPhase": "aiming",
+          "remainingMonsters": 1,
+          "score": 15500
+        },
+        {
+          "index": 2,
+          "kind": "bear",
+          "x": -79.17613126412132,
+          "y": 19.740826680932887,
+          "abilityAt": null,
+          "abilityAfterMs": null,
+          "abilityActivated": false,
+          "resultingPhase": "won",
+          "remainingMonsters": 0,
+          "score": 27600
+        }
+      ],
+      "replayVerified": true,
+      "efficient": true,
+      "solutionMetrics": {
+        "fixedSteps": 510,
+        "simulationMs": 8500.00000000005,
+        "wallMs": 20.05367000000001,
+        "peakBodies": 18,
+        "peakFragments": 7,
+        "avgStepMs": 0.03840262156862986,
+        "p95StepMs": 0.11272700000006353
+      }
+    },
+    {
+      "id": "meadow-23",
+      "name": "The Bridge Club",
+      "valid": true,
+      "stable": true,
+      "initialDisplacement": 0,
+      "maxDisplacement": 4.219666268004444,
+      "maxRotation": 0.03196893513511631,
+      "displaced": [],
+      "missing": [],
+      "maxBodies": 10,
+      "solved": true,
+      "score": 25600,
+      "shots": [
+        {
+          "x": -79.17613126412132,
+          "y": 19.740826680932887,
+          "abilityAt": 35
+        },
+        {
+          "x": -85.11547784923108,
+          "y": 34.38888527558072,
+          "abilityAt": 45
+        }
+      ],
+      "attempts": 1,
+      "timedOutAttempts": 0,
+      "threeStars": true,
+      "source": "verified regression fixture",
+      "fullSequence": [
+        {
+          "index": 1,
+          "kind": "rabbit",
+          "x": -79.17613126412132,
+          "y": 19.740826680932887,
+          "abilityAt": 35,
+          "abilityAfterMs": 583.3333333333334,
+          "abilityActivated": true,
+          "resultingPhase": "aiming",
+          "remainingMonsters": 1,
+          "score": 11200
+        },
+        {
+          "index": 2,
+          "kind": "bear",
+          "x": -85.11547784923108,
+          "y": 34.38888527558072,
+          "abilityAt": 45,
+          "abilityAfterMs": 750,
+          "abilityActivated": true,
+          "resultingPhase": "won",
+          "remainingMonsters": 0,
+          "score": 25600
+        }
+      ],
+      "replayVerified": true,
+      "efficient": true,
+      "solutionMetrics": {
+        "fixedSteps": 499,
+        "simulationMs": 8316.666666666722,
+        "wallMs": 15.741358999999989,
+        "peakBodies": 22,
+        "peakFragments": 12,
+        "avgStepMs": 0.030462869739478687,
+        "p95StepMs": 0.11421100000006845
+      }
+    },
+    {
+      "id": "meadow-24",
+      "name": "Meadow Mayhem",
+      "valid": true,
+      "stable": true,
+      "initialDisplacement": 0,
+      "maxDisplacement": 5.742358424966415,
+      "maxRotation": 0.03554366797316017,
+      "displaced": [],
+      "missing": [],
+      "maxBodies": 19,
+      "solved": true,
+      "score": 45200,
+      "shots": [
+        {
+          "x": -85.11547784923108,
+          "y": 34.38888527558072,
+          "abilityAt": 20
+        },
+        {
+          "x": -85.11547784923108,
+          "y": 34.38888527558072,
+          "abilityAt": 45
+        }
+      ],
+      "attempts": 1,
+      "timedOutAttempts": 0,
+      "threeStars": true,
+      "source": "verified regression fixture",
+      "fullSequence": [
+        {
+          "index": 1,
+          "kind": "rabbit",
+          "x": -85.11547784923108,
+          "y": 34.38888527558072,
+          "abilityAt": 20,
+          "abilityAfterMs": 333.3333333333333,
+          "abilityActivated": true,
+          "resultingPhase": "aiming",
+          "remainingMonsters": 4,
+          "score": 10600
+        },
+        {
+          "index": 2,
+          "kind": "bear",
+          "x": -85.11547784923108,
+          "y": 34.38888527558072,
+          "abilityAt": 45,
+          "abilityAfterMs": 750,
+          "abilityActivated": true,
+          "resultingPhase": "won",
+          "remainingMonsters": 0,
+          "score": 45200
+        }
+      ],
+      "replayVerified": true,
+      "efficient": true,
+      "solutionMetrics": {
+        "fixedSteps": 524,
+        "simulationMs": 8733.333333333374,
+        "wallMs": 35.0332699999999,
+        "peakBodies": 29,
+        "peakFragments": 20,
+        "avgStepMs": 0.06409069847328615,
+        "p95StepMs": 0.17698200000018005
+      }
+    }
+  ]
+}

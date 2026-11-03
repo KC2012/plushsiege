@@ -2,6 +2,7 @@ export class AudioSystem {
   private ctx?: AudioContext;
   enabled = true;
   private last = 0;
+  private nextMaterialSound = 0;
   unlock() {
     try {
       this.ctx ??= new AudioContext();
@@ -14,7 +15,12 @@ export class AudioSystem {
     if (!this.enabled || !this.ctx) return;
     const c = this.ctx,
       t = c.currentTime;
-    if (type === 'impact' && t - this.last < 0.065) return;
+    if (type === 'impact' && t - this.last < 0.075) return;
+    if (['ready', 'launch-ready'].includes(type)) return;
+    if (['impact', 'break'].includes(type)) {
+      if (t < this.nextMaterialSound) return;
+      this.nextMaterialSound = t + 0.05;
+    }
     this.last = t;
     const melody =
       type === 'won'
@@ -26,13 +32,20 @@ export class AudioSystem {
             : type === 'launch'
               ? [220, 440]
               : type === 'ability'
-                ? [440, 880, 1320]
+                ? material === 'duck'
+                  ? [620, 920, 1420]
+                  : material === 'bear'
+                    ? [150, 100, 70]
+                    : material === 'rabbit'
+                      ? [660, 830, 990]
+                      : [440, 550, 740]
                 : [material === 'glass' ? 1200 : material === 'stone' ? 95 : 180];
     melody.forEach((f, i) => {
       const o = c.createOscillator(),
         g = c.createGain(),
         start = t + i * 0.085;
-      o.type = type === 'break' ? 'triangle' : 'sine';
+      o.type =
+        type === 'break' || (type === 'ability' && material === 'bear') ? 'triangle' : 'sine';
       o.frequency.setValueAtTime(f, start);
       o.frequency.exponentialRampToValueAtTime(Math.max(35, f * 0.55), start + 0.15);
       g.gain.setValueAtTime(0, start);
@@ -52,7 +65,7 @@ export class AudioSystem {
         g = c.createGain(),
         filter = c.createBiquadFilter();
       filter.type = 'lowpass';
-      filter.frequency.value = material === 'glass' ? 6000 : 900;
+      filter.frequency.value = material === 'glass' ? 6200 : material === 'stone' ? 380 : 1400;
       n.buffer = buffer;
       g.gain.value = type === 'explosion' ? 0.2 : 0.09;
       n.connect(filter);

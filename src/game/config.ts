@@ -12,7 +12,8 @@ export const MATERIALS: Record<
 > = {
   wood: {
     density: 0.0017,
-    health: 7.5,
+    // A solid hit cracks wood; further impacts or a hard fall fracture it.
+    health: 38,
     friction: 0.65,
     restitution: 0.08,
     color: 0xc38b50,
@@ -20,7 +21,8 @@ export const MATERIALS: Record<
   },
   glass: {
     density: 0.0011,
-    health: 3.6,
+    // Glass fails earlier and splits into three physical shards.
+    health: 9,
     friction: 0.45,
     restitution: 0.05,
     color: 0x88d9de,
@@ -28,7 +30,8 @@ export const MATERIALS: Record<
   },
   stone: {
     density: 0.0038,
-    health: 21,
+    // Heavy masonry usually tumbles intact before it breaks.
+    health: 110,
     friction: 0.8,
     restitution: 0.02,
     color: 0x8d96a2,
@@ -84,6 +87,14 @@ export const PHYSICS = {
   maxPull: 102,
   launchScale: 0.215,
   settleFrames: 90,
-  maxShotMs: 12500,
   debrisLimit: 140,
+  fragmentLimit: 72,
+  minFragmentSize: 12,
+  fragmentLifetimeMs: 45000,
+  // Show the intact rigid body reacting before replacing it with large pieces.
+  fractureDelayMs: 100,
+  damageSpeedFloor: 1.6,
+  damageEnergyScale: 0.09,
+  monsterDamageScale: 1.8,
+  monsterHealth: 3.5,
 };

@@ -22,14 +22,31 @@ try {
   const errors = [];
   page.on('pageerror', (e) => errors.push(e.message));
   await page.goto(url);
-  await page.getByRole('heading', { name: /Small heroes/ }).waitFor();
+  await page.getByRole('heading', { name: /PLUSH/ }).waitFor();
   check(
-    'title menu loads with all four crew members',
-    (await page.locator('.crew-card').count()) === 4,
+    'game title menu presents a primary PLAY action',
+    (await page.locator('[data-action="continue"]').count()) === 1,
   );
   await page.screenshot({ path: 'artifacts/home.png' });
-  await page.getByRole('button', { name: 'Choose a level', exact: true }).click();
-  check('all 24 levels are available', (await page.locator('.level-tile').count()) === 24);
+  await page.getByRole('button', { name: 'Level map', exact: true }).click();
+  check(
+    'campaign map presents eight touch-friendly level nodes',
+    (await page.locator('[data-level]').count()) === 8,
+  );
+  await page.locator('[data-action="map-next"]').click();
+  check(
+    'second map page exposes levels nine through sixteen',
+    (await page.locator('[data-level="8"]').count()) === 1 &&
+      (await page.locator('[data-level="15"]').count()) === 1,
+  );
+  await page.locator('[data-action="map-next"]').click();
+  check(
+    'third map page exposes remaining levels without scrolling',
+    (await page.locator('[data-level="23"]').count()) === 1 &&
+      (await page.locator('[data-action="map-next"]').isDisabled()),
+  );
+  await page.locator('[data-action="map-prev"]').click();
+  await page.locator('[data-action="map-prev"]').click();
   await page.locator('[data-level="0"]').click();
   check('first level starts with score zero', (await page.locator('#score').textContent()) === '0');
   await page.getByRole('button', { name: 'Pause game' }).click();
@@ -52,7 +69,7 @@ try {
     await page.mouse.up();
   };
   // Real mouse shot through Phaser input, matching the audited opening solution.
-  await launch(-61.0509, -4.2691);
+  await launch(-102, 0);
   await page.getByRole('heading', { name: 'Softies for the win.' }).waitFor({ timeout: 50000 });
   check(
     'actual slingshot shot destroys target and completes level',
@@ -78,10 +95,10 @@ try {
       (await page.locator('.queue-item.used').count()) === 0,
   );
   await page.reload();
-  await page.getByRole('button', { name: 'Choose a level', exact: true }).click();
+  await page.getByRole('button', { name: 'Level map', exact: true }).click();
   check(
     'progress survives page reload',
-    (await page.locator('[data-level="0"] .earned').count()) === 3,
+    (await page.locator('[data-level="0"] .map-node .earned').count()) === 3,
   );
   await page.locator('[data-level="0"]').click();
   // Cancelled aim must never become a shot on pointerup.
@@ -139,7 +156,7 @@ try {
     y: bounds.y + (y * bounds.height) / 810,
   });
   const s = pos(235, 530),
-    end = pos(173.9491, 525.7309);
+    end = pos(133, 530);
   await cdp.send('Input.dispatchTouchEvent', { type: 'touchStart', touchPoints: [s] });
   await cdp.send('Input.dispatchTouchEvent', { type: 'touchMove', touchPoints: [end] });
   await cdp.send('Input.dispatchTouchEvent', { type: 'touchEnd', touchPoints: [] });

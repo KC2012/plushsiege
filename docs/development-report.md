@@ -1,3 +1,5 @@
+> Historical pass 1 report. See [Development Pass 2](pass-2-report.md) for the current destruction system, campaign audit, and game menus.
+
 # Initial vertical slice: development report
 
 This build establishes a playable countryside campaign and reusable production foundation. It is a milestone for review, not a claim that the final 600-level game or final commercial presentation is complete.

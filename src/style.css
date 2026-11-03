@@ -1098,3 +1098,20 @@ button {
 .chapter-tag:hover {
   transform: rotate(-1deg) translateY(-3px);
 }
+
+/* Fit the actual browser viewport, including short landscape tablets/phones. */
+#app {
+  min-height: 0;
+}
+.title-screen .brand > span:last-child,
+.campaign-screen .brand > span:last-child {
+  display: none;
+}
+.title-screen .header,
+.campaign-screen .header {
+  pointer-events: none;
+}
+.title-screen .header button,
+.campaign-screen .header button {
+  pointer-events: auto;
+}

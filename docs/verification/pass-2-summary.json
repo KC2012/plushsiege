@@ -1,0 +1,43 @@
+{
+  "version": "0.2.0",
+  "productionBuild": "passed",
+  "unitAndPhysicsTests": {
+    "passed": 35,
+    "failed": 0
+  },
+  "integratedBrowserChecks": {
+    "passed": 19,
+    "failed": 0
+  },
+  "editorBrowserChecks": {
+    "passed": 18,
+    "failed": 0
+  },
+  "destructionBrowserChecks": {
+    "passed": 36,
+    "failed": 0
+  },
+  "productionOfflineChecks": {
+    "passed": 16,
+    "failed": 0
+  },
+  "campaign": {
+    "levels": 24,
+    "invalid": 0,
+    "unstable": 0,
+    "solved": 24,
+    "threeStars": 24,
+    "inefficient": 0,
+    "unsolved": 0,
+    "replayFailures": 0,
+    "peakBodies": 29,
+    "maxP95StepMs": 0.17698200000018005
+  },
+  "browser": "Headless Chromium with real mouse/touch events",
+  "limitations": [
+    "Physical iPad Safari not tested",
+    "Device frame rate not established",
+    "Visual fragments use approximate rectangular colliders"
+  ],
+  "siteDeployed": false
+}

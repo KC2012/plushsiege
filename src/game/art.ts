@@ -1107,3 +1107,271 @@ export function drawSling(g: G, anchor: Point, pouch?: Point, front = false): vo
     );
   }
 }
+
+/** Large physical fragments retain a broad silhouette around their rectangular
+ * collider, with exposed broken edges rather than the intact block's finished trim.
+ * All chips/grain are deterministic per entity, so debris never flickers in flight. */
+export function drawFragment(g: G, def: BlockDef, healthRatio = 1): void {
+  const vertical = def.h > def.w;
+  const p = new Pen(g, def.x, def.y, (def.angle || 0) + (vertical ? Math.PI / 2 : 0));
+  const long = Math.max(def.w, def.h) / 2;
+  const thick = Math.min(def.w, def.h) / 2;
+  let seed = 0;
+  for (let i = 0; i < def.id.length; i++) seed = (seed * 31 + def.id.charCodeAt(i)) >>> 0;
+  const variation = (seed % 11) / 10;
+  const bite = Math.min(4, long * 0.16, Math.max(1, thick * 0.4));
+  const chip = Math.min(3, thick * 0.28);
+  const stroke = Math.min(1.65, 0.65 + thick * 0.11);
+
+  if (def.material === 'wood') {
+    // Small alternating notches show splintered cuts at both ends, while preserving
+    // nearly all of the broad physical shape for readable contact and support.
+    p.polygon(
+      [
+        [-long + bite * 0.3, -thick],
+        [long - bite * 0.55, -thick],
+        [long, -thick * 0.72],
+        [long - bite, -thick * 0.28],
+        [long, thick * 0.1],
+        [long - bite * 0.65, thick * 0.48],
+        [long, thick],
+        [-long + bite * 0.55, thick],
+        [-long, thick * 0.62],
+        [-long + bite, thick * 0.18],
+        [-long, -thick * 0.13],
+        [-long + bite * 0.7, -thick * 0.54],
+      ],
+      0xc3935c,
+      0x805a39,
+      stroke,
+    );
+    p.polygon(
+      [
+        [-long + bite * 0.7, thick * 0.52],
+        [long - bite * 0.55, thick * 0.52],
+        [long, thick],
+        [-long + bite * 0.55, thick],
+        [-long, thick * 0.62],
+      ],
+      0xad7a49,
+    );
+    p.line(
+      [
+        [-long + bite, -thick + 1.3],
+        [long - bite, -thick + 1.3],
+      ],
+      0xe9bb7e,
+      Math.min(1.4, thick * 0.24),
+    );
+    p.polygon(
+      [
+        [-long + bite * 0.7, -thick * 0.54],
+        [-long + bite * 1.2, -thick * 0.2],
+        [-long + bite * 0.5, thick * 0.62],
+        [-long + bite * 2.1, thick * 0.1],
+      ],
+      0xe0b37b,
+    );
+    p.polygon(
+      [
+        [long - bite * 0.6, -thick * 0.75],
+        [long - bite * 1.6, -thick * 0.1],
+        [long - bite * 0.5, thick * 0.65],
+        [long - bite * 0.2, thick * 0.1],
+      ],
+      0xe2b77f,
+    );
+    for (let i = 0; i < (thick > 7 ? 3 : 2); i++) {
+      const y = -thick * 0.48 + i * thick * 0.45;
+      p.line(
+        [
+          [-long + bite * 1.8, y],
+          [-long * 0.25, y - 0.7],
+          [long * 0.35, y + 0.7],
+          [long - bite * 1.8, y - 0.3],
+        ],
+        0x9c6d40,
+        0.8,
+        0.7,
+      );
+    }
+    p.line(
+      [
+        [-long + bite * 0.6, -thick * 0.25],
+        [-long + Math.min(long * 0.42, bite * 3.5), thick * (0.18 + variation * 0.2)],
+        [-long + Math.min(long * 0.64, bite * 5), thick * 0.03],
+      ],
+      0x795131,
+      1,
+    );
+    p.line(
+      [
+        [long - bite * 0.2, thick * 0.44],
+        [long - Math.min(long * 0.5, bite * 3), thick * 0.12],
+      ],
+      0x92643a,
+      0.9,
+    );
+    if (healthRatio < 0.45)
+      p.line(
+        [
+          [-long * 0.2, -thick],
+          [-long * 0.1, -thick * 0.1],
+          [long * 0.1, thick * 0.2],
+          [long * 0.17, thick],
+        ],
+        0x785035,
+        1.2,
+      );
+  } else if (def.material === 'glass') {
+    // Only the corners taper: the visible shard still occupies the rectangle used
+    // by the collision solver, avoiding a misleading needle-shaped silhouette.
+    p.polygon(
+      [
+        [-long + bite, -thick],
+        [long - bite * 1.2, -thick],
+        [long, -thick * 0.35],
+        [long, thick * 0.65],
+        [long - bite, thick],
+        [-long + bite * 0.7, thick],
+        [-long, thick * 0.3],
+        [-long, -thick * 0.45],
+      ],
+      0x99d6d8,
+      0x4c939f,
+      stroke,
+      0.95,
+    );
+    p.polygon(
+      [
+        [-long + bite, -thick + 0.7],
+        [long * 0.35, -thick + 0.7],
+        [-long * 0.25, thick * 0.8],
+        [-long + bite * 0.5, thick * 0.4],
+      ],
+      0xe5fff5,
+      undefined,
+      1,
+      0.65,
+    );
+    p.polygon(
+      [
+        [long * 0.2, -thick * 0.6],
+        [long - bite * 0.9, -thick * 0.85],
+        [long - bite * 0.3, thick * 0.55],
+        [long * 0.72, thick * 0.75],
+      ],
+      0xbdece8,
+      undefined,
+      1,
+      0.8,
+    );
+    p.line(
+      [
+        [-long + bite * 1.2, -thick + 1],
+        [long - bite * 1.2, -thick + 1],
+      ],
+      0xf2fff6,
+      1.2,
+    );
+    p.line(
+      [
+        [-long, thick * 0.3],
+        [-long * 0.18, -thick * 0.2],
+        [long * 0.19, thick * 0.15],
+        [long * 0.56, -thick],
+      ],
+      0x68a9b5,
+      0.95,
+    );
+    p.line(
+      [
+        [-long * 0.18, -thick * 0.2],
+        [-long * 0.27, -thick],
+      ],
+      0xf2fffa,
+      1,
+    );
+    if (healthRatio < 0.45)
+      p.line(
+        [
+          [long * 0.19, thick * 0.15],
+          [long * 0.55, thick],
+        ],
+        0x5796a4,
+        1.2,
+      );
+  } else {
+    p.polygon(
+      [
+        [-long + bite, -thick],
+        [-long * 0.1, -thick + chip * 0.35],
+        [long - bite * 0.7, -thick],
+        [long, -thick + chip],
+        [long - bite * 0.15, thick - chip],
+        [long - bite, thick],
+        [-long * 0.37, thick - chip * 0.3],
+        [-long + bite * 0.35, thick],
+        [-long, thick - chip * 0.8],
+        [-long + bite * 0.1, -thick + chip],
+      ],
+      0x9ba3a8,
+      0x626e79,
+      stroke,
+    );
+    p.polygon(
+      [
+        [-long + bite * 0.3, thick * 0.5],
+        [long - bite * 0.3, thick * 0.45],
+        [long - bite, thick],
+        [-long * 0.37, thick - chip * 0.3],
+        [-long + bite * 0.35, thick],
+        [-long, thick - chip * 0.8],
+      ],
+      0x838e98,
+    );
+    p.line(
+      [
+        [-long + bite, -thick + 1.2],
+        [-long * 0.1, -thick + chip * 0.35 + 1.2],
+        [long - bite, -thick + 1.2],
+      ],
+      0xc4ccc9,
+      1.1,
+    );
+    const seam = long * (0.08 + variation * 0.14);
+    p.line(
+      [
+        [-seam, -thick],
+        [-seam * 0.6, -thick * 0.2],
+        [seam * 0.2, thick * 0.25],
+        [-seam * 0.2, thick],
+      ],
+      0x66737e,
+      1.15,
+    );
+    p.line(
+      [
+        [seam * 0.2, thick * 0.25],
+        [long * 0.48, -thick * 0.08],
+        [long * 0.72, -thick * 0.62],
+      ],
+      0x74818a,
+      1,
+    );
+    if (long > 9) {
+      p.ellipse(-long * 0.55, -thick * 0.17, 1.3, 0.85, 0x84919b);
+      p.ellipse(long * 0.6, thick * 0.22, 0.8, 1.1, 0xbac3c2);
+    }
+    if (healthRatio < 0.45)
+      p.line(
+        [
+          [-seam * 0.6, -thick * 0.2],
+          [-long * 0.52, thick * 0.12],
+          [-long * 0.8, thick * 0.5],
+        ],
+        0x65727b,
+        1.3,
+      );
+  }
+}

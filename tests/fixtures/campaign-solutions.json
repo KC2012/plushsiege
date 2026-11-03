@@ -1,0 +1,349 @@
+{
+  "version": 1,
+  "note": "Deterministic real-engine campaign solution regression fixtures. abilityAt is fixed60Hz steps after launch; null leaves ability unused. Not imported by the shipped game.",
+  "levels": [
+    {
+      "id": "meadow-01",
+      "shots": [
+        {
+          "x": -81.60000000000001,
+          "y": 0,
+          "abilityAt": 20
+        }
+      ],
+      "expectedStars": 3,
+      "maxShots": 1
+    },
+    {
+      "id": "meadow-02",
+      "shots": [
+        {
+          "x": -81.60000000000001,
+          "y": 0,
+          "abilityAt": 20
+        },
+        {
+          "x": -79.17613126412132,
+          "y": 19.740826680932887,
+          "abilityAt": 35
+        }
+      ],
+      "expectedStars": 3,
+      "maxShots": 2
+    },
+    {
+      "id": "meadow-03",
+      "shots": [
+        {
+          "x": -101.23970746741485,
+          "y": 12.430673027325042,
+          "abilityAt": null
+        },
+        {
+          "x": -91.8,
+          "y": 0,
+          "abilityAt": 20
+        }
+      ],
+      "expectedStars": 3,
+      "maxShots": 2
+    },
+    {
+      "id": "meadow-04",
+      "shots": [
+        {
+          "x": -81.60000000000001,
+          "y": 0,
+          "abilityAt": 20
+        }
+      ],
+      "expectedStars": 3,
+      "maxShots": 2
+    },
+    {
+      "id": "meadow-05",
+      "shots": [
+        {
+          "x": -81.60000000000001,
+          "y": 0,
+          "abilityAt": 20
+        }
+      ],
+      "expectedStars": 3,
+      "maxShots": 1
+    },
+    {
+      "id": "meadow-06",
+      "shots": [
+        {
+          "x": -91.8,
+          "y": 0,
+          "abilityAt": 20
+        },
+        {
+          "x": -43.27493500861671,
+          "y": 43.2749350086167,
+          "abilityAt": 20
+        }
+      ],
+      "expectedStars": 3,
+      "maxShots": 2
+    },
+    {
+      "id": "meadow-07",
+      "shots": [
+        {
+          "x": -98.97016408015163,
+          "y": 24.676033351166108,
+          "abilityAt": null
+        },
+        {
+          "x": -61.050919875901236,
+          "y": -4.269096193140468,
+          "abilityAt": 20
+        }
+      ],
+      "expectedStars": 3,
+      "maxShots": 2
+    },
+    {
+      "id": "meadow-08",
+      "shots": [
+        {
+          "x": -79.17613126412132,
+          "y": 19.740826680932887,
+          "abilityAt": 20
+        },
+        {
+          "x": -75.65820253264987,
+          "y": 30.567898022738422,
+          "abilityAt": 35
+        }
+      ],
+      "expectedStars": 3,
+      "maxShots": 2
+    },
+    {
+      "id": "meadow-09",
+      "shots": [
+        {
+          "x": -89.07314767213647,
+          "y": 22.208430016049498,
+          "abilityAt": 35
+        }
+      ],
+      "expectedStars": 3,
+      "maxShots": 2
+    },
+    {
+      "id": "meadow-10",
+      "shots": [
+        {
+          "x": -60.7438244804489,
+          "y": 7.458403816395025,
+          "abilityAt": 20
+        },
+        {
+          "x": -101.23970746741485,
+          "y": 12.430673027325042,
+          "abilityAt": 20
+        }
+      ],
+      "expectedStars": 3,
+      "maxShots": 2
+    },
+    {
+      "id": "meadow-11",
+      "shots": [
+        {
+          "x": -101.75153312650207,
+          "y": -7.115160321900781,
+          "abilityAt": 20
+        }
+      ],
+      "expectedStars": 3,
+      "maxShots": 2
+    },
+    {
+      "id": "meadow-12",
+      "shots": [
+        {
+          "x": -75.65820253264987,
+          "y": 30.567898022738422,
+          "abilityAt": 45
+        }
+      ],
+      "expectedStars": 3,
+      "maxShots": 2
+    },
+    {
+      "id": "meadow-13",
+      "shots": [
+        {
+          "x": -85.11547784923108,
+          "y": 34.38888527558072,
+          "abilityAt": 35
+        }
+      ],
+      "expectedStars": 3,
+      "maxShots": 2
+    },
+    {
+      "id": "meadow-14",
+      "shots": [
+        {
+          "x": -69.20072464636436,
+          "y": 43.24141196142953,
+          "abilityAt": 45
+        }
+      ],
+      "expectedStars": 3,
+      "maxShots": 2
+    },
+    {
+      "id": "meadow-15",
+      "shots": [
+        {
+          "x": -80.99176597393188,
+          "y": 9.944538421860035,
+          "abilityAt": 20
+        }
+      ],
+      "expectedStars": 3,
+      "maxShots": 2
+    },
+    {
+      "id": "meadow-16",
+      "shots": [
+        {
+          "x": -101.23970746741485,
+          "y": 12.430673027325042,
+          "abilityAt": 20
+        },
+        {
+          "x": -81.60000000000001,
+          "y": 0,
+          "abilityAt": 20
+        }
+      ],
+      "expectedStars": 3,
+      "maxShots": 2
+    },
+    {
+      "id": "meadow-17",
+      "shots": [
+        {
+          "x": -60.7438244804489,
+          "y": 7.458403816395025,
+          "abilityAt": 20
+        }
+      ],
+      "expectedStars": 3,
+      "maxShots": 1
+    },
+    {
+      "id": "meadow-18",
+      "shots": [
+        {
+          "x": -101.75153312650207,
+          "y": -7.115160321900781,
+          "abilityAt": null
+        }
+      ],
+      "expectedStars": 3,
+      "maxShots": 2
+    },
+    {
+      "id": "meadow-19",
+      "shots": [
+        {
+          "x": -91.11573672067335,
+          "y": 11.187605724592538,
+          "abilityAt": null
+        },
+        {
+          "x": -98.97016408015163,
+          "y": 24.676033351166108,
+          "abilityAt": 20
+        }
+      ],
+      "expectedStars": 3,
+      "maxShots": 2
+    },
+    {
+      "id": "meadow-20",
+      "shots": [
+        {
+          "x": -79.17613126412132,
+          "y": 19.740826680932887,
+          "abilityAt": 20
+        }
+      ],
+      "expectedStars": 3,
+      "maxShots": 2
+    },
+    {
+      "id": "meadow-21",
+      "shots": [
+        {
+          "x": -64.91240251292507,
+          "y": 64.91240251292506,
+          "abilityAt": 45
+        }
+      ],
+      "expectedStars": 3,
+      "maxShots": 2
+    },
+    {
+      "id": "meadow-22",
+      "shots": [
+        {
+          "x": -51.900543484773266,
+          "y": 32.43105897107214,
+          "abilityAt": 35
+        },
+        {
+          "x": -79.17613126412132,
+          "y": 19.740826680932887,
+          "abilityAt": null
+        }
+      ],
+      "expectedStars": 3,
+      "maxShots": 2
+    },
+    {
+      "id": "meadow-23",
+      "shots": [
+        {
+          "x": -79.17613126412132,
+          "y": 19.740826680932887,
+          "abilityAt": 35
+        },
+        {
+          "x": -85.11547784923108,
+          "y": 34.38888527558072,
+          "abilityAt": 45
+        }
+      ],
+      "expectedStars": 3,
+      "maxShots": 2
+    },
+    {
+      "id": "meadow-24",
+      "shots": [
+        {
+          "x": -85.11547784923108,
+          "y": 34.38888527558072,
+          "abilityAt": 20
+        },
+        {
+          "x": -85.11547784923108,
+          "y": 34.38888527558072,
+          "abilityAt": 45
+        }
+      ],
+      "expectedStars": 3,
+      "maxShots": 3
+    }
+  ]
+}

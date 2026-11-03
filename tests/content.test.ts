@@ -2,6 +2,7 @@ import { test } from 'node:test';
 import assert from 'node:assert/strict';
 import { campaign, worlds } from '../src/content/campaign';
 import { validateLevel } from '../src/content/validate';
+import solutions from './fixtures/campaign-solutions.json';
 
 test('all 24 authored levels validate, have unique IDs and belong to a world', () => {
   assert.equal(campaign.length, 24);
@@ -88,4 +89,41 @@ test('rotated blocks are tested using polygon bounds and separating axes', () =>
   assert.deepEqual(validateLevel(l), []);
   l.blocks[0].y = 10;
   assert.ok(validateLevel(l).some((i) => i.message.includes('bounds')));
+});
+
+test('authored campaign geometry stays stable before and after simulation warm-up', async () => {
+  const { auditStability } = await import('../scripts/validate');
+  for (const level of campaign) {
+    const audit = auditStability(level);
+    assert.equal(audit.stable, true, `${level.id}: ${JSON.stringify(audit)}`);
+  }
+});
+test('stability audit catches collapse hidden by constructor settling', async () => {
+  const { auditStability } = await import('../scripts/validate');
+  const level = structuredClone(campaign[0]);
+  level.blocks = [{ id: 'unsupported-roof', x: 800, y: 300, w: 150, h: 20, material: 'wood' }];
+  level.monsters = [{ id: 'untouched-target', x: 1200, y: 657, radius: 18, kind: 'blob' }];
+  const audit = auditStability(level);
+  assert.equal(audit.stable, false);
+  assert.ok(audit.maxDisplacement > 100 || audit.missing.includes('unsupported-roof'));
+});
+
+test('all24 campaign solution fixtures replay efficient three-star wins with real abilities', async () => {
+  const { Simulation, starsFor } = await import('../src/game/physics');
+  const { finishShot } = await import('../scripts/validate');
+  assert.equal(solutions.levels.length, campaign.length);
+  for (const fixture of solutions.levels) {
+    const level = campaign.find(level => level.id === fixture.id);
+    assert.ok(level, `Missing campaign level ${fixture.id}`);
+    const sim = new Simulation(level);
+    assert.ok(fixture.shots.length <= (level.par || level.projectiles.length), `${level.id}: inefficient solution`);
+    for (const shot of fixture.shots) {
+      assert.equal(sim.phase, 'aiming', `${level.id}: prior shot must settle`);
+      assert.equal(finishShot(sim, shot), true, `${level.id}: unresolved shot`);
+      if (shot.abilityAt !== null) assert.equal(sim.abilityUsed, true, `${level.id}: promised ability did not activate`);
+    }
+    assert.equal(sim.phase, 'won', `${level.id}: solution failed`);
+    assert.equal(starsFor(sim.score, level.thresholds), 3, `${level.id}: ${sim.score} points below three-star threshold`);
+    sim.dispose();
+  }
 });

@@ -1,6 +1,14 @@
 import Phaser from 'phaser';
 import { Simulation } from './physics';
-import { drawBackground, drawStuffie, drawMonster, drawBlock, drawHazard, drawSling } from './art';
+import {
+  drawBackground,
+  drawStuffie,
+  drawMonster,
+  drawBlock,
+  drawFragment,
+  drawHazard,
+  drawSling,
+} from './art';
 import { PHYSICS, STUFFIES } from './config';
 import { Effects } from './effects';
 import { AudioSystem } from './audio';
@@ -26,6 +34,13 @@ export class SiegeScene extends Phaser.Scene {
   private lastState = '';
   private evilUntil = 0;
   private elapsed = 0;
+  private abilityTap?: { id: number; x: number; y: number; at: number };
+  private releaseAt = -1000;
+  private heldPointers = new Set<number>();
+  private abilityUntil = 0;
+  private reactions = new Map<number, number>();
+  private trails: { x: number; y: number; at: number; color: number }[] = [];
+  private trailAt = 0;
   constructor() {
     super('siege');
   }
@@ -38,33 +53,59 @@ export class SiegeScene extends Phaser.Scene {
     this.objects = this.add.graphics();
     this.fx = this.add.graphics();
     this.input.on('pointerdown', (p: Phaser.Input.Pointer) => {
-      if (this.mode !== 'play' || this.paused || !this.sim || this.pointerId !== undefined) return;
+      if (this.mode !== 'play' || this.paused || !this.sim) return;
+      this.heldPointers.add(p.id);
+      if (this.heldPointers.size > 1) {
+        this.pull = undefined;
+        this.pointerId = undefined;
+        this.abilityTap = undefined;
+        return;
+      }
+      if (this.pointerId !== undefined || this.abilityTap) return;
+      if (p.event instanceof MouseEvent && p.button !== 0) return;
       this.audio.unlock();
       if (this.sim.phase === 'flying') {
-        this.sim.activate();
+        if (this.elapsed - this.releaseAt > 180 && this.sim.canActivate)
+          this.abilityTap = { id: p.id, x: p.x, y: p.y, at: this.elapsed };
         return;
       }
       if (
         this.sim.phase === 'aiming' &&
-        Math.hypot(p.x - this.sim.level.sling.x, p.y - this.sim.level.sling.y) < 78
+        Math.hypot(p.x - this.sim.level.sling.x, p.y - this.sim.level.sling.y) < 65
       ) {
         this.pointerId = p.id;
         this.pull = { x: 0, y: 0 };
       }
     });
     this.input.on('pointermove', (p: Phaser.Input.Pointer) => {
-      if (this.pointerId !== p.id || !this.pull || !this.sim) return;
-      this.setPull(p.x, p.y);
+      if (
+        this.abilityTap?.id === p.id &&
+        Math.hypot(p.x - this.abilityTap.x, p.y - this.abilityTap.y) > 14
+      )
+        this.abilityTap = undefined;
+      if (this.pointerId === p.id && this.pull && this.sim) this.setPull(p.x, p.y);
     });
     this.input.on('pointerup', (p: Phaser.Input.Pointer) => {
+      this.heldPointers.delete(p.id);
+      if (this.abilityTap?.id === p.id) {
+        const tap = this.abilityTap;
+        this.abilityTap = undefined;
+        if (this.elapsed - tap.at < 450 && Math.hypot(p.x - tap.x, p.y - tap.y) < 14)
+          this.useAbility();
+        return;
+      }
       if (this.pointerId !== p.id || !this.pull || !this.sim) return;
       this.setPull(p.x, p.y);
-      this.sim.launch(this.pull);
+      if (this.sim.launch(this.pull)) this.releaseAt = this.elapsed;
       this.cancelAim();
       this.onState();
     });
     this.input.on('gameout', () => this.cancelAim());
-    this.game.canvas.addEventListener('pointercancel', () => this.cancelAim());
+    const cancel = () => this.cancelAim();
+    this.game.canvas.addEventListener('pointercancel', cancel);
+    this.events.once('shutdown', () =>
+      this.game.canvas.removeEventListener('pointercancel', cancel),
+    );
     this.game.events.emit('ready');
   }
   private setPull(x: number, y: number) {
@@ -76,7 +117,15 @@ export class SiegeScene extends Phaser.Scene {
       s = Math.min(1, PHYSICS.maxPull / (l || 1));
     this.pull = { x: dx * s, y: dy * s };
   }
+  useAbility() {
+    if (this.paused || this.mode !== 'play') return false;
+    const activated = this.sim?.activate() || false;
+    if (activated) this.onState();
+    return activated;
+  }
   cancelAim() {
+    this.heldPointers.clear();
+    this.abilityTap = undefined;
     this.pull = undefined;
     this.pointerId = undefined;
   }
@@ -97,6 +146,10 @@ export class SiegeScene extends Phaser.Scene {
     this.resultSent = false;
     this.accumulator = 0;
     this.effects.clear();
+    this.reactions.clear();
+    this.trails = [];
+    this.abilityUntil = 0;
+    this.evilUntil = 0;
     this.cancelAim();
     this.lastState = '';
     this.onState();
@@ -113,6 +166,13 @@ export class SiegeScene extends Phaser.Scene {
         this.accumulator -= PHYSICS.step;
       }
       for (const e of sim.drainEvents()) {
+        if (e.type === 'impact' && e.projectileId !== undefined)
+          this.reactions.set(e.projectileId, this.elapsed);
+        if (e.type === 'ability') {
+          this.abilityUntil = this.elapsed + 650;
+          if (!this.reducedMotion) this.effects.burst(e);
+        }
+        if (e.type === 'won' && !this.reducedMotion) this.effects.burst({ ...e, x: 720, y: 330 });
         if (['impact', 'break', 'monster', 'explosion'].includes(e.type)) {
           if (!this.reducedMotion) this.effects.burst(e);
           if (!this.reducedMotion && (e.type === 'explosion' || e.type === 'monster'))
@@ -124,7 +184,7 @@ export class SiegeScene extends Phaser.Scene {
         }
         this.audio.play(e.type, e.material);
       }
-      const state = `${sim.phase}:${sim.score}:${sim.shots}:${sim.remainingMonsters}:${sim.abilityUsed}`;
+      const state = `${sim.phase}:${sim.score}:${sim.shots}:${sim.remainingMonsters}:${sim.abilityUsed}:${sim.canActivate}`;
       if (state !== this.lastState) {
         this.lastState = state;
         this.onState();
@@ -136,10 +196,30 @@ export class SiegeScene extends Phaser.Scene {
     }
     const g = this.objects;
     g.clear();
+    this.trails = this.trails.filter((p) => this.elapsed - p.at < 300);
+    if (!this.reducedMotion && this.mode === 'play') {
+      if (this.elapsed - this.trailAt > 30 && !this.paused) {
+        this.trailAt = this.elapsed;
+        for (const e of sim.entities.values())
+          if (e.type === 'projectile' && e.body.speed > 5) {
+            this.trails.push({
+              x: e.body.position.x,
+              y: e.body.position.y,
+              at: this.elapsed,
+              color: e.kind === 'duck' ? 0xf4ca4f : e.kind === 'rabbit' ? 0xdab5d5 : 0xf5e5bd,
+            });
+          }
+        this.trails = this.trails.slice(-30);
+      }
+      for (const t of this.trails) {
+        g.fillStyle(t.color, (1 - (this.elapsed - t.at) / 300) * 0.4);
+        g.fillCircle(t.x, t.y, 5);
+      }
+    }
     for (const e of sim.entities.values()) {
       const p = e.body.position;
-      if (e.type === 'block')
-        drawBlock(
+      if (e.type === 'block' || e.type === 'fragment')
+        (e.type === 'fragment' ? drawFragment : drawBlock)(
           g,
           { ...(e.def as BlockDef), x: p.x, y: p.y, angle: e.body.angle },
           e.health / e.maxHealth,
@@ -148,27 +228,79 @@ export class SiegeScene extends Phaser.Scene {
         drawMonster(
           g,
           p.x,
-          p.y,
+          p.y +
+            (this.mode === 'home' && !this.reducedMotion
+              ? Math.sin(this.elapsed / 650 + p.x) * 1.5
+              : 0),
           (e.def as MonsterDef).radius || 18,
           (e.def as MonsterDef).kind,
           e.body.angle,
-          e.body.speed > 0.4,
+          e.body.speed > 0.4 ||
+            [...sim.entities.values()].some(
+              (other) =>
+                other.type !== 'monster' &&
+                other.body.speed > 2 &&
+                Math.hypot(other.body.position.x - p.x, other.body.position.y - p.y) < 160,
+            ),
         );
       if (e.type === 'tnt') drawHazard(g, p.x, p.y, e.body.angle);
       if (e.type === 'projectile')
         drawStuffie(g, p.x, p.y, e.body.circleRadius || 23, e.kind!, e.body.angle, {
           evil: this.elapsed < this.evilUntil,
-          stretch: e.body.speed > 9 ? 0.12 : 0,
+          stretch:
+            this.elapsed - (this.reactions.get(e.body.id) || -10000) < 300
+              ? -0.27 *
+                Math.cos((this.elapsed - this.reactions.get(e.body.id)!) / 95) *
+                Math.max(0, 1 - (this.elapsed - this.reactions.get(e.body.id)!) / 300)
+              : e.body.speed > 9
+                ? 0.12
+                : 0,
+          celebrate: sim.phase === 'won',
           blink: Math.sin(this.elapsed / 330) > 0.995,
         });
     }
     const anchor = sim.level.sling;
     if (this.mode === 'home') {
-      // The title-screen crew lives on the same illustrated meadow as the playable scene.
-      drawStuffie(g, 815, 620, 47, 'sheep', -0.13, { blink: Math.sin(this.elapsed / 400) > 0.99 });
-      drawStuffie(g, 907, 624, 36, 'duck', 0.1);
-      drawStuffie(g, 1280, 622, 46, 'bear', -0.07);
-      drawStuffie(g, 1370, 614, 34, 'rabbit', 0.1);
+      const idle = this.reducedMotion ? 0 : this.elapsed;
+      const crew = [
+        ['sheep', 190, 58],
+        ['duck', 310, 46],
+        ['bear', 430, 61],
+        ['rabbit', 555, 47],
+      ] as const;
+      for (const [kind, x, r] of crew)
+        drawStuffie(
+          g,
+          x,
+          669 - r + Math.sin(idle / 600 + x) * 2,
+          r,
+          kind,
+          Math.sin(idle / 1100 + x) * 0.035,
+          {
+            blink: Math.sin(idle / 400 + x) > 0.985,
+            celebrate: kind === 'duck' && Math.sin(idle / 1800) > 0.92,
+          },
+        );
+      // Two little pennants make the physical towers read as a monster castle.
+      for (const [x, y] of [
+        [825, 432],
+        [1130, 405],
+      ]) {
+        g.lineStyle(3, 0x795d55);
+        g.lineBetween(x, y + 5, x, y - 60);
+        g.fillStyle(0xa06c91);
+        g.fillTriangle(x, y - 60, x + 45, y - 48 + Math.sin(idle / 700) * 3, x, y - 35);
+      }
+      // A few lightweight ambient sprites over the cached countryside, never a redraw of the scenery.
+      if (!this.reducedMotion) {
+        for (let i = 0; i < 3; i++) {
+          const x = 320 + i * 360 + Math.sin(idle / 3500 + i) * 24,
+            y = 390 + Math.sin(idle / 1900 + i) * 25;
+          g.fillStyle(i % 2 ? 0xe8b656 : 0xdab7dc, 0.7);
+          g.fillEllipse(x - 3, y, 7, Math.abs(Math.sin(idle / 140)) * 9 + 2);
+          g.fillEllipse(x + 3, y, 7, Math.abs(Math.sin(idle / 140)) * 9 + 2);
+        }
+      }
     } else {
       const pouch = { x: anchor.x + (this.pull?.x || 0), y: anchor.y + (this.pull?.y || 0) };
       drawSling(g, anchor, pouch, false);
@@ -204,7 +336,33 @@ export class SiegeScene extends Phaser.Scene {
         g.strokeCircle(anchor.x, anchor.y, PHYSICS.maxPull);
       }
     }
+    if (sim.current && this.elapsed < this.abilityUntil && !this.reducedMotion) {
+      const p = sim.current.body.position,
+        kind = sim.current.kind,
+        fade = (this.abilityUntil - this.elapsed) / 650;
+      g.lineStyle(
+        3,
+        kind === 'duck'
+          ? 0xf5cc4f
+          : kind === 'rabbit'
+            ? 0xd6acd6
+            : kind === 'bear'
+              ? 0xbd8256
+              : 0xffedc3,
+        fade,
+      );
+      g.strokeCircle(p.x, p.y, (sim.current.body.circleRadius || 24) + 10 + (1 - fade) * 25);
+      if (kind === 'duck') {
+        for (let i = 0; i < 3; i++)
+          g.lineBetween(p.x - 30 - i * 9, p.y - 12 + i * 12, p.x - 65 - i * 9, p.y - 12 + i * 12);
+      }
+      if (kind === 'bear') {
+        g.lineBetween(p.x, p.y + 34, p.x, p.y + 68);
+        g.lineBetween(p.x, p.y + 68, p.x - 10, p.y + 56);
+        g.lineBetween(p.x, p.y + 68, p.x + 10, p.y + 56);
+      }
+    }
     this.fx.clear();
-    if (!this.paused) this.effects.draw(this.fx, delta);
+    this.effects.draw(this.fx, this.paused ? 0 : delta);
   }
 }

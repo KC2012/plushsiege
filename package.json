@@ -1,6 +1,6 @@
 {
   "name": "plush-siege",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "private": true,
   "type": "module",
   "scripts": {
@@ -11,7 +11,8 @@
     "validate": "node --import tsx scripts/validate.ts",
     "test:browser": "node scripts/browser-test.mjs",
     "test:editor": "node scripts/editor-test.mjs",
-    "test:offline": "node scripts/offline-test.mjs"
+    "test:offline": "node scripts/offline-test.mjs",
+    "test:destruction": "node scripts/destruction-browser-test.mjs"
   },
   "dependencies": {
     "matter-js": "0.20.0",

@@ -42,11 +42,11 @@ try {
       externalRequests.push(request.url());
   });
   await page.goto(url);
-  await page.getByRole('heading', { name: /Small heroes/ }).waitFor();
+  await page.getByRole('heading', { name: /PLUSH/ }).waitFor();
   check(
     'production home renders with its gameplay canvas',
     (await page.locator('canvas').count()) === 1 &&
-      (await page.locator('.crew-card').count()) === 4,
+      (await page.locator('[data-action="continue"]').count()) === 1,
   );
   await page.evaluate(async () => {
     await navigator.serviceWorker.ready;
@@ -104,17 +104,17 @@ try {
       iconSizes.every((icon) => icon.ok && `${icon.width}x${icon.height}` === icon.expected),
   );
   await page.reload();
-  await page.getByRole('heading', { name: /Small heroes/ }).waitFor();
+  await page.getByRole('heading', { name: /PLUSH/ }).waitFor();
   check(
     'online reload remains controlled by production worker',
     await page.evaluate(() => !!navigator.serviceWorker.controller),
   );
   await context.setOffline(true);
   await page.reload();
-  await page.getByRole('heading', { name: /Small heroes/ }).waitFor();
+  await page.getByRole('heading', { name: /PLUSH/ }).waitFor();
   check(
-    'fresh offline navigation renders home and all four characters',
-    (await page.locator('.crew-card').count()) === 4 &&
+    'fresh offline navigation renders game title and PLAY',
+    (await page.locator('[data-action="continue"]').count()) === 1 &&
       (await page.locator('canvas').count()) === 1,
   );
   check(
@@ -130,10 +130,10 @@ try {
     return results.every(Boolean);
   });
   check('manifest and raster icons also remain available offline', offlineIcons);
-  await page.getByRole('button', { name: 'Choose a level', exact: true }).click();
+  await page.getByRole('button', { name: 'Level map', exact: true }).click();
   check(
-    'all 24 campaign levels are selectable offline',
-    (await page.locator('.level-tile').count()) === 24,
+    'paged campaign map is selectable offline',
+    (await page.locator('[data-level]').count()) === 8,
   );
   await page.locator('[data-level="0"]').click();
   await page.locator('#score').waitFor();
@@ -148,7 +148,7 @@ try {
     y: bounds.y + (y * bounds.height) / 810,
   });
   const start = point(235, 530),
-    end = point(235 - 61.0509, 530 - 4.2691);
+    end = point(235 - 102, 530);
   await page.mouse.move(start.x, start.y);
   await page.mouse.down();
   await page.mouse.move(end.x, end.y, { steps: 8 });
@@ -166,10 +166,10 @@ try {
       (await page.locator('.queue-item.used').count()) === 0,
   );
   await page.reload();
-  await page.getByRole('button', { name: 'Choose a level', exact: true }).click();
+  await page.getByRole('button', { name: 'Level map', exact: true }).click();
   check(
     'offline earned stars survive reload',
-    (await page.locator('[data-level="0"] .earned').count()) === 3,
+    (await page.locator('[data-level="0"] .map-node .earned').count()) === 3,
   );
   check('production play made no external runtime requests', externalRequests.length === 0);
   check('online and offline play produced no uncaught browser errors', errors.length === 0);

@@ -4,6 +4,8 @@ Little plushes. Big trouble.
 
 A self-contained browser slingshot game about four stuffed animals and some very wobbly monster castles. This first playable slice contains **24 authored countryside levels**, destructible wood, glass and stone, explosive chain reactions, local progress, and a visual level workshop. It uses original procedural artwork and synthesized audio; ordinary play needs no account, API, CDN, or game server.
 
+> Current release: **0.2.0 — Physics and gameplay feel**. See [Pass 2 report](docs/pass-2-report.md) for the changes and verification.
+
 ## Run locally
 
 Use **Node.js 24** and npm. From the existing checkout:
@@ -13,6 +15,8 @@ cd /workspace/plushsiege
 npm ci
 npm run dev
 ```
+
+**Windows:** extract the ZIP, open a terminal in the extracted folder (the one containing `package.json`), run `npm ci` once, then `npm run dev`.
 
 Vite prints its local address. On another computer, replace `/workspace/plushsiege` with the checkout's actual path. Each cloud task already has an isolated workspace; use its existing checkout rather than creating a Git worktree. No environment variables or credentials are required for gameplay.
 
@@ -25,7 +29,7 @@ Publish `dist/` with a static HTTPS host when you choose to deploy. The current 
 
 ## Play
 
-- Choose **Let's make a mess** or select any of the 24 levels. Every level is freely replayable.
+- Choose **PLAY** or select any of the 24 levels on the three-page trail map. Every level is freely replayable.
 - Drag the stuffie away from the sling, then release. A longer pull gives a stronger launch; the dotted guide can be disabled in settings.
 - Tap the game area once during flight to activate the stuffie's ability. On desktop, Space also activates it.
 - Defeat every monster, then let the physics finish. Unused stuffies add a completion bonus.
@@ -38,6 +42,8 @@ Publish `dist/` with a static HTTPS host when you choose to deploy. The current 
 | Pip the duck | Fast | Speed burst |
 | Bruno the bear | Heavy | Downward stomp |
 | Clover the rabbit | Agile | Splits into three projectiles |
+
+The title screen opens the illustrated Level map, which shows eight numbered levels per page.
 
 Monsters award 5,000 points; broken wood 500, glass 600, stone 800; TNT 1,000; each unused stuffie 3,000. Completion earns at least one star; each level defines the higher score thresholds. Best scores and stars are stored on this browser/device, alongside settings. Browser storage restrictions can prevent persistence; there is no cloud save.
 
@@ -66,6 +72,7 @@ With `npm run dev` running in a separate terminal:
 ```sh
 npm run test:browser # Integrated game navigation, input, scoring and other browser checks
 npm run test:editor  # Editing, drag, undo/redo, draft/import/export and validation checks
+npm run test:destruction # Rendered physical collapse/fragment and ability-input regressions
 ```
 
 The browser scripts use the pinned Playwright development dependency and headless Chromium. The cloud image supplies `/usr/bin/chromium`; on another machine install the browser once:
@@ -86,4 +93,4 @@ npm run test:offline
 
 Production builds generate a service worker that caches the built shell, scripts, campaign and artwork code. Use HTTPS (or localhost), load the production app online once, allow the worker to activate, then reload before testing offline. Supported browsers can install it as a PWA; on iPad use Safari's **Add to Home Screen**. Development mode deliberately does not register the worker. Installation UX and persistence on a physical iPad still need checking.
 
-See [architecture](docs/architecture.md) for extension points and [development report](docs/development-report.md) for verification evidence, limitations, and the next milestone. Dependency license notices remain with their packages: Phaser is MIT-licensed and Matter.js is MIT-licensed.
+See [Pass 2 report](docs/pass-2-report.md), [architecture](docs/architecture.md) for extension points and [development report](docs/development-report.md) for verification evidence, limitations, and the next milestone. Dependency license notices remain with their packages: Phaser is MIT-licensed and Matter.js is MIT-licensed.

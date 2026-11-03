@@ -3,7 +3,7 @@ import assert from 'node:assert/strict';
 import Matter from 'matter-js';
 import { Simulation } from '../src/game/physics';
 import { campaign } from '../src/content/campaign';
-import { PHYSICS, MATERIALS } from '../src/game/config';
+import { PHYSICS, MATERIALS, STUFFIES } from '../src/game/config';
 import type { Level, MaterialKind, StuffieKind } from '../src/game/types';
 const run = (s: Simulation, n = 1400) => {
   for (let i = 0; i < n && s.phase === 'flying'; i++) s.step();
@@ -53,8 +53,8 @@ test('all four once-per-flight abilities have distinct physical behavior', () =>
     assert.equal(sim.activate(), false, 'only one ability per shot');
     if (kind === 'duck') assert.ok(sim.current!.body.velocity.x > before.x);
     if (kind === 'bear') {
-      assert.equal(sim.current!.body.velocity.y, 23);
-      assert.equal(sim.current!.body.density, 0.022);
+      assert.equal(sim.current!.body.velocity.y, 24);
+      assert.equal(sim.current!.body.density, STUFFIES.bear.density);
     }
     if (kind === 'rabbit') assert.equal(sim.entities.size, count + 2);
     if (kind === 'sheep') assert.ok(sim.current!.body.velocity.y < before.y);
@@ -87,15 +87,16 @@ test('a missed final shot waits for simulation to resolve and then fails', () =>
   assert.equal(sim.score, 0);
   sim.dispose();
 });
-test('damage depends on material: matching medium impacts break glass and wood but not stone', () => {
+test('damage depends on material: matching strong impacts fracture glass while wood and stone remain physical', () => {
   const alive: Partial<Record<MaterialKind, boolean>> = {};
   for (const material of ['glass', 'wood', 'stone'] as MaterialKind[]) {
     const level = basic();
     level.blocks = [{ id: 'target', x: 600, y: 630, w: 40, h: 90, material }];
     const sim = new Simulation(level);
+    for (let i = 0; i < 90; i++) sim.step();
     sim.launch({ x: -80, y: 0 });
-    Matter.Body.setPosition(sim.current!.body, { x: 550, y: 630 });
-    Matter.Body.setVelocity(sim.current!.body, { x: 5, y: 0 });
+    Matter.Body.setPosition(sim.current!.body, { x: 550, y: 620 });
+    Matter.Body.setVelocity(sim.current!.body, { x: 12, y: 0 });
     for (let i = 0; i < 20; i++) sim.step();
     const target = [...sim.entities.values()].find((e) => e.id === 'target');
     alive[material] = !!target;
@@ -103,7 +104,7 @@ test('damage depends on material: matching medium impacts break glass and wood b
     sim.dispose();
   }
   assert.equal(alive.glass, false);
-  assert.equal(alive.wood, false);
+  assert.equal(alive.wood, true);
   assert.equal(alive.stone, true);
 });
 test('TNT blasts chain to nearby boxes and can defeat nearby monsters', () => {
