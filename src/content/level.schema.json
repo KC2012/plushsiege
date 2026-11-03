@@ -1,0 +1,107 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://plush-siege.local/schemas/level-v1.json",
+  "title": "Plush Siege level v1",
+  "description": "Portable level format. Angles are radians, positions and dimensions are world pixels; x points right and y points down. Runtime validation also checks bounds, overlap and ID uniqueness.",
+  "type": "object",
+  "required": [
+    "version",
+    "id",
+    "name",
+    "subtitle",
+    "world",
+    "bounds",
+    "sling",
+    "projectiles",
+    "blocks",
+    "monsters",
+    "hazards",
+    "thresholds"
+  ],
+  "properties": {
+    "version": { "const": 1 },
+    "id": { "type": "string", "pattern": "^[a-zA-Z0-9_-]{1,80}$" },
+    "name": { "type": "string", "minLength": 1 },
+    "subtitle": { "type": "string", "minLength": 1 },
+    "world": { "type": "string", "minLength": 1 },
+    "bounds": {
+      "type": "object",
+      "required": ["width", "height", "ground"],
+      "properties": {
+        "width": { "type": "number", "minimum": 400, "maximum": 10000 },
+        "height": { "type": "number", "minimum": 300, "maximum": 3000 },
+        "ground": { "type": "number", "exclusiveMinimum": 0 }
+      }
+    },
+    "sling": { "$ref": "#/$defs/point" },
+    "projectiles": {
+      "type": "array",
+      "minItems": 1,
+      "maxItems": 12,
+      "items": { "enum": ["sheep", "duck", "bear", "rabbit"] }
+    },
+    "blocks": {
+      "type": "array",
+      "maxItems": 400,
+      "items": {
+        "type": "object",
+        "required": ["id", "x", "y", "w", "h", "material"],
+        "properties": {
+          "id": { "type": "string", "minLength": 1 },
+          "x": { "type": "number" },
+          "y": { "type": "number" },
+          "w": { "type": "number", "minimum": 4 },
+          "h": { "type": "number", "minimum": 4 },
+          "angle": { "type": "number" },
+          "material": { "enum": ["wood", "glass", "stone"] },
+          "static": { "type": "boolean" }
+        }
+      }
+    },
+    "monsters": {
+      "type": "array",
+      "minItems": 1,
+      "maxItems": 400,
+      "items": {
+        "type": "object",
+        "required": ["id", "x", "y"],
+        "properties": {
+          "id": { "type": "string", "minLength": 1 },
+          "x": { "type": "number" },
+          "y": { "type": "number" },
+          "radius": { "type": "number", "minimum": 6, "maximum": 60 },
+          "kind": { "enum": ["horn", "blob", "bat"] }
+        }
+      }
+    },
+    "hazards": {
+      "type": "array",
+      "maxItems": 400,
+      "items": {
+        "type": "object",
+        "required": ["id", "x", "y", "kind"],
+        "properties": {
+          "id": { "type": "string", "minLength": 1 },
+          "x": { "type": "number" },
+          "y": { "type": "number" },
+          "kind": { "const": "tnt" }
+        }
+      }
+    },
+    "thresholds": {
+      "type": "array",
+      "minItems": 3,
+      "maxItems": 3,
+      "items": { "type": "number", "minimum": 0 }
+    },
+    "par": { "type": "integer", "minimum": 1 },
+    "tutorial": { "type": "string" }
+  },
+  "$defs": {
+    "point": {
+      "type": "object",
+      "required": ["x", "y"],
+      "properties": { "x": { "type": "number" }, "y": { "type": "number" } }
+    }
+  }
+}

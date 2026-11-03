@@ -1,0 +1,31 @@
+{
+  "name": "plush-siege",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "vite --host 0.0.0.0",
+    "build": "tsc --noEmit && vite build",
+    "preview": "vite preview --host 0.0.0.0",
+    "test": "node --import tsx --test --test-isolation=none tests/*.test.ts",
+    "validate": "node --import tsx scripts/validate.ts",
+    "test:browser": "node scripts/browser-test.mjs",
+    "test:editor": "node scripts/editor-test.mjs",
+    "test:offline": "node scripts/offline-test.mjs"
+  },
+  "dependencies": {
+    "matter-js": "0.20.0",
+    "phaser": "3.90.0"
+  },
+  "devDependencies": {
+    "@types/matter-js": "0.19.8",
+    "@types/node": "22.15.30",
+    "playwright": "1.57.0",
+    "tsx": "4.19.4",
+    "typescript": "5.8.3",
+    "vite": "6.4.5"
+  },
+  "engines": {
+    "node": ">=24.0.0"
+  }
+}

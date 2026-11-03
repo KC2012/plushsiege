@@ -1,0 +1,2262 @@
+[
+  {
+    "version": 1,
+    "id": "meadow-01",
+    "name": "A Soft Landing",
+    "subtitle": "Every great siege starts with a little pull.",
+    "world": "countryside",
+    "bounds": {
+      "width": 1440,
+      "height": 810,
+      "ground": 675
+    },
+    "sling": {
+      "x": 235,
+      "y": 530
+    },
+    "projectiles": ["sheep", "sheep"],
+    "blocks": [
+      {
+        "id": "b1",
+        "x": 869.0,
+        "y": 625.0,
+        "w": 18,
+        "h": 100,
+        "material": "wood"
+      },
+      {
+        "id": "b2",
+        "x": 971.0,
+        "y": 625.0,
+        "w": 18,
+        "h": 100,
+        "material": "wood"
+      },
+      {
+        "id": "b3",
+        "x": 920,
+        "y": 566,
+        "w": 142,
+        "h": 18,
+        "material": "wood"
+      }
+    ],
+    "monsters": [
+      {
+        "id": "m1",
+        "x": 920,
+        "y": 657,
+        "radius": 18,
+        "kind": "horn"
+      }
+    ],
+    "hazards": [],
+    "thresholds": [5000, 5500, 8500],
+    "par": 1,
+    "tutorial": "Drag Mallow back from the sling. Release to launch. Try hitting the wooden legs."
+  },
+  {
+    "version": 1,
+    "id": "meadow-02",
+    "name": "Double Trouble",
+    "subtitle": "Two little homes. One big idea.",
+    "world": "countryside",
+    "bounds": {
+      "width": 1440,
+      "height": 810,
+      "ground": 675
+    },
+    "sling": {
+      "x": 235,
+      "y": 530
+    },
+    "projectiles": ["sheep", "sheep", "sheep"],
+    "blocks": [
+      {
+        "id": "b1",
+        "x": 814.0,
+        "y": 625.0,
+        "w": 18,
+        "h": 100,
+        "material": "wood"
+      },
+      {
+        "id": "b2",
+        "x": 916.0,
+        "y": 625.0,
+        "w": 18,
+        "h": 100,
+        "material": "wood"
+      },
+      {
+        "id": "b3",
+        "x": 865,
+        "y": 566,
+        "w": 142,
+        "h": 18,
+        "material": "wood"
+      },
+      {
+        "id": "b4",
+        "x": 1039.0,
+        "y": 625.0,
+        "w": 18,
+        "h": 100,
+        "material": "wood"
+      },
+      {
+        "id": "b5",
+        "x": 1141.0,
+        "y": 625.0,
+        "w": 18,
+        "h": 100,
+        "material": "wood"
+      },
+      {
+        "id": "b6",
+        "x": 1090,
+        "y": 566,
+        "w": 142,
+        "h": 18,
+        "material": "wood"
+      }
+    ],
+    "monsters": [
+      {
+        "id": "m1",
+        "x": 865,
+        "y": 657,
+        "radius": 18,
+        "kind": "horn"
+      },
+      {
+        "id": "m2",
+        "x": 1090,
+        "y": 657,
+        "radius": 18,
+        "kind": "blob"
+      }
+    ],
+    "hazards": [],
+    "thresholds": [10000, 14500, 17500],
+    "par": 2,
+    "tutorial": "Aim low at the supports, or lob a shot onto the roof."
+  },
+  {
+    "version": 1,
+    "id": "meadow-03",
+    "name": "Top of the Morning",
+    "subtitle": "Someone picked the penthouse.",
+    "world": "countryside",
+    "bounds": {
+      "width": 1440,
+      "height": 810,
+      "ground": 675
+    },
+    "sling": {
+      "x": 235,
+      "y": 530
+    },
+    "projectiles": ["sheep", "sheep", "sheep"],
+    "blocks": [
+      {
+        "id": "b1",
+        "x": 909.0,
+        "y": 625.0,
+        "w": 18,
+        "h": 100,
+        "material": "wood"
+      },
+      {
+        "id": "b2",
+        "x": 1011.0,
+        "y": 625.0,
+        "w": 18,
+        "h": 100,
+        "material": "wood"
+      },
+      {
+        "id": "b3",
+        "x": 960,
+        "y": 566,
+        "w": 142,
+        "h": 18,
+        "material": "wood"
+      }
+    ],
+    "monsters": [
+      {
+        "id": "m1",
+        "x": 960,
+        "y": 657,
+        "radius": 18,
+        "kind": "horn"
+      },
+      {
+        "id": "m2",
+        "x": 960,
+        "y": 539,
+        "radius": 18,
+        "kind": "bat"
+      }
+    ],
+    "hazards": [],
+    "thresholds": [10000, 12500, 14500],
+    "par": 2
+  },
+  {
+    "version": 1,
+    "id": "meadow-04",
+    "name": "The Wobbly Duplex",
+    "subtitle": "Take out the bottom. Watch the rest.",
+    "world": "countryside",
+    "bounds": {
+      "width": 1440,
+      "height": 810,
+      "ground": 675
+    },
+    "sling": {
+      "x": 235,
+      "y": 530
+    },
+    "projectiles": ["sheep", "sheep", "sheep"],
+    "blocks": [
+      {
+        "id": "b1",
+        "x": 914.0,
+        "y": 625.0,
+        "w": 18,
+        "h": 100,
+        "material": "wood"
+      },
+      {
+        "id": "b2",
+        "x": 1016.0,
+        "y": 625.0,
+        "w": 18,
+        "h": 100,
+        "material": "wood"
+      },
+      {
+        "id": "b3",
+        "x": 965,
+        "y": 566,
+        "w": 142,
+        "h": 18,
+        "material": "wood"
+      },
+      {
+        "id": "b4",
+        "x": 914.0,
+        "y": 507.0,
+        "w": 18,
+        "h": 100,
+        "material": "wood"
+      },
+      {
+        "id": "b5",
+        "x": 1016.0,
+        "y": 507.0,
+        "w": 18,
+        "h": 100,
+        "material": "wood"
+      },
+      {
+        "id": "b6",
+        "x": 965,
+        "y": 448,
+        "w": 142,
+        "h": 18,
+        "material": "wood"
+      }
+    ],
+    "monsters": [
+      {
+        "id": "m1",
+        "x": 965,
+        "y": 657,
+        "radius": 18,
+        "kind": "horn"
+      },
+      {
+        "id": "m2",
+        "x": 965,
+        "y": 539,
+        "radius": 18,
+        "kind": "blob"
+      }
+    ],
+    "hazards": [],
+    "thresholds": [10000, 14500, 17500],
+    "par": 2,
+    "tutorial": "Structures carry their own weight. A falling roof hits hard."
+  },
+  {
+    "version": 1,
+    "id": "meadow-05",
+    "name": "Through the Looking Glass",
+    "subtitle": "A very breakable first impression.",
+    "world": "countryside",
+    "bounds": {
+      "width": 1440,
+      "height": 810,
+      "ground": 675
+    },
+    "sling": {
+      "x": 235,
+      "y": 530
+    },
+    "projectiles": ["sheep", "sheep", "sheep"],
+    "blocks": [
+      {
+        "id": "b1",
+        "x": 889.0,
+        "y": 625.0,
+        "w": 18,
+        "h": 100,
+        "material": "glass"
+      },
+      {
+        "id": "b2",
+        "x": 991.0,
+        "y": 625.0,
+        "w": 18,
+        "h": 100,
+        "material": "glass"
+      },
+      {
+        "id": "b3",
+        "x": 940,
+        "y": 566,
+        "w": 142,
+        "h": 18,
+        "material": "wood"
+      }
+    ],
+    "monsters": [
+      {
+        "id": "m1",
+        "x": 940,
+        "y": 657,
+        "radius": 18,
+        "kind": "horn"
+      }
+    ],
+    "hazards": [],
+    "thresholds": [5000, 9000, 12000],
+    "par": 1,
+    "tutorial": "Glass is light and fragile. Wood takes a harder hit."
+  },
+  {
+    "version": 1,
+    "id": "meadow-06",
+    "name": "Window Shopping",
+    "subtitle": "A whole row of fragile windows.",
+    "world": "countryside",
+    "bounds": {
+      "width": 1440,
+      "height": 810,
+      "ground": 675
+    },
+    "sling": {
+      "x": 235,
+      "y": 530
+    },
+    "projectiles": ["sheep", "sheep", "sheep", "sheep"],
+    "blocks": [
+      {
+        "id": "b1",
+        "x": 764.0,
+        "y": 625.0,
+        "w": 18,
+        "h": 100,
+        "material": "glass"
+      },
+      {
+        "id": "b2",
+        "x": 846.0,
+        "y": 625.0,
+        "w": 18,
+        "h": 100,
+        "material": "glass"
+      },
+      {
+        "id": "b3",
+        "x": 805,
+        "y": 566,
+        "w": 122,
+        "h": 18,
+        "material": "glass"
+      },
+      {
+        "id": "b4",
+        "x": 969.0,
+        "y": 625.0,
+        "w": 18,
+        "h": 100,
+        "material": "glass"
+      },
+      {
+        "id": "b5",
+        "x": 1051.0,
+        "y": 625.0,
+        "w": 18,
+        "h": 100,
+        "material": "glass"
+      },
+      {
+        "id": "b6",
+        "x": 1010,
+        "y": 566,
+        "w": 122,
+        "h": 18,
+        "material": "glass"
+      }
+    ],
+    "monsters": [
+      {
+        "id": "m1",
+        "x": 805,
+        "y": 657,
+        "radius": 18,
+        "kind": "horn"
+      },
+      {
+        "id": "m2",
+        "x": 1010,
+        "y": 657,
+        "radius": 18,
+        "kind": "blob"
+      },
+      {
+        "id": "m3",
+        "x": 1200,
+        "y": 657,
+        "radius": 18,
+        "kind": "horn"
+      }
+    ],
+    "hazards": [],
+    "thresholds": [15000, 22500, 25500],
+    "par": 2
+  },
+  {
+    "version": 1,
+    "id": "meadow-07",
+    "name": "Roof Service",
+    "subtitle": "Send the upstairs guests downstairs.",
+    "world": "countryside",
+    "bounds": {
+      "width": 1440,
+      "height": 810,
+      "ground": 675
+    },
+    "sling": {
+      "x": 235,
+      "y": 530
+    },
+    "projectiles": ["sheep", "sheep", "sheep", "sheep"],
+    "blocks": [
+      {
+        "id": "b1",
+        "x": 839.0,
+        "y": 625.0,
+        "w": 18,
+        "h": 100,
+        "material": "glass"
+      },
+      {
+        "id": "b2",
+        "x": 941.0,
+        "y": 625.0,
+        "w": 18,
+        "h": 100,
+        "material": "glass"
+      },
+      {
+        "id": "b3",
+        "x": 890,
+        "y": 566,
+        "w": 142,
+        "h": 18,
+        "material": "wood"
+      },
+      {
+        "id": "b4",
+        "x": 839.0,
+        "y": 507.0,
+        "w": 18,
+        "h": 100,
+        "material": "glass"
+      },
+      {
+        "id": "b5",
+        "x": 941.0,
+        "y": 507.0,
+        "w": 18,
+        "h": 100,
+        "material": "glass"
+      },
+      {
+        "id": "b6",
+        "x": 890,
+        "y": 448,
+        "w": 142,
+        "h": 18,
+        "material": "wood"
+      },
+      {
+        "id": "b7",
+        "x": 1094.0,
+        "y": 625.0,
+        "w": 18,
+        "h": 100,
+        "material": "wood"
+      },
+      {
+        "id": "b8",
+        "x": 1176.0,
+        "y": 625.0,
+        "w": 18,
+        "h": 100,
+        "material": "wood"
+      },
+      {
+        "id": "b9",
+        "x": 1135,
+        "y": 566,
+        "w": 122,
+        "h": 18,
+        "material": "wood"
+      }
+    ],
+    "monsters": [
+      {
+        "id": "m1",
+        "x": 890,
+        "y": 657,
+        "radius": 18,
+        "kind": "horn"
+      },
+      {
+        "id": "m2",
+        "x": 890,
+        "y": 539,
+        "radius": 18,
+        "kind": "blob"
+      },
+      {
+        "id": "m3",
+        "x": 1135,
+        "y": 657,
+        "radius": 18,
+        "kind": "horn"
+      }
+    ],
+    "hazards": [],
+    "thresholds": [15000, 20000, 25000],
+    "par": 2
+  },
+  {
+    "version": 1,
+    "id": "meadow-08",
+    "name": "Express Delivery",
+    "subtitle": "Pip has places to be.",
+    "world": "countryside",
+    "bounds": {
+      "width": 1440,
+      "height": 810,
+      "ground": 675
+    },
+    "sling": {
+      "x": 235,
+      "y": 530
+    },
+    "projectiles": ["duck", "duck", "sheep"],
+    "blocks": [
+      {
+        "id": "b1",
+        "x": 1029.0,
+        "y": 625.0,
+        "w": 18,
+        "h": 100,
+        "material": "wood"
+      },
+      {
+        "id": "b2",
+        "x": 1131.0,
+        "y": 625.0,
+        "w": 18,
+        "h": 100,
+        "material": "wood"
+      },
+      {
+        "id": "b3",
+        "x": 1080,
+        "y": 566,
+        "w": 142,
+        "h": 18,
+        "material": "wood"
+      },
+      {
+        "id": "b4",
+        "x": 1231.5,
+        "y": 625.0,
+        "w": 18,
+        "h": 100,
+        "material": "glass"
+      },
+      {
+        "id": "b5",
+        "x": 1308.5,
+        "y": 625.0,
+        "w": 18,
+        "h": 100,
+        "material": "glass"
+      },
+      {
+        "id": "b6",
+        "x": 1270,
+        "y": 566,
+        "w": 117,
+        "h": 18,
+        "material": "wood"
+      }
+    ],
+    "monsters": [
+      {
+        "id": "m1",
+        "x": 1080,
+        "y": 657,
+        "radius": 18,
+        "kind": "horn"
+      },
+      {
+        "id": "m2",
+        "x": 1270,
+        "y": 657,
+        "radius": 18,
+        "kind": "blob"
+      }
+    ],
+    "hazards": [],
+    "thresholds": [10000, 14500, 17500],
+    "par": 2,
+    "tutorial": "Tap anywhere in the field while Pip is flying to trigger a speed burst."
+  },
+  {
+    "version": 1,
+    "id": "meadow-09",
+    "name": "High Society",
+    "subtitle": "The best view is worth defending.",
+    "world": "countryside",
+    "bounds": {
+      "width": 1440,
+      "height": 810,
+      "ground": 675
+    },
+    "sling": {
+      "x": 235,
+      "y": 530
+    },
+    "projectiles": ["duck", "sheep", "duck"],
+    "blocks": [
+      {
+        "id": "b1",
+        "x": 1037.0,
+        "y": 625.0,
+        "w": 18,
+        "h": 100,
+        "material": "glass"
+      },
+      {
+        "id": "b2",
+        "x": 1123.0,
+        "y": 625.0,
+        "w": 18,
+        "h": 100,
+        "material": "glass"
+      },
+      {
+        "id": "b3",
+        "x": 1080,
+        "y": 566,
+        "w": 126,
+        "h": 18,
+        "material": "wood"
+      },
+      {
+        "id": "b4",
+        "x": 1037.0,
+        "y": 507.0,
+        "w": 18,
+        "h": 100,
+        "material": "glass"
+      },
+      {
+        "id": "b5",
+        "x": 1123.0,
+        "y": 507.0,
+        "w": 18,
+        "h": 100,
+        "material": "glass"
+      },
+      {
+        "id": "b6",
+        "x": 1080,
+        "y": 448,
+        "w": 126,
+        "h": 18,
+        "material": "wood"
+      }
+    ],
+    "monsters": [
+      {
+        "id": "m1",
+        "x": 1080,
+        "y": 657,
+        "radius": 18,
+        "kind": "horn"
+      },
+      {
+        "id": "m2",
+        "x": 1080,
+        "y": 539,
+        "radius": 18,
+        "kind": "blob"
+      },
+      {
+        "id": "m3",
+        "x": 1080,
+        "y": 421,
+        "radius": 18,
+        "kind": "bat"
+      }
+    ],
+    "hazards": [],
+    "thresholds": [15000, 17500, 20500],
+    "par": 2
+  },
+  {
+    "version": 1,
+    "id": "meadow-10",
+    "name": "A Gap in the Market",
+    "subtitle": "Leave a little room for a big collapse.",
+    "world": "countryside",
+    "bounds": {
+      "width": 1440,
+      "height": 810,
+      "ground": 675
+    },
+    "sling": {
+      "x": 235,
+      "y": 530
+    },
+    "projectiles": ["duck", "duck", "sheep", "sheep"],
+    "blocks": [
+      {
+        "id": "b1",
+        "x": 766.5,
+        "y": 625.0,
+        "w": 18,
+        "h": 100,
+        "material": "wood"
+      },
+      {
+        "id": "b2",
+        "x": 843.5,
+        "y": 625.0,
+        "w": 18,
+        "h": 100,
+        "material": "wood"
+      },
+      {
+        "id": "b3",
+        "x": 805,
+        "y": 566,
+        "w": 117,
+        "h": 18,
+        "material": "wood"
+      },
+      {
+        "id": "b4",
+        "x": 1001.5,
+        "y": 625.0,
+        "w": 18,
+        "h": 100,
+        "material": "glass"
+      },
+      {
+        "id": "b5",
+        "x": 1078.5,
+        "y": 625.0,
+        "w": 18,
+        "h": 100,
+        "material": "glass"
+      },
+      {
+        "id": "b6",
+        "x": 1040,
+        "y": 566,
+        "w": 117,
+        "h": 18,
+        "material": "wood"
+      },
+      {
+        "id": "b7",
+        "x": 1221.5,
+        "y": 625.0,
+        "w": 18,
+        "h": 100,
+        "material": "wood"
+      },
+      {
+        "id": "b8",
+        "x": 1298.5,
+        "y": 625.0,
+        "w": 18,
+        "h": 100,
+        "material": "wood"
+      },
+      {
+        "id": "b9",
+        "x": 1260,
+        "y": 566,
+        "w": 117,
+        "h": 18,
+        "material": "wood"
+      }
+    ],
+    "monsters": [
+      {
+        "id": "m1",
+        "x": 805,
+        "y": 657,
+        "radius": 18,
+        "kind": "horn"
+      },
+      {
+        "id": "m2",
+        "x": 1040,
+        "y": 657,
+        "radius": 18,
+        "kind": "blob"
+      },
+      {
+        "id": "m3",
+        "x": 1260,
+        "y": 657,
+        "radius": 18,
+        "kind": "horn"
+      }
+    ],
+    "hazards": [],
+    "thresholds": [15000, 23000, 26000],
+    "par": 2
+  },
+  {
+    "version": 1,
+    "id": "meadow-11",
+    "name": "Hard as a Rock",
+    "subtitle": "Heavy ceilings have a weakness.",
+    "world": "countryside",
+    "bounds": {
+      "width": 1440,
+      "height": 810,
+      "ground": 675
+    },
+    "sling": {
+      "x": 235,
+      "y": 530
+    },
+    "projectiles": ["sheep", "duck", "sheep"],
+    "blocks": [
+      {
+        "id": "b1",
+        "x": 889.0,
+        "y": 625.0,
+        "w": 18,
+        "h": 100,
+        "material": "glass"
+      },
+      {
+        "id": "b2",
+        "x": 991.0,
+        "y": 625.0,
+        "w": 18,
+        "h": 100,
+        "material": "glass"
+      },
+      {
+        "id": "b3",
+        "x": 940,
+        "y": 566,
+        "w": 142,
+        "h": 18,
+        "material": "stone"
+      }
+    ],
+    "monsters": [
+      {
+        "id": "m1",
+        "x": 940,
+        "y": 657,
+        "radius": 18,
+        "kind": "horn"
+      },
+      {
+        "id": "m2",
+        "x": 940,
+        "y": 539,
+        "radius": 18,
+        "kind": "bat"
+      }
+    ],
+    "hazards": [],
+    "thresholds": [10000, 12500, 15000],
+    "par": 2,
+    "tutorial": "Stone is stubborn and heavy. Break what holds it up."
+  },
+  {
+    "version": 1,
+    "id": "meadow-12",
+    "name": "Bear Necessities",
+    "subtitle": "Bruno is putting his foot down.",
+    "world": "countryside",
+    "bounds": {
+      "width": 1440,
+      "height": 810,
+      "ground": 675
+    },
+    "sling": {
+      "x": 235,
+      "y": 530
+    },
+    "projectiles": ["bear", "bear", "sheep"],
+    "blocks": [
+      {
+        "id": "b1",
+        "x": 840,
+        "y": 659,
+        "w": 70,
+        "h": 32,
+        "material": "stone"
+      },
+      {
+        "id": "b2",
+        "x": 840,
+        "y": 627,
+        "w": 70,
+        "h": 32,
+        "material": "stone"
+      },
+      {
+        "id": "b3",
+        "x": 840,
+        "y": 595,
+        "w": 70,
+        "h": 32,
+        "material": "stone"
+      },
+      {
+        "id": "b4",
+        "x": 969.0,
+        "y": 625.0,
+        "w": 18,
+        "h": 100,
+        "material": "wood"
+      },
+      {
+        "id": "b5",
+        "x": 1071.0,
+        "y": 625.0,
+        "w": 18,
+        "h": 100,
+        "material": "wood"
+      },
+      {
+        "id": "b6",
+        "x": 1020,
+        "y": 566,
+        "w": 142,
+        "h": 18,
+        "material": "stone"
+      }
+    ],
+    "monsters": [
+      {
+        "id": "m1",
+        "x": 1020,
+        "y": 657,
+        "radius": 18,
+        "kind": "horn"
+      }
+    ],
+    "hazards": [],
+    "thresholds": [5000, 10000, 13000],
+    "par": 2,
+    "tutorial": "Bruno is heavy. Tap in flight to stomp straight down with extra force."
+  },
+  {
+    "version": 1,
+    "id": "meadow-13",
+    "name": "The Glass Elevator",
+    "subtitle": "A delicate foundation, a heavyweight roof.",
+    "world": "countryside",
+    "bounds": {
+      "width": 1440,
+      "height": 810,
+      "ground": 675
+    },
+    "sling": {
+      "x": 235,
+      "y": 530
+    },
+    "projectiles": ["bear", "sheep", "duck"],
+    "blocks": [
+      {
+        "id": "b1",
+        "x": 919.0,
+        "y": 625.0,
+        "w": 18,
+        "h": 100,
+        "material": "glass"
+      },
+      {
+        "id": "b2",
+        "x": 1041.0,
+        "y": 625.0,
+        "w": 18,
+        "h": 100,
+        "material": "glass"
+      },
+      {
+        "id": "b3",
+        "x": 980,
+        "y": 566,
+        "w": 162,
+        "h": 18,
+        "material": "stone"
+      },
+      {
+        "id": "b4",
+        "x": 919.0,
+        "y": 507.0,
+        "w": 18,
+        "h": 100,
+        "material": "glass"
+      },
+      {
+        "id": "b5",
+        "x": 1041.0,
+        "y": 507.0,
+        "w": 18,
+        "h": 100,
+        "material": "glass"
+      },
+      {
+        "id": "b6",
+        "x": 980,
+        "y": 448,
+        "w": 162,
+        "h": 18,
+        "material": "stone"
+      }
+    ],
+    "monsters": [
+      {
+        "id": "m1",
+        "x": 980,
+        "y": 657,
+        "radius": 18,
+        "kind": "horn"
+      },
+      {
+        "id": "m2",
+        "x": 980,
+        "y": 539,
+        "radius": 18,
+        "kind": "blob"
+      }
+    ],
+    "hazards": [],
+    "thresholds": [10000, 15000, 18000],
+    "par": 2
+  },
+  {
+    "version": 1,
+    "id": "meadow-14",
+    "name": "Knock Knock",
+    "subtitle": "The front door is the strong way in.",
+    "world": "countryside",
+    "bounds": {
+      "width": 1440,
+      "height": 810,
+      "ground": 675
+    },
+    "sling": {
+      "x": 235,
+      "y": 530
+    },
+    "projectiles": ["bear", "duck", "bear", "sheep"],
+    "blocks": [
+      {
+        "id": "b1",
+        "x": 800,
+        "y": 659,
+        "w": 70,
+        "h": 32,
+        "material": "wood"
+      },
+      {
+        "id": "b2",
+        "x": 800,
+        "y": 627,
+        "w": 70,
+        "h": 32,
+        "material": "wood"
+      },
+      {
+        "id": "b3",
+        "x": 800,
+        "y": 595,
+        "w": 70,
+        "h": 32,
+        "material": "wood"
+      },
+      {
+        "id": "b4",
+        "x": 800,
+        "y": 563,
+        "w": 70,
+        "h": 32,
+        "material": "wood"
+      },
+      {
+        "id": "b5",
+        "x": 949.0,
+        "y": 625.0,
+        "w": 18,
+        "h": 100,
+        "material": "wood"
+      },
+      {
+        "id": "b6",
+        "x": 1091.0,
+        "y": 625.0,
+        "w": 18,
+        "h": 100,
+        "material": "wood"
+      },
+      {
+        "id": "b7",
+        "x": 1020,
+        "y": 566,
+        "w": 182,
+        "h": 18,
+        "material": "stone"
+      }
+    ],
+    "monsters": [
+      {
+        "id": "m1",
+        "x": 1020,
+        "y": 657,
+        "radius": 18,
+        "kind": "horn"
+      },
+      {
+        "id": "m2",
+        "x": 1020,
+        "y": 539,
+        "radius": 18,
+        "kind": "bat"
+      }
+    ],
+    "hazards": [],
+    "thresholds": [10000, 17500, 20500],
+    "par": 2
+  },
+  {
+    "version": 1,
+    "id": "meadow-15",
+    "name": "Three Is Company",
+    "subtitle": "Clover brought a couple of friends.",
+    "world": "countryside",
+    "bounds": {
+      "width": 1440,
+      "height": 810,
+      "ground": 675
+    },
+    "sling": {
+      "x": 235,
+      "y": 530
+    },
+    "projectiles": ["rabbit", "rabbit", "sheep"],
+    "blocks": [],
+    "monsters": [
+      {
+        "id": "m1",
+        "x": 800,
+        "y": 657,
+        "radius": 18,
+        "kind": "horn"
+      },
+      {
+        "id": "m2",
+        "x": 1030,
+        "y": 657,
+        "radius": 18,
+        "kind": "blob"
+      },
+      {
+        "id": "m3",
+        "x": 1250,
+        "y": 657,
+        "radius": 18,
+        "kind": "bat"
+      }
+    ],
+    "hazards": [],
+    "thresholds": [15000, 18000, 21000],
+    "par": 2,
+    "tutorial": "Tap while Clover is flying to split into three little rabbits."
+  },
+  {
+    "version": 1,
+    "id": "meadow-16",
+    "name": "Rabbit, Rabbit, Rabbit",
+    "subtitle": "One good angle can make three good hits.",
+    "world": "countryside",
+    "bounds": {
+      "width": 1440,
+      "height": 810,
+      "ground": 675
+    },
+    "sling": {
+      "x": 235,
+      "y": 530
+    },
+    "projectiles": ["rabbit", "rabbit", "duck", "sheep"],
+    "blocks": [
+      {
+        "id": "b1",
+        "x": 764.0,
+        "y": 625.0,
+        "w": 18,
+        "h": 100,
+        "material": "glass"
+      },
+      {
+        "id": "b2",
+        "x": 836.0,
+        "y": 625.0,
+        "w": 18,
+        "h": 100,
+        "material": "glass"
+      },
+      {
+        "id": "b3",
+        "x": 800,
+        "y": 566,
+        "w": 112,
+        "h": 18,
+        "material": "glass"
+      },
+      {
+        "id": "b4",
+        "x": 984.0,
+        "y": 625.0,
+        "w": 18,
+        "h": 100,
+        "material": "glass"
+      },
+      {
+        "id": "b5",
+        "x": 1056.0,
+        "y": 625.0,
+        "w": 18,
+        "h": 100,
+        "material": "glass"
+      },
+      {
+        "id": "b6",
+        "x": 1020,
+        "y": 566,
+        "w": 112,
+        "h": 18,
+        "material": "glass"
+      },
+      {
+        "id": "b7",
+        "x": 1204.0,
+        "y": 625.0,
+        "w": 18,
+        "h": 100,
+        "material": "glass"
+      },
+      {
+        "id": "b8",
+        "x": 1276.0,
+        "y": 625.0,
+        "w": 18,
+        "h": 100,
+        "material": "glass"
+      },
+      {
+        "id": "b9",
+        "x": 1240,
+        "y": 566,
+        "w": 112,
+        "h": 18,
+        "material": "glass"
+      }
+    ],
+    "monsters": [
+      {
+        "id": "m1",
+        "x": 800,
+        "y": 657,
+        "radius": 18,
+        "kind": "horn"
+      },
+      {
+        "id": "m2",
+        "x": 1020,
+        "y": 657,
+        "radius": 18,
+        "kind": "blob"
+      },
+      {
+        "id": "m3",
+        "x": 1240,
+        "y": 657,
+        "radius": 18,
+        "kind": "horn"
+      }
+    ],
+    "hazards": [],
+    "thresholds": [15000, 23500, 26500],
+    "par": 2
+  },
+  {
+    "version": 1,
+    "id": "meadow-17",
+    "name": "Pop Goes the Castle",
+    "subtitle": "Please do not shake the red box.",
+    "world": "countryside",
+    "bounds": {
+      "width": 1440,
+      "height": 810,
+      "ground": 675
+    },
+    "sling": {
+      "x": 235,
+      "y": 530
+    },
+    "projectiles": ["duck", "sheep", "bear"],
+    "blocks": [
+      {
+        "id": "b1",
+        "x": 939.0,
+        "y": 625.0,
+        "w": 18,
+        "h": 100,
+        "material": "wood"
+      },
+      {
+        "id": "b2",
+        "x": 1121.0,
+        "y": 625.0,
+        "w": 18,
+        "h": 100,
+        "material": "wood"
+      },
+      {
+        "id": "b3",
+        "x": 1030,
+        "y": 566,
+        "w": 222,
+        "h": 18,
+        "material": "wood"
+      }
+    ],
+    "monsters": [
+      {
+        "id": "m1",
+        "x": 1070,
+        "y": 657,
+        "radius": 18,
+        "kind": "horn"
+      }
+    ],
+    "hazards": [
+      {
+        "id": "t1",
+        "x": 975,
+        "y": 655,
+        "kind": "tnt"
+      }
+    ],
+    "thresholds": [5000, 9000, 12000],
+    "par": 1,
+    "tutorial": "Red boxes burst on impact. Their blast can start a chain reaction."
+  },
+  {
+    "version": 1,
+    "id": "meadow-18",
+    "name": "A Chain of Bad Ideas",
+    "subtitle": "A tiny spark. A very large mess.",
+    "world": "countryside",
+    "bounds": {
+      "width": 1440,
+      "height": 810,
+      "ground": 675
+    },
+    "sling": {
+      "x": 235,
+      "y": 530
+    },
+    "projectiles": ["rabbit", "duck", "bear", "sheep"],
+    "blocks": [
+      {
+        "id": "b1",
+        "x": 789.0,
+        "y": 625.0,
+        "w": 18,
+        "h": 100,
+        "material": "glass"
+      },
+      {
+        "id": "b2",
+        "x": 931.0,
+        "y": 625.0,
+        "w": 18,
+        "h": 100,
+        "material": "glass"
+      },
+      {
+        "id": "b3",
+        "x": 860,
+        "y": 566,
+        "w": 182,
+        "h": 18,
+        "material": "wood"
+      },
+      {
+        "id": "b4",
+        "x": 1044.0,
+        "y": 625.0,
+        "w": 18,
+        "h": 100,
+        "material": "glass"
+      },
+      {
+        "id": "b5",
+        "x": 1216.0,
+        "y": 625.0,
+        "w": 18,
+        "h": 100,
+        "material": "glass"
+      },
+      {
+        "id": "b6",
+        "x": 1130,
+        "y": 566,
+        "w": 212,
+        "h": 18,
+        "material": "wood"
+      }
+    ],
+    "monsters": [
+      {
+        "id": "m1",
+        "x": 890,
+        "y": 657,
+        "radius": 18,
+        "kind": "horn"
+      },
+      {
+        "id": "m2",
+        "x": 1170,
+        "y": 657,
+        "radius": 18,
+        "kind": "horn"
+      }
+    ],
+    "hazards": [
+      {
+        "id": "t1",
+        "x": 830,
+        "y": 655,
+        "kind": "tnt"
+      },
+      {
+        "id": "t2",
+        "x": 1080,
+        "y": 655,
+        "kind": "tnt"
+      },
+      {
+        "id": "t3",
+        "x": 980,
+        "y": 655,
+        "kind": "tnt"
+      }
+    ],
+    "thresholds": [10000, 19000, 22000],
+    "par": 2
+  },
+  {
+    "version": 1,
+    "id": "meadow-19",
+    "name": "Little Towers, Big Feelings",
+    "subtitle": "Two families. One shared problem.",
+    "world": "countryside",
+    "bounds": {
+      "width": 1440,
+      "height": 810,
+      "ground": 675
+    },
+    "sling": {
+      "x": 235,
+      "y": 530
+    },
+    "projectiles": ["bear", "rabbit", "duck", "sheep"],
+    "blocks": [
+      {
+        "id": "b1",
+        "x": 806.5,
+        "y": 625.0,
+        "w": 18,
+        "h": 100,
+        "material": "wood"
+      },
+      {
+        "id": "b2",
+        "x": 893.5,
+        "y": 625.0,
+        "w": 18,
+        "h": 100,
+        "material": "wood"
+      },
+      {
+        "id": "b3",
+        "x": 850,
+        "y": 566,
+        "w": 127,
+        "h": 18,
+        "material": "wood"
+      },
+      {
+        "id": "b4",
+        "x": 806.5,
+        "y": 507.0,
+        "w": 18,
+        "h": 100,
+        "material": "wood"
+      },
+      {
+        "id": "b5",
+        "x": 893.5,
+        "y": 507.0,
+        "w": 18,
+        "h": 100,
+        "material": "wood"
+      },
+      {
+        "id": "b6",
+        "x": 850,
+        "y": 448,
+        "w": 127,
+        "h": 18,
+        "material": "wood"
+      },
+      {
+        "id": "b7",
+        "x": 1114.0,
+        "y": 625.0,
+        "w": 18,
+        "h": 100,
+        "material": "glass"
+      },
+      {
+        "id": "b8",
+        "x": 1206.0,
+        "y": 625.0,
+        "w": 18,
+        "h": 100,
+        "material": "glass"
+      },
+      {
+        "id": "b9",
+        "x": 1160,
+        "y": 566,
+        "w": 132,
+        "h": 18,
+        "material": "stone"
+      },
+      {
+        "id": "b10",
+        "x": 1114.0,
+        "y": 507.0,
+        "w": 18,
+        "h": 100,
+        "material": "glass"
+      },
+      {
+        "id": "b11",
+        "x": 1206.0,
+        "y": 507.0,
+        "w": 18,
+        "h": 100,
+        "material": "glass"
+      },
+      {
+        "id": "b12",
+        "x": 1160,
+        "y": 448,
+        "w": 132,
+        "h": 18,
+        "material": "stone"
+      }
+    ],
+    "monsters": [
+      {
+        "id": "m1",
+        "x": 850,
+        "y": 657,
+        "radius": 18,
+        "kind": "horn"
+      },
+      {
+        "id": "m2",
+        "x": 850,
+        "y": 539,
+        "radius": 18,
+        "kind": "blob"
+      },
+      {
+        "id": "m3",
+        "x": 1160,
+        "y": 657,
+        "radius": 18,
+        "kind": "horn"
+      },
+      {
+        "id": "m4",
+        "x": 1160,
+        "y": 539,
+        "radius": 18,
+        "kind": "blob"
+      }
+    ],
+    "hazards": [],
+    "thresholds": [20000, 29000, 32000],
+    "par": 2
+  },
+  {
+    "version": 1,
+    "id": "meadow-20",
+    "name": "The Long Way Round",
+    "subtitle": "A little loft above a wide-open room.",
+    "world": "countryside",
+    "bounds": {
+      "width": 1440,
+      "height": 810,
+      "ground": 675
+    },
+    "sling": {
+      "x": 235,
+      "y": 530
+    },
+    "projectiles": ["duck", "bear", "rabbit", "sheep"],
+    "blocks": [
+      {
+        "id": "b1",
+        "x": 849.0,
+        "y": 625.0,
+        "w": 18,
+        "h": 100,
+        "material": "glass"
+      },
+      {
+        "id": "b2",
+        "x": 1071.0,
+        "y": 625.0,
+        "w": 18,
+        "h": 100,
+        "material": "glass"
+      },
+      {
+        "id": "b3",
+        "x": 960,
+        "y": 566,
+        "w": 262,
+        "h": 18,
+        "material": "stone"
+      },
+      {
+        "id": "b4",
+        "x": 909.0,
+        "y": 507.0,
+        "w": 18,
+        "h": 100,
+        "material": "wood"
+      },
+      {
+        "id": "b5",
+        "x": 1011.0,
+        "y": 507.0,
+        "w": 18,
+        "h": 100,
+        "material": "wood"
+      },
+      {
+        "id": "b6",
+        "x": 960,
+        "y": 448,
+        "w": 142,
+        "h": 18,
+        "material": "wood"
+      }
+    ],
+    "monsters": [
+      {
+        "id": "m1",
+        "x": 960,
+        "y": 657,
+        "radius": 18,
+        "kind": "horn"
+      },
+      {
+        "id": "m2",
+        "x": 960,
+        "y": 539,
+        "radius": 18,
+        "kind": "blob"
+      },
+      {
+        "id": "m3",
+        "x": 1230,
+        "y": 657,
+        "radius": 18,
+        "kind": "bat"
+      }
+    ],
+    "hazards": [],
+    "thresholds": [15000, 19500, 24500],
+    "par": 2
+  },
+  {
+    "version": 1,
+    "id": "meadow-21",
+    "name": "Fort Pillow",
+    "subtitle": "Even a fortress has a soft spot.",
+    "world": "countryside",
+    "bounds": {
+      "width": 1440,
+      "height": 810,
+      "ground": 675
+    },
+    "sling": {
+      "x": 235,
+      "y": 530
+    },
+    "projectiles": ["bear", "duck", "rabbit", "sheep"],
+    "blocks": [
+      {
+        "id": "b1",
+        "x": 790,
+        "y": 659,
+        "w": 70,
+        "h": 32,
+        "material": "stone"
+      },
+      {
+        "id": "b2",
+        "x": 790,
+        "y": 627,
+        "w": 70,
+        "h": 32,
+        "material": "stone"
+      },
+      {
+        "id": "b3",
+        "x": 790,
+        "y": 595,
+        "w": 70,
+        "h": 32,
+        "material": "stone"
+      },
+      {
+        "id": "b4",
+        "x": 944.0,
+        "y": 625.0,
+        "w": 18,
+        "h": 100,
+        "material": "wood"
+      },
+      {
+        "id": "b5",
+        "x": 1136.0,
+        "y": 625.0,
+        "w": 18,
+        "h": 100,
+        "material": "wood"
+      },
+      {
+        "id": "b6",
+        "x": 1040,
+        "y": 566,
+        "w": 232,
+        "h": 18,
+        "material": "stone"
+      },
+      {
+        "id": "b7",
+        "x": 989.0,
+        "y": 507.0,
+        "w": 18,
+        "h": 100,
+        "material": "glass"
+      },
+      {
+        "id": "b8",
+        "x": 1091.0,
+        "y": 507.0,
+        "w": 18,
+        "h": 100,
+        "material": "glass"
+      },
+      {
+        "id": "b9",
+        "x": 1040,
+        "y": 448,
+        "w": 142,
+        "h": 18,
+        "material": "wood"
+      }
+    ],
+    "monsters": [
+      {
+        "id": "m1",
+        "x": 1090,
+        "y": 657,
+        "radius": 18,
+        "kind": "horn"
+      },
+      {
+        "id": "m2",
+        "x": 1040,
+        "y": 539,
+        "radius": 18,
+        "kind": "blob"
+      }
+    ],
+    "hazards": [
+      {
+        "id": "t1",
+        "x": 990,
+        "y": 655,
+        "kind": "tnt"
+      }
+    ],
+    "thresholds": [10000, 19000, 22000],
+    "par": 2
+  },
+  {
+    "version": 1,
+    "id": "meadow-22",
+    "name": "Cloud Nine",
+    "subtitle": "The higher they climb\u2026",
+    "world": "countryside",
+    "bounds": {
+      "width": 1440,
+      "height": 810,
+      "ground": 675
+    },
+    "sling": {
+      "x": 235,
+      "y": 530
+    },
+    "projectiles": ["duck", "bear", "rabbit", "sheep"],
+    "blocks": [
+      {
+        "id": "b1",
+        "x": 984.0,
+        "y": 625.0,
+        "w": 18,
+        "h": 100,
+        "material": "wood"
+      },
+      {
+        "id": "b2",
+        "x": 1096.0,
+        "y": 625.0,
+        "w": 18,
+        "h": 100,
+        "material": "wood"
+      },
+      {
+        "id": "b3",
+        "x": 1040,
+        "y": 566,
+        "w": 152,
+        "h": 18,
+        "material": "glass"
+      },
+      {
+        "id": "b4",
+        "x": 984.0,
+        "y": 507.0,
+        "w": 18,
+        "h": 100,
+        "material": "wood"
+      },
+      {
+        "id": "b5",
+        "x": 1096.0,
+        "y": 507.0,
+        "w": 18,
+        "h": 100,
+        "material": "wood"
+      },
+      {
+        "id": "b6",
+        "x": 1040,
+        "y": 448,
+        "w": 152,
+        "h": 18,
+        "material": "glass"
+      },
+      {
+        "id": "b7",
+        "x": 984.0,
+        "y": 389.0,
+        "w": 18,
+        "h": 100,
+        "material": "wood"
+      },
+      {
+        "id": "b8",
+        "x": 1096.0,
+        "y": 389.0,
+        "w": 18,
+        "h": 100,
+        "material": "wood"
+      },
+      {
+        "id": "b9",
+        "x": 1040,
+        "y": 330,
+        "w": 152,
+        "h": 18,
+        "material": "glass"
+      }
+    ],
+    "monsters": [
+      {
+        "id": "m1",
+        "x": 1040,
+        "y": 657,
+        "radius": 18,
+        "kind": "horn"
+      },
+      {
+        "id": "m2",
+        "x": 1040,
+        "y": 539,
+        "radius": 18,
+        "kind": "blob"
+      },
+      {
+        "id": "m3",
+        "x": 1040,
+        "y": 421,
+        "radius": 18,
+        "kind": "horn"
+      },
+      {
+        "id": "m4",
+        "x": 1040,
+        "y": 303,
+        "radius": 18,
+        "kind": "bat"
+      }
+    ],
+    "hazards": [],
+    "thresholds": [20000, 23500, 27500],
+    "par": 2
+  },
+  {
+    "version": 1,
+    "id": "meadow-23",
+    "name": "The Bridge Club",
+    "subtitle": "A shared roof makes for a shared tumble.",
+    "world": "countryside",
+    "bounds": {
+      "width": 1440,
+      "height": 810,
+      "ground": 675
+    },
+    "sling": {
+      "x": 235,
+      "y": 530
+    },
+    "projectiles": ["rabbit", "bear", "duck", "sheep"],
+    "blocks": [
+      {
+        "id": "b1",
+        "x": 869.0,
+        "y": 625.0,
+        "w": 18,
+        "h": 100,
+        "material": "wood"
+      },
+      {
+        "id": "b2",
+        "x": 1151.0,
+        "y": 625.0,
+        "w": 18,
+        "h": 100,
+        "material": "wood"
+      },
+      {
+        "id": "b3",
+        "x": 1010,
+        "y": 566,
+        "w": 322,
+        "h": 18,
+        "material": "glass"
+      },
+      {
+        "id": "b4",
+        "x": 959.0,
+        "y": 507.0,
+        "w": 18,
+        "h": 100,
+        "material": "glass"
+      },
+      {
+        "id": "b5",
+        "x": 1061.0,
+        "y": 507.0,
+        "w": 18,
+        "h": 100,
+        "material": "glass"
+      },
+      {
+        "id": "b6",
+        "x": 1010,
+        "y": 448,
+        "w": 142,
+        "h": 18,
+        "material": "stone"
+      }
+    ],
+    "monsters": [
+      {
+        "id": "m1",
+        "x": 940,
+        "y": 657,
+        "radius": 18,
+        "kind": "horn"
+      },
+      {
+        "id": "m2",
+        "x": 1080,
+        "y": 657,
+        "radius": 18,
+        "kind": "blob"
+      },
+      {
+        "id": "m3",
+        "x": 1010,
+        "y": 539,
+        "radius": 18,
+        "kind": "horn"
+      }
+    ],
+    "hazards": [
+      {
+        "id": "t1",
+        "x": 1010,
+        "y": 655,
+        "kind": "tnt"
+      }
+    ],
+    "thresholds": [15000, 23000, 26000],
+    "par": 2
+  },
+  {
+    "version": 1,
+    "id": "meadow-24",
+    "name": "Meadow Mayhem",
+    "subtitle": "All your friends. One magnificent mess.",
+    "world": "countryside",
+    "bounds": {
+      "width": 1440,
+      "height": 810,
+      "ground": 675
+    },
+    "sling": {
+      "x": 235,
+      "y": 530
+    },
+    "projectiles": ["rabbit", "bear", "duck", "sheep", "bear"],
+    "blocks": [
+      {
+        "id": "b1",
+        "x": 784.0,
+        "y": 625.0,
+        "w": 18,
+        "h": 100,
+        "material": "glass"
+      },
+      {
+        "id": "b2",
+        "x": 866.0,
+        "y": 625.0,
+        "w": 18,
+        "h": 100,
+        "material": "glass"
+      },
+      {
+        "id": "b3",
+        "x": 825,
+        "y": 566,
+        "w": 122,
+        "h": 18,
+        "material": "wood"
+      },
+      {
+        "id": "b4",
+        "x": 784.0,
+        "y": 507.0,
+        "w": 18,
+        "h": 100,
+        "material": "glass"
+      },
+      {
+        "id": "b5",
+        "x": 866.0,
+        "y": 507.0,
+        "w": 18,
+        "h": 100,
+        "material": "glass"
+      },
+      {
+        "id": "b6",
+        "x": 825,
+        "y": 448,
+        "w": 122,
+        "h": 18,
+        "material": "wood"
+      },
+      {
+        "id": "b7",
+        "x": 1064.0,
+        "y": 625.0,
+        "w": 18,
+        "h": 100,
+        "material": "wood"
+      },
+      {
+        "id": "b8",
+        "x": 1196.0,
+        "y": 625.0,
+        "w": 18,
+        "h": 100,
+        "material": "wood"
+      },
+      {
+        "id": "b9",
+        "x": 1130,
+        "y": 566,
+        "w": 172,
+        "h": 18,
+        "material": "stone"
+      },
+      {
+        "id": "b10",
+        "x": 1064.0,
+        "y": 507.0,
+        "w": 18,
+        "h": 100,
+        "material": "wood"
+      },
+      {
+        "id": "b11",
+        "x": 1196.0,
+        "y": 507.0,
+        "w": 18,
+        "h": 100,
+        "material": "wood"
+      },
+      {
+        "id": "b12",
+        "x": 1130,
+        "y": 448,
+        "w": 172,
+        "h": 18,
+        "material": "stone"
+      }
+    ],
+    "monsters": [
+      {
+        "id": "m1",
+        "x": 825,
+        "y": 657,
+        "radius": 18,
+        "kind": "horn"
+      },
+      {
+        "id": "m2",
+        "x": 825,
+        "y": 539,
+        "radius": 18,
+        "kind": "blob"
+      },
+      {
+        "id": "m3",
+        "x": 1130,
+        "y": 657,
+        "radius": 18,
+        "kind": "horn"
+      },
+      {
+        "id": "m4",
+        "x": 1130,
+        "y": 539,
+        "radius": 18,
+        "kind": "blob"
+      },
+      {
+        "id": "m5",
+        "x": 1130,
+        "y": 421,
+        "radius": 18,
+        "kind": "bat"
+      },
+      {
+        "id": "m6",
+        "x": 1290,
+        "y": 657,
+        "radius": 18,
+        "kind": "horn"
+      }
+    ],
+    "hazards": [
+      {
+        "id": "t1",
+        "x": 1000,
+        "y": 655,
+        "kind": "tnt"
+      }
+    ],
+    "thresholds": [30000, 42500, 45500],
+    "par": 3,
+    "tutorial": "Everything you have learned, together. Find the weak spot and make a little mayhem."
+  }
+]
