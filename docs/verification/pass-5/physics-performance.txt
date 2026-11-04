@@ -1,0 +1,10 @@
+
+> plush-siege@0.5.0 measure:physics
+> node --import tsx scripts/measure-campaign.ts
+
+{
+  levels: 85,
+  peakEntities: 90,
+  peakFragments: 46,
+  maxP95StepMs: 1.9237219999995432
+}

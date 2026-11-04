@@ -1637,5 +1637,1386 @@
       ],
       "author": "Plush Siege production pass 4"
     }
+  },
+  {
+    "version": 1,
+    "id": "meadow-31",
+    "name": "The Tension Twins",
+    "subtitle": "A tall gable and a broad pavilion hold their shape with fragile floor ties.",
+    "world": "countryside",
+    "bounds": {
+      "width": 2000,
+      "height": 1080,
+      "ground": 900
+    },
+    "sling": {
+      "x": 235,
+      "y": 755
+    },
+    "projectiles": [
+      "duck",
+      "bear",
+      "rabbit",
+      "sheep"
+    ],
+    "blocks": [
+      {
+        "id": "gable-left-rake",
+        "x": 900,
+        "y": 809,
+        "w": 157.2308292331602,
+        "h": 12,
+        "angle": -1.039072259536091,
+        "material": "wood"
+      },
+      {
+        "id": "gable-right-rake",
+        "x": 1000,
+        "y": 809,
+        "w": 157.2308292331602,
+        "h": 12,
+        "angle": 1.039072259536091,
+        "material": "wood"
+      },
+      {
+        "id": "gable-floor-tie",
+        "x": 950,
+        "y": 894,
+        "w": 160,
+        "h": 12,
+        "angle": 0,
+        "material": "glass"
+      },
+      {
+        "id": "pavilion-left-rake",
+        "x": 1245,
+        "y": 839,
+        "w": 162.48456731316585,
+        "h": 12,
+        "angle": -0.5743048301747018,
+        "material": "wood"
+      },
+      {
+        "id": "pavilion-right-rake",
+        "x": 1415,
+        "y": 839,
+        "w": 162.48456731316585,
+        "h": 12,
+        "angle": 0.5743048301747018,
+        "material": "wood"
+      },
+      {
+        "id": "pavilion-floor-tie",
+        "x": 1330,
+        "y": 894,
+        "w": 300,
+        "h": 12,
+        "angle": 0,
+        "material": "glass"
+      }
+    ],
+    "monsters": [
+      {
+        "id": "gable-resident",
+        "x": 950,
+        "y": 870,
+        "radius": 18,
+        "kind": "horn"
+      },
+      {
+        "id": "pavilion-resident",
+        "x": 1330,
+        "y": 870,
+        "radius": 18,
+        "kind": "horn"
+      }
+    ],
+    "hazards": [],
+    "terrain": [],
+    "props": [],
+    "joints": [
+      {
+        "id": "gable-pin-left-gable-floor-tie",
+        "kind": "hinge",
+        "bodyA": "gable-left-rake",
+        "pointA": {
+          "x": -98.6154146165801,
+          "y": 0
+        },
+        "bodyB": "gable-floor-tie",
+        "pointB": {
+          "x": -100,
+          "y": 0
+        },
+        "length": 0,
+        "stiffness": 0.25,
+        "damping": 0.1
+      },
+      {
+        "id": "gable-pin-peak-gable-right-rake",
+        "kind": "hinge",
+        "bodyA": "gable-left-rake",
+        "pointA": {
+          "x": 98.6154146165801,
+          "y": 0
+        },
+        "bodyB": "gable-right-rake",
+        "pointB": {
+          "x": -98.6154146165801,
+          "y": 0
+        },
+        "length": 0,
+        "stiffness": 0.25,
+        "damping": 0.1
+      },
+      {
+        "id": "gable-pin-right-gable-floor-tie",
+        "kind": "hinge",
+        "bodyA": "gable-right-rake",
+        "pointA": {
+          "x": 98.6154146165801,
+          "y": 0
+        },
+        "bodyB": "gable-floor-tie",
+        "pointB": {
+          "x": 100,
+          "y": 0
+        },
+        "length": 0,
+        "stiffness": 0.25,
+        "damping": 0.1
+      },
+      {
+        "id": "pavilion-pin-left-pavilion-floor-tie",
+        "kind": "hinge",
+        "bodyA": "pavilion-left-rake",
+        "pointA": {
+          "x": -101.24228365658293,
+          "y": 0
+        },
+        "bodyB": "pavilion-floor-tie",
+        "pointB": {
+          "x": -170,
+          "y": 0
+        },
+        "length": 0,
+        "stiffness": 0.25,
+        "damping": 0.1
+      },
+      {
+        "id": "pavilion-pin-peak-pavilion-right-rake",
+        "kind": "hinge",
+        "bodyA": "pavilion-left-rake",
+        "pointA": {
+          "x": 101.24228365658293,
+          "y": 0
+        },
+        "bodyB": "pavilion-right-rake",
+        "pointB": {
+          "x": -101.24228365658293,
+          "y": 0
+        },
+        "length": 0,
+        "stiffness": 0.25,
+        "damping": 0.1
+      },
+      {
+        "id": "pavilion-pin-right-pavilion-floor-tie",
+        "kind": "hinge",
+        "bodyA": "pavilion-right-rake",
+        "pointA": {
+          "x": 101.24228365658293,
+          "y": 0
+        },
+        "bodyB": "pavilion-floor-tie",
+        "pointB": {
+          "x": 170,
+          "y": 0
+        },
+        "length": 0,
+        "stiffness": 0.25,
+        "damping": 0.1
+      }
+    ],
+    "mechanisms": [],
+    "zones": [],
+    "thresholds": [
+      10000,
+      11500,
+      13000
+    ],
+    "par": 3,
+    "camera": {
+      "start": "overview"
+    },
+    "metadata": {
+      "category": "siege",
+      "idea": "A tall gable and a broad pavilion hold their shape with fragile floor ties.",
+      "mechanics": [
+        "triangular frames",
+        "tension members",
+        "asymmetric silhouettes"
+      ],
+      "author": "Plush Siege production pass 5",
+      "design": {
+        "archetype": "asymmetric triangular gables",
+        "role": "experiment",
+        "weakPoints": [
+          "gable-floor-tie",
+          "pavilion-floor-tie"
+        ],
+        "sections": [
+          {
+            "id": "primary-assembly",
+            "members": [
+              "gable-left-rake",
+              "gable-right-rake",
+              "gable-floor-tie",
+              "pavilion-left-rake",
+              "pavilion-right-rake",
+              "pavilion-floor-tie",
+              "gable-resident",
+              "pavilion-resident"
+            ]
+          }
+        ],
+        "intendedRoute": [],
+        "worldUse": "classic"
+      }
+    }
+  },
+  {
+    "version": 1,
+    "id": "meadow-32",
+    "name": "Coupler Crossing",
+    "subtitle": "The deck hangs from glass couplers on real pylons. Release a bank or breach the deck.",
+    "world": "countryside",
+    "bounds": {
+      "width": 2400,
+      "height": 1280,
+      "ground": 1100
+    },
+    "sling": {
+      "x": 235,
+      "y": 955
+    },
+    "projectiles": [
+      "duck",
+      "bear",
+      "rabbit",
+      "duck",
+      "bear",
+      "sheep"
+    ],
+    "blocks": [
+      {
+        "id": "crossing-coupler-0",
+        "x": 935,
+        "y": 485,
+        "w": 52,
+        "h": 24,
+        "material": "glass"
+      },
+      {
+        "id": "crossing-coupler-1",
+        "x": 1765,
+        "y": 485,
+        "w": 52,
+        "h": 24,
+        "material": "glass"
+      },
+      {
+        "id": "crossing-deck-0",
+        "x": 1116.6666666666667,
+        "y": 730,
+        "w": 225.33333333333334,
+        "h": 18,
+        "material": "wood"
+      },
+      {
+        "id": "crossing-deck-1",
+        "x": 1350,
+        "y": 730,
+        "w": 225.33333333333334,
+        "h": 18,
+        "material": "wood"
+      },
+      {
+        "id": "crossing-deck-2",
+        "x": 1583.3333333333335,
+        "y": 730,
+        "w": 225.33333333333334,
+        "h": 18,
+        "material": "wood"
+      }
+    ],
+    "monsters": [
+      {
+        "id": "crossing-guest-0",
+        "x": 1116.6666666666667,
+        "y": 703,
+        "radius": 18,
+        "kind": "blob"
+      },
+      {
+        "id": "crossing-guest-1",
+        "x": 1350,
+        "y": 703,
+        "radius": 18,
+        "kind": "horn"
+      },
+      {
+        "id": "crossing-guest-2",
+        "x": 1583.3333333333335,
+        "y": 703,
+        "radius": 18,
+        "kind": "blob"
+      }
+    ],
+    "hazards": [],
+    "terrain": [
+      {
+        "id": "crossing-pylon-0",
+        "x": 935,
+        "y": 798.5,
+        "w": 32,
+        "h": 603,
+        "material": "stone"
+      },
+      {
+        "id": "crossing-pylon-1",
+        "x": 1765,
+        "y": 798.5,
+        "w": 32,
+        "h": 603,
+        "material": "stone"
+      }
+    ],
+    "props": [],
+    "joints": [
+      {
+        "id": "crossing-coupler-0-seat",
+        "kind": "hinge",
+        "bodyA": "crossing-pylon-0",
+        "pointA": {
+          "x": 0,
+          "y": -313.5
+        },
+        "bodyB": "crossing-coupler-0",
+        "pointB": {
+          "x": 0,
+          "y": 0
+        },
+        "length": 0,
+        "stiffness": 0.55,
+        "damping": 0.35
+      },
+      {
+        "id": "crossing-coupler-1-seat",
+        "kind": "hinge",
+        "bodyA": "crossing-pylon-1",
+        "pointA": {
+          "x": 0,
+          "y": -313.5
+        },
+        "bodyB": "crossing-coupler-1",
+        "pointB": {
+          "x": 0,
+          "y": 0
+        },
+        "length": 0,
+        "stiffness": 0.55,
+        "damping": 0.35
+      },
+      {
+        "id": "crossing-deck-0-stay-0",
+        "kind": "rope",
+        "bodyA": "crossing-coupler-0",
+        "pointA": {
+          "x": 0,
+          "y": 0
+        },
+        "bodyB": "crossing-deck-0",
+        "pointB": {
+          "x": -104.66666666666667,
+          "y": 0
+        },
+        "length": 256.815108589818,
+        "stiffness": 0.55,
+        "damping": 0.35,
+        "breakForce": 0.3
+      },
+      {
+        "id": "crossing-deck-0-stay-1",
+        "kind": "rope",
+        "bodyA": "crossing-coupler-1",
+        "pointA": {
+          "x": 0,
+          "y": 0
+        },
+        "bodyB": "crossing-deck-0",
+        "pointB": {
+          "x": 104.66666666666667,
+          "y": 0
+        },
+        "length": 596.3207563421252,
+        "stiffness": 0.55,
+        "damping": 0.35,
+        "breakForce": 0.3
+      },
+      {
+        "id": "crossing-deck-1-stay-0",
+        "kind": "rope",
+        "bodyA": "crossing-coupler-0",
+        "pointA": {
+          "x": 0,
+          "y": 0
+        },
+        "bodyB": "crossing-deck-1",
+        "pointB": {
+          "x": -104.66666666666667,
+          "y": 0
+        },
+        "length": 395.3881356057333,
+        "stiffness": 0.55,
+        "damping": 0.35,
+        "breakForce": 0.3
+      },
+      {
+        "id": "crossing-deck-1-stay-1",
+        "kind": "rope",
+        "bodyA": "crossing-coupler-1",
+        "pointA": {
+          "x": 0,
+          "y": 0
+        },
+        "bodyB": "crossing-deck-1",
+        "pointB": {
+          "x": 104.66666666666667,
+          "y": 0
+        },
+        "length": 395.3881356057333,
+        "stiffness": 0.55,
+        "damping": 0.35,
+        "breakForce": 0.3
+      },
+      {
+        "id": "crossing-deck-1-link",
+        "kind": "rope",
+        "bodyA": "crossing-deck-0",
+        "pointA": {
+          "x": 112.66666666666667,
+          "y": 0
+        },
+        "bodyB": "crossing-deck-1",
+        "pointB": {
+          "x": -112.66666666666667,
+          "y": 0
+        },
+        "length": 8,
+        "stiffness": 0.55,
+        "damping": 0.35,
+        "breakForce": 0.12
+      },
+      {
+        "id": "crossing-deck-2-stay-0",
+        "kind": "rope",
+        "bodyA": "crossing-coupler-0",
+        "pointA": {
+          "x": 0,
+          "y": 0
+        },
+        "bodyB": "crossing-deck-2",
+        "pointB": {
+          "x": -104.66666666666667,
+          "y": 0
+        },
+        "length": 596.3207563421255,
+        "stiffness": 0.55,
+        "damping": 0.35,
+        "breakForce": 0.3
+      },
+      {
+        "id": "crossing-deck-2-stay-1",
+        "kind": "rope",
+        "bodyA": "crossing-coupler-1",
+        "pointA": {
+          "x": 0,
+          "y": 0
+        },
+        "bodyB": "crossing-deck-2",
+        "pointB": {
+          "x": 104.66666666666667,
+          "y": 0
+        },
+        "length": 256.8151085898179,
+        "stiffness": 0.55,
+        "damping": 0.35,
+        "breakForce": 0.3
+      },
+      {
+        "id": "crossing-deck-2-link",
+        "kind": "rope",
+        "bodyA": "crossing-deck-1",
+        "pointA": {
+          "x": 112.66666666666667,
+          "y": 0
+        },
+        "bodyB": "crossing-deck-2",
+        "pointB": {
+          "x": -112.66666666666667,
+          "y": 0
+        },
+        "length": 8,
+        "stiffness": 0.55,
+        "damping": 0.35,
+        "breakForce": 0.12
+      }
+    ],
+    "mechanisms": [],
+    "zones": [],
+    "thresholds": [
+      15000,
+      19500,
+      24000
+    ],
+    "par": 3,
+    "camera": {
+      "start": "overview"
+    },
+    "metadata": {
+      "category": "siege",
+      "idea": "The deck hangs from glass couplers on real pylons. Release a bank or breach the deck.",
+      "mechanics": [
+        "cable-stayed bridge",
+        "destructible couplers",
+        "linked decks"
+      ],
+      "author": "Plush Siege production pass 5",
+      "design": {
+        "archetype": "destructible cable-stay couplers",
+        "role": "experiment",
+        "weakPoints": [
+          "crossing-coupler-0",
+          "crossing-coupler-1"
+        ],
+        "sections": [
+          {
+            "id": "primary-assembly",
+            "members": [
+              "crossing-coupler-0",
+              "crossing-coupler-1",
+              "crossing-deck-0",
+              "crossing-deck-1",
+              "crossing-deck-2",
+              "crossing-guest-0",
+              "crossing-guest-1",
+              "crossing-guest-2",
+              "crossing-pylon-0",
+              "crossing-pylon-1"
+            ]
+          }
+        ],
+        "intendedRoute": [],
+        "worldUse": "classic"
+      }
+    }
+  },
+  {
+    "version": 1,
+    "id": "meadow-33",
+    "name": "The Bowstring Kingdom",
+    "subtitle": "A triangulated bridge carries the crown stone and a hanging lower court. The glass deck is in both load paths.",
+    "world": "countryside",
+    "bounds": {
+      "width": 3200,
+      "height": 1430,
+      "ground": 1250
+    },
+    "sling": {
+      "x": 235,
+      "y": 1105
+    },
+    "projectiles": [
+      "duck",
+      "bear",
+      "rabbit",
+      "duck",
+      "bear",
+      "sheep"
+    ],
+    "blocks": [
+      {
+        "id": "kingdom-deck-0",
+        "x": 1037.5,
+        "y": 850,
+        "w": 235,
+        "h": 12,
+        "angle": 0,
+        "material": "wood"
+      },
+      {
+        "id": "kingdom-deck-1",
+        "x": 1312.5,
+        "y": 850,
+        "w": 235,
+        "h": 12,
+        "angle": 0,
+        "material": "glass"
+      },
+      {
+        "id": "kingdom-deck-2",
+        "x": 1587.5,
+        "y": 850,
+        "w": 235,
+        "h": 12,
+        "angle": 0,
+        "material": "wood"
+      },
+      {
+        "id": "kingdom-deck-3",
+        "x": 1862.5,
+        "y": 850,
+        "w": 235,
+        "h": 12,
+        "angle": 0,
+        "material": "wood"
+      },
+      {
+        "id": "kingdom-arch-0",
+        "x": 1037.5,
+        "y": 726.25,
+        "w": 329.97466129452704,
+        "h": 12,
+        "angle": -0.7328151017865066,
+        "material": "wood"
+      },
+      {
+        "id": "kingdom-arch-1",
+        "x": 1312.5,
+        "y": 561.25,
+        "w": 247.10842899504013,
+        "h": 12,
+        "angle": -0.2914567944778671,
+        "material": "wood"
+      },
+      {
+        "id": "kingdom-arch-2",
+        "x": 1587.5,
+        "y": 561.25,
+        "w": 247.10842899504013,
+        "h": 12,
+        "angle": 0.2914567944778671,
+        "material": "wood"
+      },
+      {
+        "id": "kingdom-arch-3",
+        "x": 1862.5,
+        "y": 726.25,
+        "w": 329.97466129452704,
+        "h": 12,
+        "angle": 0.7328151017865066,
+        "material": "wood"
+      },
+      {
+        "id": "kingdom-hanger-1",
+        "x": 1175,
+        "y": 726.25,
+        "w": 207.5,
+        "h": 12,
+        "angle": -1.5707963267948966,
+        "material": "wood"
+      },
+      {
+        "id": "kingdom-hanger-2",
+        "x": 1450,
+        "y": 685,
+        "w": 290,
+        "h": 12,
+        "angle": -1.5707963267948966,
+        "material": "glass"
+      },
+      {
+        "id": "kingdom-hanger-3",
+        "x": 1725,
+        "y": 726.25,
+        "w": 207.5,
+        "h": 12,
+        "angle": -1.5707963267948966,
+        "material": "wood"
+      },
+      {
+        "id": "kingdom-brace-left",
+        "x": 1312.5,
+        "y": 726.25,
+        "w": 329.97466129452704,
+        "h": 12,
+        "angle": 0.7328151017865066,
+        "material": "wood"
+      },
+      {
+        "id": "kingdom-brace-right",
+        "x": 1587.5,
+        "y": 726.25,
+        "w": 329.97466129452704,
+        "h": 12,
+        "angle": -0.7328151017865066,
+        "material": "wood"
+      },
+      {
+        "id": "kingdom-crown",
+        "x": 1450,
+        "y": 510,
+        "w": 100,
+        "h": 20,
+        "material": "wood"
+      },
+      {
+        "id": "kingdom-bank-left",
+        "x": 900,
+        "y": 1023,
+        "w": 90,
+        "h": 334,
+        "material": "stone"
+      },
+      {
+        "id": "kingdom-bank-left-foot",
+        "x": 900,
+        "y": 1220,
+        "w": 90,
+        "h": 60,
+        "material": "glass"
+      },
+      {
+        "id": "kingdom-bank-right",
+        "x": 2000,
+        "y": 1023,
+        "w": 90,
+        "h": 334,
+        "material": "stone"
+      },
+      {
+        "id": "kingdom-bank-right-foot",
+        "x": 2000,
+        "y": 1220,
+        "w": 90,
+        "h": 60,
+        "material": "glass"
+      },
+      {
+        "id": "lower-court",
+        "x": 1312.5,
+        "y": 1050,
+        "w": 220,
+        "h": 22,
+        "material": "wood"
+      }
+    ],
+    "monsters": [
+      {
+        "id": "kingdom-traveller-0",
+        "x": 1037.5,
+        "y": 826,
+        "radius": 18,
+        "kind": "bat"
+      },
+      {
+        "id": "kingdom-traveller-1",
+        "x": 1312.5,
+        "y": 826,
+        "radius": 18,
+        "kind": "blob"
+      },
+      {
+        "id": "kingdom-traveller-2",
+        "x": 1862.5,
+        "y": 826,
+        "radius": 18,
+        "kind": "bat"
+      },
+      {
+        "id": "courtier-0",
+        "x": 1260,
+        "y": 1021,
+        "radius": 18,
+        "kind": "blob"
+      },
+      {
+        "id": "courtier-1",
+        "x": 1365,
+        "y": 1021,
+        "radius": 18,
+        "kind": "blob"
+      }
+    ],
+    "hazards": [],
+    "terrain": [],
+    "props": [
+      {
+        "id": "crown-stone",
+        "x": 1450,
+        "y": 460,
+        "kind": "boulder",
+        "radius": 40,
+        "material": "stone"
+      }
+    ],
+    "joints": [
+      {
+        "id": "kingdom-pin-b0-kingdom-deck-0",
+        "kind": "hinge",
+        "bodyA": "kingdom-bank-left",
+        "pointA": {
+          "x": 0,
+          "y": -173
+        },
+        "bodyB": "kingdom-deck-0",
+        "pointB": {
+          "x": -137.5,
+          "y": 0
+        },
+        "length": 0,
+        "stiffness": 0.75,
+        "damping": 0.15,
+        "breakForce": 0.08
+      },
+      {
+        "id": "kingdom-pin-b0-kingdom-arch-0",
+        "kind": "hinge",
+        "bodyA": "kingdom-bank-left",
+        "pointA": {
+          "x": 0,
+          "y": -173
+        },
+        "bodyB": "kingdom-arch-0",
+        "pointB": {
+          "x": -184.98733064726352,
+          "y": 0
+        },
+        "length": 0,
+        "stiffness": 0.75,
+        "damping": 0.15,
+        "breakForce": 0.08
+      },
+      {
+        "id": "kingdom-pin-b1-kingdom-deck-1",
+        "kind": "hinge",
+        "bodyA": "kingdom-deck-0",
+        "pointA": {
+          "x": 137.5,
+          "y": 0
+        },
+        "bodyB": "kingdom-deck-1",
+        "pointB": {
+          "x": -137.5,
+          "y": 0
+        },
+        "length": 0,
+        "stiffness": 0.75,
+        "damping": 0.15,
+        "breakForce": 0.08
+      },
+      {
+        "id": "kingdom-pin-b1-kingdom-hanger-1",
+        "kind": "hinge",
+        "bodyA": "kingdom-deck-0",
+        "pointA": {
+          "x": 137.5,
+          "y": 0
+        },
+        "bodyB": "kingdom-hanger-1",
+        "pointB": {
+          "x": -123.75,
+          "y": 0
+        },
+        "length": 0,
+        "stiffness": 0.75,
+        "damping": 0.15,
+        "breakForce": 0.08
+      },
+      {
+        "id": "kingdom-pin-b2-kingdom-deck-2",
+        "kind": "hinge",
+        "bodyA": "kingdom-deck-1",
+        "pointA": {
+          "x": 137.5,
+          "y": 0
+        },
+        "bodyB": "kingdom-deck-2",
+        "pointB": {
+          "x": -137.5,
+          "y": 0
+        },
+        "length": 0,
+        "stiffness": 0.75,
+        "damping": 0.15,
+        "breakForce": 0.08
+      },
+      {
+        "id": "kingdom-pin-b2-kingdom-hanger-2",
+        "kind": "hinge",
+        "bodyA": "kingdom-deck-1",
+        "pointA": {
+          "x": 137.5,
+          "y": 0
+        },
+        "bodyB": "kingdom-hanger-2",
+        "pointB": {
+          "x": -165,
+          "y": 0
+        },
+        "length": 0,
+        "stiffness": 0.75,
+        "damping": 0.15,
+        "breakForce": 0.08
+      },
+      {
+        "id": "kingdom-pin-b2-kingdom-brace-left",
+        "kind": "hinge",
+        "bodyA": "kingdom-deck-1",
+        "pointA": {
+          "x": 137.5,
+          "y": 0
+        },
+        "bodyB": "kingdom-brace-left",
+        "pointB": {
+          "x": 184.98733064726352,
+          "y": 0
+        },
+        "length": 0,
+        "stiffness": 0.75,
+        "damping": 0.15,
+        "breakForce": 0.08
+      },
+      {
+        "id": "kingdom-pin-b2-kingdom-brace-right",
+        "kind": "hinge",
+        "bodyA": "kingdom-deck-1",
+        "pointA": {
+          "x": 137.5,
+          "y": 0
+        },
+        "bodyB": "kingdom-brace-right",
+        "pointB": {
+          "x": -184.98733064726352,
+          "y": 0
+        },
+        "length": 0,
+        "stiffness": 0.75,
+        "damping": 0.15,
+        "breakForce": 0.08
+      },
+      {
+        "id": "kingdom-pin-b3-kingdom-deck-3",
+        "kind": "hinge",
+        "bodyA": "kingdom-deck-2",
+        "pointA": {
+          "x": 137.5,
+          "y": 0
+        },
+        "bodyB": "kingdom-deck-3",
+        "pointB": {
+          "x": -137.5,
+          "y": 0
+        },
+        "length": 0,
+        "stiffness": 0.75,
+        "damping": 0.15,
+        "breakForce": 0.08
+      },
+      {
+        "id": "kingdom-pin-b3-kingdom-hanger-3",
+        "kind": "hinge",
+        "bodyA": "kingdom-deck-2",
+        "pointA": {
+          "x": 137.5,
+          "y": 0
+        },
+        "bodyB": "kingdom-hanger-3",
+        "pointB": {
+          "x": -123.75,
+          "y": 0
+        },
+        "length": 0,
+        "stiffness": 0.75,
+        "damping": 0.15,
+        "breakForce": 0.08
+      },
+      {
+        "id": "kingdom-pin-b4-kingdom-deck-3",
+        "kind": "hinge",
+        "bodyA": "kingdom-bank-right",
+        "pointA": {
+          "x": 0,
+          "y": -173
+        },
+        "bodyB": "kingdom-deck-3",
+        "pointB": {
+          "x": 137.5,
+          "y": 0
+        },
+        "length": 0,
+        "stiffness": 0.75,
+        "damping": 0.15,
+        "breakForce": 0.08
+      },
+      {
+        "id": "kingdom-pin-b4-kingdom-arch-3",
+        "kind": "hinge",
+        "bodyA": "kingdom-bank-right",
+        "pointA": {
+          "x": 0,
+          "y": -173
+        },
+        "bodyB": "kingdom-arch-3",
+        "pointB": {
+          "x": 184.98733064726352,
+          "y": 0
+        },
+        "length": 0,
+        "stiffness": 0.75,
+        "damping": 0.15,
+        "breakForce": 0.08
+      },
+      {
+        "id": "kingdom-pin-t1-kingdom-arch-1",
+        "kind": "hinge",
+        "bodyA": "kingdom-arch-0",
+        "pointA": {
+          "x": 184.98733064726352,
+          "y": 0
+        },
+        "bodyB": "kingdom-arch-1",
+        "pointB": {
+          "x": -143.55421449752006,
+          "y": 0
+        },
+        "length": 0,
+        "stiffness": 0.75,
+        "damping": 0.15,
+        "breakForce": 0.08
+      },
+      {
+        "id": "kingdom-pin-t1-kingdom-hanger-1",
+        "kind": "hinge",
+        "bodyA": "kingdom-arch-0",
+        "pointA": {
+          "x": 184.98733064726352,
+          "y": 0
+        },
+        "bodyB": "kingdom-hanger-1",
+        "pointB": {
+          "x": 123.75,
+          "y": 0
+        },
+        "length": 0,
+        "stiffness": 0.75,
+        "damping": 0.15,
+        "breakForce": 0.08
+      },
+      {
+        "id": "kingdom-pin-t1-kingdom-brace-left",
+        "kind": "hinge",
+        "bodyA": "kingdom-arch-0",
+        "pointA": {
+          "x": 184.98733064726352,
+          "y": 0
+        },
+        "bodyB": "kingdom-brace-left",
+        "pointB": {
+          "x": -184.98733064726352,
+          "y": 0
+        },
+        "length": 0,
+        "stiffness": 0.75,
+        "damping": 0.15,
+        "breakForce": 0.08
+      },
+      {
+        "id": "kingdom-pin-t2-kingdom-arch-2",
+        "kind": "hinge",
+        "bodyA": "kingdom-arch-1",
+        "pointA": {
+          "x": 143.55421449752006,
+          "y": 0
+        },
+        "bodyB": "kingdom-arch-2",
+        "pointB": {
+          "x": -143.55421449752006,
+          "y": 0
+        },
+        "length": 0,
+        "stiffness": 0.75,
+        "damping": 0.15,
+        "breakForce": 0.08
+      },
+      {
+        "id": "kingdom-pin-t2-kingdom-hanger-2",
+        "kind": "hinge",
+        "bodyA": "kingdom-arch-1",
+        "pointA": {
+          "x": 143.55421449752006,
+          "y": 0
+        },
+        "bodyB": "kingdom-hanger-2",
+        "pointB": {
+          "x": 165,
+          "y": 0
+        },
+        "length": 0,
+        "stiffness": 0.75,
+        "damping": 0.15,
+        "breakForce": 0.08
+      },
+      {
+        "id": "kingdom-pin-t3-kingdom-arch-3",
+        "kind": "hinge",
+        "bodyA": "kingdom-arch-2",
+        "pointA": {
+          "x": 143.55421449752006,
+          "y": 0
+        },
+        "bodyB": "kingdom-arch-3",
+        "pointB": {
+          "x": -184.98733064726352,
+          "y": 0
+        },
+        "length": 0,
+        "stiffness": 0.75,
+        "damping": 0.15,
+        "breakForce": 0.08
+      },
+      {
+        "id": "kingdom-pin-t3-kingdom-hanger-3",
+        "kind": "hinge",
+        "bodyA": "kingdom-arch-2",
+        "pointA": {
+          "x": 143.55421449752006,
+          "y": 0
+        },
+        "bodyB": "kingdom-hanger-3",
+        "pointB": {
+          "x": 123.75,
+          "y": 0
+        },
+        "length": 0,
+        "stiffness": 0.75,
+        "damping": 0.15,
+        "breakForce": 0.08
+      },
+      {
+        "id": "kingdom-pin-t3-kingdom-brace-right",
+        "kind": "hinge",
+        "bodyA": "kingdom-arch-2",
+        "pointA": {
+          "x": 143.55421449752006,
+          "y": 0
+        },
+        "bodyB": "kingdom-brace-right",
+        "pointB": {
+          "x": 184.98733064726352,
+          "y": 0
+        },
+        "length": 0,
+        "stiffness": 0.75,
+        "damping": 0.15,
+        "breakForce": 0.08
+      },
+      {
+        "id": "kingdom-arch-1-crown-bolt",
+        "kind": "hinge",
+        "bodyA": "kingdom-arch-1",
+        "pointA": {
+          "x": 110.03029451477977,
+          "y": -10.057175994822092
+        },
+        "bodyB": "kingdom-crown",
+        "pointB": {
+          "x": -35,
+          "y": 10
+        },
+        "length": 0,
+        "stiffness": 0.75,
+        "damping": 0.15,
+        "breakForce": 0.08
+      },
+      {
+        "id": "kingdom-arch-2-crown-bolt",
+        "kind": "hinge",
+        "bodyA": "kingdom-arch-2",
+        "pointA": {
+          "x": -110.03029451477977,
+          "y": -10.057175994822092
+        },
+        "bodyB": "kingdom-crown",
+        "pointB": {
+          "x": 35,
+          "y": 10
+        },
+        "length": 0,
+        "stiffness": 0.75,
+        "damping": 0.15,
+        "breakForce": 0.08
+      },
+      {
+        "id": "crown-stone-seat",
+        "kind": "hinge",
+        "bodyA": "kingdom-crown",
+        "pointA": {
+          "x": 0,
+          "y": -50
+        },
+        "bodyB": "crown-stone",
+        "pointB": {
+          "x": 0,
+          "y": 0
+        },
+        "length": 0,
+        "stiffness": 0.75,
+        "damping": 0.15,
+        "breakForce": 0.08
+      },
+      {
+        "id": "court-chain--1",
+        "kind": "rope",
+        "bodyA": "kingdom-deck-1",
+        "pointA": {
+          "x": -85,
+          "y": 0
+        },
+        "bodyB": "lower-court",
+        "pointB": {
+          "x": -85,
+          "y": 0
+        },
+        "length": 200,
+        "stiffness": 0.75,
+        "damping": 0.15
+      },
+      {
+        "id": "court-chain-1",
+        "kind": "rope",
+        "bodyA": "kingdom-deck-1",
+        "pointA": {
+          "x": 85,
+          "y": 0
+        },
+        "bodyB": "lower-court",
+        "pointB": {
+          "x": 85,
+          "y": 0
+        },
+        "length": 200,
+        "stiffness": 0.75,
+        "damping": 0.15
+      }
+    ],
+    "mechanisms": [],
+    "zones": [],
+    "thresholds": [
+      25000,
+      29500,
+      34000
+    ],
+    "par": 3,
+    "camera": {
+      "start": "overview"
+    },
+    "metadata": {
+      "category": "spectacle",
+      "idea": "A triangulated bridge carries the crown stone and a hanging lower court. The glass deck is in both load paths.",
+      "mechanics": [
+        "triangulated bowstring",
+        "shared load paths",
+        "crown ballast",
+        "suspended court"
+      ],
+      "author": "Plush Siege production pass 5",
+      "design": {
+        "archetype": "load-bearing bastions carrying a bowstring kingdom",
+        "role": "spectacle",
+        "weakPoints": [
+          "kingdom-deck-1",
+          "kingdom-hanger-2",
+          "kingdom-bank-left-foot",
+          "kingdom-bank-right-foot"
+        ],
+        "sections": [
+          {
+            "id": "west-bastion",
+            "members": [
+              "kingdom-bank-left",
+              "kingdom-bank-left-foot"
+            ]
+          },
+          {
+            "id": "east-bastion",
+            "members": [
+              "kingdom-bank-right",
+              "kingdom-bank-right-foot"
+            ]
+          },
+          {
+            "id": "bowstring",
+            "members": [
+              "kingdom-deck-0",
+              "kingdom-deck-1",
+              "kingdom-deck-2",
+              "kingdom-deck-3",
+              "kingdom-arch-0",
+              "kingdom-arch-1",
+              "kingdom-arch-2",
+              "kingdom-arch-3",
+              "kingdom-hanger-1",
+              "kingdom-hanger-2",
+              "kingdom-hanger-3",
+              "kingdom-brace-left",
+              "kingdom-brace-right",
+              "kingdom-traveller-0",
+              "kingdom-traveller-1",
+              "kingdom-traveller-2"
+            ]
+          },
+          {
+            "id": "crown",
+            "members": [
+              "kingdom-crown",
+              "crown-stone"
+            ]
+          },
+          {
+            "id": "lower-court",
+            "members": [
+              "lower-court",
+              "courtier-0",
+              "courtier-1"
+            ]
+          }
+        ],
+        "intendedRoute": [
+          {
+            "from": "kingdom-bank-left-foot",
+            "to": "kingdom-bank-left",
+            "via": "support"
+          },
+          {
+            "from": "kingdom-bank-left",
+            "to": "kingdom-arch-0",
+            "via": "support"
+          },
+          {
+            "from": "kingdom-deck-1",
+            "to": "lower-court",
+            "via": "release"
+          },
+          {
+            "from": "kingdom-crown",
+            "to": "crown-stone",
+            "via": "support"
+          }
+        ],
+        "worldUse": "classic"
+      }
+    }
   }
 ]

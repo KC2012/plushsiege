@@ -19,4 +19,4 @@ for(const level of campaign){
  costs.sort((a,b)=>a-b);reports.push({id:level.id,steps:costs.length,peakEntities:peak,peakFragments:fragments,p95StepMs:costs[Math.floor(costs.length*.95)]||0});sim.dispose();
 }
 const summary={levels:reports.length,peakEntities:Math.max(...reports.map(r=>r.peakEntities)),peakFragments:Math.max(...reports.map(r=>r.peakFragments)),maxP95StepMs:Math.max(...reports.map(r=>r.p95StepMs))};
-fs.mkdirSync('artifacts',{recursive:true});fs.writeFileSync('artifacts/performance-pass-4.json',JSON.stringify({summary,levels:reports,note:'Node fixed-step CPU timings on this cloud host, not iPad frame-rate measurements.'},null,2));console.log(summary);
+fs.mkdirSync('artifacts',{recursive:true});fs.writeFileSync('artifacts/performance-pass-5.json',JSON.stringify({summary,levels:reports,note:'Node fixed-step CPU timings on this cloud host, not iPad frame-rate measurements.'},null,2));console.log(summary);

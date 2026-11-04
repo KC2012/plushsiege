@@ -2,9 +2,9 @@
 
 Little plushes. Big trouble.
 
-A self-contained browser slingshot game about four stuffed animals and some very wobbly monster castles. The expanded campaign contains **70 verified levels across five distinct worlds**, with destructible wood, glass, stone, ice and metal, real mechanisms, local progress, and an advanced level workshop. It uses original procedural artwork and synthesized audio; ordinary play needs no account, API, CDN, or game server.
+A self-contained browser slingshot game about four stuffed animals and some very wobbly monster castles. The campaign contains **85 verified levels across five distinct worlds**, with destructible wood, glass, stone, ice and metal, real mechanisms, local progress, and an advanced level workshop. It uses original procedural artwork and synthesized audio; ordinary play needs no account, API, CDN, or game server.
 
-> Current release: **0.4.0 — The Great Expansion**. See [Pass 4 report](docs/pass-4-report.md) for the changes and verification.
+> Current release: **0.5.0 — The Great Siege**. See the [Pass 5 report](docs/pass-5-report.md), [research](LEVEL_DESIGN_RESEARCH.md), and [70-level design review](LEVEL_DESIGN_REVIEW.md).
 
 ## Run locally
 
@@ -17,6 +17,8 @@ npm run dev
 ```
 
 **Windows:** extract the ZIP, open a terminal in the extracted folder (the one containing `package.json`), run `npm ci` once, then `npm run dev`.
+
+For the prebuilt game, use the [browser ZIP](downloads/README.md). It includes a local Node server and Windows launcher, so it needs no npm install.
 
 Vite prints its local address. On another computer, replace `/workspace/plushsiege` with the checkout's actual path. Each cloud task already has an isolated workspace; use its existing checkout rather than creating a Git worktree. No environment variables or credentials are required for gameplay.
 
@@ -43,13 +45,13 @@ Publish `dist/` with a static HTTPS host when you choose to deploy. The current 
 | Bruno the bear | Heavy | Downward stomp |
 | Clover the rabbit | Agile | Splits into three projectiles |
 
-The Worlds portals open five campaign destinations. Each map shows eight numbered levels per page, with independent world progress and stars. Use **Overview**, **Sling**, and **−/+** to inspect large levels. Drag empty scenery to pan; pinch or use the mouse wheel to zoom. The camera follows launched stuffies until you inspect manually.
+The Worlds portals open five campaign destinations. Each map shows eight numbered levels per page, with independent world progress and stars. Use **Overview**, **Sling**, and **−/+** to inspect large levels. Drag empty scenery to pan; pinch or use the mouse wheel to zoom. The camera follows the stuffie and then significant collapse activity until you inspect manually.
 
 Monsters award 5,000 points; broken wood 500, glass 600, stone 800; TNT 1,000; each unused stuffie 3,000. Completion earns at least one star; each level defines the higher score thresholds. Best scores and stars are stored on this browser/device, alongside settings. Browser storage restrictions can prevent persistence; there is no cloud save.
 
 ## Physics lab
 
-While the dev or production server is running, open `/physics-lab.html` on that same server. Select one of eleven deterministic rigs, then Run, Pause, Step, or Reset. The body overlay, live position/rotation, sleep state, health, damage source and outcome show the actual game simulation. The lab includes support loss, falling stone/wood, monster falls, push-off, chain reactions, explosions, harmless contact, stable rest, and meaningful crushing. It is also included in the offline build.
+While the dev or production server is running, open `/physics-lab.html` on that same server. Select one of eighteen deterministic rigs, then Run, Pause, Step, or Reset. The body overlay, live position/rotation, sleep state, health, damage source and outcome show the actual game simulation. The lab includes support loss, falling stone/wood, monster falls, push-off, chain reactions, explosions, harmless contact, stable rest, and meaningful crushing. It is also included in the offline build.
 
 [GAMEPLAY_RULES.md](GAMEPLAY_RULES.md) separates reference behavior from our implementation choices and documents the reference-access limitation. Existing scores/settings remain compatible; no save migration is required.
 
@@ -83,7 +85,7 @@ npm run test:monsters # Eleven rendered monster rigs and body/sprite synchroniza
 npm run test:camera  # Mouse/touch pan, zoom, focus, tracking and scaled aiming
 npm run test:audio   # Real Web Audio world cues, gains, mute and cleanup
 npm run test:showcase # Rendered large castles and a real-engine chain-reaction clear
-npm run test:worlds  # Production five-world navigation/progress at four viewport sizes
+npm run test:worlds  # Five-world navigation/progress at five viewport sizes
 npm run test:presentation # Four responsive layouts (defaults to production preview)
 ```
 
@@ -103,10 +105,14 @@ npm run test:offline
 
 ## Producing levels
 
-`npm run produce:levels` rebuilds 46 deliberately composed candidates from reusable structural templates. `npm run audit:expansion` audits and promotes only stable, nontrivial, replayable candidates. Pass level IDs after `--` for a targeted repair. Candidate JSON is authoring material; only `src/content/expansion/accepted.json` ships. Automated clears establish solvability, not enjoyment or optimal difficulty. See [LEVEL_DESIGN.md](LEVEL_DESIGN.md) for acceptance criteria and remaining human playtesting.
+`npm run produce:levels` rebuilds 61 expansion candidates from curated designs and reusable physical assemblies. `npm run audit:siege` audits the complete 85-stage campaign without changing its shipped files. Add `-- --promote` to publish an entirely passing batch into the local campaign data, or pass level IDs for a targeted audit. Failed batches leave the existing campaign intact. The gate checks schema, 20-second idle stability, harmless misses, body budgets and independently replayed real-engine clears. Intro levels also require efficient three-star routes.
+
+Only `campaign.json` and `expansion/accepted.json` ship. Candidate JSON is authoring material. `npm run test:siege` checks the five intended mechanisms and compares their winning routes with disabled ice, heat, motor or gravity controls. `npm run test:siege-browser` exercises the actual game scene and collapse camera at desktop and iPad-sized layouts. Automated clears and diagnostic metrics establish physical behavior and solvability, not enjoyment or optimal difficulty.
+
+`npm run measure:physics` replays all 85 levels and records step times and entity peaks. With the dev server running, `npm run measure:render` measures the real scene animation loop for eight seconds per showcase at two viewport sizes. Cloud-host timings do not establish physical iPad performance. After `npm run build`, developers with Python 3 can run `python3 scripts/package-browser.py` to generate the browser ZIP and SHA-256 manifest from the current committed source.
 
 ## Offline play
 
 Production builds generate a service worker that caches the built shell, scripts, campaign and artwork code. Use HTTPS (or localhost), load the production app online once, allow the worker to activate, then reload before testing offline. Supported browsers can install it as a PWA; on iPad use Safari's **Add to Home Screen**. Development mode deliberately does not register the worker. Installation UX and persistence on a physical iPad still need checking.
 
-See [Pass 4 report](docs/pass-4-report.md), [gameplay rules](GAMEPLAY_RULES.md), [architecture](docs/architecture.md) for extension points and [development report](docs/development-report.md) for verification evidence, limitations, and the next milestone. Dependency license notices remain with their packages: Phaser is MIT-licensed and Matter.js is MIT-licensed.
+See the [Pass 5 report](docs/pass-5-report.md), [gameplay rules](GAMEPLAY_RULES.md), [architecture](docs/architecture.md) for extension points and [development report](docs/development-report.md) for earlier verification evidence. Dependency license notices remain with their packages: Phaser is MIT-licensed and Matter.js is MIT-licensed.

@@ -50,6 +50,9 @@ export interface GameEvent {
   projectileKind?: StuffieKind;
   source?: DamageRecord['source'];
   sourceBodyId?: number;
+  entityId?:string;
+  sourceId?:string;
+  time?:number;
   amount?: number;
   remainingHealth?: number;
   normalSpeed?: number;
@@ -102,7 +105,7 @@ export class Simulation {
     if(level.environment?.ground!==false)Composite.add(this.engine.world,
       Bodies.rectangle(level.bounds.width/2,level.bounds.ground+60,level.bounds.width+500,120,{isStatic:true,friction:level.environment?.groundFriction??(level.world==='frozen'?.025:.9),label:'ground'})
     );
-    Composite.add(this.engine.world,Bodies.rectangle(-110,level.bounds.height/2,100,level.bounds.height+1500,{isStatic:true}));
+    if(level.environment?.ground!==false)Composite.add(this.engine.world,Bodies.rectangle(-110,level.bounds.height/2,100,level.bounds.height+1500,{isStatic:true}));
     for (const d of level.blocks) {
       const m = MATERIALS[d.material];
       const b = Bodies.rectangle(d.x, d.y, d.w, d.h, {
@@ -195,6 +198,7 @@ export class Simulation {
   }
   private queueDamage(entity: Entity, damage: DamageRecord) {
     if ((damage.amount <= 0.12 && damage.source!=='heat'&&damage.source!=='lava') || entity.body.isStatic || entity.type === 'projectile') return;
+    if(damage.sourceId===undefined&&damage.sourceBodyId!==undefined){const source=this.entities.get(damage.sourceBodyId);damage.sourceId=source?.parentId||source?.id;}
     const list = this.pending.get(entity.body.id) || [];
     list.push(damage);
     this.pending.set(entity.body.id, list);
@@ -331,6 +335,10 @@ export class Simulation {
       if (c.bodyA) eligible.add(c.bodyA.id);
       if (c.bodyB) eligible.add(c.bodyB.id);
     }
+    // Resting contact stacks can show solver velocity without going anywhere,
+    // especially in local gravity. Require a real path to static terrain or a
+    // live constraint before considering bounded-pose convergence.
+    for(const body of Composite.allBodies(this.engine.world))if(body.isStatic)eligible.add(body.id);
     const carry = (id: number) => {
       for (const body of this.compression.supportGraph.get(id) || []) {
         if (eligible.has(body.id)) continue;
@@ -340,7 +348,9 @@ export class Simulation {
     for (const id of [...eligible]) carry(id);
     for (const e of this.entities.values()) {
       const body = e.body, previous = this.restPoses.get(body.id);
-      const radius = Math.hypot(body.bounds.max.x - body.bounds.min.x, body.bounds.max.y - body.bounds.min.y) / 2;
+      // A circle spinning in place has the same contact silhouette. Translation
+      // still has to converge; rotating beams keep the full angular criterion.
+      const radius = body.circleRadius ? 0 : Math.hypot(body.bounds.max.x - body.bounds.min.x, body.bounds.max.y - body.bounds.min.y) / 2;
       if (!previous || Math.hypot(body.position.x - previous.x, body.position.y - previous.y) + Math.abs(body.angle - previous.angle) * radius > 1.5) {
         this.restPoses.set(body.id, { ...body.position, angle: body.angle, since: this.time });
       } else if (eligible.has(body.id) && this.time - previous.since >= 1000 && this.time - (this.damageTimes.get(body.id) ?? -Infinity) >= 1000) {
@@ -411,7 +421,12 @@ export class Simulation {
     for (const [support, dependents] of this.supportDependents)
       for (const body of dependents)
         if (!graph.get(support)?.has(body) && body.isSleeping) {
-          const retained = this.compression.supportGraph.get(support)?.has(body);
+          // Matter can retire a sleeping contact although the actual hulls still
+          // touch a constrained surface. Preserve that known support instead of
+          // waking the same rider every sleep cycle. This does not retain load
+          // readings for crush damage; moved/removed supports still wake normally.
+          const retained = this.compression.supportGraph.get(support)?.has(body) ||
+            (!!byId.get(support) && convexBodiesNear(byId.get(support)!, body));
           if (retained && byId.has(support)) connect(byId.get(support)!, body);
           else this.wakeDependents(support);
         }
@@ -584,6 +599,9 @@ export class Simulation {
             remainingHealth: Math.max(0, e.health),
             source: record.source,
             sourceBodyId: record.sourceBodyId,
+            entityId: e.parentId || e.id,
+            sourceId: record.sourceId || (record.sourceBodyId === undefined ? undefined : this.entities.get(record.sourceBodyId)?.parentId || this.entities.get(record.sourceBodyId)?.id),
+            time: this.time,
             normalSpeed: record.normalSpeed,
             energy: record.energy,
             material: record.material,
@@ -642,6 +660,7 @@ export class Simulation {
     const moving =
       this.supportWakePending ||
       this.compression.pending ||
+      this.worldPhysics.pendingDestruction ||
       [...this.entities.values()].some(
         (e) =>
           e.fractureAt !== undefined ||
@@ -669,7 +688,11 @@ export class Simulation {
     if (this.phase !== 'flying') return;
     if (!this.remainingMonsters) {
       this.targetsClearedAt??=this.time;
-      if (this.quiet > 36 || (this.worldPhysics.spaceLike&&this.time-this.targetsClearedAt>PHYSICS.spaceVictoryGraceMs)) {
+      // The objective is complete. Give a collapse time to play out, then show
+      // the result even if a harmless ball keeps rolling on ice. Live-target
+      // turns above still have no global motion timeout.
+      const grace=this.worldPhysics.spaceLike?PHYSICS.spaceVictoryGraceMs:PHYSICS.victoryGraceMs;
+      if (this.quiet > 36 || this.time-this.targetsClearedAt>grace) {
         this.score += this.unused * 3000;
         this.phase = 'won';
         this.events.push({ type: 'won', x: 0, y: 0, points: this.score });
@@ -685,6 +708,7 @@ export class Simulation {
     }
   }
   private supportsBody(e: Entity) {
+    if(this.supportDependents.get(e.body.id)?.size||this.compression.supportGraph.get(e.body.id)?.size)return true;
     const a = e.body.bounds;
     return [...this.entities.values()].some(
       (other) =>
@@ -787,6 +811,7 @@ export class Simulation {
             amount: (1 - d / 210) * 95,
             source: 'explosion',
             sourceBodyId: e.body.id,
+            sourceId: e.parentId || e.id,
           });
       }
     } else if (e.type === 'monster') {

@@ -321,13 +321,25 @@ export class SiegeScene extends Phaser.Scene {
     this.lastState = '';
     this.onState();
   }
+  trackAction() {
+    const sim=this.sim;if(!sim||!this.cameraRig.tracking)return;
+    const projectile=sim.current;
+    if(projectile?.airborne&&projectile.body.speed>1.2){this.cameraRig.follow(projectile.body.position);return;}
+    const driven=sim.worldPhysics.drivenBodyIds();
+    const actors=[...sim.entities.values()].filter(e=>
+      ['block','fragment','prop'].includes(e.type)&&!e.body.isStatic&&!driven.has(e.body.id)&&e.body.mass>=2&&e.body.speed>1.2&&
+      (e.type==='fragment'||!e.def||Math.hypot(e.body.position.x-e.def.x,e.body.position.y-e.def.y)>12)
+    ).map(e=>({body:e.body,score:Math.sqrt(e.body.mass)*e.body.speed}));
+    if(!actors.length){if(projectile&&projectile.body.speed>1.2)this.cameraRig.follow(projectile.body.position);return;}
+    const threshold=Math.max(...actors.map(a=>a.score))*.3,active=actors.filter(a=>a.score>=threshold);
+    this.cameraRig.followActivity({min:{x:Math.min(...active.map(a=>a.body.bounds.min.x)),y:Math.min(...active.map(a=>a.body.bounds.min.y))},max:{x:Math.max(...active.map(a=>a.body.bounds.max.x)),y:Math.max(...active.map(a=>a.body.bounds.max.y))}});
+  }
   update(_time: number, delta: number) {
     if (!this.background) return;
     this.elapsed += delta;
     this.backgroundCamera.ignore(this.children.list.filter((child) => child !== this.background));
     if (!this.paused) {
-      if (this.mode === 'play' && this.sim?.phase === 'flying' && this.sim.current)
-        this.cameraRig.follow(this.sim.current.body.position);
+      if (this.mode === 'play' && this.sim?.phase === 'flying') this.trackAction();
       this.cameraRig.update(delta);
     }
     this.applyCamera();
@@ -421,6 +433,7 @@ export class SiegeScene extends Phaser.Scene {
         b = Matter.Constraint.pointBWorld(constraint),
         def = sim.level.joints?.find((j) => j.id === id);
       if (def?.kind === 'hinge') {
+        if(constraint.length>1){g.lineStyle(6,0x242139);g.lineBetween(a.x,a.y,b.x,b.y);g.lineStyle(2,0xffd44e);g.lineBetween(a.x,a.y,b.x,b.y);g.fillStyle(0xffd44e);g.fillCircle(b.x,b.y,5);}
         for (const [body, anchor] of [[constraint.bodyA, a], [constraint.bodyB, b]] as const) {
           const entity = body && sim.entities.get(body.id), piece = entity?.def as BlockDef | undefined;
           if (!body || !piece || !('w' in piece)) continue;

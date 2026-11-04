@@ -59,3 +59,10 @@ test('manual inspection interrupts automatic following and overview restores who
   close(r.x, 2400);
   close(r.y, 1050);
 });
+test('collapse framing fits distant horizontal and vertical action and respects manual inspection',()=>{
+ const r=new CameraRig({width:4800,height:2100}),area={min:{x:1800,y:400},max:{x:3200,y:1800}};
+ r.tracking=true;r.followActivity(area);for(let i=0;i<80;i++)r.update(16.7);
+ const a=r.worldToScreen(area.min),b=r.worldToScreen(area.max);assert.ok(a.x>=0&&a.y>=0&&b.x<=1440&&b.y<=810);
+ r.panBy(40,0);const target={x:r.targetX,y:r.targetY,zoom:r.targetZoom};r.followActivity({min:{x:0,y:0},max:{x:800,y:800}});
+ assert.deepEqual({x:r.targetX,y:r.targetY,zoom:r.targetZoom},target);
+});

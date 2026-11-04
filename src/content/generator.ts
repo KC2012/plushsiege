@@ -1,5 +1,8 @@
 import type { Level, MaterialKind, BlockDef } from '../game/types';
 import { append, room, corbelArch, suspension, counterweight, trestleBridge, arcade } from './templates';
+import {reviseLevel} from './revisions';
+import {siegeLessons,siegeShowcases} from './siege-design';
+import {annotateDesign} from './design-notes';
 
 type Category='puzzle'|'siege'|'spectacle';
 function level(world:string,n:number,name:string,idea:string,category:Category='puzzle',width=1700,ground=675):Level {
@@ -91,7 +94,7 @@ export function produceCandidates():Level[]{
  l=level('orbital',9,'The Slingshot Effect','Curve around a little moon to reach the shielded observatory.','siege',3100,1250);planetoid(l,'observatory-moon',1300,870,155,.55);shelf(l,'observatory-shield',1790,1080,30,340,'metal');addRoom(l,'observatory',2110,3,'glass','wood');out.push(finish(l,['radial gravity','protected target','multiple arcs'],['duck','rabbit','bear','duck','sheep']));
  // The connected finale composition is authored in refine(), below.
  out.push(level('orbital',10,'Orbits End','World finale.','spectacle'));
- return out.map(refine);
+ return JSON.parse(JSON.stringify([...out.map(refine).map(reviseLevel),...siegeLessons(),...siegeShowcases()].map(annotateDesign))) as Level[];
 }
 
 /** Finales are joined buildings with shared load paths. Candidate search is only

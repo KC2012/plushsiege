@@ -267,15 +267,15 @@
     "id": "orbital-03",
     "world": "orbital",
     "name": "Two Small Worlds",
-    "subtitle": "Two gravity wells offer two quite different approaches.",
+    "subtitle": "Two real moon surfaces replace the old floor-bound towers. Their wells bend debris around both colonies.",
     "bounds": {
       "width": 3000,
-      "height": 1285,
-      "ground": 1150
+      "height": 1450,
+      "ground": 1300
     },
     "sling": {
       "x": 235,
-      "y": 1005
+      "y": 600
     },
     "projectiles": [
       "duck",
@@ -284,130 +284,33 @@
       "duck",
       "sheep"
     ],
-    "blocks": [
-      {
-        "id": "outpost-a-l0",
-        "x": 1330,
-        "y": 1102,
-        "w": 18,
-        "h": 96,
-        "material": "glass"
-      },
-      {
-        "id": "outpost-a-r0",
-        "x": 1450,
-        "y": 1102,
-        "w": 18,
-        "h": 96,
-        "material": "glass"
-      },
-      {
-        "id": "outpost-a-roof0",
-        "x": 1390,
-        "y": 1045,
-        "w": 160,
-        "h": 18,
-        "material": "wood"
-      },
-      {
-        "id": "outpost-a-l1",
-        "x": 1330,
-        "y": 988,
-        "w": 18,
-        "h": 96,
-        "material": "glass"
-      },
-      {
-        "id": "outpost-a-r1",
-        "x": 1450,
-        "y": 988,
-        "w": 18,
-        "h": 96,
-        "material": "glass"
-      },
-      {
-        "id": "outpost-a-roof1",
-        "x": 1390,
-        "y": 931,
-        "w": 160,
-        "h": 18,
-        "material": "wood"
-      },
-      {
-        "id": "outpost-b-l0",
-        "x": 2340,
-        "y": 1102,
-        "w": 18,
-        "h": 96,
-        "material": "wood"
-      },
-      {
-        "id": "outpost-b-r0",
-        "x": 2460,
-        "y": 1102,
-        "w": 18,
-        "h": 96,
-        "material": "wood"
-      },
-      {
-        "id": "outpost-b-roof0",
-        "x": 2400,
-        "y": 1045,
-        "w": 160,
-        "h": 18,
-        "material": "glass"
-      },
-      {
-        "id": "outpost-b-l1",
-        "x": 2340,
-        "y": 988,
-        "w": 18,
-        "h": 96,
-        "material": "wood"
-      },
-      {
-        "id": "outpost-b-r1",
-        "x": 2460,
-        "y": 988,
-        "w": 18,
-        "h": 96,
-        "material": "wood"
-      },
-      {
-        "id": "outpost-b-roof1",
-        "x": 2400,
-        "y": 931,
-        "w": 160,
-        "h": 18,
-        "material": "glass"
-      }
-    ],
+    "blocks": [],
     "monsters": [
       {
-        "id": "outpost-a-m0",
-        "x": 1390,
-        "y": 1132,
+        "id": "near-resident-0",
+        "x": 1100,
+        "y": 607,
         "radius": 18,
-        "kind": "horn"
+        "kind": "bat"
       },
       {
-        "id": "outpost-a-m1",
-        "x": 1390,
-        "y": 1018,
+        "id": "near-resident-1",
+        "x": 1198.5653061473668,
+        "y": 642.9791453454733,
         "radius": 18,
         "kind": "blob"
       },
       {
-        "id": "outpost-b-m0",
-        "x": 2400,
-        "y": 1132,
+        "id": "far-resident-0",
+        "x": 2200,
+        "y": 532,
         "radius": 18,
-        "kind": "horn"
+        "kind": "bat"
       },
       {
-        "id": "outpost-b-m1",
-        "x": 2400,
-        "y": 1018,
+        "id": "far-resident-1",
+        "x": 2078.887074799314,
+        "y": 576.2096687905162,
         "radius": 18,
         "kind": "blob"
       }
@@ -416,20 +319,20 @@
     "terrain": [],
     "props": [
       {
-        "id": "near-moon",
-        "x": 1000,
-        "y": 820,
+        "id": "near",
+        "x": 1100,
+        "y": 760,
+        "radius": 135,
         "kind": "planetoid",
-        "radius": 125,
         "material": "stone",
         "static": true
       },
       {
-        "id": "far-moon",
-        "x": 1900,
-        "y": 700,
+        "id": "far",
+        "x": 2200,
+        "y": 720,
+        "radius": 170,
         "kind": "planetoid",
-        "radius": 145,
         "material": "stone",
         "static": true
       }
@@ -438,59 +341,79 @@
     "mechanisms": [],
     "zones": [
       {
-        "id": "near-moon-gravity",
+        "id": "near-well",
         "kind": "gravity",
-        "x": 1000,
-        "y": 820,
-        "w": 625,
-        "h": 625,
+        "x": 1100,
+        "y": 760,
+        "w": 756,
+        "h": 756,
         "center": {
-          "x": 1000,
-          "y": 820
+          "x": 1100,
+          "y": 760
         },
-        "radius": 312.5,
-        "strength": 0.4
+        "radius": 378,
+        "strength": 0.9
       },
       {
-        "id": "far-moon-gravity",
+        "id": "far-well",
         "kind": "gravity",
-        "x": 1900,
-        "y": 700,
-        "w": 725,
-        "h": 725,
+        "x": 2200,
+        "y": 720,
+        "w": 951.9999999999999,
+        "h": 951.9999999999999,
         "center": {
-          "x": 1900,
-          "y": 700
+          "x": 2200,
+          "y": 720
         },
-        "radius": 362.5,
-        "strength": 0.5
+        "radius": 475.99999999999994,
+        "strength": 1.1
       }
     ],
     "thresholds": [
       20000,
-      24500,
-      29000
+      20500,
+      21000
     ],
-    "par": 2,
+    "par": 4,
     "camera": {
       "start": "overview"
     },
     "metadata": {
       "category": "siege",
-      "idea": "Two gravity wells offer two quite different approaches.",
+      "idea": "Two real moon surfaces replace the old floor-bound towers. Their wells bend debris around both colonies.",
       "mechanics": [
-        "two planetoids",
-        "curved trajectories",
-        "multi-target"
+        "two radial surfaces",
+        "zero-gravity transit",
+        "curved trajectories"
       ],
-      "author": "Plush Siege production pass 4"
+      "author": "Plush Siege production pass 5",
+      "design": {
+        "archetype": "paired curved moon surfaces",
+        "role": "experiment",
+        "weakPoints": [],
+        "sections": [
+          {
+            "id": "primary-assembly",
+            "members": [
+              "near-resident-0",
+              "near-resident-1",
+              "far-resident-0",
+              "far-resident-1",
+              "near",
+              "far"
+            ]
+          }
+        ],
+        "intendedRoute": [],
+        "worldUse": "essential"
+      }
     },
     "environment": {
       "gravity": {
         "x": 0,
-        "y": 0.22
+        "y": 0
       },
-      "groundFriction": 0.3
+      "ground": false
     }
   },
   {
@@ -658,7 +581,7 @@
     "id": "orbital-05",
     "world": "orbital",
     "name": "Satellite Dish",
-    "subtitle": "The communications deck hangs from a small moon.",
+    "subtitle": "The communications deck is bolted to a real moon through a fragile glass coupler. Release the coupler or breach the deck.",
     "bounds": {
       "width": 2400,
       "height": 1235,
@@ -666,7 +589,7 @@
     },
     "sling": {
       "x": 235,
-      "y": 955
+      "y": 650
     },
     "projectiles": [
       "duck",
@@ -676,51 +599,43 @@
     ],
     "blocks": [
       {
-        "id": "dish-deck0",
-        "x": 1376,
-        "y": 820,
-        "w": 100,
-        "h": 18,
-        "material": "metal"
+        "id": "dish-coupler",
+        "x": 1200,
+        "y": 540,
+        "w": 160,
+        "h": 20,
+        "material": "glass"
       },
       {
-        "id": "dish-deck1",
-        "x": 1480,
-        "y": 820,
-        "w": 100,
-        "h": 18,
-        "material": "metal"
-      },
-      {
-        "id": "dish-deck2",
-        "x": 1584,
-        "y": 820,
-        "w": 100,
-        "h": 18,
-        "material": "metal"
+        "id": "dish-deck",
+        "x": 1200,
+        "y": 850,
+        "w": 420,
+        "h": 22,
+        "material": "wood"
       }
     ],
     "monsters": [
       {
-        "id": "dish-rider0",
-        "x": 1376,
-        "y": 793,
+        "id": "dish-technician-0",
+        "x": 1080,
+        "y": 821,
         "radius": 18,
-        "kind": "horn"
+        "kind": "bat"
       },
       {
-        "id": "dish-rider1",
-        "x": 1480,
-        "y": 793,
+        "id": "dish-technician-1",
+        "x": 1200,
+        "y": 821,
         "radius": 18,
-        "kind": "blob"
+        "kind": "bat"
       },
       {
-        "id": "dish-rider2",
-        "x": 1584,
-        "y": 793,
+        "id": "dish-technician-2",
+        "x": 1320,
+        "y": 821,
         "radius": 18,
-        "kind": "horn"
+        "kind": "bat"
       }
     ],
     "hazards": [],
@@ -728,196 +643,149 @@
     "props": [
       {
         "id": "dish-moon",
-        "x": 1100,
-        "y": 440,
+        "x": 1200,
+        "y": 400,
+        "radius": 110,
         "kind": "planetoid",
-        "radius": 100,
         "material": "stone",
         "static": true
       }
     ],
     "joints": [
       {
-        "id": "dish-cable0--1",
-        "kind": "rope",
+        "id": "dish-moon-bolt--1",
+        "kind": "hinge",
+        "bodyA": "dish-moon",
         "pointA": {
-          "x": 1341,
-          "y": 670
+          "x": -55,
+          "y": 95
         },
-        "bodyB": "dish-deck0",
+        "bodyB": "dish-coupler",
         "pointB": {
-          "x": -35,
-          "y": 0
+          "x": -55,
+          "y": -45
         },
-        "length": 150,
-        "stiffness": 0.85,
-        "damping": 0.12,
-        "breakForce": 0.065
+        "length": 0,
+        "stiffness": 0.75,
+        "damping": 0.15
       },
       {
-        "id": "dish-cable0-1",
+        "id": "dish-stay--1",
         "kind": "rope",
+        "bodyA": "dish-coupler",
         "pointA": {
-          "x": 1411,
-          "y": 670
-        },
-        "bodyB": "dish-deck0",
-        "pointB": {
-          "x": 35,
+          "x": -55,
           "y": 0
         },
-        "length": 150,
-        "stiffness": 0.85,
-        "damping": 0.12,
-        "breakForce": 0.065
+        "bodyB": "dish-deck",
+        "pointB": {
+          "x": -55,
+          "y": 0
+        },
+        "length": 310,
+        "stiffness": 0.75,
+        "damping": 0.15
       },
       {
-        "id": "dish-cable1--1",
-        "kind": "rope",
+        "id": "dish-moon-bolt-1",
+        "kind": "hinge",
+        "bodyA": "dish-moon",
         "pointA": {
-          "x": 1445,
-          "y": 670
+          "x": 55,
+          "y": 95
         },
-        "bodyB": "dish-deck1",
+        "bodyB": "dish-coupler",
         "pointB": {
-          "x": -35,
-          "y": 0
+          "x": 55,
+          "y": -45
         },
-        "length": 150,
-        "stiffness": 0.85,
-        "damping": 0.12,
-        "breakForce": 0.065
+        "length": 0,
+        "stiffness": 0.75,
+        "damping": 0.15
       },
       {
-        "id": "dish-cable1-1",
+        "id": "dish-stay-1",
         "kind": "rope",
+        "bodyA": "dish-coupler",
         "pointA": {
-          "x": 1515,
-          "y": 670
+          "x": 55,
+          "y": 0
         },
-        "bodyB": "dish-deck1",
+        "bodyB": "dish-deck",
         "pointB": {
-          "x": 35,
+          "x": 55,
           "y": 0
         },
-        "length": 150,
-        "stiffness": 0.85,
-        "damping": 0.12,
-        "breakForce": 0.065
-      },
-      {
-        "id": "dish-link1",
-        "kind": "rope",
-        "bodyA": "dish-deck0",
-        "pointA": {
-          "x": 50,
-          "y": 0
-        },
-        "bodyB": "dish-deck1",
-        "pointB": {
-          "x": -50,
-          "y": 0
-        },
-        "length": 4,
-        "stiffness": 0.7,
-        "damping": 0.1,
-        "breakForce": 0.09
-      },
-      {
-        "id": "dish-cable2--1",
-        "kind": "rope",
-        "pointA": {
-          "x": 1549,
-          "y": 670
-        },
-        "bodyB": "dish-deck2",
-        "pointB": {
-          "x": -35,
-          "y": 0
-        },
-        "length": 150,
-        "stiffness": 0.85,
-        "damping": 0.12,
-        "breakForce": 0.065
-      },
-      {
-        "id": "dish-cable2-1",
-        "kind": "rope",
-        "pointA": {
-          "x": 1619,
-          "y": 670
-        },
-        "bodyB": "dish-deck2",
-        "pointB": {
-          "x": 35,
-          "y": 0
-        },
-        "length": 150,
-        "stiffness": 0.85,
-        "damping": 0.12,
-        "breakForce": 0.065
-      },
-      {
-        "id": "dish-link2",
-        "kind": "rope",
-        "bodyA": "dish-deck1",
-        "pointA": {
-          "x": 50,
-          "y": 0
-        },
-        "bodyB": "dish-deck2",
-        "pointB": {
-          "x": -50,
-          "y": 0
-        },
-        "length": 4,
-        "stiffness": 0.7,
-        "damping": 0.1,
-        "breakForce": 0.09
+        "length": 310,
+        "stiffness": 0.75,
+        "damping": 0.15
       }
     ],
     "mechanisms": [],
     "zones": [
       {
-        "id": "dish-moon-gravity",
+        "id": "dish-well",
         "kind": "gravity",
-        "x": 1100,
-        "y": 440,
-        "w": 500,
-        "h": 500,
+        "x": 1200,
+        "y": 400,
+        "w": 620,
+        "h": 620,
         "center": {
-          "x": 1100,
-          "y": 440
+          "x": 1200,
+          "y": 400
         },
-        "radius": 250,
-        "strength": 0.4
+        "radius": 310,
+        "strength": 0.55
       }
     ],
     "thresholds": [
       15000,
-      18000,
-      21000
+      15500,
+      16000
     ],
-    "par": 2,
+    "par": 4,
     "camera": {
       "start": "overview"
     },
     "metadata": {
       "category": "puzzle",
-      "idea": "The communications deck hangs from a small moon.",
+      "idea": "The communications deck is bolted to a real moon through a fragile glass coupler. Release the coupler or breach the deck.",
       "mechanics": [
-        "satellite",
-        "cables",
-        "localized gravity"
+        "moon-mounted coupler",
+        "real suspended deck",
+        "localized gravity",
+        "open space"
       ],
-      "author": "Plush Siege production pass 4"
+      "author": "Plush Siege production pass 5",
+      "design": {
+        "archetype": "moon-mounted suspended communications deck",
+        "role": "experiment",
+        "weakPoints": [
+          "dish-coupler"
+        ],
+        "sections": [
+          {
+            "id": "primary-assembly",
+            "members": [
+              "dish-coupler",
+              "dish-deck",
+              "dish-technician-0",
+              "dish-technician-1",
+              "dish-technician-2",
+              "dish-moon"
+            ]
+          }
+        ],
+        "intendedRoute": [],
+        "worldUse": "essential"
+      }
     },
     "environment": {
       "gravity": {
         "x": 0,
         "y": 0.22
       },
-      "groundFriction": 0.3
+      "ground": false
     }
   },
   {
@@ -925,15 +793,15 @@
     "id": "orbital-06",
     "world": "orbital",
     "name": "Debris Belt",
-    "subtitle": "A loose belt of glass, timber and powder separates two orbital stations.",
+    "subtitle": "A floating powder dock hangs between two moons. Strike the cargo so debris enters the gravity wells.",
     "bounds": {
       "width": 3100,
-      "height": 1335,
-      "ground": 1200
+      "height": 1550,
+      "ground": 1400
     },
     "sling": {
       "x": 235,
-      "y": 1055
+      "y": 620
     },
     "projectiles": [
       "duck",
@@ -944,275 +812,201 @@
     ],
     "blocks": [
       {
-        "id": "station-a-l0",
-        "x": 1040,
-        "y": 1152,
-        "w": 18,
-        "h": 96,
-        "material": "glass"
-      },
-      {
-        "id": "station-a-r0",
-        "x": 1160,
-        "y": 1152,
-        "w": 18,
-        "h": 96,
-        "material": "glass"
-      },
-      {
-        "id": "station-a-roof0",
-        "x": 1100,
-        "y": 1095,
-        "w": 160,
-        "h": 18,
-        "material": "metal"
-      },
-      {
-        "id": "station-a-l1",
-        "x": 1040,
-        "y": 1038,
-        "w": 18,
-        "h": 96,
-        "material": "glass"
-      },
-      {
-        "id": "station-a-r1",
-        "x": 1160,
-        "y": 1038,
-        "w": 18,
-        "h": 96,
-        "material": "glass"
-      },
-      {
-        "id": "station-a-roof1",
-        "x": 1100,
-        "y": 981,
-        "w": 160,
-        "h": 18,
-        "material": "metal"
-      },
-      {
-        "id": "station-a-l2",
-        "x": 1040,
-        "y": 924,
-        "w": 18,
-        "h": 96,
-        "material": "glass"
-      },
-      {
-        "id": "station-a-r2",
-        "x": 1160,
-        "y": 924,
-        "w": 18,
-        "h": 96,
-        "material": "glass"
-      },
-      {
-        "id": "station-a-roof2",
-        "x": 1100,
-        "y": 867,
-        "w": 160,
-        "h": 18,
-        "material": "metal"
-      },
-      {
-        "id": "station-b-l0",
-        "x": 2130,
-        "y": 1152,
-        "w": 18,
-        "h": 96,
-        "material": "wood"
-      },
-      {
-        "id": "station-b-r0",
-        "x": 2250,
-        "y": 1152,
-        "w": 18,
-        "h": 96,
-        "material": "wood"
-      },
-      {
-        "id": "station-b-roof0",
-        "x": 2190,
-        "y": 1095,
-        "w": 160,
-        "h": 18,
-        "material": "glass"
-      },
-      {
-        "id": "station-b-l1",
-        "x": 2130,
-        "y": 1038,
-        "w": 18,
-        "h": 96,
-        "material": "wood"
-      },
-      {
-        "id": "station-b-r1",
-        "x": 2250,
-        "y": 1038,
-        "w": 18,
-        "h": 96,
-        "material": "wood"
-      },
-      {
-        "id": "station-b-roof1",
-        "x": 2190,
-        "y": 981,
-        "w": 160,
-        "h": 18,
-        "material": "glass"
-      },
-      {
-        "id": "station-b-l2",
-        "x": 2130,
-        "y": 924,
-        "w": 18,
-        "h": 96,
-        "material": "wood"
-      },
-      {
-        "id": "station-b-r2",
-        "x": 2250,
-        "y": 924,
-        "w": 18,
-        "h": 96,
-        "material": "wood"
-      },
-      {
-        "id": "station-b-roof2",
-        "x": 2190,
-        "y": 867,
-        "w": 160,
+        "id": "powder-dock",
+        "x": 1630,
+        "y": 760,
+        "w": 300,
         "h": 18,
         "material": "glass"
       }
     ],
     "monsters": [
       {
-        "id": "station-a-m0",
-        "x": 1100,
-        "y": 1182,
-        "radius": 18,
-        "kind": "horn"
-      },
-      {
-        "id": "station-a-m1",
-        "x": 1100,
-        "y": 1068,
-        "radius": 18,
-        "kind": "blob"
-      },
-      {
-        "id": "station-a-m2",
-        "x": 1100,
-        "y": 954,
+        "id": "belt-west-resident-0",
+        "x": 1050,
+        "y": 662,
         "radius": 18,
         "kind": "bat"
       },
       {
-        "id": "station-b-m0",
-        "x": 2190,
-        "y": 1182,
-        "radius": 18,
-        "kind": "horn"
-      },
-      {
-        "id": "station-b-m1",
-        "x": 2190,
-        "y": 1068,
+        "id": "belt-west-resident-1",
+        "x": 1138.9020408388014,
+        "y": 694.4517781547406,
         "radius": 18,
         "kind": "blob"
       },
       {
-        "id": "station-b-m2",
-        "x": 2190,
-        "y": 954,
+        "id": "belt-east-resident-0",
+        "x": 2210,
+        "y": 632,
         "radius": 18,
         "kind": "bat"
+      },
+      {
+        "id": "belt-east-resident-1",
+        "x": 2101.771428544068,
+        "y": 671.506512536206,
+        "radius": 18,
+        "kind": "blob"
       }
     ],
     "hazards": [
       {
-        "id": "debris-powder0",
-        "x": 1320,
-        "y": 1180,
+        "id": "floating-powder-0",
+        "x": 1550,
+        "y": 731,
         "kind": "tnt"
       },
       {
-        "id": "debris-powder1",
-        "x": 1500,
-        "y": 1180,
+        "id": "floating-powder-1",
+        "x": 1630,
+        "y": 731,
         "kind": "tnt"
       },
       {
-        "id": "debris-powder2",
-        "x": 1680,
-        "y": 1180,
-        "kind": "tnt"
-      },
-      {
-        "id": "debris-powder3",
-        "x": 1860,
-        "y": 1180,
-        "kind": "tnt"
-      },
-      {
-        "id": "debris-powder4",
-        "x": 2040,
-        "y": 1180,
-        "kind": "tnt"
-      },
-      {
-        "id": "debris-powder5",
-        "x": 2285,
-        "y": 1180,
+        "id": "floating-powder-2",
+        "x": 1710,
+        "y": 731,
         "kind": "tnt"
       }
     ],
     "terrain": [],
-    "props": [],
-    "joints": [],
+    "props": [
+      {
+        "id": "belt-west",
+        "x": 1050,
+        "y": 800,
+        "radius": 120,
+        "kind": "planetoid",
+        "material": "stone",
+        "static": true
+      },
+      {
+        "id": "belt-east",
+        "x": 2210,
+        "y": 800,
+        "radius": 150,
+        "kind": "planetoid",
+        "material": "stone",
+        "static": true
+      }
+    ],
+    "joints": [
+      {
+        "id": "dock-west-stay",
+        "kind": "rope",
+        "bodyA": "belt-west",
+        "pointA": {
+          "x": 120,
+          "y": 0
+        },
+        "bodyB": "powder-dock",
+        "pointB": {
+          "x": -140,
+          "y": 0
+        },
+        "length": 322.49030993194197,
+        "stiffness": 0.75,
+        "damping": 0.15
+      },
+      {
+        "id": "dock-east-stay",
+        "kind": "rope",
+        "bodyA": "belt-east",
+        "pointA": {
+          "x": -150,
+          "y": 0
+        },
+        "bodyB": "powder-dock",
+        "pointB": {
+          "x": 140,
+          "y": 0
+        },
+        "length": 292.7456233660889,
+        "stiffness": 0.75,
+        "damping": 0.15
+      }
+    ],
     "mechanisms": [],
     "zones": [
       {
-        "id": "belt-float",
+        "id": "belt-west-well",
         "kind": "gravity",
-        "x": 1630,
-        "y": 1000,
-        "w": 1000,
-        "h": 350,
-        "gravity": {
-          "x": 0,
-          "y": 0.08
-        }
+        "x": 1050,
+        "y": 800,
+        "w": 672,
+        "h": 672,
+        "center": {
+          "x": 1050,
+          "y": 800
+        },
+        "radius": 336,
+        "strength": 0.9
+      },
+      {
+        "id": "belt-east-well",
+        "kind": "gravity",
+        "x": 2210,
+        "y": 800,
+        "w": 840,
+        "h": 840,
+        "center": {
+          "x": 2210,
+          "y": 800
+        },
+        "radius": 420,
+        "strength": 1
       }
     ],
     "thresholds": [
-      30000,
-      34500,
-      39000
+      20000,
+      20500,
+      21000
     ],
-    "par": 2,
+    "par": 4,
     "camera": {
       "start": "overview"
     },
     "metadata": {
       "category": "siege",
-      "idea": "A loose belt of glass, timber and powder separates two orbital stations.",
+      "idea": "A floating powder dock hangs between two moons. Strike the cargo so debris enters the gravity wells.",
       "mechanics": [
-        "low gravity debris",
-        "relay",
-        "metal station"
+        "floating powder dock",
+        "moon-bound stays",
+        "debris capture",
+        "radial fields"
       ],
-      "author": "Plush Siege production pass 4"
+      "author": "Plush Siege production pass 5",
+      "design": {
+        "archetype": "floating explosive dock between wells",
+        "role": "experiment",
+        "weakPoints": [
+          "powder-dock"
+        ],
+        "sections": [
+          {
+            "id": "primary-assembly",
+            "members": [
+              "powder-dock",
+              "belt-west-resident-0",
+              "belt-west-resident-1",
+              "belt-east-resident-0",
+              "belt-east-resident-1",
+              "belt-west",
+              "belt-east"
+            ]
+          }
+        ],
+        "intendedRoute": [],
+        "worldUse": "essential"
+      }
     },
     "environment": {
       "gravity": {
         "x": 0,
-        "y": 0.22
+        "y": 0
       },
-      "groundFriction": 0.3
+      "ground": false
     }
   },
   {
@@ -1220,15 +1014,15 @@
     "id": "orbital-07",
     "world": "orbital",
     "name": "Gravity Staircase",
-    "subtitle": "A light-gravity shelf and a stronger landing zone reward a careful arc.",
+    "subtitle": "A downward landing pocket and a sideways colony turn a staircase into two different directions of falling.",
     "bounds": {
       "width": 2900,
-      "height": 1335,
-      "ground": 1200
+      "height": 1450,
+      "ground": 1300
     },
     "sling": {
       "x": 235,
-      "y": 1055
+      "y": 700
     },
     "projectiles": [
       "duck",
@@ -1239,128 +1033,106 @@
     ],
     "blocks": [
       {
-        "id": "step-house-l0",
-        "x": 1560,
-        "y": 717,
-        "w": 18,
-        "h": 96,
+        "id": "down-house-left-rake",
+        "x": 1032.5,
+        "y": 924,
+        "w": 193.0772404161333,
+        "h": 12,
+        "angle": -0.9530406012286641,
+        "material": "wood"
+      },
+      {
+        "id": "down-house-right-rake",
+        "x": 1167.5,
+        "y": 924,
+        "w": 193.0772404161333,
+        "h": 12,
+        "angle": 0.9530406012286641,
+        "material": "wood"
+      },
+      {
+        "id": "down-house-floor-tie",
+        "x": 1100,
+        "y": 1019,
+        "w": 230,
+        "h": 12,
+        "angle": 0,
         "material": "glass"
       },
       {
-        "id": "step-house-r0",
-        "x": 1680,
-        "y": 717,
+        "id": "side-house-l0",
+        "x": 2222,
+        "y": 850,
         "w": 18,
         "h": 96,
-        "material": "glass"
+        "material": "glass",
+        "angle": -1.5707963267948966
       },
       {
-        "id": "step-house-roof0",
-        "x": 1620,
-        "y": 660,
-        "w": 160,
+        "id": "side-house-r0",
+        "x": 2222,
+        "y": 650,
+        "w": 18,
+        "h": 96,
+        "material": "glass",
+        "angle": -1.5707963267948966
+      },
+      {
+        "id": "side-house-roof0",
+        "x": 2165,
+        "y": 750,
+        "w": 240,
         "h": 18,
-        "material": "wood"
+        "material": "wood",
+        "angle": -1.5707963267948966
       },
       {
-        "id": "step-house-l1",
-        "x": 1560,
-        "y": 603,
+        "id": "side-house-l1",
+        "x": 2108,
+        "y": 850,
         "w": 18,
         "h": 96,
-        "material": "glass"
+        "material": "glass",
+        "angle": -1.5707963267948966
       },
       {
-        "id": "step-house-r1",
-        "x": 1680,
-        "y": 603,
+        "id": "side-house-r1",
+        "x": 2108,
+        "y": 650,
         "w": 18,
         "h": 96,
-        "material": "glass"
+        "material": "glass",
+        "angle": -1.5707963267948966
       },
       {
-        "id": "step-house-roof1",
-        "x": 1620,
-        "y": 546,
-        "w": 160,
+        "id": "side-house-roof1",
+        "x": 2051,
+        "y": 750,
+        "w": 240,
         "h": 18,
-        "material": "wood"
-      },
-      {
-        "id": "landing-house-l0",
-        "x": 2200,
-        "y": 1152,
-        "w": 18,
-        "h": 96,
-        "material": "wood"
-      },
-      {
-        "id": "landing-house-r0",
-        "x": 2320,
-        "y": 1152,
-        "w": 18,
-        "h": 96,
-        "material": "wood"
-      },
-      {
-        "id": "landing-house-roof0",
-        "x": 2260,
-        "y": 1095,
-        "w": 160,
-        "h": 18,
-        "material": "glass"
-      },
-      {
-        "id": "landing-house-l1",
-        "x": 2200,
-        "y": 1038,
-        "w": 18,
-        "h": 96,
-        "material": "wood"
-      },
-      {
-        "id": "landing-house-r1",
-        "x": 2320,
-        "y": 1038,
-        "w": 18,
-        "h": 96,
-        "material": "wood"
-      },
-      {
-        "id": "landing-house-roof1",
-        "x": 2260,
-        "y": 981,
-        "w": 160,
-        "h": 18,
-        "material": "glass"
+        "material": "wood",
+        "angle": -1.5707963267948966
       }
     ],
     "monsters": [
       {
-        "id": "step-house-m0",
-        "x": 1620,
-        "y": 747,
+        "id": "down-house-resident",
+        "x": 1100,
+        "y": 995,
         "radius": 18,
         "kind": "horn"
       },
       {
-        "id": "step-house-m1",
-        "x": 1620,
-        "y": 633,
-        "radius": 18,
-        "kind": "blob"
-      },
-      {
-        "id": "landing-house-m0",
-        "x": 2260,
-        "y": 1182,
+        "id": "side-house-m0",
+        "x": 2252,
+        "y": 750,
         "radius": 18,
         "kind": "horn"
       },
       {
-        "id": "landing-house-m1",
-        "x": 2260,
-        "y": 1068,
+        "id": "side-house-m1",
+        "x": 2138,
+        "y": 750,
         "radius": 18,
         "kind": "blob"
       }
@@ -1368,76 +1140,162 @@
     "hazards": [],
     "terrain": [
       {
-        "id": "step-one",
-        "x": 1040,
-        "y": 950,
-        "w": 300,
+        "id": "down-step",
+        "x": 1100,
+        "y": 1040,
+        "w": 360,
         "h": 30,
         "material": "stone"
       },
       {
-        "id": "step-two",
-        "x": 1620,
-        "y": 780,
-        "w": 300,
-        "h": 30,
+        "id": "side-cliff",
+        "x": 2290,
+        "y": 750,
+        "w": 40,
+        "h": 900,
         "material": "stone"
       }
     ],
     "props": [],
-    "joints": [],
+    "joints": [
+      {
+        "id": "down-house-pin-left-down-house-floor-tie",
+        "kind": "hinge",
+        "bodyA": "down-house-left-rake",
+        "pointA": {
+          "x": -116.53862020806665,
+          "y": 0
+        },
+        "bodyB": "down-house-floor-tie",
+        "pointB": {
+          "x": -135,
+          "y": 0
+        },
+        "length": 0,
+        "stiffness": 0.25,
+        "damping": 0.1
+      },
+      {
+        "id": "down-house-pin-peak-down-house-right-rake",
+        "kind": "hinge",
+        "bodyA": "down-house-left-rake",
+        "pointA": {
+          "x": 116.53862020806665,
+          "y": 0
+        },
+        "bodyB": "down-house-right-rake",
+        "pointB": {
+          "x": -116.53862020806665,
+          "y": 0
+        },
+        "length": 0,
+        "stiffness": 0.25,
+        "damping": 0.1
+      },
+      {
+        "id": "down-house-pin-right-down-house-floor-tie",
+        "kind": "hinge",
+        "bodyA": "down-house-right-rake",
+        "pointA": {
+          "x": 116.53862020806665,
+          "y": 0
+        },
+        "bodyB": "down-house-floor-tie",
+        "pointB": {
+          "x": 135,
+          "y": 0
+        },
+        "length": 0,
+        "stiffness": 0.25,
+        "damping": 0.1
+      }
+    ],
     "mechanisms": [],
     "zones": [
       {
-        "id": "light-step",
+        "id": "down-pocket",
         "kind": "gravity",
-        "x": 1120,
-        "y": 780,
-        "w": 500,
-        "h": 600,
+        "x": 1100,
+        "y": 850,
+        "w": 600,
+        "h": 700,
         "gravity": {
           "x": 0,
-          "y": 0.08
+          "y": 0.8
         }
       },
       {
-        "id": "heavy-landing",
+        "id": "side-pocket",
         "kind": "gravity",
-        "x": 2270,
-        "y": 950,
-        "w": 450,
-        "h": 500,
+        "x": 2100,
+        "y": 750,
+        "w": 700,
+        "h": 1000,
         "gravity": {
-          "x": 0,
-          "y": 0.5
+          "x": 0.85,
+          "y": 0
         }
       }
     ],
     "thresholds": [
-      20000,
-      24500,
-      29000
+      15000,
+      15500,
+      16000
     ],
-    "par": 2,
+    "par": 4,
     "camera": {
       "start": "overview"
     },
     "metadata": {
       "category": "siege",
-      "idea": "A light-gravity shelf and a stronger landing zone reward a careful arc.",
+      "idea": "A downward landing pocket and a sideways colony turn a staircase into two different directions of falling.",
       "mechanics": [
-        "terrain steps",
-        "gravity regions",
-        "high/low targets"
+        "gravity pocket transition",
+        "two fall directions",
+        "sideways load paths"
       ],
-      "author": "Plush Siege production pass 4"
+      "author": "Plush Siege production pass 5",
+      "design": {
+        "archetype": "two colonies with perpendicular gravity",
+        "role": "experiment",
+        "weakPoints": [
+          "down-house-floor-tie",
+          "side-house-l0",
+          "side-house-r0",
+          "side-house-l1",
+          "side-house-r1"
+        ],
+        "sections": [
+          {
+            "id": "primary-assembly",
+            "members": [
+              "down-house-left-rake",
+              "down-house-right-rake",
+              "down-house-floor-tie",
+              "side-house-l0",
+              "side-house-r0",
+              "side-house-roof0",
+              "side-house-l1",
+              "side-house-r1",
+              "side-house-roof1",
+              "down-house-resident",
+              "side-house-m0",
+              "side-house-m1",
+              "down-step",
+              "side-cliff"
+            ]
+          }
+        ],
+        "intendedRoute": [],
+        "worldUse": "essential"
+      }
     },
     "environment": {
       "gravity": {
         "x": 0,
-        "y": 0.22
+        "y": 0
       },
-      "groundFriction": 0.3
+      "ground": false
     }
   },
   {
@@ -1848,602 +1706,229 @@
     "id": "orbital-10",
     "world": "orbital",
     "name": "Orbits End",
-    "subtitle": "The galleries hang from the castle roof. Break a shared glass pier to bring the upper halls into the powder vaults.",
+    "subtitle": "The foundry is built around two curved moons. Releasing their asteroid clamps attacks from above their surfaces.",
     "bounds": {
-      "width": 3000,
-      "height": 1435,
-      "ground": 1300
+      "width": 3400,
+      "height": 1730,
+      "ground": 1550
     },
     "sling": {
       "x": 235,
-      "y": 1155
+      "y": 650
     },
     "projectiles": [
       "duck",
       "bear",
-      "duck",
       "rabbit",
-      "bear",
-      "sheep",
       "duck",
-      "bear"
+      "bear",
+      "rabbit",
+      "duck",
+      "sheep"
     ],
     "blocks": [
       {
-        "id": "grand-pier-0-0",
-        "x": 780,
-        "y": 1249,
-        "w": 44,
-        "h": 102,
-        "material": "wood"
-      },
-      {
-        "id": "grand-pier-0-1",
-        "x": 1000,
-        "y": 1249,
-        "w": 44,
-        "h": 102,
-        "material": "glass"
-      },
-      {
-        "id": "grand-pier-0-2",
-        "x": 1220,
-        "y": 1249,
-        "w": 44,
-        "h": 102,
-        "material": "wood"
-      },
-      {
-        "id": "grand-pier-0-3",
-        "x": 1440,
-        "y": 1249,
-        "w": 44,
-        "h": 102,
-        "material": "glass"
-      },
-      {
-        "id": "grand-pier-0-4",
-        "x": 1660,
-        "y": 1249,
-        "w": 44,
-        "h": 102,
-        "material": "wood"
-      },
-      {
-        "id": "grand-pier-0-5",
-        "x": 1880,
-        "y": 1249,
-        "w": 44,
-        "h": 102,
-        "material": "glass"
-      },
-      {
-        "id": "grand-pier-0-6",
-        "x": 2100,
-        "y": 1249,
-        "w": 44,
-        "h": 102,
-        "material": "wood"
-      },
-      {
-        "id": "grand-floor-0-0",
-        "x": 890,
-        "y": 1186,
-        "w": 218.6,
-        "h": 24,
-        "material": "wood"
-      },
-      {
-        "id": "grand-floor-0-1",
-        "x": 1110,
-        "y": 1186,
-        "w": 218.6,
-        "h": 24,
-        "material": "wood"
-      },
-      {
-        "id": "grand-floor-0-2",
-        "x": 1330,
-        "y": 1186,
-        "w": 218.6,
-        "h": 24,
-        "material": "wood"
-      },
-      {
-        "id": "grand-floor-0-3",
-        "x": 1550,
-        "y": 1186,
-        "w": 218.6,
-        "h": 24,
-        "material": "wood"
-      },
-      {
-        "id": "grand-floor-0-4",
-        "x": 1770,
-        "y": 1186,
-        "w": 218.6,
-        "h": 24,
-        "material": "wood"
-      },
-      {
-        "id": "grand-floor-0-5",
-        "x": 1990,
-        "y": 1186,
-        "w": 218.6,
-        "h": 24,
-        "material": "wood"
-      },
-      {
-        "id": "grand-pier-1-0",
-        "x": 780,
-        "y": 1123,
-        "w": 44,
-        "h": 102,
-        "material": "wood"
-      },
-      {
-        "id": "grand-pier-1-1",
-        "x": 1000,
-        "y": 1123,
-        "w": 44,
-        "h": 102,
-        "material": "wood"
-      },
-      {
-        "id": "grand-pier-1-2",
-        "x": 1220,
-        "y": 1123,
-        "w": 44,
-        "h": 102,
-        "material": "wood"
-      },
-      {
-        "id": "grand-pier-1-3",
-        "x": 1440,
-        "y": 1123,
-        "w": 44,
-        "h": 102,
-        "material": "wood"
-      },
-      {
-        "id": "grand-pier-1-4",
-        "x": 1660,
-        "y": 1123,
-        "w": 44,
-        "h": 102,
-        "material": "wood"
-      },
-      {
-        "id": "grand-pier-1-5",
-        "x": 1880,
-        "y": 1123,
-        "w": 44,
-        "h": 102,
-        "material": "wood"
-      },
-      {
-        "id": "grand-pier-1-6",
-        "x": 2100,
-        "y": 1123,
-        "w": 44,
-        "h": 102,
-        "material": "wood"
-      },
-      {
-        "id": "grand-floor-1-0",
-        "x": 890,
-        "y": 1060,
-        "w": 218.6,
-        "h": 24,
-        "material": "wood"
-      },
-      {
-        "id": "grand-floor-1-1",
-        "x": 1110,
-        "y": 1060,
-        "w": 218.6,
-        "h": 24,
-        "material": "wood"
-      },
-      {
-        "id": "grand-floor-1-2",
-        "x": 1330,
-        "y": 1060,
-        "w": 218.6,
-        "h": 24,
-        "material": "wood"
-      },
-      {
-        "id": "grand-floor-1-3",
-        "x": 1550,
-        "y": 1060,
-        "w": 218.6,
-        "h": 24,
-        "material": "wood"
-      },
-      {
-        "id": "grand-floor-1-4",
-        "x": 1770,
-        "y": 1060,
-        "w": 218.6,
-        "h": 24,
-        "material": "wood"
-      },
-      {
-        "id": "grand-floor-1-5",
-        "x": 1990,
-        "y": 1060,
-        "w": 218.6,
-        "h": 24,
-        "material": "wood"
-      },
-      {
-        "id": "grand-pier-2-1",
-        "x": 1000,
-        "y": 997,
-        "w": 44,
-        "h": 102,
-        "material": "wood"
-      },
-      {
-        "id": "grand-pier-2-2",
-        "x": 1220,
-        "y": 997,
-        "w": 44,
-        "h": 102,
-        "material": "wood"
-      },
-      {
-        "id": "grand-pier-2-3",
-        "x": 1440,
-        "y": 997,
-        "w": 44,
-        "h": 102,
-        "material": "wood"
-      },
-      {
-        "id": "grand-pier-2-4",
-        "x": 1660,
-        "y": 997,
-        "w": 44,
-        "h": 102,
-        "material": "wood"
-      },
-      {
-        "id": "grand-pier-2-5",
-        "x": 1880,
-        "y": 997,
-        "w": 44,
-        "h": 102,
-        "material": "wood"
-      },
-      {
-        "id": "grand-pier-2-6",
-        "x": 2100,
-        "y": 997,
-        "w": 44,
-        "h": 102,
-        "material": "wood"
-      },
-      {
-        "id": "grand-floor-2-1",
-        "x": 1110,
-        "y": 934,
-        "w": 218.6,
-        "h": 24,
-        "material": "wood"
-      },
-      {
-        "id": "grand-floor-2-3",
-        "x": 1550,
-        "y": 934,
-        "w": 218.6,
-        "h": 24,
-        "material": "wood"
-      },
-      {
-        "id": "grand-floor-2-5",
-        "x": 1990,
-        "y": 934,
-        "w": 218.6,
-        "h": 24,
-        "material": "wood"
-      },
-      {
-        "id": "grand-pier-3-3",
-        "x": 1440,
-        "y": 871,
-        "w": 44,
-        "h": 102,
-        "material": "wood"
-      },
-      {
-        "id": "grand-pier-3-4",
-        "x": 1660,
-        "y": 871,
-        "w": 44,
-        "h": 102,
-        "material": "wood"
-      },
-      {
-        "id": "grand-floor-3-3",
-        "x": 1550,
-        "y": 808,
-        "w": 218.6,
-        "h": 24,
-        "material": "wood"
-      },
-      {
-        "id": "gallery-0",
-        "x": 890,
-        "y": 1120,
+        "id": "orbit-near-clamp",
+        "x": 1250,
+        "y": 570,
         "w": 130,
-        "h": 20,
+        "h": 18,
         "material": "glass"
       },
       {
-        "id": "gallery-1",
-        "x": 1990,
-        "y": 1120,
+        "id": "orbit-far-clamp",
+        "x": 2500,
+        "y": 490,
         "w": 130,
-        "h": 20,
+        "h": 18,
         "material": "glass"
       }
     ],
     "monsters": [
       {
-        "id": "grand-tenant-0-2",
-        "x": 1330,
-        "y": 1282,
+        "id": "orbit-near-resident-0",
+        "x": 1250,
+        "y": 672,
         "radius": 18,
         "kind": "bat"
       },
       {
-        "id": "grand-tenant-0-4",
-        "x": 1770,
-        "y": 1282,
+        "id": "orbit-near-resident-1",
+        "x": 1357.7231802210151,
+        "y": 708.297083858268,
         "radius": 18,
         "kind": "blob"
       },
       {
-        "id": "grand-tenant-1-0",
-        "x": 890,
-        "y": 1156,
-        "radius": 18,
-        "kind": "blob"
-      },
-      {
-        "id": "grand-tenant-1-1",
-        "x": 1110,
-        "y": 1156,
+        "id": "orbit-near-resident-2",
+        "x": 1142.276819778985,
+        "y": 708.297083858268,
         "radius": 18,
         "kind": "bat"
       },
       {
-        "id": "grand-tenant-1-2",
-        "x": 1330,
-        "y": 1156,
-        "radius": 18,
-        "kind": "horn"
-      },
-      {
-        "id": "grand-tenant-1-3",
-        "x": 1550,
-        "y": 1156,
-        "radius": 18,
-        "kind": "blob"
-      },
-      {
-        "id": "grand-tenant-1-4",
-        "x": 1770,
-        "y": 1156,
+        "id": "orbit-far-resident-0",
+        "x": 2500,
+        "y": 592,
         "radius": 18,
         "kind": "bat"
       },
       {
-        "id": "grand-tenant-1-5",
-        "x": 1990,
-        "y": 1156,
-        "radius": 18,
-        "kind": "horn"
-      },
-      {
-        "id": "grand-tenant-2-1",
-        "x": 1110,
-        "y": 1030,
-        "radius": 18,
-        "kind": "horn"
-      },
-      {
-        "id": "grand-tenant-2-3",
-        "x": 1550,
-        "y": 1030,
-        "radius": 18,
-        "kind": "bat"
-      },
-      {
-        "id": "grand-tenant-2-5",
-        "x": 1990,
-        "y": 1030,
+        "id": "orbit-far-resident-1",
+        "x": 2625.8787723930964,
+        "y": 634.4145699017964,
         "radius": 18,
         "kind": "blob"
       },
       {
-        "id": "grand-tenant-3-3",
-        "x": 1550,
-        "y": 904,
+        "id": "orbit-far-resident-2",
+        "x": 2374.1212276069036,
+        "y": 634.4145699017963,
         "radius": 18,
-        "kind": "horn"
+        "kind": "bat"
       }
     ],
-    "hazards": [
-      {
-        "id": "underfloor-west",
-        "x": 890,
-        "y": 1280,
-        "kind": "tnt"
-      },
-      {
-        "id": "underfloor-east",
-        "x": 1990,
-        "y": 1280,
-        "kind": "tnt"
-      }
-    ],
+    "hazards": [],
     "terrain": [],
     "props": [
       {
-        "id": "west-moon",
-        "x": 680,
-        "y": 450,
+        "id": "orbit-near",
+        "x": 1250,
+        "y": 850,
+        "radius": 160,
         "kind": "planetoid",
-        "radius": 105,
         "material": "stone",
         "static": true
       },
       {
-        "id": "east-moon",
-        "x": 2330,
-        "y": 470,
+        "id": "orbit-near-cargo",
+        "x": 1250,
+        "y": 510,
+        "kind": "boulder",
+        "radius": 42,
+        "material": "stone"
+      },
+      {
+        "id": "orbit-far",
+        "x": 2500,
+        "y": 800,
+        "radius": 190,
         "kind": "planetoid",
-        "radius": 130,
         "material": "stone",
         "static": true
+      },
+      {
+        "id": "orbit-far-cargo",
+        "x": 2500,
+        "y": 430,
+        "kind": "boulder",
+        "radius": 42,
+        "material": "stone"
       }
     ],
     "joints": [
       {
-        "id": "gallery-chain-0-a",
-        "kind": "rope",
-        "bodyA": "grand-floor-1-0",
+        "id": "orbit-near-clamp-seat",
+        "kind": "hinge",
         "pointA": {
-          "x": -65,
+          "x": 1250,
+          "y": 570
+        },
+        "bodyB": "orbit-near-clamp",
+        "pointB": {
+          "x": 0,
           "y": 0
         },
-        "bodyB": "gallery-0",
+        "length": 0,
+        "stiffness": 0.75,
+        "damping": 0.15
+      },
+      {
+        "id": "orbit-near-clamp-stay",
+        "kind": "rope",
+        "bodyA": "orbit-near-clamp",
+        "pointA": {
+          "x": 0,
+          "y": 0
+        },
+        "bodyB": "orbit-near-cargo",
         "pointB": {
-          "x": -65,
+          "x": 0,
           "y": 0
         },
         "length": 60,
-        "stiffness": 0.85,
-        "damping": 0.12,
-        "breakForce": 0.15
+        "stiffness": 0.75,
+        "damping": 0.15
       },
       {
-        "id": "gallery-chain-0-b",
-        "kind": "rope",
-        "bodyA": "grand-floor-1-0",
+        "id": "orbit-far-clamp-seat",
+        "kind": "hinge",
         "pointA": {
-          "x": 65,
+          "x": 2500,
+          "y": 490
+        },
+        "bodyB": "orbit-far-clamp",
+        "pointB": {
+          "x": 0,
           "y": 0
         },
-        "bodyB": "gallery-0",
+        "length": 0,
+        "stiffness": 0.75,
+        "damping": 0.15
+      },
+      {
+        "id": "orbit-far-clamp-stay",
+        "kind": "rope",
+        "bodyA": "orbit-far-clamp",
+        "pointA": {
+          "x": 0,
+          "y": 0
+        },
+        "bodyB": "orbit-far-cargo",
         "pointB": {
-          "x": 65,
+          "x": 0,
           "y": 0
         },
         "length": 60,
-        "stiffness": 0.85,
-        "damping": 0.12,
-        "breakForce": 0.15
-      },
-      {
-        "id": "gallery-chain-1-a",
-        "kind": "rope",
-        "bodyA": "grand-floor-2-5",
-        "pointA": {
-          "x": -65,
-          "y": 0
-        },
-        "bodyB": "gallery-1",
-        "pointB": {
-          "x": -65,
-          "y": 0
-        },
-        "length": 186,
-        "stiffness": 0.85,
-        "damping": 0.12,
-        "breakForce": 0.15
-      },
-      {
-        "id": "gallery-chain-1-b",
-        "kind": "rope",
-        "bodyA": "grand-floor-2-5",
-        "pointA": {
-          "x": 65,
-          "y": 0
-        },
-        "bodyB": "gallery-1",
-        "pointB": {
-          "x": 65,
-          "y": 0
-        },
-        "length": 186,
-        "stiffness": 0.85,
-        "damping": 0.12,
-        "breakForce": 0.15
+        "stiffness": 0.75,
+        "damping": 0.15
       }
     ],
     "mechanisms": [],
     "zones": [
       {
-        "id": "long-orbit",
+        "id": "orbit-near-well",
         "kind": "gravity",
-        "x": 1450,
-        "y": 600,
-        "w": 1800,
-        "h": 600,
-        "gravity": {
-          "x": 0,
-          "y": 0.08
-        }
-      },
-      {
-        "id": "west-moon-gravity",
-        "kind": "gravity",
-        "x": 680,
-        "y": 450,
-        "w": 525,
-        "h": 525,
+        "x": 1250,
+        "y": 850,
+        "w": 896,
+        "h": 896,
         "center": {
-          "x": 680,
-          "y": 450
+          "x": 1250,
+          "y": 850
         },
-        "radius": 262.5,
-        "strength": 0.38
+        "radius": 448,
+        "strength": 0.9
       },
       {
-        "id": "east-moon-gravity",
+        "id": "orbit-far-well",
         "kind": "gravity",
-        "x": 2330,
-        "y": 470,
-        "w": 650,
-        "h": 650,
+        "x": 2500,
+        "y": 800,
+        "w": 1064,
+        "h": 1064,
         "center": {
-          "x": 2330,
-          "y": 470
+          "x": 2500,
+          "y": 800
         },
-        "radius": 325,
-        "strength": 0.44
-      },
-      {
-        "id": "station-landing-field",
-        "kind": "gravity",
-        "x": 1440,
-        "y": 1100,
-        "w": 1500,
-        "h": 600,
-        "gravity": {
-          "x": 0,
-          "y": 0.75
-        }
+        "radius": 532,
+        "strength": 1.1
       }
     ],
     "thresholds": [
-      60000,
-      66000,
-      72000
+      30000,
+      30500,
+      31000
     ],
     "par": 4,
     "camera": {
@@ -2451,24 +1936,1475 @@
     },
     "metadata": {
       "category": "spectacle",
-      "idea": "The galleries hang from the castle roof. Break a shared glass pier to bring the upper halls into the powder vaults.",
+      "idea": "The foundry is built around two curved moons. Releasing their asteroid clamps attacks from above their surfaces.",
       "mechanics": [
-        "shared piers",
-        "4-storey arcade",
-        "load-bearing floors",
-        "hanging galleries",
-        "underfloor powder",
-        "radial wells",
-        "low gravity",
-        "stronger station field"
+        "two planetoids",
+        "radial target placement",
+        "breakable asteroid clamps",
+        "zero-gravity gap"
       ],
-      "author": "Plush Siege production pass 4"
+      "author": "Plush Siege production pass 5",
+      "design": {
+        "archetype": "asteroid-clamp moon foundries",
+        "role": "spectacle",
+        "weakPoints": [
+          "orbit-near-clamp",
+          "orbit-far-clamp"
+        ],
+        "sections": [
+          {
+            "id": "primary-assembly",
+            "members": [
+              "orbit-near-clamp",
+              "orbit-far-clamp",
+              "orbit-near-resident-0",
+              "orbit-near-resident-1",
+              "orbit-near-resident-2",
+              "orbit-far-resident-0",
+              "orbit-far-resident-1",
+              "orbit-far-resident-2",
+              "orbit-near",
+              "orbit-near-cargo",
+              "orbit-far",
+              "orbit-far-cargo"
+            ]
+          }
+        ],
+        "intendedRoute": [],
+        "worldUse": "essential"
+      }
     },
     "environment": {
       "gravity": {
         "x": 0,
-        "y": 0.22
+        "y": 0
+      },
+      "ground": false
+    }
+  },
+  {
+    "version": 1,
+    "id": "orbital-11",
+    "name": "Crater Neighbors",
+    "subtitle": "The moon pulls loose cargo inward. Break a clamp or skim its curved surface.",
+    "world": "orbital",
+    "bounds": {
+      "width": 2350,
+      "height": 1430,
+      "ground": 1250
+    },
+    "sling": {
+      "x": 235,
+      "y": 600
+    },
+    "projectiles": [
+      "duck",
+      "bear",
+      "rabbit",
+      "duck",
+      "bear",
+      "sheep"
+    ],
+    "blocks": [
+      {
+        "id": "crater-clamp",
+        "x": 1280,
+        "y": 420,
+        "w": 130,
+        "h": 18,
+        "material": "glass"
       }
+    ],
+    "monsters": [
+      {
+        "id": "crater-resident-0",
+        "x": 1280,
+        "y": 572,
+        "radius": 18,
+        "kind": "blob"
+      },
+      {
+        "id": "crater-resident-1",
+        "x": 1145.1370549108897,
+        "y": 629.0191386427329,
+        "radius": 18,
+        "kind": "blob"
+      },
+      {
+        "id": "crater-resident-2",
+        "x": 1414.8629450891103,
+        "y": 629.019138642733,
+        "radius": 18,
+        "kind": "blob"
+      }
+    ],
+    "hazards": [],
+    "terrain": [],
+    "props": [
+      {
+        "id": "crater",
+        "x": 1280,
+        "y": 760,
+        "kind": "planetoid",
+        "radius": 170,
+        "material": "stone",
+        "static": true
+      },
+      {
+        "id": "crater-cargo",
+        "x": 1280,
+        "y": 350,
+        "kind": "boulder",
+        "radius": 42,
+        "material": "stone"
+      }
+    ],
+    "joints": [
+      {
+        "id": "crater-seat",
+        "kind": "hinge",
+        "pointA": {
+          "x": 1280,
+          "y": 420
+        },
+        "bodyB": "crater-clamp",
+        "pointB": {
+          "x": 0,
+          "y": 0
+        },
+        "length": 0,
+        "stiffness": 0.75,
+        "damping": 0.15
+      },
+      {
+        "id": "crater-cargo-stay",
+        "kind": "rope",
+        "bodyA": "crater-clamp",
+        "pointA": {
+          "x": 0,
+          "y": 0
+        },
+        "bodyB": "crater-cargo",
+        "pointB": {
+          "x": 0,
+          "y": 0
+        },
+        "length": 70,
+        "stiffness": 0.75,
+        "damping": 0.15
+      }
+    ],
+    "mechanisms": [],
+    "zones": [
+      {
+        "id": "crater-well",
+        "kind": "gravity",
+        "x": 1280,
+        "y": 760,
+        "w": 1200,
+        "h": 1200,
+        "center": {
+          "x": 1280,
+          "y": 760
+        },
+        "radius": 600,
+        "strength": 0.9
+      }
+    ],
+    "thresholds": [
+      15000,
+      19500,
+      24000
+    ],
+    "par": 3,
+    "camera": {
+      "start": "overview"
+    },
+    "metadata": {
+      "category": "siege",
+      "idea": "The moon pulls loose cargo inward. Break a clamp or skim its curved surface.",
+      "mechanics": [
+        "radial surface",
+        "released asteroid",
+        "gravity-assisted impact"
+      ],
+      "author": "Plush Siege production pass 5",
+      "design": {
+        "archetype": "moon clamp and curved target surface",
+        "role": "experiment",
+        "weakPoints": [
+          "crater-clamp"
+        ],
+        "sections": [
+          {
+            "id": "primary-assembly",
+            "members": [
+              "crater-clamp",
+              "crater-resident-0",
+              "crater-resident-1",
+              "crater-resident-2",
+              "crater",
+              "crater-cargo"
+            ]
+          }
+        ],
+        "intendedRoute": [],
+        "worldUse": "essential"
+      }
+    },
+    "environment": {
+      "gravity": {
+        "x": 0,
+        "y": 0
+      },
+      "ground": false
+    }
+  },
+  {
+    "version": 1,
+    "id": "orbital-12",
+    "name": "Sideways Society",
+    "subtitle": "Gravity points into the right-hand cliff. Break the outer ribs and let the walls fall sideways.",
+    "world": "orbital",
+    "bounds": {
+      "width": 2500,
+      "height": 1430,
+      "ground": 1250
+    },
+    "sling": {
+      "x": 235,
+      "y": 650
+    },
+    "projectiles": [
+      "duck",
+      "bear",
+      "rabbit",
+      "duck",
+      "bear",
+      "sheep"
+    ],
+    "blocks": [
+      {
+        "id": "sideways-l0",
+        "x": 1602,
+        "y": 800,
+        "w": 18,
+        "h": 96,
+        "material": "glass",
+        "angle": -1.5707963267948966
+      },
+      {
+        "id": "sideways-r0",
+        "x": 1602,
+        "y": 600,
+        "w": 18,
+        "h": 96,
+        "material": "glass",
+        "angle": -1.5707963267948966
+      },
+      {
+        "id": "sideways-roof0",
+        "x": 1545,
+        "y": 700,
+        "w": 240,
+        "h": 18,
+        "material": "wood",
+        "angle": -1.5707963267948966
+      },
+      {
+        "id": "sideways-l1",
+        "x": 1488,
+        "y": 800,
+        "w": 18,
+        "h": 96,
+        "material": "glass",
+        "angle": -1.5707963267948966
+      },
+      {
+        "id": "sideways-r1",
+        "x": 1488,
+        "y": 600,
+        "w": 18,
+        "h": 96,
+        "material": "glass",
+        "angle": -1.5707963267948966
+      },
+      {
+        "id": "sideways-roof1",
+        "x": 1431,
+        "y": 700,
+        "w": 240,
+        "h": 18,
+        "material": "wood",
+        "angle": -1.5707963267948966
+      },
+      {
+        "id": "sideways-l2",
+        "x": 1374,
+        "y": 800,
+        "w": 18,
+        "h": 96,
+        "material": "glass",
+        "angle": -1.5707963267948966
+      },
+      {
+        "id": "sideways-r2",
+        "x": 1374,
+        "y": 600,
+        "w": 18,
+        "h": 96,
+        "material": "glass",
+        "angle": -1.5707963267948966
+      },
+      {
+        "id": "sideways-roof2",
+        "x": 1317,
+        "y": 700,
+        "w": 240,
+        "h": 18,
+        "material": "wood",
+        "angle": -1.5707963267948966
+      }
+    ],
+    "monsters": [
+      {
+        "id": "sideways-m0",
+        "x": 1632,
+        "y": 700,
+        "radius": 18,
+        "kind": "horn"
+      },
+      {
+        "id": "sideways-m1",
+        "x": 1518,
+        "y": 700,
+        "radius": 18,
+        "kind": "blob"
+      },
+      {
+        "id": "sideways-m2",
+        "x": 1404,
+        "y": 700,
+        "radius": 18,
+        "kind": "bat"
+      }
+    ],
+    "hazards": [],
+    "terrain": [
+      {
+        "id": "society-cliff",
+        "x": 1670,
+        "y": 700,
+        "w": 40,
+        "h": 1000,
+        "material": "stone"
+      }
+    ],
+    "props": [],
+    "joints": [],
+    "mechanisms": [],
+    "zones": [],
+    "thresholds": [
+      15000,
+      19500,
+      24000
+    ],
+    "par": 3,
+    "camera": {
+      "start": "overview"
+    },
+    "metadata": {
+      "category": "siege",
+      "idea": "Gravity points into the right-hand cliff. Break the outer ribs and let the walls fall sideways.",
+      "mechanics": [
+        "sideways gravity",
+        "rotated load paths",
+        "wall-bound colony"
+      ],
+      "author": "Plush Siege production pass 5",
+      "design": {
+        "archetype": "sideways gravity colony",
+        "role": "experiment",
+        "weakPoints": [
+          "sideways-l0",
+          "sideways-r0",
+          "sideways-l1",
+          "sideways-r1",
+          "sideways-l2",
+          "sideways-r2"
+        ],
+        "sections": [
+          {
+            "id": "primary-assembly",
+            "members": [
+              "sideways-l0",
+              "sideways-r0",
+              "sideways-roof0",
+              "sideways-l1",
+              "sideways-r1",
+              "sideways-roof1",
+              "sideways-l2",
+              "sideways-r2",
+              "sideways-roof2",
+              "sideways-m0",
+              "sideways-m1",
+              "sideways-m2",
+              "society-cliff"
+            ]
+          }
+        ],
+        "intendedRoute": [],
+        "worldUse": "essential"
+      }
+    },
+    "environment": {
+      "gravity": {
+        "x": 1,
+        "y": 0
+      },
+      "ground": false
+    }
+  },
+  {
+    "version": 1,
+    "id": "orbital-13",
+    "name": "Twin Moon Foundry",
+    "subtitle": "Two curved surfaces, two gravity wells. Release the asteroid to sweep the near-moon outpost, then curve into the far colony.",
+    "world": "orbital",
+    "bounds": {
+      "width": 3400,
+      "height": 1730,
+      "ground": 1550
+    },
+    "sling": {
+      "x": 235,
+      "y": 650
+    },
+    "projectiles": [
+      "duck",
+      "bear",
+      "rabbit",
+      "duck",
+      "bear",
+      "rabbit",
+      "duck",
+      "sheep"
+    ],
+    "blocks": [
+      {
+        "id": "moon-0-habitat-0-left-rake",
+        "x": 1225,
+        "y": 636.5,
+        "w": 68.70691377146844,
+        "h": 12,
+        "angle": -1.0863183977578734,
+        "material": "glass"
+      },
+      {
+        "id": "moon-0-habitat-0-right-rake",
+        "x": 1275,
+        "y": 636.5,
+        "w": 68.70691377146844,
+        "h": 12,
+        "angle": 1.0863183977578734,
+        "material": "glass"
+      },
+      {
+        "id": "moon-0-habitat-0-floor-tie",
+        "x": 1250,
+        "y": 684,
+        "w": 64,
+        "h": 12,
+        "angle": 0,
+        "material": "wood"
+      },
+      {
+        "id": "moon-0-habitat-1-left-rake",
+        "x": 1359.3052026609182,
+        "y": 664.9064488663756,
+        "w": 68.70691377146844,
+        "h": 12,
+        "angle": -0.4363183977578734,
+        "material": "glass"
+      },
+      {
+        "id": "moon-0-habitat-1-right-rake",
+        "x": 1399.1093925883708,
+        "y": 695.1657691531776,
+        "w": 68.70691377146844,
+        "h": 12,
+        "angle": 1.7363183977578736,
+        "material": "glass"
+      },
+      {
+        "id": "moon-0-habitat-1-floor-tie",
+        "x": 1350.4609433521825,
+        "y": 717.8500894408568,
+        "w": 64,
+        "h": 12,
+        "angle": 0.65,
+        "material": "wood"
+      },
+      {
+        "id": "moon-0-habitat-2-left-rake",
+        "x": 1100.8906074116294,
+        "y": 695.1657691531775,
+        "w": 68.70691377146844,
+        "h": 12,
+        "angle": -1.7363183977578733,
+        "material": "glass"
+      },
+      {
+        "id": "moon-0-habitat-2-right-rake",
+        "x": 1140.694797339082,
+        "y": 664.9064488663755,
+        "w": 68.70691377146844,
+        "h": 12,
+        "angle": 0.4363183977578735,
+        "material": "glass"
+      },
+      {
+        "id": "moon-0-habitat-2-floor-tie",
+        "x": 1149.5390566478175,
+        "y": 717.8500894408567,
+        "w": 64,
+        "h": 12,
+        "angle": -0.6499999999999999,
+        "material": "wood"
+      },
+      {
+        "id": "moon-0-coupler",
+        "x": 1250,
+        "y": 550,
+        "w": 130,
+        "h": 18,
+        "material": "glass"
+      },
+      {
+        "id": "moon-1-habitat-0-left-rake",
+        "x": 2475,
+        "y": 556.5,
+        "w": 68.70691377146844,
+        "h": 12,
+        "angle": -1.0863183977578734,
+        "material": "glass"
+      },
+      {
+        "id": "moon-1-habitat-0-right-rake",
+        "x": 2525,
+        "y": 556.5,
+        "w": 68.70691377146844,
+        "h": 12,
+        "angle": 1.0863183977578734,
+        "material": "glass"
+      },
+      {
+        "id": "moon-1-habitat-0-floor-tie",
+        "x": 2500,
+        "y": 604,
+        "w": 64,
+        "h": 12,
+        "angle": 0,
+        "material": "wood"
+      },
+      {
+        "id": "moon-1-habitat-1-left-rake",
+        "x": 2627.460794832999,
+        "y": 591.0239349099039,
+        "w": 68.70691377146844,
+        "h": 12,
+        "angle": -0.4363183977578734,
+        "material": "glass"
+      },
+      {
+        "id": "moon-1-habitat-1-right-rake",
+        "x": 2667.264984760452,
+        "y": 621.2832551967059,
+        "w": 68.70691377146844,
+        "h": 12,
+        "angle": 1.7363183977578736,
+        "material": "glass"
+      },
+      {
+        "id": "moon-1-habitat-1-floor-tie",
+        "x": 2618.616535524264,
+        "y": 643.9675754843851,
+        "w": 64,
+        "h": 12,
+        "angle": 0.65,
+        "material": "wood"
+      },
+      {
+        "id": "moon-1-habitat-2-left-rake",
+        "x": 2332.735015239548,
+        "y": 621.2832551967059,
+        "w": 68.70691377146844,
+        "h": 12,
+        "angle": -1.7363183977578733,
+        "material": "glass"
+      },
+      {
+        "id": "moon-1-habitat-2-right-rake",
+        "x": 2372.539205167001,
+        "y": 591.0239349099039,
+        "w": 68.70691377146844,
+        "h": 12,
+        "angle": 0.4363183977578735,
+        "material": "glass"
+      },
+      {
+        "id": "moon-1-habitat-2-floor-tie",
+        "x": 2381.383464475736,
+        "y": 643.9675754843851,
+        "w": 64,
+        "h": 12,
+        "angle": -0.6499999999999999,
+        "material": "wood"
+      },
+      {
+        "id": "moon-1-coupler",
+        "x": 2500,
+        "y": 470,
+        "w": 130,
+        "h": 18,
+        "material": "glass"
+      }
+    ],
+    "monsters": [
+      {
+        "id": "moon-0-resident-0",
+        "x": 1250,
+        "y": 660,
+        "radius": 18,
+        "kind": "horn"
+      },
+      {
+        "id": "moon-0-resident-2",
+        "x": 1135.0145829101525,
+        "y": 698.7440782756793,
+        "radius": 18,
+        "kind": "horn"
+      },
+      {
+        "id": "moon-1-resident-0",
+        "x": 2500,
+        "y": 580,
+        "radius": 18,
+        "kind": "horn"
+      },
+      {
+        "id": "moon-1-resident-2",
+        "x": 2366.8589907380715,
+        "y": 624.8615643192077,
+        "radius": 18,
+        "kind": "horn"
+      }
+    ],
+    "hazards": [],
+    "terrain": [],
+    "props": [
+      {
+        "id": "foundry-moon-0",
+        "x": 1250,
+        "y": 850,
+        "radius": 160,
+        "kind": "planetoid",
+        "material": "stone",
+        "static": true
+      },
+      {
+        "id": "moon-0-asteroid",
+        "x": 1250,
+        "y": 490,
+        "kind": "boulder",
+        "radius": 50,
+        "material": "stone"
+      },
+      {
+        "id": "foundry-moon-1",
+        "x": 2500,
+        "y": 800,
+        "radius": 190,
+        "kind": "planetoid",
+        "material": "stone",
+        "static": true
+      },
+      {
+        "id": "moon-1-asteroid",
+        "x": 2500,
+        "y": 410,
+        "kind": "boulder",
+        "radius": 50,
+        "material": "stone"
+      }
+    ],
+    "joints": [
+      {
+        "id": "moon-0-habitat-0-pin-left-moon-0-habitat-0-floor-tie",
+        "kind": "hinge",
+        "bodyA": "moon-0-habitat-0-left-rake",
+        "pointA": {
+          "x": -53.67727638395972,
+          "y": 0
+        },
+        "bodyB": "moon-0-habitat-0-floor-tie",
+        "pointB": {
+          "x": -50,
+          "y": 0
+        },
+        "length": 0,
+        "stiffness": 0.75,
+        "damping": 0.15,
+        "breakForce": 0.003
+      },
+      {
+        "id": "moon-0-habitat-0-pin-peak-moon-0-habitat-0-right-rake",
+        "kind": "hinge",
+        "bodyA": "moon-0-habitat-0-left-rake",
+        "pointA": {
+          "x": 53.67727638395972,
+          "y": 0
+        },
+        "bodyB": "moon-0-habitat-0-right-rake",
+        "pointB": {
+          "x": -53.67727638395972,
+          "y": 0
+        },
+        "length": 0,
+        "stiffness": 0.75,
+        "damping": 0.15,
+        "breakForce": 0.003
+      },
+      {
+        "id": "moon-0-habitat-0-pin-right-moon-0-habitat-0-floor-tie",
+        "kind": "hinge",
+        "bodyA": "moon-0-habitat-0-right-rake",
+        "pointA": {
+          "x": 53.67727638395972,
+          "y": 0
+        },
+        "bodyB": "moon-0-habitat-0-floor-tie",
+        "pointB": {
+          "x": 50,
+          "y": 0
+        },
+        "length": 0,
+        "stiffness": 0.75,
+        "damping": 0.15,
+        "breakForce": 0.003
+      },
+      {
+        "id": "moon-0-habitat-0-clamp-stay--1",
+        "kind": "hinge",
+        "bodyA": "moon-0-coupler",
+        "pointA": {
+          "x": -55,
+          "y": 0
+        },
+        "bodyB": "moon-0-habitat-0-floor-tie",
+        "pointB": {
+          "x": -20,
+          "y": 0
+        },
+        "length": 138.49548729110273,
+        "stiffness": 0.75,
+        "damping": 0.15
+      },
+      {
+        "id": "moon-0-habitat-0-clamp-stay-1",
+        "kind": "hinge",
+        "bodyA": "moon-0-coupler",
+        "pointA": {
+          "x": 55,
+          "y": 0
+        },
+        "bodyB": "moon-0-habitat-0-floor-tie",
+        "pointB": {
+          "x": 20,
+          "y": 0
+        },
+        "length": 138.49548729110273,
+        "stiffness": 0.75,
+        "damping": 0.15
+      },
+      {
+        "id": "moon-0-habitat-1-pin-left-moon-0-habitat-1-floor-tie",
+        "kind": "hinge",
+        "bodyA": "moon-0-habitat-1-left-rake",
+        "pointA": {
+          "x": -53.67727638395972,
+          "y": 0
+        },
+        "bodyB": "moon-0-habitat-1-floor-tie",
+        "pointB": {
+          "x": -50,
+          "y": 0
+        },
+        "length": 0,
+        "stiffness": 0.75,
+        "damping": 0.15,
+        "breakForce": 0.003
+      },
+      {
+        "id": "moon-0-habitat-1-pin-peak-moon-0-habitat-1-right-rake",
+        "kind": "hinge",
+        "bodyA": "moon-0-habitat-1-left-rake",
+        "pointA": {
+          "x": 53.67727638395972,
+          "y": 0
+        },
+        "bodyB": "moon-0-habitat-1-right-rake",
+        "pointB": {
+          "x": -53.67727638395972,
+          "y": 0
+        },
+        "length": 0,
+        "stiffness": 0.75,
+        "damping": 0.15,
+        "breakForce": 0.003
+      },
+      {
+        "id": "moon-0-habitat-1-pin-right-moon-0-habitat-1-floor-tie",
+        "kind": "hinge",
+        "bodyA": "moon-0-habitat-1-right-rake",
+        "pointA": {
+          "x": 53.67727638395972,
+          "y": 0
+        },
+        "bodyB": "moon-0-habitat-1-floor-tie",
+        "pointB": {
+          "x": 50,
+          "y": 0
+        },
+        "length": 0,
+        "stiffness": 0.75,
+        "damping": 0.15,
+        "breakForce": 0.003
+      },
+      {
+        "id": "moon-0-habitat-1-clamp-stay--1",
+        "kind": "hinge",
+        "bodyA": "moon-0-coupler",
+        "pointA": {
+          "x": -55,
+          "y": 0
+        },
+        "bodyB": "moon-0-habitat-1-floor-tie",
+        "pointB": {
+          "x": -20,
+          "y": 0
+        },
+        "length": 209.11273564183924,
+        "stiffness": 0.75,
+        "damping": 0.15
+      },
+      {
+        "id": "moon-0-habitat-1-clamp-stay-1",
+        "kind": "hinge",
+        "bodyA": "moon-0-coupler",
+        "pointA": {
+          "x": 55,
+          "y": 0
+        },
+        "bodyB": "moon-0-habitat-1-floor-tie",
+        "pointB": {
+          "x": 20,
+          "y": 0
+        },
+        "length": 190.1346954340488,
+        "stiffness": 0.75,
+        "damping": 0.15
+      },
+      {
+        "id": "moon-0-habitat-2-pin-left-moon-0-habitat-2-floor-tie",
+        "kind": "hinge",
+        "bodyA": "moon-0-habitat-2-left-rake",
+        "pointA": {
+          "x": -53.67727638395972,
+          "y": 0
+        },
+        "bodyB": "moon-0-habitat-2-floor-tie",
+        "pointB": {
+          "x": -50,
+          "y": 0
+        },
+        "length": 0,
+        "stiffness": 0.75,
+        "damping": 0.15,
+        "breakForce": 0.003
+      },
+      {
+        "id": "moon-0-habitat-2-pin-peak-moon-0-habitat-2-right-rake",
+        "kind": "hinge",
+        "bodyA": "moon-0-habitat-2-left-rake",
+        "pointA": {
+          "x": 53.67727638395972,
+          "y": 0
+        },
+        "bodyB": "moon-0-habitat-2-right-rake",
+        "pointB": {
+          "x": -53.67727638395972,
+          "y": 0
+        },
+        "length": 0,
+        "stiffness": 0.75,
+        "damping": 0.15,
+        "breakForce": 0.003
+      },
+      {
+        "id": "moon-0-habitat-2-pin-right-moon-0-habitat-2-floor-tie",
+        "kind": "hinge",
+        "bodyA": "moon-0-habitat-2-right-rake",
+        "pointA": {
+          "x": 53.67727638395972,
+          "y": 0
+        },
+        "bodyB": "moon-0-habitat-2-floor-tie",
+        "pointB": {
+          "x": 50,
+          "y": 0
+        },
+        "length": 0,
+        "stiffness": 0.75,
+        "damping": 0.15,
+        "breakForce": 0.003
+      },
+      {
+        "id": "moon-0-habitat-2-clamp-stay--1",
+        "kind": "hinge",
+        "bodyA": "moon-0-coupler",
+        "pointA": {
+          "x": -55,
+          "y": 0
+        },
+        "bodyB": "moon-0-habitat-2-floor-tie",
+        "pointB": {
+          "x": -20,
+          "y": 0
+        },
+        "length": 190.13469543404875,
+        "stiffness": 0.75,
+        "damping": 0.15
+      },
+      {
+        "id": "moon-0-habitat-2-clamp-stay-1",
+        "kind": "hinge",
+        "bodyA": "moon-0-coupler",
+        "pointA": {
+          "x": 55,
+          "y": 0
+        },
+        "bodyB": "moon-0-habitat-2-floor-tie",
+        "pointB": {
+          "x": 20,
+          "y": 0
+        },
+        "length": 209.11273564183915,
+        "stiffness": 0.75,
+        "damping": 0.15
+      },
+      {
+        "id": "moon-0-coupler-seat",
+        "kind": "hinge",
+        "pointA": {
+          "x": 1250,
+          "y": 550
+        },
+        "bodyB": "moon-0-coupler",
+        "pointB": {
+          "x": 0,
+          "y": 0
+        },
+        "length": 0,
+        "stiffness": 0.75,
+        "damping": 0.15
+      },
+      {
+        "id": "moon-0-coupler-orientation",
+        "kind": "hinge",
+        "pointA": {
+          "x": 1295,
+          "y": 550
+        },
+        "bodyB": "moon-0-coupler",
+        "pointB": {
+          "x": 45,
+          "y": 0
+        },
+        "length": 0,
+        "stiffness": 0.75,
+        "damping": 0.15
+      },
+      {
+        "id": "moon-0-coupler-cargo",
+        "kind": "rope",
+        "bodyA": "moon-0-coupler",
+        "pointA": {
+          "x": 0,
+          "y": 0
+        },
+        "bodyB": "moon-0-asteroid",
+        "pointB": {
+          "x": 0,
+          "y": 0
+        },
+        "length": 60,
+        "stiffness": 0.75,
+        "damping": 0.15
+      },
+      {
+        "id": "moon-1-habitat-0-pin-left-moon-1-habitat-0-floor-tie",
+        "kind": "hinge",
+        "bodyA": "moon-1-habitat-0-left-rake",
+        "pointA": {
+          "x": -53.67727638395972,
+          "y": 0
+        },
+        "bodyB": "moon-1-habitat-0-floor-tie",
+        "pointB": {
+          "x": -50,
+          "y": 0
+        },
+        "length": 0,
+        "stiffness": 0.75,
+        "damping": 0.15,
+        "breakForce": 0.003
+      },
+      {
+        "id": "moon-1-habitat-0-pin-peak-moon-1-habitat-0-right-rake",
+        "kind": "hinge",
+        "bodyA": "moon-1-habitat-0-left-rake",
+        "pointA": {
+          "x": 53.67727638395972,
+          "y": 0
+        },
+        "bodyB": "moon-1-habitat-0-right-rake",
+        "pointB": {
+          "x": -53.67727638395972,
+          "y": 0
+        },
+        "length": 0,
+        "stiffness": 0.75,
+        "damping": 0.15,
+        "breakForce": 0.003
+      },
+      {
+        "id": "moon-1-habitat-0-pin-right-moon-1-habitat-0-floor-tie",
+        "kind": "hinge",
+        "bodyA": "moon-1-habitat-0-right-rake",
+        "pointA": {
+          "x": 53.67727638395972,
+          "y": 0
+        },
+        "bodyB": "moon-1-habitat-0-floor-tie",
+        "pointB": {
+          "x": 50,
+          "y": 0
+        },
+        "length": 0,
+        "stiffness": 0.75,
+        "damping": 0.15,
+        "breakForce": 0.003
+      },
+      {
+        "id": "moon-1-habitat-0-clamp-stay--1",
+        "kind": "hinge",
+        "bodyA": "moon-1-coupler",
+        "pointA": {
+          "x": -55,
+          "y": 0
+        },
+        "bodyB": "moon-1-habitat-0-floor-tie",
+        "pointB": {
+          "x": -20,
+          "y": 0
+        },
+        "length": 138.49548729110273,
+        "stiffness": 0.75,
+        "damping": 0.15
+      },
+      {
+        "id": "moon-1-habitat-0-clamp-stay-1",
+        "kind": "hinge",
+        "bodyA": "moon-1-coupler",
+        "pointA": {
+          "x": 55,
+          "y": 0
+        },
+        "bodyB": "moon-1-habitat-0-floor-tie",
+        "pointB": {
+          "x": 20,
+          "y": 0
+        },
+        "length": 138.49548729110273,
+        "stiffness": 0.75,
+        "damping": 0.15
+      },
+      {
+        "id": "moon-1-habitat-1-pin-left-moon-1-habitat-1-floor-tie",
+        "kind": "hinge",
+        "bodyA": "moon-1-habitat-1-left-rake",
+        "pointA": {
+          "x": -53.67727638395972,
+          "y": 0
+        },
+        "bodyB": "moon-1-habitat-1-floor-tie",
+        "pointB": {
+          "x": -50,
+          "y": 0
+        },
+        "length": 0,
+        "stiffness": 0.75,
+        "damping": 0.15,
+        "breakForce": 0.003
+      },
+      {
+        "id": "moon-1-habitat-1-pin-peak-moon-1-habitat-1-right-rake",
+        "kind": "hinge",
+        "bodyA": "moon-1-habitat-1-left-rake",
+        "pointA": {
+          "x": 53.67727638395972,
+          "y": 0
+        },
+        "bodyB": "moon-1-habitat-1-right-rake",
+        "pointB": {
+          "x": -53.67727638395972,
+          "y": 0
+        },
+        "length": 0,
+        "stiffness": 0.75,
+        "damping": 0.15,
+        "breakForce": 0.003
+      },
+      {
+        "id": "moon-1-habitat-1-pin-right-moon-1-habitat-1-floor-tie",
+        "kind": "hinge",
+        "bodyA": "moon-1-habitat-1-right-rake",
+        "pointA": {
+          "x": 53.67727638395972,
+          "y": 0
+        },
+        "bodyB": "moon-1-habitat-1-floor-tie",
+        "pointB": {
+          "x": 50,
+          "y": 0
+        },
+        "length": 0,
+        "stiffness": 0.75,
+        "damping": 0.15,
+        "breakForce": 0.003
+      },
+      {
+        "id": "moon-1-habitat-1-clamp-stay--1",
+        "kind": "hinge",
+        "bodyA": "moon-1-coupler",
+        "pointA": {
+          "x": -55,
+          "y": 0
+        },
+        "bodyB": "moon-1-habitat-1-floor-tie",
+        "pointB": {
+          "x": -20,
+          "y": 0
+        },
+        "length": 225.98135722851015,
+        "stiffness": 0.75,
+        "damping": 0.15
+      },
+      {
+        "id": "moon-1-habitat-1-clamp-stay-1",
+        "kind": "hinge",
+        "bodyA": "moon-1-coupler",
+        "pointA": {
+          "x": 55,
+          "y": 0
+        },
+        "bodyB": "moon-1-habitat-1-floor-tie",
+        "pointB": {
+          "x": 20,
+          "y": 0
+        },
+        "length": 202.35823954297715,
+        "stiffness": 0.75,
+        "damping": 0.15
+      },
+      {
+        "id": "moon-1-habitat-2-pin-left-moon-1-habitat-2-floor-tie",
+        "kind": "hinge",
+        "bodyA": "moon-1-habitat-2-left-rake",
+        "pointA": {
+          "x": -53.67727638395972,
+          "y": 0
+        },
+        "bodyB": "moon-1-habitat-2-floor-tie",
+        "pointB": {
+          "x": -50,
+          "y": 0
+        },
+        "length": 0,
+        "stiffness": 0.75,
+        "damping": 0.15,
+        "breakForce": 0.003
+      },
+      {
+        "id": "moon-1-habitat-2-pin-peak-moon-1-habitat-2-right-rake",
+        "kind": "hinge",
+        "bodyA": "moon-1-habitat-2-left-rake",
+        "pointA": {
+          "x": 53.67727638395972,
+          "y": 0
+        },
+        "bodyB": "moon-1-habitat-2-right-rake",
+        "pointB": {
+          "x": -53.67727638395972,
+          "y": 0
+        },
+        "length": 0,
+        "stiffness": 0.75,
+        "damping": 0.15,
+        "breakForce": 0.003
+      },
+      {
+        "id": "moon-1-habitat-2-pin-right-moon-1-habitat-2-floor-tie",
+        "kind": "hinge",
+        "bodyA": "moon-1-habitat-2-right-rake",
+        "pointA": {
+          "x": 53.67727638395972,
+          "y": 0
+        },
+        "bodyB": "moon-1-habitat-2-floor-tie",
+        "pointB": {
+          "x": 50,
+          "y": 0
+        },
+        "length": 0,
+        "stiffness": 0.75,
+        "damping": 0.15,
+        "breakForce": 0.003
+      },
+      {
+        "id": "moon-1-habitat-2-clamp-stay--1",
+        "kind": "hinge",
+        "bodyA": "moon-1-coupler",
+        "pointA": {
+          "x": -55,
+          "y": 0
+        },
+        "bodyB": "moon-1-habitat-2-floor-tie",
+        "pointB": {
+          "x": -20,
+          "y": 0
+        },
+        "length": 202.35823954297715,
+        "stiffness": 0.75,
+        "damping": 0.15
+      },
+      {
+        "id": "moon-1-habitat-2-clamp-stay-1",
+        "kind": "hinge",
+        "bodyA": "moon-1-coupler",
+        "pointA": {
+          "x": 55,
+          "y": 0
+        },
+        "bodyB": "moon-1-habitat-2-floor-tie",
+        "pointB": {
+          "x": 20,
+          "y": 0
+        },
+        "length": 225.98135722851015,
+        "stiffness": 0.75,
+        "damping": 0.15
+      },
+      {
+        "id": "moon-1-coupler-seat",
+        "kind": "hinge",
+        "pointA": {
+          "x": 2500,
+          "y": 470
+        },
+        "bodyB": "moon-1-coupler",
+        "pointB": {
+          "x": 0,
+          "y": 0
+        },
+        "length": 0,
+        "stiffness": 0.75,
+        "damping": 0.15
+      },
+      {
+        "id": "moon-1-coupler-orientation",
+        "kind": "hinge",
+        "pointA": {
+          "x": 2545,
+          "y": 470
+        },
+        "bodyB": "moon-1-coupler",
+        "pointB": {
+          "x": 45,
+          "y": 0
+        },
+        "length": 0,
+        "stiffness": 0.75,
+        "damping": 0.15
+      },
+      {
+        "id": "moon-1-coupler-cargo",
+        "kind": "rope",
+        "bodyA": "moon-1-coupler",
+        "pointA": {
+          "x": 0,
+          "y": 0
+        },
+        "bodyB": "moon-1-asteroid",
+        "pointB": {
+          "x": 0,
+          "y": 0
+        },
+        "length": 60,
+        "stiffness": 0.75,
+        "damping": 0.15
+      }
+    ],
+    "mechanisms": [],
+    "zones": [
+      {
+        "id": "foundry-moon-0-well",
+        "kind": "gravity",
+        "x": 1250,
+        "y": 850,
+        "w": 1200,
+        "h": 1200,
+        "center": {
+          "x": 1250,
+          "y": 850
+        },
+        "radius": 600,
+        "strength": 0.9
+      },
+      {
+        "id": "foundry-moon-1-well",
+        "kind": "gravity",
+        "x": 2500,
+        "y": 800,
+        "w": 1200,
+        "h": 1200,
+        "center": {
+          "x": 2500,
+          "y": 800
+        },
+        "radius": 600,
+        "strength": 1.1
+      }
+    ],
+    "thresholds": [
+      20000,
+      27500,
+      35000
+    ],
+    "par": 3,
+    "camera": {
+      "start": "overview"
+    },
+    "metadata": {
+      "category": "spectacle",
+      "idea": "Two curved surfaces, two gravity wells. Release the asteroid to sweep the near-moon outpost, then curve into the far colony.",
+      "mechanics": [
+        "zero-gravity transit",
+        "two radial wells",
+        "curved target surfaces",
+        "breakable asteroid clamps",
+        "gravity-assisted debris"
+      ],
+      "author": "Plush Siege production pass 5",
+      "design": {
+        "archetype": "two radial settlements with fragile roofs and released asteroids",
+        "role": "spectacle",
+        "weakPoints": [
+          "moon-0-habitat-0-left-rake",
+          "moon-0-habitat-0-right-rake",
+          "moon-0-habitat-1-left-rake",
+          "moon-0-habitat-1-right-rake",
+          "moon-0-habitat-2-left-rake",
+          "moon-0-habitat-2-right-rake",
+          "moon-0-coupler",
+          "moon-1-habitat-0-left-rake",
+          "moon-1-habitat-0-right-rake",
+          "moon-1-habitat-1-left-rake",
+          "moon-1-habitat-1-right-rake",
+          "moon-1-habitat-2-left-rake",
+          "moon-1-habitat-2-right-rake",
+          "moon-1-coupler"
+        ],
+        "sections": [
+          {
+            "id": "near-moon",
+            "members": [
+              "moon-0-habitat-0-left-rake",
+              "moon-0-habitat-0-right-rake",
+              "moon-0-habitat-0-floor-tie",
+              "moon-0-habitat-1-left-rake",
+              "moon-0-habitat-1-right-rake",
+              "moon-0-habitat-1-floor-tie",
+              "moon-0-habitat-2-left-rake",
+              "moon-0-habitat-2-right-rake",
+              "moon-0-habitat-2-floor-tie",
+              "moon-0-coupler",
+              "moon-0-resident-0",
+              "moon-0-resident-2",
+              "moon-0-asteroid"
+            ]
+          },
+          {
+            "id": "far-moon",
+            "members": [
+              "moon-1-habitat-0-left-rake",
+              "moon-1-habitat-0-right-rake",
+              "moon-1-habitat-0-floor-tie",
+              "moon-1-habitat-1-left-rake",
+              "moon-1-habitat-1-right-rake",
+              "moon-1-habitat-1-floor-tie",
+              "moon-1-habitat-2-left-rake",
+              "moon-1-habitat-2-right-rake",
+              "moon-1-habitat-2-floor-tie",
+              "moon-1-coupler",
+              "moon-1-resident-0",
+              "moon-1-resident-2",
+              "moon-1-asteroid"
+            ]
+          }
+        ],
+        "intendedRoute": [
+          {
+            "from": "moon-0-coupler",
+            "to": "moon-0-asteroid",
+            "via": "release"
+          },
+          {
+            "from": "foundry-moon-0-well",
+            "to": "moon-0-asteroid",
+            "via": "force"
+          },
+          {
+            "from": "moon-0-asteroid",
+            "to": "moon-0-habitat-0-left-rake",
+            "via": "impact"
+          },
+          {
+            "from": "moon-1-coupler",
+            "to": "moon-1-asteroid",
+            "via": "release"
+          }
+        ],
+        "worldUse": "essential"
+      }
+    },
+    "environment": {
+      "gravity": {
+        "x": 0,
+        "y": 0
+      },
+      "ground": false
     }
   }
 ]

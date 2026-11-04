@@ -2311,14 +2311,19 @@ export function drawZone(g:G,def:ZoneDef,time:number):void {
     for(let i=0;i<Math.min(7,count);i++){const x=left+(i+.5)*def.w/Math.min(7,count),y=top+def.h*.55+Math.sin(time/520+i)*def.h*.1;p.ellipse(x,y,4+i%2,2.7,0xffdd73);}
     p.line([[left+2,top+7],[right-2,top+7]],0xffdf78,2,.8);
   }else if(def.kind==='heat'){
-    g.fillStyle(0xffb25f,.07).fillRect(left,top,def.w,def.h);
-    for(let i=0;i<Math.min(7,Math.ceil(def.w/45));i++){const x=left+(i+.5)*def.w/Math.min(7,Math.ceil(def.w/45)),h=Math.min(35,def.h*.7);p.line([[x,bottom-4],[x-4,bottom-h*.4],[x+4,bottom-h*.75],[x,bottom-h]],0xed9857,1.8,.4);}
+    g.fillStyle(0xffb25f,.12).fillRect(left,top,def.w,def.h);
+    const count=Math.min(7,Math.ceil(def.w/45));
+    for(let i=0;i<count;i++){const x=left+(i+.5)*def.w/count,h=Math.min(100,def.h*.8)*(1+.06*Math.sin(time/390+i));
+      p.polygon([[x-10,bottom-5],[x-12,bottom-h*.4],[x-2,bottom-h],[x+6,bottom-h*.6],[x+11,bottom-5]],0xff9254,0xffcc73,1.3,.3);
+      const rise=(time/1000*.28+i/count)%1,ex=x+Math.sin(time/600+i)*5,ey=bottom-rise*def.h;p.polygon([[ex-2,ey],[ex,ey-4],[ex+2,ey],[ex,ey+3]],0xffcf78,undefined,1,.7*(1-rise));
+    }
   }else if(def.kind==='ice'){
     g.fillStyle(0x8debf2,.18).fillRect(left,top,def.w,def.h);g.lineStyle(1.5,0xe4ffff,.7).strokeRect(left,top,def.w,def.h);
     for(let x=left+15;x<right;x+=Math.max(50,def.w/12))p.line([[x,top+4],[Math.min(x+19,right-2),bottom-4]],0xf1ffff,2,.65);
   }else{
     const zero=def.kind==='zero-gravity',color=zero?0xd6b9ff:0x91e7e9;
-    g.fillStyle(color,.055).fillRect(left,top,def.w,def.h);
+    if(!zero&&def.center&&def.radius&&def.w>=def.radius*2&&def.h>=def.radius*2)g.fillStyle(color,.055).fillCircle(def.center.x,def.center.y,def.radius);
+    else g.fillStyle(color,.055).fillRect(left,top,def.w,def.h);
     if(!zero&&!def.center){
       const vector=def.gravity||{x:0,y:def.strength??.25},angle=Math.atan2(vector.y,vector.x);
       if(Math.hypot(vector.x,vector.y)>.001)for(let i=0;i<3;i++)for(let j=0;j<2;j++){

@@ -8,6 +8,9 @@ export interface MechanismState {def:MechanismDef;active:boolean;body?:Matter.Bo
 interface JointState {constraint:Matter.Constraint;stiffness:number;damping:number;breakForce?:number;kind:string;}
 /** Optional v1 world mechanics. All forces/contacts run in the same Matter world as ordinary blocks. */
 export class WorldPhysics {
+  pendingDestruction=false;
+  /** Diagnostic totals; no per-tick render events or gameplay decisions depend on these. */
+  activity=new Map<string,{ticks:number;bodyTicks:number;impulse:number;damage:number}>();
   constraints=new Map<string,Matter.Constraint>();
   mechanisms=new Map<string,MechanismState>();
   private joints=new Map<string,JointState>();
@@ -52,27 +55,29 @@ export class WorldPhysics {
   }
   private body(id:string){return [...this.entities.values()].find(e=>e.id===id)?.body;}
   private inside(p:Point,z:{x:number;y:number;w:number;h:number}) {return Math.abs(p.x-z.x)<=z.w/2&&Math.abs(p.y-z.y)<=z.h/2;}
-  private gravityAt(p:Point):Point {
+  private gravityAt(p:Point,observe?:(id:string)=>void):Point {
     let vector={x:this.engine.gravity.x,y:this.engine.gravity.y};
     for(const z of this.level.zones||[]) {
       if(!this.inside(p,z))continue;
-      if(z.kind==='zero-gravity')vector={x:0,y:0};
+      if(z.kind==='zero-gravity'){vector={x:0,y:0};observe?.(z.id);}
       if(z.kind==='gravity') {
         if(z.center) {
           const dx=z.center.x-p.x,dy=z.center.y-p.y,d=Math.hypot(dx,dy),radius=z.radius??Math.max(z.w,z.h)/2;
           if(d>radius)continue;
-          const strength=(z.strength??1)*Math.max(0,1-d/radius);vector=d>.5?{x:dx/d*strength,y:dy/d*strength}:{x:0,y:0};
-        } else vector=z.gravity?{...z.gravity}:{x:0,y:z.strength??.25};
+          const strength=(z.strength??1)*Math.max(0,1-d/radius);vector=d>.5?{x:dx/d*strength,y:dy/d*strength}:{x:0,y:0};observe?.(z.id);
+        } else {vector=z.gravity?{...z.gravity}:{x:0,y:z.strength??.25};observe?.(z.id);}
       }
     }
     return vector;
   }
+  private record(id:string,impulse=0,damage=0){const a=this.activity.get(id)||{ticks:0,bodyTicks:0,impulse:0,damage:0};if((a as typeof a&{last?:number}).last!==this.clock){a.ticks++;(a as typeof a&{last?:number}).last=this.clock;}a.bodyTicks++;a.impulse+=Math.abs(impulse);a.damage+=damage;this.activity.set(id,a);}
   /** Velocity change per 60Hz step, shared by trajectory preview and simulation. */
   accelerationAt(point:Point):Point {const v=this.gravityAt(point),scale=this.engine.gravity.scale*PHYSICS.step*PHYSICS.step;return{x:v.x*scale,y:v.y*scale};}
   get spaceLike(){return this.level.world==='orbital'||(this.level.environment?.ground===false&&this.engine.gravity.x===0&&this.engine.gravity.y===0);}
   drivenBodyIds():Set<number>{return new Set([...this.mechanisms.values()].filter(m=>m.active&&m.body&&(m.def.kind==='motor'||m.def.kind==='platform')).map(m=>m.body!.id));}
   beforeStep(time:number,launched:boolean) {
     this.clock=time;
+    this.pendingDestruction=false;
     for(const state of this.mechanisms.values()) {
       const {def,body}=state;
       if(!state.active&&def.trigger&&this.initialIds.has(def.trigger)&&this.removedIds.has(def.trigger)) {state.active=true;state.startedAt=time;this.emit({type:'mechanism',x:body?.position.x??def.x??0,y:body?.position.y??def.y??0,mechanismId:def.id});}
@@ -93,6 +98,7 @@ export class WorldPhysics {
         for(const e of this.entities.values())if(!e.body.isStatic&&this.inside(e.body.position,zone)) {
           const force=Math.max(0,Math.min(.012,def.force??.003))*e.body.mass*direction;
           Body.applyForce(e.body,e.body.position,axis==='y'?{x:0,y:force}:{x:force,y:0});
+          this.record(def.id,force*PHYSICS.step*PHYSICS.step);
         }
       }
     }
@@ -104,16 +110,17 @@ export class WorldPhysics {
       for(const zone of this.level.zones||[]) {
         const shape=this.zoneShapes.get(zone.id);
         if(!shape||!Matter.Bounds.overlaps(b.bounds,shape.bounds)||!Matter.Collision.collides(b,shape))continue;
-        if(zone.kind==='ice'&&!b.isStatic)frozen=true;
-        if(!b.isStatic&&zone.kind==='lava')this.damage(e,{amount:(zone.rate??50)*PHYSICS.step/1000,source:'lava'});
+        if(zone.kind==='ice'&&!b.isStatic){frozen=true;if(!b.isSleeping)this.record(zone.id);}
+        if(!b.isStatic&&zone.kind==='lava'){const amount=(zone.rate??50)*PHYSICS.step/1000;if(amount>0&&e.health>0&&e.type!=='fragment'&&e.type!=='projectile')this.pendingDestruction=true;this.damage(e,{amount,source:'lava',sourceId:zone.id});this.record(zone.id,0,amount);}
         if(!b.isStatic&&launched&&zone.kind==='heat'&&(e.type==='block'||e.type==='fragment'||e.type==='prop')) {
           const material=(e.def as BlockDef)?.material;
-          if(material==='wood'||material==='ice')this.damage(e,{amount:(zone.rate??(material==='ice'?8:3))*PHYSICS.step/1000,source:'heat',material});
+          if(material==='wood'||material==='ice'){const amount=(zone.rate??(material==='ice'?8:3))*PHYSICS.step/1000;if(amount>0&&e.health>0&&e.type!=='fragment')this.pendingDestruction=true;this.damage(e,{amount,source:'heat',sourceId:zone.id,material});this.record(zone.id,0,amount);}
         }
       }
       b.friction=frozen?.015:base.friction;b.frictionStatic=frozen?.02:base.staticFriction;
       if(!b.isStatic&&!b.isSleeping) {
-        const local=this.gravityAt(b.position),dx=(local.x-this.engine.gravity.x)*gravityScale,dy=(local.y-this.engine.gravity.y)*gravityScale;
+        let field:string|undefined;const local=this.gravityAt(b.position,id=>field=id),dx=(local.x-this.engine.gravity.x)*gravityScale,dy=(local.y-this.engine.gravity.y)*gravityScale;
+        if(field)this.record(field,b.mass*Math.hypot(dx,dy));
         if(dx||dy){const drag=Math.max(.01,1-b.frictionAir);Body.setVelocity(b,{x:b.velocity.x+dx/drag,y:b.velocity.y+dy/drag});}
       }
     }
@@ -143,5 +150,5 @@ export class WorldPhysics {
     for(const [joint,state]of [...this.joints])if(state.constraint.bodyA===body||state.constraint.bodyB===body)this.release(joint,'joint-break');
     this.baseFriction.delete(body.id);
   }
-  dispose(){this.constraints.clear();this.joints.clear();this.mechanisms.clear();this.removedIds.clear();this.baseFriction.clear();this.zoneShapes.clear();}
+  dispose(){this.constraints.clear();this.joints.clear();this.mechanisms.clear();this.removedIds.clear();this.baseFriction.clear();this.zoneShapes.clear();this.activity.clear();}
 }

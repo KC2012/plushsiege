@@ -31,6 +31,14 @@ export interface JointDef { id:string; kind:'rope'|'hinge'|'spring'; bodyA?:stri
 /** A trigger names a physical object: its removal releases the actuator, not a scripted collapse. */
 export interface MechanismDef { id:string; kind:'motor'|'platform'|'vent'; body?:string; x?:number; y?:number; w?:number; h?:number; speed?:number; range?:number; axis?:'x'|'y'; force?:number; trigger?:string }
 export interface ZoneDef { id:string; kind:'ice'|'lava'|'heat'|'gravity'|'zero-gravity'; x:number; y:number; w:number; h:number; gravity?:Point; center?:Point; strength?:number; radius?:number; rate?:number }
+export interface DesignNotes {
+  archetype:string;
+  role:'teach'|'reinforce'|'experiment'|'challenge'|'spectacle'|'mastery';
+  weakPoints:string[];
+  sections:{id:string;members:string[]}[];
+  intendedRoute:{from:string;to:string;via:'support'|'impact'|'release'|'force'|'hazard'}[];
+  worldUse:'essential'|'helpful'|'classic';
+}
 export interface Level {
   version: 1;
   id: string;
@@ -53,7 +61,7 @@ export interface Level {
   zones?:ZoneDef[];
   environment?:{ gravity?:Point; groundFriction?:number; ground?:boolean };
   camera?:{ start?:'overview'|'sling'; zoom?:number };
-  metadata?:{ category:'puzzle'|'siege'|'spectacle'; idea:string; mechanics:string[]; author?:string };
+  metadata?:{ category:'puzzle'|'siege'|'spectacle'; idea:string; mechanics:string[]; author?:string; design?:DesignNotes };
 
 }
 export interface ValidationIssue {

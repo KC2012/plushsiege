@@ -94,6 +94,7 @@ export const PHYSICS = {
   bodyLimit: 240,
   spaceProjectileLifetimeMs: 30000,
   spaceVictoryGraceMs: 3000,
+  victoryGraceMs: 5000,
   minFragmentSize: 12,
   fragmentLifetimeMs: 45000,
   // Show the intact rigid body reacting before replacing it with large pieces.

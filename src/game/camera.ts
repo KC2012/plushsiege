@@ -101,6 +101,13 @@ export class CameraRig {
     this.targetY = p.y - 80 / this.targetZoom;
     this.constrain();
   }
+  followActivity(area:{min:Point;max:Point}) {
+    if(!this.tracking)return;
+    this.targetZoom=Math.max(this.minZoom,Math.min(1,CAMERA_VIEW.width/(area.max.x-area.min.x+260),CAMERA_VIEW.height/(area.max.y-area.min.y+180)));
+    this.targetX=(area.min.x+area.max.x)/2;
+    this.targetY=(area.min.y+area.max.y)/2-25/this.targetZoom;
+    this.constrain();
+  }
   panBy(screenDx: number, screenDy: number) {
     this.tracking = false;
     this.freeze();

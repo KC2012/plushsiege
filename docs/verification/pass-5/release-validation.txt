@@ -1,0 +1,43 @@
+
+> plush-siege@0.5.0 validate
+> node --import tsx scripts/validate.ts && npm run test:expansion
+
+meadow-01 A Soft Landing: schema PASS; authored stability PASS (peak 1.09px); sampled solution FOUND (1 shots, 8500 points, 3 stars); 1 attempts
+meadow-02 Double Trouble: schema PASS; authored stability PASS (peak 1.09px); sampled solution FOUND (2 shots, 14000 points, 3 stars); 1 attempts
+meadow-03 Top of the Morning: schema PASS; authored stability PASS (peak 3.65px); sampled solution FOUND (1 shots, 16500 points, 3 stars); 1 attempts
+meadow-04 The Wobbly Duplex: schema PASS; authored stability PASS (peak 5.66px); sampled solution FOUND (1 shots, 16500 points, 3 stars); 1 attempts
+meadow-05 Through the Looking Glass: schema PASS; authored stability PASS (peak 1.37px); sampled solution FOUND (1 shots, 12200 points, 3 stars); 1 attempts
+meadow-06 Window Shopping: schema PASS; authored stability PASS (peak 1.08px); sampled solution FOUND (2 shots, 24000 points, 3 stars); 1 attempts
+meadow-07 Roof Service: schema PASS; authored stability PASS (peak 5.37px); sampled solution FOUND (2 shots, 22200 points, 3 stars); 1 attempts
+meadow-08 Express Delivery: schema PASS; authored stability PASS (peak 1.22px); sampled solution FOUND (2 shots, 15100 points, 3 stars); 1 attempts
+meadow-09 High Society: schema PASS; authored stability PASS (peak 1.39px); sampled solution FOUND (1 shots, 12100 points, 3 stars); 1 attempts
+meadow-10 A Gap in the Market: schema PASS; authored stability PASS (peak 0.89px); sampled solution FOUND (1 shots, 14600 points, 3 stars); 1 attempts
+meadow-11 Hard as a Rock: schema PASS; authored stability PASS (peak 3.36px); sampled solution FOUND (1 shots, 16600 points, 3 stars); 1 attempts
+meadow-12 Bear Necessities: schema PASS; authored stability PASS (peak 1.58px); sampled solution FOUND (1 shots, 12300 points, 3 stars); 1 attempts
+meadow-13 The Glass Elevator: schema PASS; authored stability PASS (peak 6.21px); sampled solution FOUND (1 shots, 16800 points, 3 stars); 1 attempts
+meadow-14 Knock Knock: schema PASS; authored stability PASS (peak 3.16px); sampled solution FOUND (1 shots, 20800 points, 3 stars); 1 attempts
+meadow-15 Three Is Company: schema PASS; authored stability PASS (peak 0.08px); sampled solution FOUND (1 shots, 21000 points, 3 stars); 1 attempts
+meadow-16 Rabbit, Rabbit, Rabbit: schema PASS; authored stability PASS (peak 1.52px); sampled solution FOUND (2 shots, 21600 points, 3 stars); 1 attempts
+meadow-17 Pop Goes the Castle: schema PASS; authored stability PASS (peak 1.48px); sampled solution FOUND (1 shots, 13500 points, 3 stars); 1 attempts
+meadow-18 A Chain of Bad Ideas: schema PASS; authored stability PASS (peak 1.60px); sampled solution FOUND (1 shots, 25400 points, 3 stars); 1 attempts
+meadow-19 Little Towers, Big Feelings: schema PASS; authored stability PASS (peak 5.74px); sampled solution FOUND (1 shots, 25200 points, 3 stars); 1 attempts
+meadow-20 The Long Way Round: schema PASS; authored stability PASS (peak 5.95px); sampled solution FOUND (1 shots, 25100 points, 3 stars); 1 attempts
+meadow-21 Fort Pillow: schema PASS; authored stability PASS (peak 4.95px); sampled solution FOUND (1 shots, 22400 points, 3 stars); 1 attempts
+meadow-22 Cloud Nine: schema PASS; authored stability PASS (peak 1.57px); sampled solution FOUND (2 shots, 21500 points, 3 stars); 1 attempts
+meadow-23 The Bridge Club: schema PASS; authored stability PASS (peak 4.84px); sampled solution FOUND (2 shots, 25100 points, 3 stars); 1 attempts
+meadow-24 Meadow Mayhem: schema PASS; authored stability PASS (peak 4.36px); sampled solution FOUND (2 shots, 26700 points, 3 stars); 1 attempts
+
+24 levels: 0 invalid, 0 unstable, 24 sampled solutions, 24 three-star routes. Report: artifacts/campaign-validation.json
+
+> plush-siege@0.5.0 test:expansion
+> node --import tsx --test tests/expansion-content.test.ts
+
+✔ tests/expansion-content.test.ts (66473.633012ms)
+ℹ tests 1
+ℹ suites 0
+ℹ pass 1
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 66488.268153

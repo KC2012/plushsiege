@@ -1,0 +1,14 @@
+PASS no context is constructed before a gesture
+PASS real context unlocks and original score scheduling begins
+PASS countryside produces nonzero real audio output
+PASS frozen produces nonzero real audio output
+PASS molten produces nonzero real audio output
+PASS haunted produces nonzero real audio output
+PASS orbital produces nonzero real audio output
+PASS separate volume gains retain their selected values
+PASS pause stops scheduling and releases active sound nodes
+PASS master mute silences output and cancels scheduling
+PASS dense real effects respect the voice budget
+PASS dispose closes the real context and releases all voices
+PASS audio produces no uncaught browser errors
+Audio browser: 13 checks passed.

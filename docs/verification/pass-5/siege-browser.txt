@@ -1,0 +1,55 @@
+PASS 1440 meadow-33: actual scene renders finite dynamic targets
+PASS 1440 meadow-33: game canvas fits the viewport
+1440 meadow-33 {"phase":"won","remaining":0,"score":42900,"bodies":39,"peakBodies":43,"shots":[{"x":-54.03639268296633,"y":28.731659642496517,"abilityAt":20},{"x":-44.69840988342893,"y":91.68452516042706,"abilityAt":105}],"cameraX":2007.5023529123855}
+PASS 1440 meadow-33: real rendered input route clears within the queue
+PASS 1440 meadow-33: body budget stays bounded
+PASS 1440 frozen-13: actual scene renders finite dynamic targets
+PASS 1440 frozen-13: game canvas fits the viewport
+1440 frozen-13 {"phase":"won","remaining":0,"score":36100,"bodies":30,"peakBodies":36,"shots":[{"x":-92.44339427773829,"y":43.10706269755134,"abilityAt":null},{"x":-101.23970746741485,"y":12.430673027325042,"abilityAt":null}],"cameraX":2334.522033249783}
+PASS 1440 frozen-13: real rendered input route clears within the queue
+PASS 1440 frozen-13: body budget stays bounded
+PASS 1440: camera follows the siege after the stuffie lands
+PASS 1440 molten-13: actual scene renders finite dynamic targets
+PASS 1440 molten-13: game canvas fits the viewport
+1440 molten-13 {"phase":"won","remaining":0,"score":58700,"bodies":7,"peakBodies":33,"shots":[{"x":-102,"y":0,"abilityAt":20}],"cameraX":2221.962686472649}
+PASS 1440 molten-13: real rendered input route clears within the queue
+PASS 1440 molten-13: body budget stays bounded
+PASS 1440 haunted-13: actual scene renders finite dynamic targets
+PASS 1440 haunted-13: game canvas fits the viewport
+1440 haunted-13 {"phase":"won","remaining":0,"score":32500,"bodies":42,"peakBodies":43,"shots":[{"x":-61.050919875901236,"y":-4.269096193140468,"abilityAt":20},{"x":-55.37057026733275,"y":85.66271037196037,"abilityAt":65}],"cameraX":2085.4760685070537}
+PASS 1440 haunted-13: real rendered input route clears within the queue
+PASS 1440 haunted-13: body budget stays bounded
+PASS 1440 orbital-13: actual scene renders finite dynamic targets
+PASS 1440 orbital-13: game canvas fits the viewport
+1440 orbital-13 {"phase":"won","remaining":0,"score":38800,"bodies":39,"peakBodies":39,"shots":[{"x":-102,"y":0,"abilityAt":20},{"x":-98.97016408015163,"y":24.676033351166108,"abilityAt":50},{"x":-102,"y":0,"abilityAt":35}],"cameraX":2679.9999999999986}
+PASS 1440 orbital-13: real rendered input route clears within the queue
+PASS 1440 orbital-13: body budget stays bounded
+PASS 1440: no uncaught game errors
+PASS 1024 meadow-33: actual scene renders finite dynamic targets
+PASS 1024 meadow-33: game canvas fits the viewport
+1024 meadow-33 {"phase":"won","remaining":0,"score":42900,"bodies":39,"peakBodies":43,"shots":[{"x":-54.03639268296633,"y":28.731659642496517,"abilityAt":20},{"x":-44.69840988342893,"y":91.68452516042706,"abilityAt":105}],"cameraX":2007.5023529123855}
+PASS 1024 meadow-33: real rendered input route clears within the queue
+PASS 1024 meadow-33: body budget stays bounded
+PASS 1024 frozen-13: actual scene renders finite dynamic targets
+PASS 1024 frozen-13: game canvas fits the viewport
+1024 frozen-13 {"phase":"won","remaining":0,"score":36100,"bodies":30,"peakBodies":36,"shots":[{"x":-92.44339427773829,"y":43.10706269755134,"abilityAt":null},{"x":-101.23970746741485,"y":12.430673027325042,"abilityAt":null}],"cameraX":2334.522033249783}
+PASS 1024 frozen-13: real rendered input route clears within the queue
+PASS 1024 frozen-13: body budget stays bounded
+PASS 1024: camera follows the siege after the stuffie lands
+PASS 1024 molten-13: actual scene renders finite dynamic targets
+PASS 1024 molten-13: game canvas fits the viewport
+1024 molten-13 {"phase":"won","remaining":0,"score":58700,"bodies":7,"peakBodies":33,"shots":[{"x":-102,"y":0,"abilityAt":20}],"cameraX":2221.962686472649}
+PASS 1024 molten-13: real rendered input route clears within the queue
+PASS 1024 molten-13: body budget stays bounded
+PASS 1024 haunted-13: actual scene renders finite dynamic targets
+PASS 1024 haunted-13: game canvas fits the viewport
+1024 haunted-13 {"phase":"won","remaining":0,"score":32500,"bodies":42,"peakBodies":43,"shots":[{"x":-61.050919875901236,"y":-4.269096193140468,"abilityAt":20},{"x":-55.37057026733275,"y":85.66271037196037,"abilityAt":65}],"cameraX":2085.4760685070537}
+PASS 1024 haunted-13: real rendered input route clears within the queue
+PASS 1024 haunted-13: body budget stays bounded
+PASS 1024 orbital-13: actual scene renders finite dynamic targets
+PASS 1024 orbital-13: game canvas fits the viewport
+1024 orbital-13 {"phase":"won","remaining":0,"score":38800,"bodies":39,"peakBodies":39,"shots":[{"x":-102,"y":0,"abilityAt":20},{"x":-98.97016408015163,"y":24.676033351166108,"abilityAt":50},{"x":-102,"y":0,"abilityAt":35}],"cameraX":2679.9999999999986}
+PASS 1024 orbital-13: real rendered input route clears within the queue
+PASS 1024 orbital-13: body budget stays bounded
+PASS 1024: no uncaught game errors
+Siege browser: 44 checks passed.

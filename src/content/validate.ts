@@ -186,5 +186,20 @@ export function validateLevel(input: unknown): ValidationIssue[] {
     if(zone.gravity!==undefined)point(zone.gravity,`${path}.gravity`);if(zone.center!==undefined)point(zone.center,`${path}.center`);
     number(zone.strength,`${path}.strength`,0,10);number(zone.radius,`${path}.radius`,1,20000);number(zone.rate,`${path}.rate`,0,100);
   });
+  if(object(l.metadata)&&l.metadata.design!==undefined){
+    const d=l.metadata.design,path='metadata.design';
+    if(!object(d))issue(path,'Expected design notes.');else{
+      if(typeof d.archetype!=='string'||!d.archetype.trim())issue(`${path}.archetype`,'Name the architectural premise.');
+      if(!['teach','reinforce','experiment','challenge','spectacle','mastery'].includes(d.role as string))issue(`${path}.role`,'Choose a campaign learning role.');
+      if(!['essential','helpful','classic'].includes(d.worldUse as string))issue(`${path}.worldUse`,'Describe how the world mechanic contributes.');
+      if(!Array.isArray(d.weakPoints)||d.weakPoints.length>100)issue(`${path}.weakPoints`,'Provide up to 100 physical weak points.');
+      else d.weakPoints.forEach((v,i)=>reference(v,`${path}.weakPoints[${i}]`,true));
+      const sectionIds=new Set<string>();
+      if(!Array.isArray(d.sections)||d.sections.length>50)issue(`${path}.sections`,'Provide up to 50 named structural sections.');
+      else d.sections.forEach((s,i)=>{const p=`${path}.sections[${i}]`;if(!object(s)){issue(p,'Expected a structural section.');return;}if(typeof s.id!=='string'||!s.id.trim()||sectionIds.has(s.id))issue(`${p}.id`,'Section IDs must be nonempty and unique.');else sectionIds.add(s.id);if(!Array.isArray(s.members)||!s.members.length||s.members.length>400)issue(`${p}.members`,'List this section’s physical members.');else s.members.forEach((v,j)=>reference(v,`${p}.members[${j}]`,true));});
+      if(!Array.isArray(d.intendedRoute)||d.intendedRoute.length>100)issue(`${path}.intendedRoute`,'Provide up to 100 intended physical links.');
+      else d.intendedRoute.forEach((r,i)=>{const p=`${path}.intendedRoute[${i}]`;if(!object(r)){issue(p,'Expected a physical link.');return;}for(const key of ['from','to'])if(typeof r[key]!=='string'||!ids.has(r[key] as string))issue(`${p}.${key}`,'Route endpoints must name objects, zones, joints or actuators.');if(!['support','impact','release','force','hazard'].includes(r.via as string))issue(`${p}.via`,'Unknown physical link kind.');});
+    }
+  }
   return issues;
 }

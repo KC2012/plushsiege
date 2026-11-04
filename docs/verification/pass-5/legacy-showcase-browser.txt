@@ -1,0 +1,8 @@
+PASS meadow-30: authored bodies render in the actual scene
+PASS frozen-10: authored bodies render in the actual scene
+PASS molten-10: authored bodies render in the actual scene
+PASS haunted-10: authored bodies render in the actual scene
+PASS orbital-10: authored bodies render in the actual scene
+PASS large chain remains inside the entity budget
+PASS rendered ice city has an actual winning route within its queue
+PASS showcases produce no uncaught browser errors

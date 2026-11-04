@@ -857,7 +857,7 @@
     "id": "frozen-07",
     "world": "frozen",
     "name": "Cold Storage",
-    "subtitle": "A durable lid, slippery feet, and an inconveniently heavy tenant.",
+    "subtitle": "A steel-roof freezer and a broad wooden annex share a slick delivery yard. Move the parked stone between them.",
     "bounds": {
       "width": 2300,
       "height": 1185,
@@ -876,196 +876,246 @@
     ],
     "blocks": [
       {
-        "id": "freezer-l0",
+        "id": "freezer-left-rake",
         "x": 1020,
-        "y": 1002,
-        "w": 18,
-        "h": 96,
-        "material": "ice"
-      },
-      {
-        "id": "freezer-r0",
-        "x": 1140,
-        "y": 1002,
-        "w": 18,
-        "h": 96,
-        "material": "ice"
-      },
-      {
-        "id": "freezer-roof0",
-        "x": 1080,
-        "y": 945,
-        "w": 160,
-        "h": 18,
+        "y": 929,
+        "w": 240.17851452243804,
+        "h": 12,
+        "angle": -0.9629943306809362,
         "material": "metal"
       },
       {
-        "id": "freezer-l1",
-        "x": 1020,
-        "y": 888,
-        "w": 18,
-        "h": 96,
-        "material": "ice"
-      },
-      {
-        "id": "freezer-r1",
-        "x": 1140,
-        "y": 888,
-        "w": 18,
-        "h": 96,
-        "material": "ice"
-      },
-      {
-        "id": "freezer-roof1",
-        "x": 1080,
-        "y": 831,
-        "w": 160,
-        "h": 18,
+        "id": "freezer-right-rake",
+        "x": 1180,
+        "y": 929,
+        "w": 240.17851452243804,
+        "h": 12,
+        "angle": 0.9629943306809362,
         "material": "metal"
       },
       {
-        "id": "freezer-l2",
-        "x": 1020,
-        "y": 774,
-        "w": 18,
-        "h": 96,
-        "material": "ice"
-      },
-      {
-        "id": "freezer-r2",
-        "x": 1140,
-        "y": 774,
-        "w": 18,
-        "h": 96,
-        "material": "ice"
-      },
-      {
-        "id": "freezer-roof2",
-        "x": 1080,
-        "y": 717,
-        "w": 160,
-        "h": 18,
-        "material": "metal"
-      },
-      {
-        "id": "delivery-l0",
-        "x": 1430,
-        "y": 1002,
-        "w": 18,
-        "h": 96,
+        "id": "freezer-floor-tie",
+        "x": 1100,
+        "y": 1044,
+        "w": 280,
+        "h": 12,
+        "angle": 0,
         "material": "wood"
       },
       {
-        "id": "delivery-r0",
-        "x": 1550,
-        "y": 1002,
-        "w": 18,
-        "h": 96,
+        "id": "annex-left-rake",
+        "x": 1520,
+        "y": 969,
+        "w": 152.09372712298546,
+        "h": 12,
+        "angle": -0.8960553845713439,
         "material": "wood"
       },
       {
-        "id": "delivery-roof0",
-        "x": 1490,
-        "y": 945,
-        "w": 160,
-        "h": 18,
-        "material": "ice"
-      },
-      {
-        "id": "delivery-l1",
-        "x": 1430,
-        "y": 888,
-        "w": 18,
-        "h": 96,
+        "id": "annex-right-rake",
+        "x": 1640,
+        "y": 969,
+        "w": 152.09372712298546,
+        "h": 12,
+        "angle": 0.8960553845713439,
         "material": "wood"
       },
       {
-        "id": "delivery-r1",
-        "x": 1550,
-        "y": 888,
-        "w": 18,
-        "h": 96,
-        "material": "wood"
-      },
-      {
-        "id": "delivery-roof1",
-        "x": 1490,
-        "y": 831,
-        "w": 160,
-        "h": 18,
-        "material": "ice"
+        "id": "annex-floor-tie",
+        "x": 1580,
+        "y": 1044,
+        "w": 200,
+        "h": 12,
+        "angle": 0,
+        "material": "glass"
       }
     ],
     "monsters": [
       {
-        "id": "freezer-m0",
-        "x": 1080,
-        "y": 1032,
+        "id": "freezer-resident",
+        "x": 1100,
+        "y": 1020,
         "radius": 18,
         "kind": "horn"
       },
       {
-        "id": "freezer-m1",
-        "x": 1080,
-        "y": 918,
-        "radius": 18,
-        "kind": "blob"
-      },
-      {
-        "id": "freezer-m2",
-        "x": 1080,
-        "y": 804,
-        "radius": 18,
-        "kind": "bat"
-      },
-      {
-        "id": "delivery-m0",
-        "x": 1490,
-        "y": 1032,
+        "id": "annex-resident",
+        "x": 1580,
+        "y": 1020,
         "radius": 18,
         "kind": "horn"
-      },
-      {
-        "id": "delivery-m1",
-        "x": 1490,
-        "y": 918,
-        "radius": 18,
-        "kind": "blob"
       }
     ],
     "hazards": [],
     "terrain": [],
-    "props": [],
-    "joints": [],
+    "props": [
+      {
+        "id": "freezer-delivery",
+        "x": 1360,
+        "y": 1010,
+        "kind": "boulder",
+        "radius": 40,
+        "material": "stone"
+      }
+    ],
+    "joints": [
+      {
+        "id": "freezer-pin-left-freezer-floor-tie",
+        "kind": "hinge",
+        "bodyA": "freezer-left-rake",
+        "pointA": {
+          "x": -140.08925726121902,
+          "y": 0
+        },
+        "bodyB": "freezer-floor-tie",
+        "pointB": {
+          "x": -160,
+          "y": 0
+        },
+        "length": 0,
+        "stiffness": 0.25,
+        "damping": 0.1
+      },
+      {
+        "id": "freezer-pin-peak-freezer-right-rake",
+        "kind": "hinge",
+        "bodyA": "freezer-left-rake",
+        "pointA": {
+          "x": 140.08925726121902,
+          "y": 0
+        },
+        "bodyB": "freezer-right-rake",
+        "pointB": {
+          "x": -140.08925726121902,
+          "y": 0
+        },
+        "length": 0,
+        "stiffness": 0.25,
+        "damping": 0.1
+      },
+      {
+        "id": "freezer-pin-right-freezer-floor-tie",
+        "kind": "hinge",
+        "bodyA": "freezer-right-rake",
+        "pointA": {
+          "x": 140.08925726121902,
+          "y": 0
+        },
+        "bodyB": "freezer-floor-tie",
+        "pointB": {
+          "x": 160,
+          "y": 0
+        },
+        "length": 0,
+        "stiffness": 0.25,
+        "damping": 0.1
+      },
+      {
+        "id": "annex-pin-left-annex-floor-tie",
+        "kind": "hinge",
+        "bodyA": "annex-left-rake",
+        "pointA": {
+          "x": -96.04686356149273,
+          "y": 0
+        },
+        "bodyB": "annex-floor-tie",
+        "pointB": {
+          "x": -120,
+          "y": 0
+        },
+        "length": 0,
+        "stiffness": 0.25,
+        "damping": 0.1
+      },
+      {
+        "id": "annex-pin-peak-annex-right-rake",
+        "kind": "hinge",
+        "bodyA": "annex-left-rake",
+        "pointA": {
+          "x": 96.04686356149273,
+          "y": 0
+        },
+        "bodyB": "annex-right-rake",
+        "pointB": {
+          "x": -96.04686356149273,
+          "y": 0
+        },
+        "length": 0,
+        "stiffness": 0.25,
+        "damping": 0.1
+      },
+      {
+        "id": "annex-pin-right-annex-floor-tie",
+        "kind": "hinge",
+        "bodyA": "annex-right-rake",
+        "pointA": {
+          "x": 96.04686356149273,
+          "y": 0
+        },
+        "bodyB": "annex-floor-tie",
+        "pointB": {
+          "x": 120,
+          "y": 0
+        },
+        "length": 0,
+        "stiffness": 0.25,
+        "damping": 0.1
+      }
+    ],
     "mechanisms": [],
     "zones": [
       {
-        "id": "frozen-surface",
+        "id": "freezer-yard",
         "kind": "ice",
         "x": 1150,
-        "y": 960,
-        "w": 2300,
-        "h": 200
+        "y": 870,
+        "w": 2200,
+        "h": 400
       }
     ],
     "thresholds": [
-      25000,
-      29500,
-      34000
+      10000,
+      10500,
+      11000
     ],
-    "par": 2,
+    "par": 4,
     "camera": {
       "start": "overview"
     },
     "metadata": {
       "category": "siege",
-      "idea": "A durable lid, slippery feet, and an inconveniently heavy tenant.",
+      "idea": "A steel-roof freezer and a broad wooden annex share a slick delivery yard. Move the parked stone between them.",
       "mechanics": [
-        "metal roof",
-        "ice supports",
-        "multi-story"
+        "steel gable",
+        "moving delivery stone",
+        "low-friction yard"
       ],
-      "author": "Plush Siege production pass 4"
+      "author": "Plush Siege production pass 5",
+      "design": {
+        "archetype": "armored gable and delivery courtyard",
+        "role": "experiment",
+        "weakPoints": [
+          "annex-floor-tie"
+        ],
+        "sections": [
+          {
+            "id": "primary-assembly",
+            "members": [
+              "freezer-left-rake",
+              "freezer-right-rake",
+              "freezer-floor-tie",
+              "annex-left-rake",
+              "annex-right-rake",
+              "annex-floor-tie",
+              "freezer-resident",
+              "annex-resident",
+              "freezer-delivery"
+            ]
+          }
+        ],
+        "intendedRoute": [],
+        "worldUse": "helpful"
+      }
     },
     "environment": {
       "groundFriction": 0.035
@@ -1432,7 +1482,7 @@
     "id": "frozen-09",
     "world": "frozen",
     "name": "The Long Slide",
-    "subtitle": "Two tall storage stacks share one very slippery landing.",
+    "subtitle": "Release the icy end of a counterweight. The stone rolls down its tipping deck toward the wide receiving pavilion.",
     "bounds": {
       "width": 2600,
       "height": 1335,
@@ -1451,267 +1501,210 @@
     ],
     "blocks": [
       {
-        "id": "slider-l0",
-        "x": 1040,
-        "y": 1106,
-        "w": 36,
-        "h": 96,
-        "material": "ice"
-      },
-      {
-        "id": "slider-r0",
-        "x": 1200,
-        "y": 1106,
-        "w": 36,
-        "h": 96,
-        "material": "ice"
-      },
-      {
-        "id": "slider-roof0",
-        "x": 1120,
-        "y": 1049,
-        "w": 200,
-        "h": 18,
+        "id": "delivery-lever",
+        "x": 1050,
+        "y": 1010,
+        "w": 350,
+        "h": 22,
         "material": "wood"
       },
       {
-        "id": "slider-l1",
-        "x": 1040,
-        "y": 992,
-        "w": 36,
-        "h": 96,
-        "material": "ice"
+        "id": "delivery-weak-foot",
+        "x": 1195,
+        "y": 1110.5,
+        "w": 20,
+        "h": 179,
+        "material": "glass"
       },
       {
-        "id": "slider-r1",
-        "x": 1200,
-        "y": 992,
-        "w": 36,
-        "h": 96,
-        "material": "ice"
-      },
-      {
-        "id": "slider-roof1",
-        "x": 1120,
-        "y": 935,
-        "w": 200,
-        "h": 18,
+        "id": "delivery-right-foot",
+        "x": 905,
+        "y": 1110.5,
+        "w": 24,
+        "h": 179,
         "material": "wood"
       },
       {
-        "id": "slider-l2",
-        "x": 1040,
-        "y": 878,
-        "w": 36,
-        "h": 96,
-        "material": "ice"
-      },
-      {
-        "id": "slider-r2",
-        "x": 1200,
-        "y": 878,
-        "w": 36,
-        "h": 96,
-        "material": "ice"
-      },
-      {
-        "id": "slider-roof2",
-        "x": 1120,
-        "y": 821,
-        "w": 200,
-        "h": 18,
+        "id": "receiving-left-rake",
+        "x": 1535,
+        "y": 1104,
+        "w": 194.30749027719966,
+        "h": 12,
+        "angle": -0.8760580505981934,
         "material": "wood"
       },
       {
-        "id": "slider-l3",
-        "x": 1040,
-        "y": 764,
-        "w": 36,
-        "h": 96,
-        "material": "ice"
-      },
-      {
-        "id": "slider-r3",
-        "x": 1200,
-        "y": 764,
-        "w": 36,
-        "h": 96,
-        "material": "ice"
-      },
-      {
-        "id": "slider-roof3",
-        "x": 1120,
-        "y": 707,
-        "w": 200,
-        "h": 18,
+        "id": "receiving-right-rake",
+        "x": 1685,
+        "y": 1104,
+        "w": 194.30749027719966,
+        "h": 12,
+        "angle": 0.8760580505981934,
         "material": "wood"
       },
       {
-        "id": "receiver-l0",
+        "id": "receiving-floor-tie",
         "x": 1610,
-        "y": 1106,
-        "w": 18,
-        "h": 96,
-        "material": "wood"
-      },
-      {
-        "id": "receiver-r0",
-        "x": 1730,
-        "y": 1106,
-        "w": 18,
-        "h": 96,
-        "material": "wood"
-      },
-      {
-        "id": "receiver-roof0",
-        "x": 1670,
-        "y": 1049,
-        "w": 160,
-        "h": 18,
-        "material": "ice"
-      },
-      {
-        "id": "receiver-l1",
-        "x": 1610,
-        "y": 992,
-        "w": 18,
-        "h": 96,
-        "material": "wood"
-      },
-      {
-        "id": "receiver-r1",
-        "x": 1730,
-        "y": 992,
-        "w": 18,
-        "h": 96,
-        "material": "wood"
-      },
-      {
-        "id": "receiver-roof1",
-        "x": 1670,
-        "y": 935,
-        "w": 160,
-        "h": 18,
-        "material": "ice"
-      },
-      {
-        "id": "receiver-l2",
-        "x": 1610,
-        "y": 878,
-        "w": 18,
-        "h": 96,
-        "material": "wood"
-      },
-      {
-        "id": "receiver-r2",
-        "x": 1730,
-        "y": 878,
-        "w": 18,
-        "h": 96,
-        "material": "wood"
-      },
-      {
-        "id": "receiver-roof2",
-        "x": 1670,
-        "y": 821,
-        "w": 160,
-        "h": 18,
-        "material": "ice"
+        "y": 1194,
+        "w": 260,
+        "h": 12,
+        "angle": 0,
+        "material": "glass"
       }
     ],
     "monsters": [
       {
-        "id": "slider-m0",
-        "x": 1120,
-        "y": 1136,
-        "radius": 18,
-        "kind": "horn"
-      },
-      {
-        "id": "slider-m1",
-        "x": 1120,
-        "y": 1022,
+        "id": "delivery-rider",
+        "x": 945,
+        "y": 981,
         "radius": 18,
         "kind": "blob"
       },
       {
-        "id": "slider-m2",
-        "x": 1120,
-        "y": 908,
-        "radius": 18,
-        "kind": "bat"
-      },
-      {
-        "id": "slider-m3",
-        "x": 1120,
-        "y": 794,
+        "id": "receiving-resident",
+        "x": 1610,
+        "y": 1170,
         "radius": 18,
         "kind": "horn"
-      },
-      {
-        "id": "receiver-m0",
-        "x": 1670,
-        "y": 1136,
-        "radius": 18,
-        "kind": "horn"
-      },
-      {
-        "id": "receiver-m1",
-        "x": 1670,
-        "y": 1022,
-        "radius": 18,
-        "kind": "blob"
-      },
-      {
-        "id": "receiver-m2",
-        "x": 1670,
-        "y": 908,
-        "radius": 18,
-        "kind": "bat"
       }
     ],
     "hazards": [],
-    "terrain": [
+    "terrain": [],
+    "props": [
       {
-        "id": "raised-lake",
-        "x": 1390,
-        "y": 1177,
-        "w": 1250,
-        "h": 46,
-        "material": "ice"
+        "id": "delivery-weight",
+        "x": 1155,
+        "y": 967,
+        "kind": "boulder",
+        "radius": 32,
+        "material": "stone"
       }
     ],
-    "props": [],
-    "joints": [],
+    "joints": [
+      {
+        "id": "delivery-pivot",
+        "kind": "hinge",
+        "pointA": {
+          "x": 1050,
+          "y": 1010
+        },
+        "bodyB": "delivery-lever",
+        "pointB": {
+          "x": 0,
+          "y": 0
+        },
+        "length": 0,
+        "stiffness": 1,
+        "damping": 0.04
+      },
+      {
+        "id": "receiving-pin-left-receiving-floor-tie",
+        "kind": "hinge",
+        "bodyA": "receiving-left-rake",
+        "pointA": {
+          "x": -117.15374513859983,
+          "y": 0
+        },
+        "bodyB": "receiving-floor-tie",
+        "pointB": {
+          "x": -150,
+          "y": 0
+        },
+        "length": 0,
+        "stiffness": 0.85,
+        "damping": 0.1
+      },
+      {
+        "id": "receiving-pin-peak-receiving-right-rake",
+        "kind": "hinge",
+        "bodyA": "receiving-left-rake",
+        "pointA": {
+          "x": 117.15374513859983,
+          "y": 0
+        },
+        "bodyB": "receiving-right-rake",
+        "pointB": {
+          "x": -117.15374513859983,
+          "y": 0
+        },
+        "length": 0,
+        "stiffness": 0.85,
+        "damping": 0.1
+      },
+      {
+        "id": "receiving-pin-right-receiving-floor-tie",
+        "kind": "hinge",
+        "bodyA": "receiving-right-rake",
+        "pointA": {
+          "x": 117.15374513859983,
+          "y": 0
+        },
+        "bodyB": "receiving-floor-tie",
+        "pointB": {
+          "x": 150,
+          "y": 0
+        },
+        "length": 0,
+        "stiffness": 0.85,
+        "damping": 0.1
+      }
+    ],
     "mechanisms": [],
     "zones": [
       {
-        "id": "frozen-surface",
+        "id": "delivery-ice",
         "kind": "ice",
         "x": 1300,
-        "y": 1110,
-        "w": 2600,
-        "h": 200
+        "y": 1060,
+        "w": 2500,
+        "h": 360
       }
     ],
     "thresholds": [
-      35000,
-      39500,
-      44000
+      10000,
+      10500,
+      11000
     ],
-    "par": 2,
+    "par": 4,
     "camera": {
       "start": "overview"
     },
     "metadata": {
       "category": "siege",
-      "idea": "Two tall storage stacks share one very slippery landing.",
+      "idea": "Release the icy end of a counterweight. The stone rolls down its tipping deck toward the wide receiving pavilion.",
       "mechanics": [
-        "ice momentum",
-        "tall towers",
-        "shared terrain"
+        "counterweight release",
+        "ice slide",
+        "moving mass",
+        "receiving pavilion"
       ],
-      "author": "Plush Siege production pass 4"
+      "author": "Plush Siege production pass 5",
+      "design": {
+        "archetype": "ice-coated rolling counterweight",
+        "role": "experiment",
+        "weakPoints": [
+          "delivery-weak-foot",
+          "receiving-floor-tie"
+        ],
+        "sections": [
+          {
+            "id": "primary-assembly",
+            "members": [
+              "delivery-lever",
+              "delivery-weak-foot",
+              "delivery-right-foot",
+              "receiving-left-rake",
+              "receiving-right-rake",
+              "receiving-floor-tie",
+              "delivery-rider",
+              "receiving-resident",
+              "delivery-weight"
+            ]
+          }
+        ],
+        "intendedRoute": [],
+        "worldUse": "helpful"
+      }
     },
     "environment": {
       "groundFriction": 0.035
@@ -2156,6 +2149,1314 @@
     },
     "environment": {
       "groundFriction": 0.035
+    }
+  },
+  {
+    "version": 1,
+    "id": "frozen-11",
+    "name": "Brake Check",
+    "subtitle": "A steel sled rests above an ice spillway. Push it through the ice brake into the lower chapel.",
+    "world": "frozen",
+    "bounds": {
+      "width": 2400,
+      "height": 1230,
+      "ground": 1050
+    },
+    "sling": {
+      "x": 235,
+      "y": 905
+    },
+    "projectiles": [
+      "duck",
+      "bear",
+      "rabbit",
+      "duck",
+      "bear",
+      "sheep"
+    ],
+    "blocks": [
+      {
+        "id": "steel-sled",
+        "x": 1000,
+        "y": 654,
+        "w": 240,
+        "h": 22,
+        "material": "metal"
+      },
+      {
+        "id": "ice-brake",
+        "x": 1140,
+        "y": 635,
+        "w": 22,
+        "h": 60,
+        "material": "ice"
+      },
+      {
+        "id": "brake-chapel-left-rake",
+        "x": 1750,
+        "y": 969,
+        "w": 140.27756377319946,
+        "h": 12,
+        "angle": -0.982793723247329,
+        "material": "wood"
+      },
+      {
+        "id": "brake-chapel-right-rake",
+        "x": 1850,
+        "y": 969,
+        "w": 140.27756377319946,
+        "h": 12,
+        "angle": 0.982793723247329,
+        "material": "wood"
+      },
+      {
+        "id": "brake-chapel-floor-tie",
+        "x": 1800,
+        "y": 1044,
+        "w": 160,
+        "h": 12,
+        "angle": 0,
+        "material": "glass"
+      }
+    ],
+    "monsters": [
+      {
+        "id": "sled-rider",
+        "x": 1000,
+        "y": 625,
+        "radius": 18,
+        "kind": "blob"
+      },
+      {
+        "id": "brake-chapel-resident",
+        "x": 1800,
+        "y": 1020,
+        "radius": 18,
+        "kind": "horn"
+      }
+    ],
+    "hazards": [],
+    "terrain": [
+      {
+        "id": "brake-terrace",
+        "x": 1000,
+        "y": 680,
+        "w": 550,
+        "h": 30,
+        "material": "ice"
+      },
+      {
+        "id": "brake-chute",
+        "x": 1440,
+        "y": 850,
+        "w": 500,
+        "h": 24,
+        "angle": 0.6,
+        "material": "ice",
+        "friction": 0.01
+      }
+    ],
+    "props": [],
+    "joints": [
+      {
+        "id": "brake-chapel-pin-left-brake-chapel-floor-tie",
+        "kind": "hinge",
+        "bodyA": "brake-chapel-left-rake",
+        "pointA": {
+          "x": -90.13878188659973,
+          "y": 0
+        },
+        "bodyB": "brake-chapel-floor-tie",
+        "pointB": {
+          "x": -100,
+          "y": 0
+        },
+        "length": 0,
+        "stiffness": 0.85,
+        "damping": 0.1
+      },
+      {
+        "id": "brake-chapel-pin-peak-brake-chapel-right-rake",
+        "kind": "hinge",
+        "bodyA": "brake-chapel-left-rake",
+        "pointA": {
+          "x": 90.13878188659973,
+          "y": 0
+        },
+        "bodyB": "brake-chapel-right-rake",
+        "pointB": {
+          "x": -90.13878188659973,
+          "y": 0
+        },
+        "length": 0,
+        "stiffness": 0.85,
+        "damping": 0.1
+      },
+      {
+        "id": "brake-chapel-pin-right-brake-chapel-floor-tie",
+        "kind": "hinge",
+        "bodyA": "brake-chapel-right-rake",
+        "pointA": {
+          "x": 90.13878188659973,
+          "y": 0
+        },
+        "bodyB": "brake-chapel-floor-tie",
+        "pointB": {
+          "x": 100,
+          "y": 0
+        },
+        "length": 0,
+        "stiffness": 0.85,
+        "damping": 0.1
+      }
+    ],
+    "mechanisms": [],
+    "zones": [
+      {
+        "id": "brake-ice",
+        "kind": "ice",
+        "x": 1200,
+        "y": 800,
+        "w": 2300,
+        "h": 600
+      }
+    ],
+    "thresholds": [
+      10000,
+      14500,
+      19000
+    ],
+    "par": 3,
+    "camera": {
+      "start": "overview"
+    },
+    "metadata": {
+      "category": "siege",
+      "idea": "A steel sled rests above an ice spillway. Push it through the ice brake into the lower chapel.",
+      "mechanics": [
+        "low friction",
+        "steel momentum",
+        "ice brake",
+        "elevated spillway"
+      ],
+      "author": "Plush Siege production pass 5",
+      "design": {
+        "archetype": "armored sled and spillway",
+        "role": "experiment",
+        "weakPoints": [
+          "ice-brake",
+          "brake-chapel-floor-tie"
+        ],
+        "sections": [
+          {
+            "id": "primary-assembly",
+            "members": [
+              "steel-sled",
+              "ice-brake",
+              "brake-chapel-left-rake",
+              "brake-chapel-right-rake",
+              "brake-chapel-floor-tie",
+              "sled-rider",
+              "brake-chapel-resident",
+              "brake-terrace",
+              "brake-chute"
+            ]
+          }
+        ],
+        "intendedRoute": [],
+        "worldUse": "essential"
+      }
+    },
+    "environment": {
+      "groundFriction": 0.025
+    }
+  },
+  {
+    "version": 1,
+    "id": "frozen-12",
+    "name": "Keelhaul Creek",
+    "subtitle": "Brittle deck members are woven into a timber bowstring. Break a load path and let the ice skate.",
+    "world": "frozen",
+    "bounds": {
+      "width": 2350,
+      "height": 1280,
+      "ground": 1100
+    },
+    "sling": {
+      "x": 235,
+      "y": 955
+    },
+    "projectiles": [
+      "duck",
+      "bear",
+      "rabbit",
+      "duck",
+      "bear",
+      "sheep"
+    ],
+    "blocks": [
+      {
+        "id": "keel-deck-0",
+        "x": 1017.5,
+        "y": 914,
+        "w": 115,
+        "h": 12,
+        "angle": 0,
+        "material": "ice"
+      },
+      {
+        "id": "keel-deck-1",
+        "x": 1172.5,
+        "y": 914,
+        "w": 115,
+        "h": 12,
+        "angle": 0,
+        "material": "ice"
+      },
+      {
+        "id": "keel-deck-2",
+        "x": 1327.5,
+        "y": 914,
+        "w": 115,
+        "h": 12,
+        "angle": 0,
+        "material": "ice"
+      },
+      {
+        "id": "keel-deck-3",
+        "x": 1482.5,
+        "y": 914,
+        "w": 115,
+        "h": 12,
+        "angle": 0,
+        "material": "ice"
+      },
+      {
+        "id": "keel-arch-0",
+        "x": 1017.5,
+        "y": 835.25,
+        "w": 180.9779400754745,
+        "h": 12,
+        "angle": -0.7933979927373349,
+        "material": "wood"
+      },
+      {
+        "id": "keel-arch-1",
+        "x": 1172.5,
+        "y": 730.25,
+        "w": 123.64977849053145,
+        "h": 12,
+        "angle": -0.32658143469061846,
+        "material": "wood"
+      },
+      {
+        "id": "keel-arch-2",
+        "x": 1327.5,
+        "y": 730.25,
+        "w": 123.64977849053145,
+        "h": 12,
+        "angle": 0.32658143469061846,
+        "material": "wood"
+      },
+      {
+        "id": "keel-arch-3",
+        "x": 1482.5,
+        "y": 835.25,
+        "w": 180.9779400754745,
+        "h": 12,
+        "angle": 0.7933979927373349,
+        "material": "wood"
+      },
+      {
+        "id": "keel-hanger-1",
+        "x": 1095,
+        "y": 835.25,
+        "w": 117.5,
+        "h": 12,
+        "angle": -1.5707963267948966,
+        "material": "wood"
+      },
+      {
+        "id": "keel-hanger-2",
+        "x": 1250,
+        "y": 809,
+        "w": 170,
+        "h": 12,
+        "angle": -1.5707963267948966,
+        "material": "ice"
+      },
+      {
+        "id": "keel-hanger-3",
+        "x": 1405,
+        "y": 835.25,
+        "w": 117.5,
+        "h": 12,
+        "angle": -1.5707963267948966,
+        "material": "wood"
+      },
+      {
+        "id": "keel-brace-left",
+        "x": 1172.5,
+        "y": 835.25,
+        "w": 180.9779400754745,
+        "h": 12,
+        "angle": 0.7933979927373349,
+        "material": "wood"
+      },
+      {
+        "id": "keel-brace-right",
+        "x": 1327.5,
+        "y": 835.25,
+        "w": 180.9779400754745,
+        "h": 12,
+        "angle": -0.7933979927373349,
+        "material": "wood"
+      },
+      {
+        "id": "keel-crown",
+        "x": 1250,
+        "y": 694,
+        "w": 100,
+        "h": 20,
+        "material": "wood"
+      }
+    ],
+    "monsters": [
+      {
+        "id": "keel-traveller-0",
+        "x": 1017.5,
+        "y": 890,
+        "radius": 18,
+        "kind": "bat"
+      },
+      {
+        "id": "keel-traveller-1",
+        "x": 1172.5,
+        "y": 890,
+        "radius": 18,
+        "kind": "blob"
+      },
+      {
+        "id": "keel-traveller-2",
+        "x": 1482.5,
+        "y": 890,
+        "radius": 18,
+        "kind": "bat"
+      }
+    ],
+    "hazards": [],
+    "terrain": [
+      {
+        "id": "keel-bank-left",
+        "x": 940,
+        "y": 1010,
+        "w": 90,
+        "h": 180,
+        "material": "stone"
+      },
+      {
+        "id": "keel-bank-right",
+        "x": 1560,
+        "y": 1010,
+        "w": 90,
+        "h": 180,
+        "material": "stone"
+      }
+    ],
+    "props": [],
+    "joints": [
+      {
+        "id": "keel-pin-b0-keel-deck-0",
+        "kind": "hinge",
+        "bodyA": "keel-bank-left",
+        "pointA": {
+          "x": 0,
+          "y": -96
+        },
+        "bodyB": "keel-deck-0",
+        "pointB": {
+          "x": -77.5,
+          "y": 0
+        },
+        "length": 0,
+        "stiffness": 0.75,
+        "damping": 0.15
+      },
+      {
+        "id": "keel-pin-b0-keel-arch-0",
+        "kind": "hinge",
+        "bodyA": "keel-bank-left",
+        "pointA": {
+          "x": 0,
+          "y": -96
+        },
+        "bodyB": "keel-arch-0",
+        "pointB": {
+          "x": -110.48897003773725,
+          "y": 0
+        },
+        "length": 0,
+        "stiffness": 0.75,
+        "damping": 0.15
+      },
+      {
+        "id": "keel-pin-b1-keel-deck-1",
+        "kind": "hinge",
+        "bodyA": "keel-deck-0",
+        "pointA": {
+          "x": 77.5,
+          "y": 0
+        },
+        "bodyB": "keel-deck-1",
+        "pointB": {
+          "x": -77.5,
+          "y": 0
+        },
+        "length": 0,
+        "stiffness": 0.75,
+        "damping": 0.15
+      },
+      {
+        "id": "keel-pin-b1-keel-hanger-1",
+        "kind": "hinge",
+        "bodyA": "keel-deck-0",
+        "pointA": {
+          "x": 77.5,
+          "y": 0
+        },
+        "bodyB": "keel-hanger-1",
+        "pointB": {
+          "x": -78.75,
+          "y": 0
+        },
+        "length": 0,
+        "stiffness": 0.75,
+        "damping": 0.15
+      },
+      {
+        "id": "keel-pin-b2-keel-deck-2",
+        "kind": "hinge",
+        "bodyA": "keel-deck-1",
+        "pointA": {
+          "x": 77.5,
+          "y": 0
+        },
+        "bodyB": "keel-deck-2",
+        "pointB": {
+          "x": -77.5,
+          "y": 0
+        },
+        "length": 0,
+        "stiffness": 0.75,
+        "damping": 0.15
+      },
+      {
+        "id": "keel-pin-b2-keel-hanger-2",
+        "kind": "hinge",
+        "bodyA": "keel-deck-1",
+        "pointA": {
+          "x": 77.5,
+          "y": 0
+        },
+        "bodyB": "keel-hanger-2",
+        "pointB": {
+          "x": -105,
+          "y": 0
+        },
+        "length": 0,
+        "stiffness": 0.75,
+        "damping": 0.15
+      },
+      {
+        "id": "keel-pin-b2-keel-brace-left",
+        "kind": "hinge",
+        "bodyA": "keel-deck-1",
+        "pointA": {
+          "x": 77.5,
+          "y": 0
+        },
+        "bodyB": "keel-brace-left",
+        "pointB": {
+          "x": 110.48897003773725,
+          "y": 0
+        },
+        "length": 0,
+        "stiffness": 0.75,
+        "damping": 0.15
+      },
+      {
+        "id": "keel-pin-b2-keel-brace-right",
+        "kind": "hinge",
+        "bodyA": "keel-deck-1",
+        "pointA": {
+          "x": 77.5,
+          "y": 0
+        },
+        "bodyB": "keel-brace-right",
+        "pointB": {
+          "x": -110.48897003773725,
+          "y": 0
+        },
+        "length": 0,
+        "stiffness": 0.75,
+        "damping": 0.15
+      },
+      {
+        "id": "keel-pin-b3-keel-deck-3",
+        "kind": "hinge",
+        "bodyA": "keel-deck-2",
+        "pointA": {
+          "x": 77.5,
+          "y": 0
+        },
+        "bodyB": "keel-deck-3",
+        "pointB": {
+          "x": -77.5,
+          "y": 0
+        },
+        "length": 0,
+        "stiffness": 0.75,
+        "damping": 0.15
+      },
+      {
+        "id": "keel-pin-b3-keel-hanger-3",
+        "kind": "hinge",
+        "bodyA": "keel-deck-2",
+        "pointA": {
+          "x": 77.5,
+          "y": 0
+        },
+        "bodyB": "keel-hanger-3",
+        "pointB": {
+          "x": -78.75,
+          "y": 0
+        },
+        "length": 0,
+        "stiffness": 0.75,
+        "damping": 0.15
+      },
+      {
+        "id": "keel-pin-b4-keel-deck-3",
+        "kind": "hinge",
+        "bodyA": "keel-bank-right",
+        "pointA": {
+          "x": 0,
+          "y": -96
+        },
+        "bodyB": "keel-deck-3",
+        "pointB": {
+          "x": 77.5,
+          "y": 0
+        },
+        "length": 0,
+        "stiffness": 0.75,
+        "damping": 0.15
+      },
+      {
+        "id": "keel-pin-b4-keel-arch-3",
+        "kind": "hinge",
+        "bodyA": "keel-bank-right",
+        "pointA": {
+          "x": 0,
+          "y": -96
+        },
+        "bodyB": "keel-arch-3",
+        "pointB": {
+          "x": 110.48897003773725,
+          "y": 0
+        },
+        "length": 0,
+        "stiffness": 0.75,
+        "damping": 0.15
+      },
+      {
+        "id": "keel-pin-t1-keel-arch-1",
+        "kind": "hinge",
+        "bodyA": "keel-arch-0",
+        "pointA": {
+          "x": 110.48897003773725,
+          "y": 0
+        },
+        "bodyB": "keel-arch-1",
+        "pointB": {
+          "x": -81.82488924526572,
+          "y": 0
+        },
+        "length": 0,
+        "stiffness": 0.75,
+        "damping": 0.15
+      },
+      {
+        "id": "keel-pin-t1-keel-hanger-1",
+        "kind": "hinge",
+        "bodyA": "keel-arch-0",
+        "pointA": {
+          "x": 110.48897003773725,
+          "y": 0
+        },
+        "bodyB": "keel-hanger-1",
+        "pointB": {
+          "x": 78.75,
+          "y": 0
+        },
+        "length": 0,
+        "stiffness": 0.75,
+        "damping": 0.15
+      },
+      {
+        "id": "keel-pin-t1-keel-brace-left",
+        "kind": "hinge",
+        "bodyA": "keel-arch-0",
+        "pointA": {
+          "x": 110.48897003773725,
+          "y": 0
+        },
+        "bodyB": "keel-brace-left",
+        "pointB": {
+          "x": -110.48897003773725,
+          "y": 0
+        },
+        "length": 0,
+        "stiffness": 0.75,
+        "damping": 0.15
+      },
+      {
+        "id": "keel-pin-t2-keel-arch-2",
+        "kind": "hinge",
+        "bodyA": "keel-arch-1",
+        "pointA": {
+          "x": 81.82488924526572,
+          "y": 0
+        },
+        "bodyB": "keel-arch-2",
+        "pointB": {
+          "x": -81.82488924526572,
+          "y": 0
+        },
+        "length": 0,
+        "stiffness": 0.75,
+        "damping": 0.15
+      },
+      {
+        "id": "keel-pin-t2-keel-hanger-2",
+        "kind": "hinge",
+        "bodyA": "keel-arch-1",
+        "pointA": {
+          "x": 81.82488924526572,
+          "y": 0
+        },
+        "bodyB": "keel-hanger-2",
+        "pointB": {
+          "x": 105,
+          "y": 0
+        },
+        "length": 0,
+        "stiffness": 0.75,
+        "damping": 0.15
+      },
+      {
+        "id": "keel-pin-t3-keel-arch-3",
+        "kind": "hinge",
+        "bodyA": "keel-arch-2",
+        "pointA": {
+          "x": 81.82488924526572,
+          "y": 0
+        },
+        "bodyB": "keel-arch-3",
+        "pointB": {
+          "x": -110.48897003773725,
+          "y": 0
+        },
+        "length": 0,
+        "stiffness": 0.75,
+        "damping": 0.15
+      },
+      {
+        "id": "keel-pin-t3-keel-hanger-3",
+        "kind": "hinge",
+        "bodyA": "keel-arch-2",
+        "pointA": {
+          "x": 81.82488924526572,
+          "y": 0
+        },
+        "bodyB": "keel-hanger-3",
+        "pointB": {
+          "x": 78.75,
+          "y": 0
+        },
+        "length": 0,
+        "stiffness": 0.75,
+        "damping": 0.15
+      },
+      {
+        "id": "keel-pin-t3-keel-brace-right",
+        "kind": "hinge",
+        "bodyA": "keel-arch-2",
+        "pointA": {
+          "x": 81.82488924526572,
+          "y": 0
+        },
+        "bodyB": "keel-brace-right",
+        "pointB": {
+          "x": 110.48897003773725,
+          "y": 0
+        },
+        "length": 0,
+        "stiffness": 0.75,
+        "damping": 0.15
+      }
+    ],
+    "mechanisms": [],
+    "zones": [
+      {
+        "id": "creek-ice",
+        "kind": "ice",
+        "x": 1175,
+        "y": 950,
+        "w": 2250,
+        "h": 400
+      }
+    ],
+    "thresholds": [
+      15000,
+      19500,
+      24000
+    ],
+    "par": 3,
+    "camera": {
+      "start": "overview"
+    },
+    "metadata": {
+      "category": "siege",
+      "idea": "Brittle deck members are woven into a timber bowstring. Break a load path and let the ice skate.",
+      "mechanics": [
+        "brittle ice deck",
+        "triangulated timber",
+        "sliding fragments"
+      ],
+      "author": "Plush Siege production pass 5",
+      "design": {
+        "archetype": "brittle-deck bowstring",
+        "role": "experiment",
+        "weakPoints": [
+          "keel-deck-0",
+          "keel-deck-1",
+          "keel-deck-2",
+          "keel-deck-3",
+          "keel-hanger-2"
+        ],
+        "sections": [
+          {
+            "id": "primary-assembly",
+            "members": [
+              "keel-deck-0",
+              "keel-deck-1",
+              "keel-deck-2",
+              "keel-deck-3",
+              "keel-arch-0",
+              "keel-arch-1",
+              "keel-arch-2",
+              "keel-arch-3",
+              "keel-hanger-1",
+              "keel-hanger-2",
+              "keel-hanger-3",
+              "keel-brace-left",
+              "keel-brace-right",
+              "keel-crown",
+              "keel-traveller-0",
+              "keel-traveller-1",
+              "keel-traveller-2",
+              "keel-bank-left",
+              "keel-bank-right"
+            ]
+          }
+        ],
+        "intendedRoute": [],
+        "worldUse": "helpful"
+      }
+    },
+    "environment": {
+      "groundFriction": 0.025
+    }
+  },
+  {
+    "version": 1,
+    "id": "frozen-13",
+    "name": "The Sliding Citadel",
+    "subtitle": "The ice brake holds an armored sled on a frozen incline. Release it to sweep through the lower fortress.",
+    "world": "frozen",
+    "bounds": {
+      "width": 3100,
+      "height": 1430,
+      "ground": 1250
+    },
+    "sling": {
+      "x": 235,
+      "y": 1105
+    },
+    "projectiles": [
+      "duck",
+      "bear",
+      "rabbit",
+      "duck",
+      "bear",
+      "sheep"
+    ],
+    "blocks": [
+      {
+        "id": "citadel-sled-left-rake",
+        "x": 1027.5836479886432,
+        "y": 621.3429789881612,
+        "w": 218.0697580112788,
+        "h": 12,
+        "angle": -0.770546840812075,
+        "material": "metal"
+      },
+      {
+        "id": "citadel-sled-right-rake",
+        "x": 1175.1602019068614,
+        "y": 648.197415002035,
+        "w": 218.0697580112788,
+        "h": 12,
+        "angle": 1.1305468408120751,
+        "material": "metal"
+      },
+      {
+        "id": "citadel-sled-floor-tie",
+        "x": 1082.5738197380408,
+        "y": 738.0737847378508,
+        "w": 260,
+        "h": 12,
+        "angle": 0.18,
+        "material": "metal"
+      },
+      {
+        "id": "citadel-sled-berth",
+        "x": 1082.5738197380408,
+        "y": 706.0737847378508,
+        "w": 90,
+        "h": 16,
+        "material": "wood"
+      },
+      {
+        "id": "sled-stop",
+        "x": 1249.1176809067495,
+        "y": 727.7228279213095,
+        "w": 36,
+        "h": 92,
+        "angle": 0.18,
+        "material": "ice"
+      },
+      {
+        "id": "brake-coupler",
+        "x": 800,
+        "y": 955,
+        "w": 64,
+        "h": 60,
+        "material": "ice"
+      },
+      {
+        "id": "lower-citadel-l0",
+        "x": 1960,
+        "y": 1202,
+        "w": 18,
+        "h": 96,
+        "material": "ice"
+      },
+      {
+        "id": "lower-citadel-r0",
+        "x": 2200,
+        "y": 1202,
+        "w": 18,
+        "h": 96,
+        "material": "ice"
+      },
+      {
+        "id": "lower-citadel-roof0",
+        "x": 2080,
+        "y": 1145,
+        "w": 280,
+        "h": 18,
+        "material": "wood"
+      },
+      {
+        "id": "lower-citadel-l1",
+        "x": 1960,
+        "y": 1088,
+        "w": 18,
+        "h": 96,
+        "material": "ice"
+      },
+      {
+        "id": "lower-citadel-r1",
+        "x": 2200,
+        "y": 1088,
+        "w": 18,
+        "h": 96,
+        "material": "ice"
+      },
+      {
+        "id": "lower-citadel-roof1",
+        "x": 2080,
+        "y": 1031,
+        "w": 280,
+        "h": 18,
+        "material": "wood"
+      },
+      {
+        "id": "lower-citadel-l2",
+        "x": 1960,
+        "y": 974,
+        "w": 18,
+        "h": 96,
+        "material": "ice"
+      },
+      {
+        "id": "lower-citadel-r2",
+        "x": 2200,
+        "y": 974,
+        "w": 18,
+        "h": 96,
+        "material": "ice"
+      },
+      {
+        "id": "lower-citadel-roof2",
+        "x": 2080,
+        "y": 917,
+        "w": 280,
+        "h": 18,
+        "material": "wood"
+      }
+    ],
+    "monsters": [
+      {
+        "id": "citadel-sled-resident",
+        "x": 1082.5738197380408,
+        "y": 680.0737847378508,
+        "radius": 18,
+        "kind": "horn"
+      },
+      {
+        "id": "lower-citadel-m0",
+        "x": 2080,
+        "y": 1232,
+        "radius": 18,
+        "kind": "horn"
+      },
+      {
+        "id": "lower-citadel-m1",
+        "x": 2080,
+        "y": 1118,
+        "radius": 18,
+        "kind": "blob"
+      },
+      {
+        "id": "lower-citadel-m2",
+        "x": 2080,
+        "y": 1004,
+        "radius": 18,
+        "kind": "bat"
+      }
+    ],
+    "hazards": [],
+    "terrain": [
+      {
+        "id": "ice-spillway",
+        "x": 1300,
+        "y": 800,
+        "w": 800,
+        "h": 32,
+        "angle": 0.18,
+        "material": "ice",
+        "friction": 0.01
+      },
+      {
+        "id": "brake-winch-base",
+        "x": 800,
+        "y": 1000,
+        "w": 160,
+        "h": 30,
+        "material": "ice"
+      }
+    ],
+    "props": [
+      {
+        "id": "citadel-ballast",
+        "x": 2080,
+        "y": 874,
+        "kind": "boulder",
+        "radius": 34,
+        "material": "stone"
+      }
+    ],
+    "joints": [
+      {
+        "id": "citadel-sled-pin-left-citadel-sled-floor-tie",
+        "kind": "hinge",
+        "bodyA": "citadel-sled-left-rake",
+        "pointA": {
+          "x": -129.0348790056394,
+          "y": 0
+        },
+        "bodyB": "citadel-sled-floor-tie",
+        "pointB": {
+          "x": -150,
+          "y": 0
+        },
+        "length": 0,
+        "stiffness": 0.25,
+        "damping": 0.1
+      },
+      {
+        "id": "citadel-sled-pin-peak-citadel-sled-right-rake",
+        "kind": "hinge",
+        "bodyA": "citadel-sled-left-rake",
+        "pointA": {
+          "x": 129.0348790056394,
+          "y": 0
+        },
+        "bodyB": "citadel-sled-right-rake",
+        "pointB": {
+          "x": -129.0348790056394,
+          "y": 0
+        },
+        "length": 0,
+        "stiffness": 0.25,
+        "damping": 0.1
+      },
+      {
+        "id": "citadel-sled-pin-right-citadel-sled-floor-tie",
+        "kind": "hinge",
+        "bodyA": "citadel-sled-right-rake",
+        "pointA": {
+          "x": 129.0348790056394,
+          "y": 0
+        },
+        "bodyB": "citadel-sled-floor-tie",
+        "pointB": {
+          "x": 150,
+          "y": 0
+        },
+        "length": 0,
+        "stiffness": 0.25,
+        "damping": 0.1
+      },
+      {
+        "id": "sled-berth-bolt--1",
+        "kind": "hinge",
+        "bodyA": "citadel-sled-floor-tie",
+        "pointA": {
+          "x": -37.21194451884626,
+          "y": -25.754051819593514
+        },
+        "bodyB": "citadel-sled-berth",
+        "pointB": {
+          "x": -32,
+          "y": 0
+        },
+        "length": 0,
+        "stiffness": 0.25,
+        "damping": 0.1
+      },
+      {
+        "id": "sled-berth-bolt-1",
+        "kind": "hinge",
+        "bodyA": "citadel-sled-floor-tie",
+        "pointA": {
+          "x": 25.754051819593514,
+          "y": -37.21194451884626
+        },
+        "bodyB": "citadel-sled-berth",
+        "pointB": {
+          "x": 32,
+          "y": 0
+        },
+        "length": 0,
+        "stiffness": 0.25,
+        "damping": 0.1
+      },
+      {
+        "id": "winch-bolt--1",
+        "kind": "hinge",
+        "bodyA": "brake-winch-base",
+        "pointA": {
+          "x": -20,
+          "y": -45
+        },
+        "bodyB": "brake-coupler",
+        "pointB": {
+          "x": -20,
+          "y": 0
+        },
+        "length": 0,
+        "stiffness": 0.75,
+        "damping": 0.15
+      },
+      {
+        "id": "winch-stay--1",
+        "kind": "rope",
+        "bodyA": "brake-coupler",
+        "pointA": {
+          "x": -20,
+          "y": 0
+        },
+        "bodyB": "sled-stop",
+        "pointB": {
+          "x": 0,
+          "y": -25
+        },
+        "length": 536.405508002661,
+        "stiffness": 0.75,
+        "damping": 0.15
+      },
+      {
+        "id": "winch-bolt-1",
+        "kind": "hinge",
+        "bodyA": "brake-winch-base",
+        "pointA": {
+          "x": 20,
+          "y": -45
+        },
+        "bodyB": "brake-coupler",
+        "pointB": {
+          "x": 20,
+          "y": 0
+        },
+        "length": 0,
+        "stiffness": 0.75,
+        "damping": 0.15
+      },
+      {
+        "id": "winch-stay-1",
+        "kind": "rope",
+        "bodyA": "brake-coupler",
+        "pointA": {
+          "x": 20,
+          "y": 0
+        },
+        "bodyB": "sled-stop",
+        "pointB": {
+          "x": 0,
+          "y": 25
+        },
+        "length": 470.53203783966273,
+        "stiffness": 0.75,
+        "damping": 0.15
+      }
+    ],
+    "mechanisms": [],
+    "zones": [
+      {
+        "id": "citadel-ice",
+        "kind": "ice",
+        "x": 1550,
+        "y": 900,
+        "w": 3000,
+        "h": 800
+      }
+    ],
+    "thresholds": [
+      20000,
+      24500,
+      29000
+    ],
+    "par": 3,
+    "camera": {
+      "start": "overview"
+    },
+    "metadata": {
+      "category": "spectacle",
+      "idea": "The ice brake holds an armored sled on a frozen incline. Release it to sweep through the lower fortress.",
+      "mechanics": [
+        "ice terrace",
+        "steel sled",
+        "sliding momentum",
+        "spillway",
+        "lower fortress"
+      ],
+      "author": "Plush Siege production pass 5",
+      "design": {
+        "archetype": "steel gable sled over an ice citadel",
+        "role": "spectacle",
+        "weakPoints": [
+          "sled-stop",
+          "brake-coupler",
+          "lower-citadel-l0",
+          "lower-citadel-r0",
+          "lower-citadel-l1",
+          "lower-citadel-r1",
+          "lower-citadel-l2",
+          "lower-citadel-r2"
+        ],
+        "sections": [
+          {
+            "id": "brake-winch",
+            "members": [
+              "sled-stop",
+              "brake-coupler"
+            ]
+          },
+          {
+            "id": "upper-sled",
+            "members": [
+              "citadel-sled-left-rake",
+              "citadel-sled-right-rake",
+              "citadel-sled-floor-tie",
+              "citadel-sled-berth",
+              "citadel-sled-resident"
+            ]
+          },
+          {
+            "id": "lower-citadel",
+            "members": [
+              "lower-citadel-l0",
+              "lower-citadel-r0",
+              "lower-citadel-roof0",
+              "lower-citadel-l1",
+              "lower-citadel-r1",
+              "lower-citadel-roof1",
+              "lower-citadel-l2",
+              "lower-citadel-r2",
+              "lower-citadel-roof2",
+              "lower-citadel-m0",
+              "lower-citadel-m1",
+              "lower-citadel-m2"
+            ]
+          },
+          {
+            "id": "ballast",
+            "members": [
+              "citadel-ballast"
+            ]
+          }
+        ],
+        "intendedRoute": [
+          {
+            "from": "brake-coupler",
+            "to": "sled-stop",
+            "via": "release"
+          },
+          {
+            "from": "sled-stop",
+            "to": "citadel-sled-floor-tie",
+            "via": "release"
+          },
+          {
+            "from": "citadel-sled-right-rake",
+            "to": "ice-spillway",
+            "via": "impact"
+          },
+          {
+            "from": "citadel-sled-right-rake",
+            "to": "lower-citadel-l1",
+            "via": "impact"
+          }
+        ],
+        "worldUse": "essential"
+      }
+    },
+    "environment": {
+      "groundFriction": 0.025
     }
   }
 ]

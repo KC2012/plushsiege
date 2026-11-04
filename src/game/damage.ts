@@ -5,6 +5,7 @@ export interface DamageRecord {
   amount: number;
   source: DamageSource;
   sourceBodyId?: number;
+  sourceId?: string;
   normalSpeed?: number;
   energy?: number;
   material?: string;

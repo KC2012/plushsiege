@@ -136,26 +136,31 @@ export class CompressionSystem {
       if (c.bodyA) anchored.add(c.bodyA.id);
       if (c.bodyB) anchored.add(c.bodyB.id);
     }
-    const grounded = (body: Matter.Body, seen = new Set<number>()): boolean => {
-      if (body.isStatic) return true;
-      if (seen.has(body.id)) return false;
-      seen.add(body.id);
-      return (below.get(body.id) || []).some(s => grounded(s.body, new Set(seen)));
-    };
-    const load = (body: Matter.Body, recipient: number, seen: Set<number>): { mass: number; disturbed: boolean } => {
-      if (body.isStatic || seen.has(body.id)) return { mass: 0, disturbed: false };
+    // Reverse reachability is exact even when local gravity makes a contact
+    // cycle. Enumerating all possible support paths becomes exponential in rubble.
+    const grounded=new Set(bodies.filter(b=>b.isStatic).map(b=>b.id)),queue=[...grounded];
+    for(let i=0;i<queue.length;i++)for(const upper of above.get(queue[i])||[])if(!grounded.has(upper.body.id)){grounded.add(upper.body.id);queue.push(upper.body.id);}
+    const memo=new Map<number,{mass:number;disturbed:boolean}>(),visiting=new Set<number>();
+    const load = (body: Matter.Body, recipient: number): { mass: number; disturbed: boolean } => {
+      if (body.isStatic || visiting.has(body.id)) return { mass: 0, disturbed: false };
       const entity = this.entities.get(body.id);
       if (!entity || !['block', 'fragment', 'prop'].includes(entity.type)) return { mass: 0, disturbed: false };
-      const next = new Set(seen); next.add(body.id);
-      const g = direction(body), origin = this.origins.get(body.id);
-      let disturbed = !origin || entity.type === 'fragment' ||
-        (body.position.x - origin.x) * g.x + (body.position.y - origin.y) * g.y > 10 ||
-        Math.abs(body.angle - origin.angle) > .16;
-      let mass = body.mass;
-      for (const parent of above.get(body.id) || []) {
-        const upper = load(parent.body, body.id, next);
-        mass += upper.mass; disturbed ||= upper.disturbed;
+      let total=memo.get(body.id);
+      if(!total){
+        visiting.add(body.id);
+        const g = direction(body), origin = this.origins.get(body.id);
+        total={mass:body.mass,disturbed:!origin || entity.type === 'fragment' ||
+          (body.position.x - origin.x) * g.x + (body.position.y - origin.y) * g.y > 10 ||
+          Math.abs(body.angle - origin.angle) > .16};
+        for (const parent of above.get(body.id) || []) {
+          // Cut a feedback edge conservatively; never count a circulating load
+          // repeatedly. Acyclic split/recombined load paths retain their shares.
+          const upper = load(parent.body, body.id);
+          total.mass+=upper.mass;total.disturbed ||= upper.disturbed;
+        }
+        visiting.delete(body.id);memo.set(body.id,total);
       }
+      let mass=total.mass;const disturbed=total.disturbed;
       // A rope/hinge can carry the body rather than the monster. Its contact
       // reaction is the evidence of how much load actually reaches the target.
       if (anchored.has(body.id)) {
@@ -172,11 +177,11 @@ export class CompressionSystem {
       const state = this.states.get(id) || { elapsed: 0, debt: 0, baselineReaction: 0, armed: false, filteredRatio: 0 };
       this.states.set(id, state);
       const roots = above.get(id) || [];
-      const supported = grounded(monster.body);
+      const supported = grounded.has(monster.body.id);
       const opposed = roots.length > 0 && supported;
       let mass = 0, disturbed = false, reaction = 0;
       for (const upper of roots) {
-        const portion = load(upper.body, id, new Set([id]));
+        const portion = load(upper.body, id);
         mass += portion.mass; disturbed ||= portion.disturbed; reaction += upper.reaction;
       }
       const a = this.accelerationAt(monster.body.position);

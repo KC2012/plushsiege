@@ -379,7 +379,7 @@
     "id": "molten-04",
     "world": "molten",
     "name": "Hot Potato",
-    "subtitle": "A suspended powder crate has a warm landing waiting for it.",
+    "subtitle": "Release a powder-laden platform above lava. Its falling crates can blast the neighboring storehouse.",
     "bounds": {
       "width": 1950,
       "height": 1035,
@@ -397,233 +397,203 @@
     ],
     "blocks": [
       {
-        "id": "potato-deck0",
-        "x": 986,
-        "y": 680,
-        "w": 100,
-        "h": 18,
+        "id": "potato-fastener",
+        "x": 1080,
+        "y": 480,
+        "w": 80,
+        "h": 20,
+        "material": "glass"
+      },
+      {
+        "id": "potato-deck",
+        "x": 1080,
+        "y": 700,
+        "w": 360,
+        "h": 20,
         "material": "wood"
       },
       {
-        "id": "potato-deck1",
-        "x": 1090,
-        "y": 680,
-        "w": 100,
-        "h": 18,
+        "id": "storehouse-l0",
+        "x": 1350,
+        "y": 852,
+        "w": 18,
+        "h": 96,
         "material": "wood"
       },
       {
-        "id": "potato-deck2",
-        "x": 1194,
-        "y": 680,
-        "w": 100,
+        "id": "storehouse-r0",
+        "x": 1470,
+        "y": 852,
+        "w": 18,
+        "h": 96,
+        "material": "wood"
+      },
+      {
+        "id": "storehouse-roof0",
+        "x": 1410,
+        "y": 795,
+        "w": 160,
         "h": 18,
         "material": "wood"
       }
     ],
     "monsters": [
       {
-        "id": "potato-rider0",
-        "x": 986,
-        "y": 653,
+        "id": "potato-porter",
+        "x": 1080,
+        "y": 672,
         "radius": 18,
         "kind": "horn"
       },
       {
-        "id": "potato-rider1",
-        "x": 1090,
-        "y": 653,
-        "radius": 18,
-        "kind": "blob"
-      },
-      {
-        "id": "potato-rider2",
-        "x": 1194,
-        "y": 653,
+        "id": "storehouse-m0",
+        "x": 1410,
+        "y": 882,
         "radius": 18,
         "kind": "horn"
       }
     ],
     "hazards": [
       {
-        "id": "potato-charge",
-        "x": 1310,
-        "y": 880,
+        "id": "potato-west",
+        "x": 990,
+        "y": 670,
+        "kind": "tnt"
+      },
+      {
+        "id": "potato-east",
+        "x": 1170,
+        "y": 670,
         "kind": "tnt"
       }
     ],
-    "terrain": [],
+    "terrain": [
+      {
+        "id": "potato-mast",
+        "x": 1540,
+        "y": 570,
+        "w": 30,
+        "h": 660,
+        "material": "stone"
+      },
+      {
+        "id": "potato-gallows",
+        "x": 1300,
+        "y": 240,
+        "w": 480,
+        "h": 24,
+        "material": "stone"
+      }
+    ],
     "props": [],
     "joints": [
       {
-        "id": "potato-cable0--1",
-        "kind": "rope",
+        "id": "potato-seat",
+        "kind": "hinge",
         "pointA": {
-          "x": 951,
-          "y": 530
+          "x": 1080,
+          "y": 480
         },
-        "bodyB": "potato-deck0",
+        "bodyB": "potato-fastener",
         "pointB": {
-          "x": -35,
+          "x": 0,
           "y": 0
         },
-        "length": 150,
-        "stiffness": 0.85,
-        "damping": 0.12,
-        "breakForce": 0.065
+        "length": 0,
+        "stiffness": 0.75,
+        "damping": 0.15
       },
       {
-        "id": "potato-cable0-1",
+        "id": "potato-chain--1",
         "kind": "rope",
+        "bodyA": "potato-fastener",
         "pointA": {
-          "x": 1021,
-          "y": 530
-        },
-        "bodyB": "potato-deck0",
-        "pointB": {
-          "x": 35,
+          "x": -25,
           "y": 0
         },
-        "length": 150,
-        "stiffness": 0.85,
-        "damping": 0.12,
-        "breakForce": 0.065
+        "bodyB": "potato-deck",
+        "pointB": {
+          "x": -145,
+          "y": 0
+        },
+        "length": 250.59928172283335,
+        "stiffness": 0.75,
+        "damping": 0.15
       },
       {
-        "id": "potato-cable1--1",
+        "id": "potato-chain-1",
         "kind": "rope",
+        "bodyA": "potato-fastener",
         "pointA": {
-          "x": 1055,
-          "y": 530
+          "x": 25,
+          "y": 0
         },
-        "bodyB": "potato-deck1",
+        "bodyB": "potato-deck",
         "pointB": {
-          "x": -35,
+          "x": 145,
           "y": 0
         },
-        "length": 150,
-        "stiffness": 0.85,
-        "damping": 0.12,
-        "breakForce": 0.065
-      },
-      {
-        "id": "potato-cable1-1",
-        "kind": "rope",
-        "pointA": {
-          "x": 1125,
-          "y": 530
-        },
-        "bodyB": "potato-deck1",
-        "pointB": {
-          "x": 35,
-          "y": 0
-        },
-        "length": 150,
-        "stiffness": 0.85,
-        "damping": 0.12,
-        "breakForce": 0.065
-      },
-      {
-        "id": "potato-link1",
-        "kind": "rope",
-        "bodyA": "potato-deck0",
-        "pointA": {
-          "x": 50,
-          "y": 0
-        },
-        "bodyB": "potato-deck1",
-        "pointB": {
-          "x": -50,
-          "y": 0
-        },
-        "length": 4,
-        "stiffness": 0.7,
-        "damping": 0.1,
-        "breakForce": 0.09
-      },
-      {
-        "id": "potato-cable2--1",
-        "kind": "rope",
-        "pointA": {
-          "x": 1159,
-          "y": 530
-        },
-        "bodyB": "potato-deck2",
-        "pointB": {
-          "x": -35,
-          "y": 0
-        },
-        "length": 150,
-        "stiffness": 0.85,
-        "damping": 0.12,
-        "breakForce": 0.065
-      },
-      {
-        "id": "potato-cable2-1",
-        "kind": "rope",
-        "pointA": {
-          "x": 1229,
-          "y": 530
-        },
-        "bodyB": "potato-deck2",
-        "pointB": {
-          "x": 35,
-          "y": 0
-        },
-        "length": 150,
-        "stiffness": 0.85,
-        "damping": 0.12,
-        "breakForce": 0.065
-      },
-      {
-        "id": "potato-link2",
-        "kind": "rope",
-        "bodyA": "potato-deck1",
-        "pointA": {
-          "x": 50,
-          "y": 0
-        },
-        "bodyB": "potato-deck2",
-        "pointB": {
-          "x": -50,
-          "y": 0
-        },
-        "length": 4,
-        "stiffness": 0.7,
-        "damping": 0.1,
-        "breakForce": 0.09
+        "length": 250.59928172283335,
+        "stiffness": 0.75,
+        "damping": 0.15
       }
     ],
     "mechanisms": [],
     "zones": [
       {
-        "id": "kiln",
-        "kind": "heat",
-        "x": 1090,
-        "y": 835,
-        "w": 440,
-        "h": 120,
-        "rate": 14
+        "id": "potato-lava",
+        "kind": "lava",
+        "x": 1080,
+        "y": 875,
+        "w": 460,
+        "h": 50,
+        "rate": 80
       }
     ],
     "thresholds": [
-      15000,
-      18000,
-      21000
+      10000,
+      10500,
+      11000
     ],
-    "par": 2,
+    "par": 4,
     "camera": {
       "start": "overview"
     },
     "metadata": {
       "category": "puzzle",
-      "idea": "A suspended powder crate has a warm landing waiting for it.",
+      "idea": "Release a powder-laden platform above lava. Its falling crates can blast the neighboring storehouse.",
       "mechanics": [
-        "suspended platforms",
-        "heat",
-        "explosive"
+        "destructible fastener",
+        "suspended powder",
+        "lava ignition",
+        "secondary blast"
       ],
-      "author": "Plush Siege production pass 4"
+      "author": "Plush Siege production pass 5",
+      "design": {
+        "archetype": "hanging powder dock over lava",
+        "role": "experiment",
+        "weakPoints": [
+          "potato-fastener"
+        ],
+        "sections": [
+          {
+            "id": "primary-assembly",
+            "members": [
+              "potato-fastener",
+              "potato-deck",
+              "storehouse-l0",
+              "storehouse-r0",
+              "storehouse-roof0",
+              "potato-porter",
+              "storehouse-m0",
+              "potato-mast",
+              "potato-gallows"
+            ]
+          }
+        ],
+        "intendedRoute": [],
+        "worldUse": "helpful"
+      }
     }
   },
   {
@@ -631,7 +601,7 @@
     "id": "molten-05",
     "world": "molten",
     "name": "Basalt Bathtub",
-    "subtitle": "The stone shell is safe. Its wooden floor supports are less fortunate.",
+    "subtitle": "A wooden sliding floor carries a heavy basalt vault. Push its end into the furnace to release the entire room.",
     "bounds": {
       "width": 2250,
       "height": 1135,
@@ -650,151 +620,140 @@
     ],
     "blocks": [
       {
-        "id": "basalt-pier-1",
-        "x": 1018,
-        "y": 930,
+        "id": "bathtub-floor",
+        "x": 1200,
+        "y": 770,
+        "w": 450,
+        "h": 20,
+        "material": "wood"
+      },
+      {
+        "id": "bathtub-vault-pier-1",
+        "x": 1098,
+        "y": 690,
         "w": 48,
         "h": 140,
         "material": "stone"
       },
       {
-        "id": "basalt-shoulder-1",
-        "x": 1030,
-        "y": 848,
+        "id": "bathtub-vault-shoulder-1",
+        "x": 1110,
+        "y": 608,
         "w": 68,
         "h": 24,
         "material": "stone"
       },
       {
-        "id": "basalt-pier1",
-        "x": 1222,
-        "y": 930,
+        "id": "bathtub-vault-pier1",
+        "x": 1302,
+        "y": 690,
         "w": 48,
         "h": 140,
         "material": "stone"
       },
       {
-        "id": "basalt-shoulder1",
-        "x": 1210,
-        "y": 848,
+        "id": "bathtub-vault-shoulder1",
+        "x": 1290,
+        "y": 608,
         "w": 68,
         "h": 24,
         "material": "stone"
       },
       {
-        "id": "basalt-keystone",
-        "x": 1120,
-        "y": 826,
+        "id": "bathtub-vault-keystone",
+        "x": 1200,
+        "y": 586,
         "w": 172,
         "h": 20,
-        "material": "stone"
-      },
-      {
-        "id": "boiler-l0",
-        "x": 1060,
-        "y": 768,
-        "w": 18,
-        "h": 96,
-        "material": "wood"
-      },
-      {
-        "id": "boiler-r0",
-        "x": 1180,
-        "y": 768,
-        "w": 18,
-        "h": 96,
-        "material": "wood"
-      },
-      {
-        "id": "boiler-roof0",
-        "x": 1120,
-        "y": 711,
-        "w": 160,
-        "h": 18,
-        "material": "stone"
-      },
-      {
-        "id": "boiler-l1",
-        "x": 1060,
-        "y": 654,
-        "w": 18,
-        "h": 96,
-        "material": "wood"
-      },
-      {
-        "id": "boiler-r1",
-        "x": 1180,
-        "y": 654,
-        "w": 18,
-        "h": 96,
-        "material": "wood"
-      },
-      {
-        "id": "boiler-roof1",
-        "x": 1120,
-        "y": 597,
-        "w": 160,
-        "h": 18,
         "material": "stone"
       }
     ],
     "monsters": [
       {
-        "id": "basalt-keeper",
-        "x": 1120,
-        "y": 982,
+        "id": "bathtub-vault-keeper",
+        "x": 1200,
+        "y": 742,
         "radius": 18,
         "kind": "horn"
-      },
-      {
-        "id": "boiler-m0",
-        "x": 1120,
-        "y": 798,
-        "radius": 18,
-        "kind": "horn"
-      },
-      {
-        "id": "boiler-m1",
-        "x": 1120,
-        "y": 684,
-        "radius": 18,
-        "kind": "blob"
       }
     ],
     "hazards": [],
-    "terrain": [],
+    "terrain": [
+      {
+        "id": "bathtub-left",
+        "x": 1000,
+        "y": 890,
+        "w": 50,
+        "h": 220,
+        "material": "stone"
+      },
+      {
+        "id": "bathtub-right",
+        "x": 1400,
+        "y": 890,
+        "w": 50,
+        "h": 220,
+        "material": "stone"
+      }
+    ],
     "props": [],
     "joints": [],
     "mechanisms": [],
     "zones": [
       {
-        "id": "hot-wall",
+        "id": "bathtub-furnace",
         "kind": "heat",
-        "x": 1390,
-        "y": 860,
-        "w": 120,
-        "h": 260,
-        "rate": 7
+        "x": 1480,
+        "y": 770,
+        "w": 90,
+        "h": 180,
+        "rate": 35
       }
     ],
     "thresholds": [
-      15000,
-      19500,
-      24000
+      5000,
+      5500,
+      6000
     ],
-    "par": 2,
+    "par": 4,
     "camera": {
       "start": "overview"
     },
     "metadata": {
       "category": "siege",
-      "idea": "The stone shell is safe. Its wooden floor supports are less fortunate.",
+      "idea": "A wooden sliding floor carries a heavy basalt vault. Push its end into the furnace to release the entire room.",
       "mechanics": [
-        "arch",
-        "mixed materials",
-        "heat"
+        "sliding floor",
+        "load-bearing timber",
+        "heat failure",
+        "heavy vault"
       ],
-      "author": "Plush Siege production pass 4"
+      "author": "Plush Siege production pass 5",
+      "design": {
+        "archetype": "sliding timber floor under a basalt vault",
+        "role": "experiment",
+        "weakPoints": [
+          "bathtub-floor"
+        ],
+        "sections": [
+          {
+            "id": "primary-assembly",
+            "members": [
+              "bathtub-floor",
+              "bathtub-vault-pier-1",
+              "bathtub-vault-shoulder-1",
+              "bathtub-vault-pier1",
+              "bathtub-vault-shoulder1",
+              "bathtub-vault-keystone",
+              "bathtub-vault-keeper",
+              "bathtub-left",
+              "bathtub-right"
+            ]
+          }
+        ],
+        "intendedRoute": [],
+        "worldUse": "helpful"
+      }
     }
   },
   {
@@ -2250,6 +2209,1186 @@
         "triggered vent"
       ],
       "author": "Plush Siege production pass 4"
+    }
+  },
+  {
+    "version": 1,
+    "id": "molten-11",
+    "name": "The Warm Hinge",
+    "subtitle": "Push the hanging wooden fastener into the heat. Its two stays carry a platform above lava.",
+    "world": "molten",
+    "bounds": {
+      "width": 2300,
+      "height": 1280,
+      "ground": 1100
+    },
+    "sling": {
+      "x": 235,
+      "y": 955
+    },
+    "projectiles": [
+      "duck",
+      "bear",
+      "rabbit",
+      "duck",
+      "bear",
+      "sheep"
+    ],
+    "blocks": [
+      {
+        "id": "warm-fastener",
+        "x": 1100,
+        "y": 520,
+        "w": 40,
+        "h": 90,
+        "material": "wood"
+      },
+      {
+        "id": "warm-deck",
+        "x": 1100,
+        "y": 850,
+        "w": 280,
+        "h": 22,
+        "material": "wood"
+      }
+    ],
+    "monsters": [
+      {
+        "id": "warm-guest-0",
+        "x": 1040,
+        "y": 821,
+        "radius": 18,
+        "kind": "horn"
+      },
+      {
+        "id": "warm-guest-1",
+        "x": 1160,
+        "y": 821,
+        "radius": 18,
+        "kind": "horn"
+      }
+    ],
+    "hazards": [],
+    "terrain": [
+      {
+        "id": "warm-mast",
+        "x": 1450,
+        "y": 690,
+        "w": 36,
+        "h": 820,
+        "material": "stone"
+      },
+      {
+        "id": "warm-crossarm",
+        "x": 1250,
+        "y": 280,
+        "w": 400,
+        "h": 28,
+        "material": "stone"
+      }
+    ],
+    "props": [],
+    "joints": [
+      {
+        "id": "warm-chain",
+        "kind": "rope",
+        "pointA": {
+          "x": 1100,
+          "y": 280
+        },
+        "bodyB": "warm-fastener",
+        "pointB": {
+          "x": 0,
+          "y": 0
+        },
+        "length": 240,
+        "stiffness": 0.75,
+        "damping": 0.15
+      },
+      {
+        "id": "warm-stay--1",
+        "kind": "rope",
+        "bodyA": "warm-fastener",
+        "pointA": {
+          "x": 0,
+          "y": 45
+        },
+        "bodyB": "warm-deck",
+        "pointB": {
+          "x": -110,
+          "y": 0
+        },
+        "length": 305.49140740780257,
+        "stiffness": 0.75,
+        "damping": 0.15
+      },
+      {
+        "id": "warm-stay-1",
+        "kind": "rope",
+        "bodyA": "warm-fastener",
+        "pointA": {
+          "x": 0,
+          "y": 45
+        },
+        "bodyB": "warm-deck",
+        "pointB": {
+          "x": 110,
+          "y": 0
+        },
+        "length": 305.49140740780257,
+        "stiffness": 0.75,
+        "damping": 0.15
+      }
+    ],
+    "mechanisms": [],
+    "zones": [
+      {
+        "id": "warm-furnace",
+        "kind": "heat",
+        "x": 1210,
+        "y": 520,
+        "w": 110,
+        "h": 180,
+        "rate": 55
+      },
+      {
+        "id": "warm-lava",
+        "kind": "lava",
+        "x": 1100,
+        "y": 1075,
+        "w": 450,
+        "h": 50,
+        "rate": 80
+      }
+    ],
+    "thresholds": [
+      10000,
+      14500,
+      19000
+    ],
+    "par": 3,
+    "camera": {
+      "start": "overview"
+    },
+    "metadata": {
+      "category": "siege",
+      "idea": "Push the hanging wooden fastener into the heat. Its two stays carry a platform above lava.",
+      "mechanics": [
+        "swing into heat",
+        "wood failure",
+        "suspended load",
+        "lava"
+      ],
+      "author": "Plush Siege production pass 5",
+      "design": {
+        "archetype": "heat-released hanging platform",
+        "role": "experiment",
+        "weakPoints": [
+          "warm-fastener"
+        ],
+        "sections": [
+          {
+            "id": "primary-assembly",
+            "members": [
+              "warm-fastener",
+              "warm-deck",
+              "warm-guest-0",
+              "warm-guest-1",
+              "warm-mast",
+              "warm-crossarm"
+            ]
+          }
+        ],
+        "intendedRoute": [],
+        "worldUse": "essential"
+      }
+    }
+  },
+  {
+    "version": 1,
+    "id": "molten-12",
+    "name": "Updraft Keep",
+    "subtitle": "Ride the updraft to the high timber roof. Falling debris has a second courtyard below.",
+    "world": "molten",
+    "bounds": {
+      "width": 2500,
+      "height": 1430,
+      "ground": 1250
+    },
+    "sling": {
+      "x": 235,
+      "y": 1105
+    },
+    "projectiles": [
+      "duck",
+      "bear",
+      "rabbit",
+      "duck",
+      "bear",
+      "sheep"
+    ],
+    "blocks": [
+      {
+        "id": "perch-left-rake",
+        "x": 1210,
+        "y": 592,
+        "w": 188.0350850198276,
+        "h": 12,
+        "angle": -0.9097531579442097,
+        "material": "wood"
+      },
+      {
+        "id": "perch-right-rake",
+        "x": 1350,
+        "y": 592,
+        "w": 188.0350850198276,
+        "h": 12,
+        "angle": 0.9097531579442097,
+        "material": "wood"
+      },
+      {
+        "id": "perch-floor-tie",
+        "x": 1280,
+        "y": 682,
+        "w": 240,
+        "h": 12,
+        "angle": 0,
+        "material": "glass"
+      },
+      {
+        "id": "lower-kiln-pier-1",
+        "x": 1708,
+        "y": 1180,
+        "w": 48,
+        "h": 140,
+        "material": "wood"
+      },
+      {
+        "id": "lower-kiln-shoulder-1",
+        "x": 1720,
+        "y": 1098,
+        "w": 68,
+        "h": 24,
+        "material": "wood"
+      },
+      {
+        "id": "lower-kiln-pier1",
+        "x": 1912,
+        "y": 1180,
+        "w": 48,
+        "h": 140,
+        "material": "wood"
+      },
+      {
+        "id": "lower-kiln-shoulder1",
+        "x": 1900,
+        "y": 1098,
+        "w": 68,
+        "h": 24,
+        "material": "wood"
+      },
+      {
+        "id": "lower-kiln-keystone",
+        "x": 1810,
+        "y": 1076,
+        "w": 172,
+        "h": 20,
+        "material": "wood"
+      }
+    ],
+    "monsters": [
+      {
+        "id": "perch-resident",
+        "x": 1280,
+        "y": 658,
+        "radius": 18,
+        "kind": "horn"
+      },
+      {
+        "id": "lower-kiln-keeper",
+        "x": 1810,
+        "y": 1232,
+        "radius": 18,
+        "kind": "horn"
+      }
+    ],
+    "hazards": [],
+    "terrain": [
+      {
+        "id": "updraft-perch",
+        "x": 1280,
+        "y": 700,
+        "w": 390,
+        "h": 24,
+        "material": "stone"
+      }
+    ],
+    "props": [],
+    "joints": [
+      {
+        "id": "perch-pin-left-perch-floor-tie",
+        "kind": "hinge",
+        "bodyA": "perch-left-rake",
+        "pointA": {
+          "x": -114.0175425099138,
+          "y": 0
+        },
+        "bodyB": "perch-floor-tie",
+        "pointB": {
+          "x": -140,
+          "y": 0
+        },
+        "length": 0,
+        "stiffness": 0.85,
+        "damping": 0.1
+      },
+      {
+        "id": "perch-pin-peak-perch-right-rake",
+        "kind": "hinge",
+        "bodyA": "perch-left-rake",
+        "pointA": {
+          "x": 114.0175425099138,
+          "y": 0
+        },
+        "bodyB": "perch-right-rake",
+        "pointB": {
+          "x": -114.0175425099138,
+          "y": 0
+        },
+        "length": 0,
+        "stiffness": 0.85,
+        "damping": 0.1
+      },
+      {
+        "id": "perch-pin-right-perch-floor-tie",
+        "kind": "hinge",
+        "bodyA": "perch-right-rake",
+        "pointA": {
+          "x": 114.0175425099138,
+          "y": 0
+        },
+        "bodyB": "perch-floor-tie",
+        "pointB": {
+          "x": 140,
+          "y": 0
+        },
+        "length": 0,
+        "stiffness": 0.85,
+        "damping": 0.1
+      }
+    ],
+    "mechanisms": [
+      {
+        "id": "updraft-lift",
+        "kind": "vent",
+        "x": 850,
+        "y": 920,
+        "w": 200,
+        "h": 600,
+        "force": 0.0028,
+        "speed": -1,
+        "axis": "y"
+      }
+    ],
+    "zones": [
+      {
+        "id": "lower-kiln-heat",
+        "kind": "heat",
+        "x": 1620,
+        "y": 1110,
+        "w": 110,
+        "h": 260,
+        "rate": 12
+      }
+    ],
+    "thresholds": [
+      10000,
+      14500,
+      19000
+    ],
+    "par": 3,
+    "camera": {
+      "start": "overview"
+    },
+    "metadata": {
+      "category": "siege",
+      "idea": "Ride the updraft to the high timber roof. Falling debris has a second courtyard below.",
+      "mechanics": [
+        "updraft trajectories",
+        "elevated terrain",
+        "falling timber",
+        "warm landing"
+      ],
+      "author": "Plush Siege production pass 5",
+      "design": {
+        "archetype": "updraft perch and lower courtyard",
+        "role": "experiment",
+        "weakPoints": [
+          "perch-floor-tie"
+        ],
+        "sections": [
+          {
+            "id": "primary-assembly",
+            "members": [
+              "perch-left-rake",
+              "perch-right-rake",
+              "perch-floor-tie",
+              "lower-kiln-pier-1",
+              "lower-kiln-shoulder-1",
+              "lower-kiln-pier1",
+              "lower-kiln-shoulder1",
+              "lower-kiln-keystone",
+              "perch-resident",
+              "lower-kiln-keeper",
+              "updraft-perch"
+            ]
+          }
+        ],
+        "intendedRoute": [],
+        "worldUse": "helpful"
+      }
+    }
+  },
+  {
+    "version": 1,
+    "id": "molten-13",
+    "name": "The Furnace Suspension",
+    "subtitle": "One valve powers two foundries. Stones swing their fasteners into heat; both hanging workshops fall into lava.",
+    "world": "molten",
+    "bounds": {
+      "width": 3400,
+      "height": 1280,
+      "ground": 1100
+    },
+    "sling": {
+      "x": 235,
+      "y": 955
+    },
+    "projectiles": [
+      "duck",
+      "bear",
+      "rabbit",
+      "duck",
+      "bear",
+      "sheep"
+    ],
+    "blocks": [
+      {
+        "id": "foundry-valve",
+        "x": 720,
+        "y": 1055,
+        "w": 28,
+        "h": 90,
+        "material": "glass"
+      },
+      {
+        "id": "wooden-fastener",
+        "x": 1200,
+        "y": 500,
+        "w": 40,
+        "h": 80,
+        "material": "wood"
+      },
+      {
+        "id": "foundry-deck",
+        "x": 1200,
+        "y": 850,
+        "w": 400,
+        "h": 24,
+        "material": "wood"
+      },
+      {
+        "id": "foundry-house-l0",
+        "x": 1090,
+        "y": 790,
+        "w": 18,
+        "h": 96,
+        "material": "wood"
+      },
+      {
+        "id": "foundry-house-r0",
+        "x": 1310,
+        "y": 790,
+        "w": 18,
+        "h": 96,
+        "material": "wood"
+      },
+      {
+        "id": "foundry-house-roof0",
+        "x": 1200,
+        "y": 733,
+        "w": 260,
+        "h": 18,
+        "material": "wood"
+      },
+      {
+        "id": "foundry-house-l1",
+        "x": 1090,
+        "y": 676,
+        "w": 18,
+        "h": 96,
+        "material": "wood"
+      },
+      {
+        "id": "foundry-house-r1",
+        "x": 1310,
+        "y": 676,
+        "w": 18,
+        "h": 96,
+        "material": "wood"
+      },
+      {
+        "id": "foundry-house-roof1",
+        "x": 1200,
+        "y": 619,
+        "w": 260,
+        "h": 18,
+        "material": "wood"
+      },
+      {
+        "id": "east-wooden-fastener",
+        "x": 2200,
+        "y": 500,
+        "w": 40,
+        "h": 80,
+        "material": "wood"
+      },
+      {
+        "id": "east-foundry-deck",
+        "x": 2200,
+        "y": 850,
+        "w": 400,
+        "h": 24,
+        "material": "wood"
+      },
+      {
+        "id": "east-foundry-house-l0",
+        "x": 2090,
+        "y": 790,
+        "w": 18,
+        "h": 96,
+        "material": "wood"
+      },
+      {
+        "id": "east-foundry-house-r0",
+        "x": 2310,
+        "y": 790,
+        "w": 18,
+        "h": 96,
+        "material": "wood"
+      },
+      {
+        "id": "east-foundry-house-roof0",
+        "x": 2200,
+        "y": 733,
+        "w": 260,
+        "h": 18,
+        "material": "wood"
+      }
+    ],
+    "monsters": [
+      {
+        "id": "foundry-worker-0",
+        "x": 1030,
+        "y": 820,
+        "radius": 18,
+        "kind": "horn"
+      },
+      {
+        "id": "foundry-worker-1",
+        "x": 1370,
+        "y": 820,
+        "radius": 18,
+        "kind": "horn"
+      },
+      {
+        "id": "foundry-house-m0",
+        "x": 1200,
+        "y": 820,
+        "radius": 18,
+        "kind": "horn"
+      },
+      {
+        "id": "foundry-house-m1",
+        "x": 1200,
+        "y": 706,
+        "radius": 18,
+        "kind": "blob"
+      },
+      {
+        "id": "east-foundry-worker-0",
+        "x": 2030,
+        "y": 820,
+        "radius": 18,
+        "kind": "horn"
+      },
+      {
+        "id": "east-foundry-worker-1",
+        "x": 2370,
+        "y": 820,
+        "radius": 18,
+        "kind": "horn"
+      },
+      {
+        "id": "east-foundry-house-m0",
+        "x": 2200,
+        "y": 820,
+        "radius": 18,
+        "kind": "horn"
+      }
+    ],
+    "hazards": [],
+    "terrain": [
+      {
+        "id": "stone-launch-shelf",
+        "x": 1040,
+        "y": 560,
+        "w": 220,
+        "h": 24,
+        "material": "stone"
+      },
+      {
+        "id": "foundry-mast",
+        "x": 1560,
+        "y": 570,
+        "w": 36,
+        "h": 1060,
+        "material": "stone"
+      },
+      {
+        "id": "foundry-gallows",
+        "x": 1375,
+        "y": 260,
+        "w": 370,
+        "h": 28,
+        "material": "stone"
+      },
+      {
+        "id": "east-stone-launch-shelf",
+        "x": 2040,
+        "y": 560,
+        "w": 220,
+        "h": 24,
+        "material": "stone"
+      },
+      {
+        "id": "east-foundry-mast",
+        "x": 2560,
+        "y": 570,
+        "w": 36,
+        "h": 1060,
+        "material": "stone"
+      },
+      {
+        "id": "east-foundry-gallows",
+        "x": 2375,
+        "y": 260,
+        "w": 370,
+        "h": 28,
+        "material": "stone"
+      }
+    ],
+    "props": [
+      {
+        "id": "foundry-breaching-stone",
+        "x": 1060,
+        "y": 508,
+        "kind": "boulder",
+        "radius": 40,
+        "material": "stone"
+      },
+      {
+        "id": "east-foundry-breaching-stone",
+        "x": 2060,
+        "y": 508,
+        "kind": "boulder",
+        "radius": 40,
+        "material": "stone"
+      }
+    ],
+    "joints": [
+      {
+        "id": "fastener-chain",
+        "kind": "rope",
+        "pointA": {
+          "x": 1200,
+          "y": 260
+        },
+        "bodyB": "wooden-fastener",
+        "pointB": {
+          "x": 0,
+          "y": 0
+        },
+        "length": 240,
+        "stiffness": 0.75,
+        "damping": 0.15
+      },
+      {
+        "id": "foundry-stay--1",
+        "kind": "rope",
+        "bodyA": "wooden-fastener",
+        "pointA": {
+          "x": 0,
+          "y": 40
+        },
+        "bodyB": "foundry-deck",
+        "pointB": {
+          "x": -160,
+          "y": 0
+        },
+        "length": 348.85527085024813,
+        "stiffness": 0.75,
+        "damping": 0.15
+      },
+      {
+        "id": "foundry-stay-1",
+        "kind": "rope",
+        "bodyA": "wooden-fastener",
+        "pointA": {
+          "x": 0,
+          "y": 40
+        },
+        "bodyB": "foundry-deck",
+        "pointB": {
+          "x": 160,
+          "y": 0
+        },
+        "length": 348.85527085024813,
+        "stiffness": 0.75,
+        "damping": 0.15
+      },
+      {
+        "id": "foundry-house-l0-foot",
+        "kind": "hinge",
+        "bodyA": "foundry-deck",
+        "pointA": {
+          "x": -110,
+          "y": -12
+        },
+        "bodyB": "foundry-house-l0",
+        "pointB": {
+          "x": 0,
+          "y": 48
+        },
+        "length": 0,
+        "stiffness": 0.5,
+        "damping": 0.15
+      },
+      {
+        "id": "foundry-house-l0-cap",
+        "kind": "hinge",
+        "bodyA": "foundry-house-l0",
+        "pointA": {
+          "x": 0,
+          "y": -48
+        },
+        "bodyB": "foundry-house-roof0",
+        "pointB": {
+          "x": -110,
+          "y": 9
+        },
+        "length": 0,
+        "stiffness": 0.5,
+        "damping": 0.15
+      },
+      {
+        "id": "foundry-house-r0-foot",
+        "kind": "hinge",
+        "bodyA": "foundry-deck",
+        "pointA": {
+          "x": 110,
+          "y": -12
+        },
+        "bodyB": "foundry-house-r0",
+        "pointB": {
+          "x": 0,
+          "y": 48
+        },
+        "length": 0,
+        "stiffness": 0.5,
+        "damping": 0.15
+      },
+      {
+        "id": "foundry-house-r0-cap",
+        "kind": "hinge",
+        "bodyA": "foundry-house-r0",
+        "pointA": {
+          "x": 0,
+          "y": -48
+        },
+        "bodyB": "foundry-house-roof0",
+        "pointB": {
+          "x": 110,
+          "y": 9
+        },
+        "length": 0,
+        "stiffness": 0.5,
+        "damping": 0.15
+      },
+      {
+        "id": "foundry-house-l1-foot",
+        "kind": "hinge",
+        "bodyA": "foundry-house-roof0",
+        "pointA": {
+          "x": -110,
+          "y": -9
+        },
+        "bodyB": "foundry-house-l1",
+        "pointB": {
+          "x": 0,
+          "y": 48
+        },
+        "length": 0,
+        "stiffness": 0.5,
+        "damping": 0.15
+      },
+      {
+        "id": "foundry-house-l1-cap",
+        "kind": "hinge",
+        "bodyA": "foundry-house-l1",
+        "pointA": {
+          "x": 0,
+          "y": -48
+        },
+        "bodyB": "foundry-house-roof1",
+        "pointB": {
+          "x": -110,
+          "y": 9
+        },
+        "length": 0,
+        "stiffness": 0.5,
+        "damping": 0.15
+      },
+      {
+        "id": "foundry-house-r1-foot",
+        "kind": "hinge",
+        "bodyA": "foundry-house-roof0",
+        "pointA": {
+          "x": 110,
+          "y": -9
+        },
+        "bodyB": "foundry-house-r1",
+        "pointB": {
+          "x": 0,
+          "y": 48
+        },
+        "length": 0,
+        "stiffness": 0.5,
+        "damping": 0.15
+      },
+      {
+        "id": "foundry-house-r1-cap",
+        "kind": "hinge",
+        "bodyA": "foundry-house-r1",
+        "pointA": {
+          "x": 0,
+          "y": -48
+        },
+        "bodyB": "foundry-house-roof1",
+        "pointB": {
+          "x": 110,
+          "y": 9
+        },
+        "length": 0,
+        "stiffness": 0.5,
+        "damping": 0.15
+      },
+      {
+        "id": "east-fastener-chain",
+        "kind": "rope",
+        "pointA": {
+          "x": 2200,
+          "y": 260
+        },
+        "bodyB": "east-wooden-fastener",
+        "pointB": {
+          "x": 0,
+          "y": 0
+        },
+        "length": 240,
+        "stiffness": 0.75,
+        "damping": 0.15
+      },
+      {
+        "id": "east-foundry-stay--1",
+        "kind": "rope",
+        "bodyA": "east-wooden-fastener",
+        "pointA": {
+          "x": 0,
+          "y": 40
+        },
+        "bodyB": "east-foundry-deck",
+        "pointB": {
+          "x": -160,
+          "y": 0
+        },
+        "length": 348.85527085024813,
+        "stiffness": 0.75,
+        "damping": 0.15
+      },
+      {
+        "id": "east-foundry-stay-1",
+        "kind": "rope",
+        "bodyA": "east-wooden-fastener",
+        "pointA": {
+          "x": 0,
+          "y": 40
+        },
+        "bodyB": "east-foundry-deck",
+        "pointB": {
+          "x": 160,
+          "y": 0
+        },
+        "length": 348.85527085024813,
+        "stiffness": 0.75,
+        "damping": 0.15
+      },
+      {
+        "id": "east-foundry-house-l0-foot",
+        "kind": "hinge",
+        "bodyA": "east-foundry-deck",
+        "pointA": {
+          "x": -110,
+          "y": -12
+        },
+        "bodyB": "east-foundry-house-l0",
+        "pointB": {
+          "x": 0,
+          "y": 48
+        },
+        "length": 0,
+        "stiffness": 0.5,
+        "damping": 0.15
+      },
+      {
+        "id": "east-foundry-house-l0-cap",
+        "kind": "hinge",
+        "bodyA": "east-foundry-house-l0",
+        "pointA": {
+          "x": 0,
+          "y": -48
+        },
+        "bodyB": "east-foundry-house-roof0",
+        "pointB": {
+          "x": -110,
+          "y": 9
+        },
+        "length": 0,
+        "stiffness": 0.5,
+        "damping": 0.15
+      },
+      {
+        "id": "east-foundry-house-r0-foot",
+        "kind": "hinge",
+        "bodyA": "east-foundry-deck",
+        "pointA": {
+          "x": 110,
+          "y": -12
+        },
+        "bodyB": "east-foundry-house-r0",
+        "pointB": {
+          "x": 0,
+          "y": 48
+        },
+        "length": 0,
+        "stiffness": 0.5,
+        "damping": 0.15
+      },
+      {
+        "id": "east-foundry-house-r0-cap",
+        "kind": "hinge",
+        "bodyA": "east-foundry-house-r0",
+        "pointA": {
+          "x": 0,
+          "y": -48
+        },
+        "bodyB": "east-foundry-house-roof0",
+        "pointB": {
+          "x": 110,
+          "y": 9
+        },
+        "length": 0,
+        "stiffness": 0.5,
+        "damping": 0.15
+      }
+    ],
+    "mechanisms": [
+      {
+        "id": "foundry-pressure",
+        "kind": "vent",
+        "x": 1070,
+        "y": 500,
+        "w": 180,
+        "h": 160,
+        "force": 0.0008,
+        "speed": 1,
+        "axis": "x",
+        "trigger": "foundry-valve"
+      },
+      {
+        "id": "east-foundry-pressure",
+        "kind": "vent",
+        "x": 2070,
+        "y": 500,
+        "w": 180,
+        "h": 160,
+        "force": 0.00065,
+        "speed": 1,
+        "axis": "x",
+        "trigger": "foundry-valve"
+      }
+    ],
+    "zones": [
+      {
+        "id": "fastener-furnace",
+        "kind": "heat",
+        "x": 1310,
+        "y": 500,
+        "w": 130,
+        "h": 150,
+        "rate": 80
+      },
+      {
+        "id": "foundry-lava",
+        "kind": "lava",
+        "x": 1200,
+        "y": 1075,
+        "w": 600,
+        "h": 50,
+        "rate": 80
+      },
+      {
+        "id": "east-fastener-furnace",
+        "kind": "heat",
+        "x": 2310,
+        "y": 500,
+        "w": 130,
+        "h": 150,
+        "rate": 35
+      },
+      {
+        "id": "east-foundry-lava",
+        "kind": "lava",
+        "x": 2200,
+        "y": 1075,
+        "w": 600,
+        "h": 50,
+        "rate": 80
+      }
+    ],
+    "thresholds": [
+      35000,
+      39500,
+      44000
+    ],
+    "par": 3,
+    "camera": {
+      "start": "overview"
+    },
+    "metadata": {
+      "category": "spectacle",
+      "idea": "One valve powers two foundries. Stones swing their fasteners into heat; both hanging workshops fall into lava.",
+      "mechanics": [
+        "triggered vent",
+        "boulder impulse",
+        "swinging fastener",
+        "heat failure",
+        "suspended deck",
+        "lava landing"
+      ],
+      "author": "Plush Siege production pass 5",
+      "design": {
+        "archetype": "parallel pressure and furnace suspension factories",
+        "role": "spectacle",
+        "weakPoints": [
+          "foundry-valve",
+          "wooden-fastener",
+          "east-wooden-fastener"
+        ],
+        "sections": [
+          {
+            "id": "west-machinery",
+            "members": [
+              "foundry-valve",
+              "wooden-fastener",
+              "foundry-breaching-stone"
+            ]
+          },
+          {
+            "id": "west-workshop",
+            "members": [
+              "foundry-deck",
+              "foundry-house-l0",
+              "foundry-house-r0",
+              "foundry-house-roof0",
+              "foundry-house-l1",
+              "foundry-house-r1",
+              "foundry-house-roof1",
+              "foundry-worker-0",
+              "foundry-worker-1",
+              "foundry-house-m0",
+              "foundry-house-m1"
+            ]
+          },
+          {
+            "id": "east-machinery",
+            "members": [
+              "east-wooden-fastener",
+              "east-foundry-breaching-stone"
+            ]
+          },
+          {
+            "id": "east-workshop",
+            "members": [
+              "east-foundry-deck",
+              "east-foundry-house-l0",
+              "east-foundry-house-r0",
+              "east-foundry-house-roof0",
+              "east-foundry-worker-0",
+              "east-foundry-worker-1",
+              "east-foundry-house-m0"
+            ]
+          }
+        ],
+        "intendedRoute": [
+          {
+            "from": "foundry-valve",
+            "to": "foundry-pressure",
+            "via": "release"
+          },
+          {
+            "from": "foundry-pressure",
+            "to": "foundry-breaching-stone",
+            "via": "force"
+          },
+          {
+            "from": "foundry-breaching-stone",
+            "to": "wooden-fastener",
+            "via": "impact"
+          },
+          {
+            "from": "fastener-furnace",
+            "to": "wooden-fastener",
+            "via": "hazard"
+          },
+          {
+            "from": "wooden-fastener",
+            "to": "foundry-deck",
+            "via": "release"
+          },
+          {
+            "from": "foundry-lava",
+            "to": "foundry-house-m0",
+            "via": "hazard"
+          },
+          {
+            "from": "foundry-valve",
+            "to": "east-foundry-pressure",
+            "via": "release"
+          }
+        ],
+        "worldUse": "essential"
+      }
     }
   }
 ]

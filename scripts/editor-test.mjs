@@ -168,6 +168,15 @@ try {
     'invalid external JSON is rejected',
     (await exportLevel()).blocks[0].x === original.blocks[0].x,
   );
+  const annotated=structuredClone(original);annotated.name='Annotated campaign import';
+  annotated.metadata={category:'puzzle',idea:'Edit a documented support',mechanics:['support'],design:{archetype:'intro room',role:'teach',weakPoints:[annotated.blocks[0].id],sections:[{id:'room',members:annotated.blocks.map(b=>b.id)}],intendedRoute:[],worldUse:'classic'}};
+  await file.setInputFiles({name:'annotated.json',mimeType:'application/json',buffer:Buffer.from(JSON.stringify(annotated))});
+  await page.waitForFunction(name=>document.querySelector('[data-field="name"]').value===name,annotated.name);
+  check('documented campaign levels retain their notes when imported',(await exportLevel()).metadata.design.sections.length===1);
+  await page.locator('.ed-canvas [data-type="blocks"] rect').first().click();await page.getByRole('button',{name:'Delete',exact:true}).click();
+  const editedNotes=await exportLevel();
+  check('editing a documented assembly removes stale design references',!editedNotes.metadata.design&&!(await page.evaluate(async l=>(await import('/src/content/validate.ts')).validateLevel(l),editedNotes)).length);
+  await button('undo').click();check('undo restores both geometry and original design notes',(await exportLevel()).metadata.design.weakPoints[0]===annotated.blocks[0].id);
   // Production authoring through the visible controls, using a larger orbital canvas.
   await button('new').click();
   await page.locator('[data-field="world"]').selectOption('orbital');
@@ -242,7 +251,7 @@ try {
   check('touch-friendly Multi-select checkbox combines objects without a keyboard', await page.locator('.ed-selection').innerText().then(text => text.includes('2 selected')));
   await page.locator('[data-field="multi"]').uncheck();
   // Templates are exported/imported as the same structured runtime data, never decorative-only SVG.
-  for (const name of ['arch','suspended','counterweight','moving']) {
+  for (const name of ['gable','bowstring','viaduct','arch','suspended','counterweight','moving']) {
     await button('new').click(); await page.locator(`[data-template="${name}"]`).click();
     const template = await exportLevel();
     const issues = await page.evaluate(async value => { const { validateLevel }=await import('/src/content/validate.ts'); return validateLevel(value); }, template);

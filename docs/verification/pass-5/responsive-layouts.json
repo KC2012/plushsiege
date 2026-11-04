@@ -1,0 +1,27 @@
+{
+  "generatedAt": "2026-11-04T17:05:36.912Z",
+  "checks": 40,
+  "url": "http://127.0.0.1:4175",
+  "viewports": [
+    {
+      "width": 1440,
+      "height": 900,
+      "errors": []
+    },
+    {
+      "width": 1180,
+      "height": 820,
+      "errors": []
+    },
+    {
+      "width": 844,
+      "height": 390,
+      "errors": []
+    },
+    {
+      "width": 390,
+      "height": 844,
+      "errors": []
+    }
+  ]
+}

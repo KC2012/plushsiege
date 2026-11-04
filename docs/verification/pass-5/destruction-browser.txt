@@ -1,0 +1,37 @@
+PASS wood: pointer drag launches once and intact target is visible before contact
+PASS wood: struck block remains a rotating, displaced rigid body
+PASS wood: fracture replaces failed support with substantial moving physical pieces
+PASS wood: large fragments keep moving after their fracture frame
+PASS glass: pointer drag launches once and intact target is visible before contact
+PASS glass: struck block remains a rotating, displaced rigid body
+PASS glass: fracture replaces failed support with substantial moving physical pieces
+PASS glass: large fragments keep moving after their fracture frame
+PASS stone: pointer drag launches once and intact target is visible before contact
+PASS stone: struck block remains a rotating, displaced rigid body
+PASS stone: medium shot tips the damaged block instead of deleting it
+PASS campaign castle: failed support makes the intact physical roof fall and rotate
+PASS campaign castle: real collapse resolves target defeat and victory with one actual shot
+PASS sheep: a flight drag does not spend the ability
+PASS sheep: canceled gesture does not spend the ability
+PASS sheep: a deliberate flight tap activates exactly one ability
+PASS sheep: correct physical projectile count after ability
+PASS sheep: repeated tap does not create extra projectiles
+PASS duck: a flight drag does not spend the ability
+PASS duck: canceled gesture does not spend the ability
+PASS duck: a deliberate flight tap activates exactly one ability
+PASS duck: correct physical projectile count after ability
+PASS duck: repeated tap does not create extra projectiles
+PASS bear: a flight drag does not spend the ability
+PASS bear: canceled gesture does not spend the ability
+PASS bear: a deliberate flight tap activates exactly one ability
+PASS bear: correct physical projectile count after ability
+PASS bear: repeated tap does not create extra projectiles
+PASS rabbit: a flight drag does not spend the ability
+PASS rabbit: canceled gesture does not spend the ability
+PASS rabbit: a deliberate flight tap activates exactly one ability
+PASS rabbit: correct physical projectile count after ability
+PASS rabbit: repeated tap does not create extra projectiles
+PASS two-finger flight gesture cannot accidentally trigger an ability
+PASS landed stuffie rejects a late ability tap
+PASS real scene destruction and pointer abilities produce no uncaught errors
+Destruction browser: 36 checks passed.

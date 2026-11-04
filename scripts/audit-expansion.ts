@@ -38,12 +38,16 @@ export function missAudit(level:Level){
 }
 function candidates(kind:StuffieKind,level:Level):Shot[]{
  const shots:Shot[]=[];
- const abilities:(number|null)[]=kind==='sheep'?[null,22]:kind==='bear'?[null,35,50,65]:[20,null,35];
+ const long=level.bounds.width>2400;
+ const abilities:(number|null)[]=kind==='sheep'?[null,22]:kind==='bear'?(long?[null,50,80,105]:[null,35,50,65]):long?[20,null,50,80]:[20,null,35];
  for(const strength of [1,.8,.9,.6])for(const degrees of [0,14,28,45,58,7,22,38,-4])for(const abilityAt of abilities){const a=degrees*Math.PI/180;shots.push({x:-102*strength*Math.cos(a),y:102*strength*Math.sin(a),abilityAt});}
  // Add targeted ballistic arcs to actual target/support/trigger geometry. No fake hits.
  const gravity=(level.environment?.gravity?.y??1)*.27778;
- const points=[...level.hazards,...level.blocks.filter(b=>b.material==='glass'||b.material==='ice'),...level.monsters].slice(0,24);
- for(const target of [...points].reverse()){const dx=target.x-level.sling.x,dy=target.y-level.sling.y;if(dx<=20)continue;const v=21.93,disc=v**4-gravity*(gravity*dx*dx-2*dy*v*v);if(disc<0)continue;for(const sign of[-1,1]){const tan=(v*v+sign*Math.sqrt(disc))/(gravity*dx),a=Math.atan(tan);if(Math.abs(a)>1.25)continue;for(const abilityAt of abilities)shots.unshift({x:-102*Math.cos(a),y:102*Math.sin(a),abilityAt});}}
+ const triggers=(level.mechanisms||[]).flatMap(m=>level.blocks.filter(b=>b.id===m.trigger));
+ const points=[...level.monsters,...triggers,...level.hazards,...(level.props||[]).filter(p=>!p.static&&p.kind!=='planetoid'),...level.blocks.filter(b=>b.material==='glass'||b.material==='ice')].slice(0,24);
+ for(const target of [...points].reverse()){const dx=target.x-level.sling.x,dy=target.y-level.sling.y;if(dx<=20)continue;
+  if(Math.abs(gravity)<1e-6){for(const offset of[0,-.06,.06]){const a=Math.atan2(-dy,dx)+offset;if(Math.abs(a)>1.25)continue;for(const abilityAt of abilities)shots.unshift({x:-102*Math.cos(a),y:102*Math.sin(a),abilityAt});}continue;}
+  const v=21.93,disc=v**4-gravity*(gravity*dx*dx-2*dy*v*v);if(disc<0)continue;for(const sign of[-1,1]){const tan=(v*v+sign*Math.sqrt(disc))/(gravity*dx),a=Math.atan(tan);if(Math.abs(a)>1.25)continue;for(const abilityAt of abilities)shots.unshift({x:-102*Math.cos(a),y:102*Math.sin(a),abilityAt});}}
  // Interleave direct arcs with coarse boosted/lob shots so targets in gravity
  // regions cannot crowd every alternate route out of the finite search.
  const gridSize=36*abilities.length;
@@ -58,7 +62,7 @@ export function search(level:Level,known?:Witness,maxAttempts=450):{witness?:Wit
   let best:{shot:Shot;value:number}|undefined;
   const inspect=new Simulation(level);for(const prior of chosen)finishShot(inspect,prior);
   const current={...level,blocks:[...inspect.entities.values()].filter(e=>e.type==='block').map(e=>({...e.def! as BlockDef,x:e.body.position.x,y:e.body.position.y})),monsters:[...inspect.entities.values()].filter(e=>e.type==='monster').map(e=>({id:e.id,x:e.body.position.x,y:e.body.position.y})),hazards:[...inspect.entities.values()].filter(e=>e.type==='tnt').map(e=>({id:e.id,x:e.body.position.x,y:e.body.position.y,kind:'tnt' as const}))};inspect.dispose();
-  for(const shot of candidates(level.projectiles[shotIndex],current).slice(0,level.metadata?.category==='spectacle'?40:110)){
+  for(const shot of candidates(level.projectiles[shotIndex],current).slice(0,level.metadata?.design?180:level.metadata?.category==='spectacle'?80:110)){
    if(attempts++>=maxAttempts)break;
    const sim=new Simulation(level);let resolved=true,peak=sim.entities.size,steps=0;
    for(const prior of chosen){const r=finishShot(sim,prior);if(!r.resolved){resolved=false;break;}peak=Math.max(peak,r.peak);steps=Math.max(steps,r.steps);}
@@ -69,7 +73,7 @@ export function search(level:Level,known?:Witness,maxAttempts=450):{witness?:Wit
    const value=(level.monsters.length-sim.remainingMonsters)*1000000+injured*150000+sim.score;
    if(sim.phase==='aiming'&&(!best||value>best.value))best={shot,value};sim.dispose();
   }
-  if(!best)break;chosen.push(best.shot);if(level.metadata?.category==='spectacle')console.log(level.id,'shot',shotIndex+1,'best',Math.round(best.value),best.shot);
+  if(!best)break;chosen.push(best.shot);if(level.metadata?.design||level.metadata?.category==='spectacle')console.log(level.id,'shot',shotIndex+1,'best',Math.round(best.value),best.shot);
  }
  return {attempts,unresolved};
 }

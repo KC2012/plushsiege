@@ -1,21 +1,23 @@
-# Pass 5 progress
+# Pass 5 checkpoint
 
-Baseline: published 0.4.0, commit 103f31648f498facc3aac4d23461c74495bd48d9, 70 campaign levels.
+Baseline: published 0.4.0 at `103f31648f498facc3aac4d23461c74495bd48d9` (70 levels). The assignment is saved in the workspace attachments, not shipped in this repository.
 
-The assignment is in `attachments/5f36a579-91de-4a85-bd9d-517f05bf2b7c/Pasted text.txt` in the workspace.
+Completed authoring and physics milestones:
 
-Milestones:
+- Sustained compression follows actual opposing contacts, supported weight shares and measured reactions. It handles sleeping rubble and release without overlap damage. Load traversal uses bounded graph reachability and conservative memoized paths through cycles.
+- The physics lab has 18 rigs, including seven compression/impact/fall controls. Live-target turns have no global timeout. A result appears after the objective is physically complete even if harmless rubble continues moving. Contact-supported debris is retained in local gravity.
+- All 70 prior stages were reviewed: 51 retained, 19 redesigned with stable IDs. Fifteen additions include five world benchmarks. Campaign total: 85 (Meadow 33, each other world 13).
+- All 85 passed schema, idle, miss, budget and winning-replay gates before promotion. New mechanism tests use real projectile inputs and disabled-mechanic controls.
+- New gable, bowstring and cable templates are available in the workshop. Import preserves design notes; subsequent edits remove stale references, and undo restores them.
+- The camera follows significant collapse activity after the stuffie lands and respects manual inspection. Heat and radial-field presentation received small readability improvements.
+- Research and the complete review are in `LEVEL_DESIGN_RESEARCH.md` and `LEVEL_DESIGN_REVIEW.md`. No third-party layouts or artwork were copied.
 
-1. Investigate and correct sustained rubble compression. Preserve harmless rest, light contact, support waking, falls and existing rigid-body behavior. Add real-engine regressions and an inspectable rig.
-2. Write concrete level-design research, distinguishing inspected references from access limitations, then establish a concise design rubric.
-3. Add genuinely physical architectural assemblies and five distinct world showcases; verify their intended mechanisms, stability, misses and clears before campaign expansion.
-4. Review all 70 existing stages. Keep successful teaching levels, replace repetitive or mechanically weak compositions, and record decisions. Add 30–50 distinct stages only if they pass the same gates.
-5. Add causal/variety/performance reports, run browser/offline/input regressions, package and publish a verified source commit and browser archive.
+Current verified checkpoint: 154 unit/content checks passed; the workshop passed 59 browser checks; the five showcases cleared in the actual scene at desktop and iPad-sized layouts (44 checks). Browser ice and orbital routes used an available follow-up shot; both stayed within their launch queues. Exact Node/browser contact outcomes are not claimed identical. The final-shot heat regression verifies that a stationary burning fastener can finish its physical release before the turn ends.
 
-Current work: milestones 1–3. Sustained compression now follows real opposing contact paths and load shares, including sleeping rubble. Eleven regression tests cover heavy/combined/sleeping loads, harmless authored rest, piers, release, freefall, impacts, falls and an externally pressed platen. Seven inspectable rigs extend the physics lab to 18 scenarios. Constraint convergence and support-release handling preserve uncapped meaningful motion. Triangle, bowstring and cable assemblies have idle/miss gates; five world showcases remain to be designed and promoted.
+The broader game, destruction, monster, camera, audio and retained-showcase browser regressions passed. Five-world navigation passed 185 checks, production offline play passed 18, and responsive presentation passed 40. All 85 winning Node replays peaked at 90 entities and 46 fragments; the maximum per-level p95 physics step cost was 1.924 ms on this host. Evidence is archived in `docs/verification/pass-5/`.
 
-Research is in `LEVEL_DESIGN_RESEARCH.md`. Wikipedia CONNECT was denied (403); four public Science Birds compositions and one screenshot were actually inspected at a pinned commit. Commercial-game descriptions are explicitly distinguished from newly inspected evidence. No reference artwork/layouts are included.
+Real-animation-loop measurements also completed: 53.3–60.1 mean FPS in short scene-only software-Canvas samples, with host stalls retained. These exclude HUD/audio and are not device performance guarantees.
 
-Physics changes alter exact campaign replay scores. Valid old routes have been refreshed, but the following old expansion routes still need redesign/revalidation: meadow-30, haunted-07/09/10, orbital-03/06/07/10. The complete campaign test suite is **not yet green**. Do not publish this intermediate draft. Original published 0.4.0 remains on main.
+Remaining release work: build and verify the 0.5.0 browser ZIP, and publish the tested source to GitHub. Do not publish a cloud environment or website.
 
-Next: freeze verified core; implement metadata and causal metrics; build and validate five original world showcases; review/rework 70 and expand only after real idle, miss, replay and rendered checks.
+Human follow-up: physical iPad performance/touch/audio/offline installation and subjective campaign playtesting. The optional 30–50 new-level target was reduced to 15 verified additions; further expansion should use fresh premises and playtest evidence.

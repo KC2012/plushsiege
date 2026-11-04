@@ -1,6 +1,6 @@
 {
   "name": "plush-siege",
-  "version": "0.4.0",
+  "version": "0.5.0",
   "private": true,
   "type": "module",
   "scripts": {
@@ -22,7 +22,11 @@
     "audit:expansion": "node --import tsx scripts/audit-expansion.ts",
     "test:worlds": "node scripts/expansion-browser-test.mjs",
     "test:showcase": "node scripts/showcase-browser-test.mjs",
-    "measure:physics": "node --import tsx scripts/measure-campaign.ts"
+    "measure:physics": "node --import tsx scripts/measure-campaign.ts",
+    "measure:render": "node scripts/measure-render.mjs",
+    "audit:siege": "node --import tsx scripts/audit-siege.ts",
+    "test:siege": "node --import tsx --test tests/siege-content.test.ts",
+    "test:siege-browser": "node scripts/siege-browser-test.mjs"
   },
   "dependencies": {
     "matter-js": "0.20.0",

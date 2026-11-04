@@ -1,0 +1,21 @@
+PASS game title menu presents a primary PLAY action
+PASS campaign map presents eight touch-friendly level nodes
+PASS second map page exposes levels nine through sixteen
+PASS third map page exposes levels seventeen through twenty-four
+PASS first level starts with score zero
+PASS pause opens without launching a projectile
+PASS actual slingshot shot destroys target and completes level
+PASS victory awards an explicit unused-projectile bonus
+PASS next-level navigation works
+PASS instant restart resets score and queue
+PASS progress survives page reload
+PASS cancelled pointer gesture never launches
+PASS settings save and reload
+PASS workshop opens from main menu
+PASS editor playtest enters game
+PASS playtest returns to retained editor draft
+PASS no uncaught desktop browser errors
+PASS touch drag launches and wins on iPad-sized viewport
+PASS no uncaught touch browser errors
+
+19 integrated browser checks passed.

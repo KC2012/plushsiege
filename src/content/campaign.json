@@ -14,20 +14,23 @@
       "x": 235,
       "y": 530
     },
-    "projectiles": ["sheep", "sheep"],
+    "projectiles": [
+      "sheep",
+      "sheep"
+    ],
     "blocks": [
       {
         "id": "b1",
-        "x": 869.0,
-        "y": 625.0,
+        "x": 869,
+        "y": 625,
         "w": 18,
         "h": 100,
         "material": "wood"
       },
       {
         "id": "b2",
-        "x": 971.0,
-        "y": 625.0,
+        "x": 971,
+        "y": 625,
         "w": 18,
         "h": 100,
         "material": "wood"
@@ -51,7 +54,11 @@
       }
     ],
     "hazards": [],
-    "thresholds": [5000, 5500, 8500],
+    "thresholds": [
+      5000,
+      5500,
+      8500
+    ],
     "par": 1,
     "tutorial": "Drag Mallow back from the sling. Release to launch. Try hitting the wooden legs."
   },
@@ -70,20 +77,24 @@
       "x": 235,
       "y": 530
     },
-    "projectiles": ["sheep", "sheep", "sheep"],
+    "projectiles": [
+      "sheep",
+      "sheep",
+      "sheep"
+    ],
     "blocks": [
       {
         "id": "b1",
-        "x": 814.0,
-        "y": 625.0,
+        "x": 814,
+        "y": 625,
         "w": 18,
         "h": 100,
         "material": "wood"
       },
       {
         "id": "b2",
-        "x": 916.0,
-        "y": 625.0,
+        "x": 916,
+        "y": 625,
         "w": 18,
         "h": 100,
         "material": "wood"
@@ -98,16 +109,16 @@
       },
       {
         "id": "b4",
-        "x": 1039.0,
-        "y": 625.0,
+        "x": 1039,
+        "y": 625,
         "w": 18,
         "h": 100,
         "material": "wood"
       },
       {
         "id": "b5",
-        "x": 1141.0,
-        "y": 625.0,
+        "x": 1141,
+        "y": 625,
         "w": 18,
         "h": 100,
         "material": "wood"
@@ -138,7 +149,11 @@
       }
     ],
     "hazards": [],
-    "thresholds": [10000, 11500, 13000],
+    "thresholds": [
+      10000,
+      11500,
+      13000
+    ],
     "par": 2,
     "tutorial": "Aim low at the supports, or lob a shot onto the roof."
   },
@@ -157,20 +172,24 @@
       "x": 235,
       "y": 530
     },
-    "projectiles": ["sheep", "sheep", "sheep"],
+    "projectiles": [
+      "sheep",
+      "sheep",
+      "sheep"
+    ],
     "blocks": [
       {
         "id": "b1",
-        "x": 909.0,
-        "y": 625.0,
+        "x": 909,
+        "y": 625,
         "w": 18,
         "h": 100,
         "material": "wood"
       },
       {
         "id": "b2",
-        "x": 1011.0,
-        "y": 625.0,
+        "x": 1011,
+        "y": 625,
         "w": 18,
         "h": 100,
         "material": "wood"
@@ -201,7 +220,11 @@
       }
     ],
     "hazards": [],
-    "thresholds": [10000, 11500, 13000],
+    "thresholds": [
+      10000,
+      11500,
+      13000
+    ],
     "par": 2
   },
   {
@@ -219,20 +242,24 @@
       "x": 235,
       "y": 530
     },
-    "projectiles": ["sheep", "sheep", "sheep"],
+    "projectiles": [
+      "sheep",
+      "sheep",
+      "sheep"
+    ],
     "blocks": [
       {
         "id": "b1",
-        "x": 914.0,
-        "y": 625.0,
+        "x": 914,
+        "y": 625,
         "w": 18,
         "h": 100,
         "material": "wood"
       },
       {
         "id": "b2",
-        "x": 1016.0,
-        "y": 625.0,
+        "x": 1016,
+        "y": 625,
         "w": 18,
         "h": 100,
         "material": "wood"
@@ -247,16 +274,16 @@
       },
       {
         "id": "b4",
-        "x": 914.0,
-        "y": 507.0,
+        "x": 914,
+        "y": 507,
         "w": 18,
         "h": 100,
         "material": "wood"
       },
       {
         "id": "b5",
-        "x": 1016.0,
-        "y": 507.0,
+        "x": 1016,
+        "y": 507,
         "w": 18,
         "h": 100,
         "material": "wood"
@@ -287,7 +314,11 @@
       }
     ],
     "hazards": [],
-    "thresholds": [10000, 11500, 13000],
+    "thresholds": [
+      10000,
+      11500,
+      13000
+    ],
     "par": 2,
     "tutorial": "Structures carry their own weight. A falling roof hits hard."
   },
@@ -306,20 +337,24 @@
       "x": 235,
       "y": 530
     },
-    "projectiles": ["sheep", "sheep", "sheep"],
+    "projectiles": [
+      "sheep",
+      "sheep",
+      "sheep"
+    ],
     "blocks": [
       {
         "id": "b1",
-        "x": 889.0,
-        "y": 625.0,
+        "x": 889,
+        "y": 625,
         "w": 18,
         "h": 100,
         "material": "glass"
       },
       {
         "id": "b2",
-        "x": 991.0,
-        "y": 625.0,
+        "x": 991,
+        "y": 625,
         "w": 18,
         "h": 100,
         "material": "glass"
@@ -343,7 +378,11 @@
       }
     ],
     "hazards": [],
-    "thresholds": [5000, 9000, 12000],
+    "thresholds": [
+      5000,
+      9000,
+      12000
+    ],
     "par": 1,
     "tutorial": "Glass is light and fragile. Wood takes a harder hit."
   },
@@ -362,20 +401,25 @@
       "x": 235,
       "y": 530
     },
-    "projectiles": ["sheep", "sheep", "sheep", "sheep"],
+    "projectiles": [
+      "sheep",
+      "sheep",
+      "sheep",
+      "sheep"
+    ],
     "blocks": [
       {
         "id": "b1",
-        "x": 764.0,
-        "y": 625.0,
+        "x": 764,
+        "y": 625,
         "w": 18,
         "h": 100,
         "material": "glass"
       },
       {
         "id": "b2",
-        "x": 846.0,
-        "y": 625.0,
+        "x": 846,
+        "y": 625,
         "w": 18,
         "h": 100,
         "material": "glass"
@@ -390,16 +434,16 @@
       },
       {
         "id": "b4",
-        "x": 969.0,
-        "y": 625.0,
+        "x": 969,
+        "y": 625,
         "w": 18,
         "h": 100,
         "material": "glass"
       },
       {
         "id": "b5",
-        "x": 1051.0,
-        "y": 625.0,
+        "x": 1051,
+        "y": 625,
         "w": 18,
         "h": 100,
         "material": "glass"
@@ -437,7 +481,11 @@
       }
     ],
     "hazards": [],
-    "thresholds": [15000, 18000, 21000],
+    "thresholds": [
+      15000,
+      18000,
+      21000
+    ],
     "par": 2
   },
   {
@@ -455,20 +503,25 @@
       "x": 235,
       "y": 530
     },
-    "projectiles": ["sheep", "sheep", "sheep", "sheep"],
+    "projectiles": [
+      "sheep",
+      "sheep",
+      "sheep",
+      "sheep"
+    ],
     "blocks": [
       {
         "id": "b1",
-        "x": 839.0,
-        "y": 625.0,
+        "x": 839,
+        "y": 625,
         "w": 18,
         "h": 100,
         "material": "glass"
       },
       {
         "id": "b2",
-        "x": 941.0,
-        "y": 625.0,
+        "x": 941,
+        "y": 625,
         "w": 18,
         "h": 100,
         "material": "glass"
@@ -483,16 +536,16 @@
       },
       {
         "id": "b4",
-        "x": 839.0,
-        "y": 507.0,
+        "x": 839,
+        "y": 507,
         "w": 18,
         "h": 100,
         "material": "glass"
       },
       {
         "id": "b5",
-        "x": 941.0,
-        "y": 507.0,
+        "x": 941,
+        "y": 507,
         "w": 18,
         "h": 100,
         "material": "glass"
@@ -507,16 +560,16 @@
       },
       {
         "id": "b7",
-        "x": 1094.0,
-        "y": 625.0,
+        "x": 1094,
+        "y": 625,
         "w": 18,
         "h": 100,
         "material": "wood"
       },
       {
         "id": "b8",
-        "x": 1176.0,
-        "y": 625.0,
+        "x": 1176,
+        "y": 625,
         "w": 18,
         "h": 100,
         "material": "wood"
@@ -554,7 +607,11 @@
       }
     ],
     "hazards": [],
-    "thresholds": [15000, 18000, 21000],
+    "thresholds": [
+      15000,
+      18000,
+      21000
+    ],
     "par": 2
   },
   {
@@ -572,20 +629,24 @@
       "x": 235,
       "y": 530
     },
-    "projectiles": ["duck", "duck", "sheep"],
+    "projectiles": [
+      "duck",
+      "duck",
+      "sheep"
+    ],
     "blocks": [
       {
         "id": "b1",
-        "x": 1029.0,
-        "y": 625.0,
+        "x": 1029,
+        "y": 625,
         "w": 18,
         "h": 100,
         "material": "wood"
       },
       {
         "id": "b2",
-        "x": 1131.0,
-        "y": 625.0,
+        "x": 1131,
+        "y": 625,
         "w": 18,
         "h": 100,
         "material": "wood"
@@ -601,7 +662,7 @@
       {
         "id": "b4",
         "x": 1231.5,
-        "y": 625.0,
+        "y": 625,
         "w": 18,
         "h": 100,
         "material": "glass"
@@ -609,7 +670,7 @@
       {
         "id": "b5",
         "x": 1308.5,
-        "y": 625.0,
+        "y": 625,
         "w": 18,
         "h": 100,
         "material": "glass"
@@ -640,7 +701,11 @@
       }
     ],
     "hazards": [],
-    "thresholds": [10000, 11500, 13000],
+    "thresholds": [
+      10000,
+      11500,
+      13000
+    ],
     "par": 2,
     "tutorial": "Tap anywhere in the field while Pip is flying to trigger a speed burst."
   },
@@ -648,7 +713,7 @@
     "version": 1,
     "id": "meadow-09",
     "name": "High Society",
-    "subtitle": "The best view is worth defending.",
+    "subtitle": "A triangular loft stays rigid while its glass tie holds. Breach the tie or lift the roof.",
     "world": "countryside",
     "bounds": {
       "width": 1440,
@@ -659,89 +724,149 @@
       "x": 235,
       "y": 530
     },
-    "projectiles": ["duck", "sheep", "duck"],
+    "projectiles": [
+      "duck",
+      "sheep",
+      "duck"
+    ],
     "blocks": [
       {
-        "id": "b1",
-        "x": 1037.0,
-        "y": 625.0,
-        "w": 18,
-        "h": 100,
-        "material": "glass"
-      },
-      {
-        "id": "b2",
-        "x": 1123.0,
-        "y": 625.0,
-        "w": 18,
-        "h": 100,
-        "material": "glass"
-      },
-      {
-        "id": "b3",
-        "x": 1080,
-        "y": 566,
-        "w": 126,
-        "h": 18,
+        "id": "loft-left-rake",
+        "x": 925,
+        "y": 574,
+        "w": 190.21728866442677,
+        "h": 12,
+        "angle": -0.9707461133931431,
         "material": "wood"
       },
       {
-        "id": "b4",
-        "x": 1037.0,
-        "y": 507.0,
-        "w": 18,
-        "h": 100,
-        "material": "glass"
-      },
-      {
-        "id": "b5",
-        "x": 1123.0,
-        "y": 507.0,
-        "w": 18,
-        "h": 100,
-        "material": "glass"
-      },
-      {
-        "id": "b6",
-        "x": 1080,
-        "y": 448,
-        "w": 126,
-        "h": 18,
+        "id": "loft-right-rake",
+        "x": 1055,
+        "y": 574,
+        "w": 190.21728866442677,
+        "h": 12,
+        "angle": 0.9707461133931431,
         "material": "wood"
+      },
+      {
+        "id": "loft-floor-tie",
+        "x": 990,
+        "y": 669,
+        "w": 220,
+        "h": 12,
+        "angle": 0,
+        "material": "glass"
       }
     ],
     "monsters": [
       {
-        "id": "m1",
-        "x": 1080,
-        "y": 657,
+        "id": "loft-resident",
+        "x": 990,
+        "y": 645,
         "radius": 18,
         "kind": "horn"
-      },
-      {
-        "id": "m2",
-        "x": 1080,
-        "y": 539,
-        "radius": 18,
-        "kind": "blob"
-      },
-      {
-        "id": "m3",
-        "x": 1080,
-        "y": 421,
-        "radius": 18,
-        "kind": "bat"
       }
     ],
     "hazards": [],
-    "thresholds": [15000, 17500, 20500],
-    "par": 2
+    "thresholds": [
+      5000,
+      5500,
+      6000
+    ],
+    "par": 3,
+    "terrain": [],
+    "props": [],
+    "joints": [
+      {
+        "id": "loft-pin-left-loft-floor-tie",
+        "kind": "hinge",
+        "bodyA": "loft-left-rake",
+        "pointA": {
+          "x": -115.10864433221339,
+          "y": 0
+        },
+        "bodyB": "loft-floor-tie",
+        "pointB": {
+          "x": -130,
+          "y": 0
+        },
+        "length": 0,
+        "stiffness": 0.85,
+        "damping": 0.1
+      },
+      {
+        "id": "loft-pin-peak-loft-right-rake",
+        "kind": "hinge",
+        "bodyA": "loft-left-rake",
+        "pointA": {
+          "x": 115.10864433221339,
+          "y": 0
+        },
+        "bodyB": "loft-right-rake",
+        "pointB": {
+          "x": -115.10864433221339,
+          "y": 0
+        },
+        "length": 0,
+        "stiffness": 0.85,
+        "damping": 0.1
+      },
+      {
+        "id": "loft-pin-right-loft-floor-tie",
+        "kind": "hinge",
+        "bodyA": "loft-right-rake",
+        "pointA": {
+          "x": 115.10864433221339,
+          "y": 0
+        },
+        "bodyB": "loft-floor-tie",
+        "pointB": {
+          "x": 130,
+          "y": 0
+        },
+        "length": 0,
+        "stiffness": 0.85,
+        "damping": 0.1
+      }
+    ],
+    "zones": [],
+    "mechanisms": [],
+    "metadata": {
+      "category": "siege",
+      "idea": "A triangular loft stays rigid while its glass tie holds. Breach the tie or lift the roof.",
+      "mechanics": [
+        "triangular frame",
+        "tension tie",
+        "alternate roof attack"
+      ],
+      "author": "Plush Siege production pass 5",
+      "design": {
+        "archetype": "triangular tension frame",
+        "role": "reinforce",
+        "weakPoints": [
+          "loft-floor-tie"
+        ],
+        "sections": [
+          {
+            "id": "primary-assembly",
+            "members": [
+              "loft-left-rake",
+              "loft-right-rake",
+              "loft-floor-tie",
+              "loft-resident"
+            ]
+          }
+        ],
+        "intendedRoute": [],
+        "worldUse": "classic"
+      }
+    }
   },
   {
     "version": 1,
     "id": "meadow-10",
     "name": "A Gap in the Market",
-    "subtitle": "Leave a little room for a big collapse.",
+    "subtitle": "The glass foot holds up a hinged picnic table. The stone at the other end is the trouble.",
     "world": "countryside",
     "bounds": {
       "width": 1440,
@@ -752,107 +877,116 @@
       "x": 235,
       "y": 530
     },
-    "projectiles": ["duck", "duck", "sheep", "sheep"],
+    "projectiles": [
+      "duck",
+      "duck",
+      "sheep",
+      "sheep"
+    ],
     "blocks": [
       {
-        "id": "b1",
-        "x": 766.5,
-        "y": 625.0,
-        "w": 18,
-        "h": 100,
+        "id": "picnic-lever",
+        "x": 1010,
+        "y": 485,
+        "w": 350,
+        "h": 22,
         "material": "wood"
       },
       {
-        "id": "b2",
-        "x": 843.5,
-        "y": 625.0,
-        "w": 18,
-        "h": 100,
-        "material": "wood"
-      },
-      {
-        "id": "b3",
-        "x": 805,
-        "y": 566,
-        "w": 117,
-        "h": 18,
-        "material": "wood"
-      },
-      {
-        "id": "b4",
-        "x": 1001.5,
-        "y": 625.0,
-        "w": 18,
-        "h": 100,
+        "id": "picnic-weak-foot",
+        "x": 865,
+        "y": 585.5,
+        "w": 20,
+        "h": 179,
         "material": "glass"
       },
       {
-        "id": "b5",
-        "x": 1078.5,
-        "y": 625.0,
-        "w": 18,
-        "h": 100,
-        "material": "glass"
-      },
-      {
-        "id": "b6",
-        "x": 1040,
-        "y": 566,
-        "w": 117,
-        "h": 18,
-        "material": "wood"
-      },
-      {
-        "id": "b7",
-        "x": 1221.5,
-        "y": 625.0,
-        "w": 18,
-        "h": 100,
-        "material": "wood"
-      },
-      {
-        "id": "b8",
-        "x": 1298.5,
-        "y": 625.0,
-        "w": 18,
-        "h": 100,
-        "material": "wood"
-      },
-      {
-        "id": "b9",
-        "x": 1260,
-        "y": 566,
-        "w": 117,
-        "h": 18,
+        "id": "picnic-right-foot",
+        "x": 1155,
+        "y": 585.5,
+        "w": 24,
+        "h": 179,
         "material": "wood"
       }
     ],
     "monsters": [
       {
-        "id": "m1",
-        "x": 805,
-        "y": 657,
-        "radius": 18,
-        "kind": "horn"
-      },
-      {
-        "id": "m2",
-        "x": 1040,
-        "y": 657,
+        "id": "picnic-rider",
+        "x": 1115,
+        "y": 456,
         "radius": 18,
         "kind": "blob"
-      },
-      {
-        "id": "m3",
-        "x": 1260,
-        "y": 657,
-        "radius": 18,
-        "kind": "horn"
       }
     ],
     "hazards": [],
-    "thresholds": [15000, 18000, 21000],
-    "par": 2
+    "thresholds": [
+      5000,
+      5500,
+      6000
+    ],
+    "par": 4,
+    "terrain": [],
+    "props": [
+      {
+        "id": "picnic-weight",
+        "x": 905,
+        "y": 442,
+        "kind": "boulder",
+        "radius": 32,
+        "material": "stone"
+      }
+    ],
+    "joints": [
+      {
+        "id": "picnic-pivot",
+        "kind": "hinge",
+        "pointA": {
+          "x": 1010,
+          "y": 485
+        },
+        "bodyB": "picnic-lever",
+        "pointB": {
+          "x": 0,
+          "y": 0
+        },
+        "length": 0,
+        "stiffness": 1,
+        "damping": 0.04
+      }
+    ],
+    "zones": [],
+    "mechanisms": [],
+    "metadata": {
+      "category": "siege",
+      "idea": "The glass foot holds up a hinged picnic table. The stone at the other end is the trouble.",
+      "mechanics": [
+        "counterweight",
+        "hinge",
+        "glass prop"
+      ],
+      "author": "Plush Siege production pass 5",
+      "design": {
+        "archetype": "counterbalanced picnic lever",
+        "role": "reinforce",
+        "weakPoints": [
+          "picnic-weak-foot"
+        ],
+        "sections": [
+          {
+            "id": "primary-assembly",
+            "members": [
+              "picnic-lever",
+              "picnic-weak-foot",
+              "picnic-right-foot",
+              "picnic-rider",
+              "picnic-weight"
+            ]
+          }
+        ],
+        "intendedRoute": [],
+        "worldUse": "classic"
+      }
+    }
   },
   {
     "version": 1,
@@ -869,20 +1003,24 @@
       "x": 235,
       "y": 530
     },
-    "projectiles": ["sheep", "duck", "sheep"],
+    "projectiles": [
+      "sheep",
+      "duck",
+      "sheep"
+    ],
     "blocks": [
       {
         "id": "b1",
-        "x": 889.0,
-        "y": 625.0,
+        "x": 889,
+        "y": 625,
         "w": 18,
         "h": 100,
         "material": "glass"
       },
       {
         "id": "b2",
-        "x": 991.0,
-        "y": 625.0,
+        "x": 991,
+        "y": 625,
         "w": 18,
         "h": 100,
         "material": "glass"
@@ -913,7 +1051,11 @@
       }
     ],
     "hazards": [],
-    "thresholds": [10000, 12500, 15000],
+    "thresholds": [
+      10000,
+      12500,
+      15000
+    ],
     "par": 2,
     "tutorial": "Stone is stubborn and heavy. Break what holds it up."
   },
@@ -932,7 +1074,11 @@
       "x": 235,
       "y": 530
     },
-    "projectiles": ["bear", "bear", "sheep"],
+    "projectiles": [
+      "bear",
+      "bear",
+      "sheep"
+    ],
     "blocks": [
       {
         "id": "b1",
@@ -960,16 +1106,16 @@
       },
       {
         "id": "b4",
-        "x": 969.0,
-        "y": 625.0,
+        "x": 969,
+        "y": 625,
         "w": 18,
         "h": 100,
         "material": "wood"
       },
       {
         "id": "b5",
-        "x": 1071.0,
-        "y": 625.0,
+        "x": 1071,
+        "y": 625,
         "w": 18,
         "h": 100,
         "material": "wood"
@@ -993,7 +1139,11 @@
       }
     ],
     "hazards": [],
-    "thresholds": [5000, 6500, 8000],
+    "thresholds": [
+      5000,
+      6500,
+      8000
+    ],
     "par": 2,
     "tutorial": "Bruno is heavy. Tap in flight to stomp straight down with extra force."
   },
@@ -1001,7 +1151,7 @@
     "version": 1,
     "id": "meadow-13",
     "name": "The Glass Elevator",
-    "subtitle": "A delicate foundation, a heavyweight roof.",
+    "subtitle": "A glass fastener carries the entire stone-roof elevator. Its ropes attach to real structural bodies.",
     "world": "countryside",
     "bounds": {
       "width": 1440,
@@ -1012,76 +1162,287 @@
       "x": 235,
       "y": 530
     },
-    "projectiles": ["bear", "sheep", "duck"],
+    "projectiles": [
+      "bear",
+      "sheep",
+      "duck"
+    ],
     "blocks": [
       {
-        "id": "b1",
-        "x": 919.0,
-        "y": 625.0,
-        "w": 18,
-        "h": 100,
+        "id": "elevator-cap",
+        "x": 1000,
+        "y": 340,
+        "w": 260,
+        "h": 20,
         "material": "glass"
       },
       {
-        "id": "b2",
-        "x": 1041.0,
-        "y": 625.0,
+        "id": "elevator-deck",
+        "x": 1000,
+        "y": 540,
+        "w": 260,
+        "h": 22,
+        "material": "wood"
+      },
+      {
+        "id": "elevator-room-l0",
+        "x": 925,
+        "y": 481,
         "w": 18,
-        "h": 100,
-        "material": "glass"
+        "h": 96,
+        "material": "wood"
       },
       {
-        "id": "b3",
-        "x": 980,
-        "y": 566,
-        "w": 162,
-        "h": 18,
-        "material": "stone"
-      },
-      {
-        "id": "b4",
-        "x": 919.0,
-        "y": 507.0,
+        "id": "elevator-room-r0",
+        "x": 1075,
+        "y": 481,
         "w": 18,
-        "h": 100,
-        "material": "glass"
+        "h": 96,
+        "material": "wood"
       },
       {
-        "id": "b5",
-        "x": 1041.0,
-        "y": 507.0,
-        "w": 18,
-        "h": 100,
-        "material": "glass"
-      },
-      {
-        "id": "b6",
-        "x": 980,
-        "y": 448,
-        "w": 162,
+        "id": "elevator-room-roof0",
+        "x": 1000,
+        "y": 424,
+        "w": 190,
         "h": 18,
         "material": "stone"
       }
     ],
     "monsters": [
       {
-        "id": "m1",
-        "x": 980,
-        "y": 657,
+        "id": "elevator-room-m0",
+        "x": 1000,
+        "y": 511,
         "radius": 18,
         "kind": "horn"
       },
       {
-        "id": "m2",
-        "x": 980,
-        "y": 539,
+        "id": "elevator-roof-guest",
+        "x": 1000,
+        "y": 397,
         "radius": 18,
-        "kind": "blob"
+        "kind": "bat"
       }
     ],
     "hazards": [],
-    "thresholds": [10000, 15000, 18000],
-    "par": 2
+    "thresholds": [
+      10000,
+      10500,
+      11000
+    ],
+    "par": 3,
+    "terrain": [
+      {
+        "id": "elevator-mast",
+        "x": 1220,
+        "y": 487.5,
+        "w": 28,
+        "h": 375,
+        "material": "stone"
+      },
+      {
+        "id": "elevator-crossarm",
+        "x": 1100,
+        "y": 300,
+        "w": 240,
+        "h": 24,
+        "material": "stone"
+      }
+    ],
+    "props": [],
+    "joints": [
+      {
+        "id": "elevator-cap-bolt",
+        "kind": "hinge",
+        "pointA": {
+          "x": -100,
+          "y": 40
+        },
+        "bodyB": "elevator-cap",
+        "pointB": {
+          "x": 0,
+          "y": 0
+        },
+        "length": 0,
+        "stiffness": 0.85,
+        "damping": 0.1,
+        "bodyA": "elevator-crossarm"
+      },
+      {
+        "id": "elevator-stay--1",
+        "kind": "rope",
+        "bodyA": "elevator-cap",
+        "pointA": {
+          "x": -95,
+          "y": 0
+        },
+        "bodyB": "elevator-deck",
+        "pointB": {
+          "x": -95,
+          "y": 0
+        },
+        "length": 200,
+        "stiffness": 0.85,
+        "damping": 0.1
+      },
+      {
+        "id": "elevator-stay-1",
+        "kind": "rope",
+        "bodyA": "elevator-cap",
+        "pointA": {
+          "x": 95,
+          "y": 0
+        },
+        "bodyB": "elevator-deck",
+        "pointB": {
+          "x": 95,
+          "y": 0
+        },
+        "length": 200,
+        "stiffness": 0.85,
+        "damping": 0.1
+      },
+      {
+        "id": "elevator-room-l0-foot",
+        "kind": "hinge",
+        "bodyA": "elevator-deck",
+        "pointA": {
+          "x": -75,
+          "y": -11
+        },
+        "bodyB": "elevator-room-l0",
+        "pointB": {
+          "x": 0,
+          "y": 48
+        },
+        "length": 0,
+        "stiffness": 0.85,
+        "damping": 0.1
+      },
+      {
+        "id": "elevator-room-l0-cap",
+        "kind": "hinge",
+        "bodyA": "elevator-room-l0",
+        "pointA": {
+          "x": 0,
+          "y": -48
+        },
+        "bodyB": "elevator-room-roof0",
+        "pointB": {
+          "x": -75,
+          "y": 9
+        },
+        "length": 0,
+        "stiffness": 0.85,
+        "damping": 0.1
+      },
+      {
+        "id": "elevator-room-r0-foot",
+        "kind": "hinge",
+        "bodyA": "elevator-deck",
+        "pointA": {
+          "x": 75,
+          "y": -11
+        },
+        "bodyB": "elevator-room-r0",
+        "pointB": {
+          "x": 0,
+          "y": 48
+        },
+        "length": 0,
+        "stiffness": 0.85,
+        "damping": 0.1
+      },
+      {
+        "id": "elevator-room-r0-cap",
+        "kind": "hinge",
+        "bodyA": "elevator-room-r0",
+        "pointA": {
+          "x": 0,
+          "y": -48
+        },
+        "bodyB": "elevator-room-roof0",
+        "pointB": {
+          "x": 75,
+          "y": 9
+        },
+        "length": 0,
+        "stiffness": 0.85,
+        "damping": 0.1
+      },
+      {
+        "id": "elevator-gantry-bolt--1",
+        "kind": "hinge",
+        "bodyA": "elevator-crossarm",
+        "pointA": {
+          "x": -125,
+          "y": 40
+        },
+        "bodyB": "elevator-cap",
+        "pointB": {
+          "x": -25,
+          "y": 0
+        },
+        "length": 0,
+        "stiffness": 0.85,
+        "damping": 0.1
+      },
+      {
+        "id": "elevator-gantry-bolt-1",
+        "kind": "hinge",
+        "bodyA": "elevator-crossarm",
+        "pointA": {
+          "x": -75,
+          "y": 40
+        },
+        "bodyB": "elevator-cap",
+        "pointB": {
+          "x": 25,
+          "y": 0
+        },
+        "length": 0,
+        "stiffness": 0.85,
+        "damping": 0.1
+      }
+    ],
+    "zones": [],
+    "mechanisms": [],
+    "metadata": {
+      "category": "siege",
+      "idea": "A glass fastener carries the entire stone-roof elevator. Its ropes attach to real structural bodies.",
+      "mechanics": [
+        "destructible fastener",
+        "suspended chamber",
+        "stone roof"
+      ],
+      "author": "Plush Siege production pass 5",
+      "design": {
+        "archetype": "suspended stone-roof chamber",
+        "role": "reinforce",
+        "weakPoints": [
+          "elevator-cap"
+        ],
+        "sections": [
+          {
+            "id": "primary-assembly",
+            "members": [
+              "elevator-cap",
+              "elevator-deck",
+              "elevator-room-l0",
+              "elevator-room-r0",
+              "elevator-room-roof0",
+              "elevator-room-m0",
+              "elevator-roof-guest",
+              "elevator-mast",
+              "elevator-crossarm"
+            ]
+          }
+        ],
+        "intendedRoute": [],
+        "worldUse": "classic"
+      }
+    }
   },
   {
     "version": 1,
@@ -1098,7 +1459,12 @@
       "x": 235,
       "y": 530
     },
-    "projectiles": ["bear", "duck", "bear", "sheep"],
+    "projectiles": [
+      "bear",
+      "duck",
+      "bear",
+      "sheep"
+    ],
     "blocks": [
       {
         "id": "b1",
@@ -1134,16 +1500,16 @@
       },
       {
         "id": "b5",
-        "x": 949.0,
-        "y": 625.0,
+        "x": 949,
+        "y": 625,
         "w": 18,
         "h": 100,
         "material": "wood"
       },
       {
         "id": "b6",
-        "x": 1091.0,
-        "y": 625.0,
+        "x": 1091,
+        "y": 625,
         "w": 18,
         "h": 100,
         "material": "wood"
@@ -1174,7 +1540,11 @@
       }
     ],
     "hazards": [],
-    "thresholds": [10000, 13000, 16000],
+    "thresholds": [
+      10000,
+      13000,
+      16000
+    ],
     "par": 2
   },
   {
@@ -1192,7 +1562,11 @@
       "x": 235,
       "y": 530
     },
-    "projectiles": ["rabbit", "rabbit", "sheep"],
+    "projectiles": [
+      "rabbit",
+      "rabbit",
+      "sheep"
+    ],
     "blocks": [],
     "monsters": [
       {
@@ -1218,7 +1592,11 @@
       }
     ],
     "hazards": [],
-    "thresholds": [15000, 18000, 21000],
+    "thresholds": [
+      15000,
+      18000,
+      21000
+    ],
     "par": 2,
     "tutorial": "Tap while Clover is flying to split into three little rabbits."
   },
@@ -1226,7 +1604,7 @@
     "version": 1,
     "id": "meadow-16",
     "name": "Rabbit, Rabbit, Rabbit",
-    "subtitle": "One good angle can make three good hits.",
+    "subtitle": "Spread a split shot between a low pavilion and a cabin on the high terrace.",
     "world": "countryside",
     "bounds": {
       "width": 1440,
@@ -1237,107 +1615,252 @@
       "x": 235,
       "y": 530
     },
-    "projectiles": ["rabbit", "rabbit", "duck", "sheep"],
+    "projectiles": [
+      "rabbit",
+      "rabbit",
+      "duck",
+      "sheep"
+    ],
     "blocks": [
       {
-        "id": "b1",
-        "x": 764.0,
-        "y": 625.0,
-        "w": 18,
-        "h": 100,
+        "id": "low-left-rake",
+        "x": 802.5,
+        "y": 599,
+        "w": 129.1892431568863,
+        "h": 12,
+        "angle": -0.9745971854974165,
+        "material": "wood"
+      },
+      {
+        "id": "low-right-rake",
+        "x": 897.5,
+        "y": 599,
+        "w": 129.1892431568863,
+        "h": 12,
+        "angle": 0.9745971854974165,
+        "material": "wood"
+      },
+      {
+        "id": "low-floor-tie",
+        "x": 850,
+        "y": 669,
+        "w": 150,
+        "h": 12,
+        "angle": 0,
         "material": "glass"
       },
       {
-        "id": "b2",
-        "x": 836.0,
-        "y": 625.0,
-        "w": 18,
-        "h": 100,
-        "material": "glass"
+        "id": "high-left-rake",
+        "x": 1122.5,
+        "y": 424,
+        "w": 129.1892431568863,
+        "h": 12,
+        "angle": -0.9745971854974165,
+        "material": "wood"
       },
       {
-        "id": "b3",
-        "x": 800,
-        "y": 566,
-        "w": 112,
-        "h": 18,
-        "material": "glass"
+        "id": "high-right-rake",
+        "x": 1217.5,
+        "y": 424,
+        "w": 129.1892431568863,
+        "h": 12,
+        "angle": 0.9745971854974165,
+        "material": "wood"
       },
       {
-        "id": "b4",
-        "x": 984.0,
-        "y": 625.0,
-        "w": 18,
-        "h": 100,
-        "material": "glass"
-      },
-      {
-        "id": "b5",
-        "x": 1056.0,
-        "y": 625.0,
-        "w": 18,
-        "h": 100,
-        "material": "glass"
-      },
-      {
-        "id": "b6",
-        "x": 1020,
-        "y": 566,
-        "w": 112,
-        "h": 18,
-        "material": "glass"
-      },
-      {
-        "id": "b7",
-        "x": 1204.0,
-        "y": 625.0,
-        "w": 18,
-        "h": 100,
-        "material": "glass"
-      },
-      {
-        "id": "b8",
-        "x": 1276.0,
-        "y": 625.0,
-        "w": 18,
-        "h": 100,
-        "material": "glass"
-      },
-      {
-        "id": "b9",
-        "x": 1240,
-        "y": 566,
-        "w": 112,
-        "h": 18,
+        "id": "high-floor-tie",
+        "x": 1170,
+        "y": 494,
+        "w": 150,
+        "h": 12,
+        "angle": 0,
         "material": "glass"
       }
     ],
     "monsters": [
       {
-        "id": "m1",
-        "x": 800,
-        "y": 657,
+        "id": "low-resident",
+        "x": 850,
+        "y": 645,
         "radius": 18,
         "kind": "horn"
       },
       {
-        "id": "m2",
-        "x": 1020,
-        "y": 657,
-        "radius": 18,
-        "kind": "blob"
-      },
-      {
-        "id": "m3",
-        "x": 1240,
-        "y": 539,
+        "id": "high-resident",
+        "x": 1170,
+        "y": 470,
         "radius": 18,
         "kind": "horn"
+      },
+      {
+        "id": "terrace-watcher",
+        "x": 1340,
+        "y": 657,
+        "radius": 18,
+        "kind": "bat"
       }
     ],
     "hazards": [],
-    "thresholds": [15000, 18000, 21000],
-    "par": 2
+    "thresholds": [
+      15000,
+      15500,
+      16000
+    ],
+    "par": 4,
+    "terrain": [
+      {
+        "id": "high-terrace",
+        "x": 1170,
+        "y": 510,
+        "w": 230,
+        "h": 20,
+        "material": "stone"
+      }
+    ],
+    "props": [],
+    "joints": [
+      {
+        "id": "low-pin-left-low-floor-tie",
+        "kind": "hinge",
+        "bodyA": "low-left-rake",
+        "pointA": {
+          "x": -84.59462157844315,
+          "y": 0
+        },
+        "bodyB": "low-floor-tie",
+        "pointB": {
+          "x": -95,
+          "y": 0
+        },
+        "length": 0,
+        "stiffness": 0.25,
+        "damping": 0.1
+      },
+      {
+        "id": "low-pin-peak-low-right-rake",
+        "kind": "hinge",
+        "bodyA": "low-left-rake",
+        "pointA": {
+          "x": 84.59462157844315,
+          "y": 0
+        },
+        "bodyB": "low-right-rake",
+        "pointB": {
+          "x": -84.59462157844315,
+          "y": 0
+        },
+        "length": 0,
+        "stiffness": 0.25,
+        "damping": 0.1
+      },
+      {
+        "id": "low-pin-right-low-floor-tie",
+        "kind": "hinge",
+        "bodyA": "low-right-rake",
+        "pointA": {
+          "x": 84.59462157844315,
+          "y": 0
+        },
+        "bodyB": "low-floor-tie",
+        "pointB": {
+          "x": 95,
+          "y": 0
+        },
+        "length": 0,
+        "stiffness": 0.25,
+        "damping": 0.1
+      },
+      {
+        "id": "high-pin-left-high-floor-tie",
+        "kind": "hinge",
+        "bodyA": "high-left-rake",
+        "pointA": {
+          "x": -84.59462157844315,
+          "y": 0
+        },
+        "bodyB": "high-floor-tie",
+        "pointB": {
+          "x": -95,
+          "y": 0
+        },
+        "length": 0,
+        "stiffness": 0.25,
+        "damping": 0.1
+      },
+      {
+        "id": "high-pin-peak-high-right-rake",
+        "kind": "hinge",
+        "bodyA": "high-left-rake",
+        "pointA": {
+          "x": 84.59462157844315,
+          "y": 0
+        },
+        "bodyB": "high-right-rake",
+        "pointB": {
+          "x": -84.59462157844315,
+          "y": 0
+        },
+        "length": 0,
+        "stiffness": 0.25,
+        "damping": 0.1
+      },
+      {
+        "id": "high-pin-right-high-floor-tie",
+        "kind": "hinge",
+        "bodyA": "high-right-rake",
+        "pointA": {
+          "x": 84.59462157844315,
+          "y": 0
+        },
+        "bodyB": "high-floor-tie",
+        "pointB": {
+          "x": 95,
+          "y": 0
+        },
+        "length": 0,
+        "stiffness": 0.25,
+        "damping": 0.1
+      }
+    ],
+    "zones": [],
+    "mechanisms": [],
+    "metadata": {
+      "category": "siege",
+      "idea": "Spread a split shot between a low pavilion and a cabin on the high terrace.",
+      "mechanics": [
+        "two elevations",
+        "angled roofs",
+        "rabbit spread"
+      ],
+      "author": "Plush Siege production pass 5",
+      "design": {
+        "archetype": "two-height gabled terraces",
+        "role": "reinforce",
+        "weakPoints": [
+          "low-floor-tie",
+          "high-floor-tie"
+        ],
+        "sections": [
+          {
+            "id": "primary-assembly",
+            "members": [
+              "low-left-rake",
+              "low-right-rake",
+              "low-floor-tie",
+              "high-left-rake",
+              "high-right-rake",
+              "high-floor-tie",
+              "low-resident",
+              "high-resident",
+              "terrace-watcher",
+              "high-terrace"
+            ]
+          }
+        ],
+        "intendedRoute": [],
+        "worldUse": "classic"
+      }
+    }
   },
   {
     "version": 1,
@@ -1354,20 +1877,24 @@
       "x": 235,
       "y": 530
     },
-    "projectiles": ["duck", "sheep", "bear"],
+    "projectiles": [
+      "duck",
+      "sheep",
+      "bear"
+    ],
     "blocks": [
       {
         "id": "b1",
-        "x": 939.0,
-        "y": 625.0,
+        "x": 939,
+        "y": 625,
         "w": 18,
         "h": 100,
         "material": "wood"
       },
       {
         "id": "b2",
-        "x": 1121.0,
-        "y": 625.0,
+        "x": 1121,
+        "y": 625,
         "w": 18,
         "h": 100,
         "material": "wood"
@@ -1398,7 +1925,11 @@
         "kind": "tnt"
       }
     ],
-    "thresholds": [5000, 9000, 12000],
+    "thresholds": [
+      5000,
+      9000,
+      12000
+    ],
     "par": 1,
     "tutorial": "Red boxes burst on impact. Their blast can start a chain reaction."
   },
@@ -1417,20 +1948,25 @@
       "x": 235,
       "y": 530
     },
-    "projectiles": ["rabbit", "duck", "bear", "sheep"],
+    "projectiles": [
+      "rabbit",
+      "duck",
+      "bear",
+      "sheep"
+    ],
     "blocks": [
       {
         "id": "b1",
-        "x": 789.0,
-        "y": 625.0,
+        "x": 789,
+        "y": 625,
         "w": 18,
         "h": 100,
         "material": "glass"
       },
       {
         "id": "b2",
-        "x": 931.0,
-        "y": 625.0,
+        "x": 931,
+        "y": 625,
         "w": 18,
         "h": 100,
         "material": "glass"
@@ -1445,16 +1981,16 @@
       },
       {
         "id": "b4",
-        "x": 1044.0,
-        "y": 625.0,
+        "x": 1044,
+        "y": 625,
         "w": 18,
         "h": 100,
         "material": "glass"
       },
       {
         "id": "b5",
-        "x": 1216.0,
-        "y": 625.0,
+        "x": 1216,
+        "y": 625,
         "w": 18,
         "h": 100,
         "material": "glass"
@@ -1504,14 +2040,18 @@
         "kind": "tnt"
       }
     ],
-    "thresholds": [10000, 19000, 22000],
+    "thresholds": [
+      10000,
+      19000,
+      22000
+    ],
     "par": 2
   },
   {
     "version": 1,
     "id": "meadow-19",
     "name": "Little Towers, Big Feelings",
-    "subtitle": "Two families. One shared problem.",
+    "subtitle": "A stone cap carries two wooden storeys. Its fragile piers connect every floor to one failure.",
     "world": "countryside",
     "bounds": {
       "width": 1440,
@@ -1522,138 +2062,179 @@
       "x": 235,
       "y": 530
     },
-    "projectiles": ["bear", "rabbit", "duck", "sheep"],
+    "projectiles": [
+      "bear",
+      "rabbit",
+      "duck",
+      "sheep"
+    ],
     "blocks": [
       {
-        "id": "b1",
-        "x": 806.5,
-        "y": 625.0,
-        "w": 18,
-        "h": 100,
-        "material": "wood"
-      },
-      {
-        "id": "b2",
-        "x": 893.5,
-        "y": 625.0,
-        "w": 18,
-        "h": 100,
-        "material": "wood"
-      },
-      {
-        "id": "b3",
-        "x": 850,
-        "y": 566,
-        "w": 127,
-        "h": 18,
-        "material": "wood"
-      },
-      {
-        "id": "b4",
-        "x": 806.5,
-        "y": 507.0,
-        "w": 18,
-        "h": 100,
-        "material": "wood"
-      },
-      {
-        "id": "b5",
-        "x": 893.5,
-        "y": 507.0,
-        "w": 18,
-        "h": 100,
-        "material": "wood"
-      },
-      {
-        "id": "b6",
-        "x": 850,
-        "y": 448,
-        "w": 127,
-        "h": 18,
-        "material": "wood"
-      },
-      {
-        "id": "b7",
-        "x": 1114.0,
-        "y": 625.0,
-        "w": 18,
-        "h": 100,
+        "id": "shared-arch-pier-1",
+        "x": 898,
+        "y": 605,
+        "w": 48,
+        "h": 140,
         "material": "glass"
       },
       {
-        "id": "b8",
-        "x": 1206.0,
-        "y": 625.0,
-        "w": 18,
-        "h": 100,
-        "material": "glass"
-      },
-      {
-        "id": "b9",
-        "x": 1160,
-        "y": 566,
-        "w": 132,
-        "h": 18,
+        "id": "shared-arch-shoulder-1",
+        "x": 910,
+        "y": 523,
+        "w": 68,
+        "h": 24,
         "material": "stone"
       },
       {
-        "id": "b10",
-        "x": 1114.0,
-        "y": 507.0,
-        "w": 18,
-        "h": 100,
+        "id": "shared-arch-pier1",
+        "x": 1102,
+        "y": 605,
+        "w": 48,
+        "h": 140,
         "material": "glass"
       },
       {
-        "id": "b11",
-        "x": 1206.0,
-        "y": 507.0,
-        "w": 18,
-        "h": 100,
-        "material": "glass"
-      },
-      {
-        "id": "b12",
-        "x": 1160,
-        "y": 448,
-        "w": 132,
-        "h": 18,
+        "id": "shared-arch-shoulder1",
+        "x": 1090,
+        "y": 523,
+        "w": 68,
+        "h": 24,
         "material": "stone"
+      },
+      {
+        "id": "shared-arch-keystone",
+        "x": 1000,
+        "y": 501,
+        "w": 172,
+        "h": 20,
+        "material": "stone"
+      },
+      {
+        "id": "upper-house-l0",
+        "x": 940,
+        "y": 443,
+        "w": 28,
+        "h": 96,
+        "material": "wood"
+      },
+      {
+        "id": "upper-house-r0",
+        "x": 1060,
+        "y": 443,
+        "w": 28,
+        "h": 96,
+        "material": "wood"
+      },
+      {
+        "id": "upper-house-roof0",
+        "x": 1000,
+        "y": 386,
+        "w": 160,
+        "h": 18,
+        "material": "wood"
+      },
+      {
+        "id": "upper-house-l1",
+        "x": 940,
+        "y": 329,
+        "w": 28,
+        "h": 96,
+        "material": "wood"
+      },
+      {
+        "id": "upper-house-r1",
+        "x": 1060,
+        "y": 329,
+        "w": 28,
+        "h": 96,
+        "material": "wood"
+      },
+      {
+        "id": "upper-house-roof1",
+        "x": 1000,
+        "y": 272,
+        "w": 160,
+        "h": 18,
+        "material": "wood"
       }
     ],
     "monsters": [
       {
-        "id": "m1",
-        "x": 850,
+        "id": "shared-arch-keeper",
+        "x": 1000,
         "y": 657,
         "radius": 18,
         "kind": "horn"
       },
       {
-        "id": "m2",
-        "x": 850,
-        "y": 539,
-        "radius": 18,
-        "kind": "blob"
-      },
-      {
-        "id": "m3",
-        "x": 1160,
-        "y": 657,
+        "id": "upper-house-m0",
+        "x": 1000,
+        "y": 473,
         "radius": 18,
         "kind": "horn"
       },
       {
-        "id": "m4",
-        "x": 1160,
-        "y": 539,
+        "id": "upper-house-m1",
+        "x": 1000,
+        "y": 359,
         "radius": 18,
         "kind": "blob"
       }
     ],
     "hazards": [],
-    "thresholds": [20000, 23000, 26000],
-    "par": 2
+    "thresholds": [
+      15000,
+      15500,
+      16000
+    ],
+    "par": 4,
+    "terrain": [],
+    "props": [],
+    "joints": [],
+    "zones": [],
+    "mechanisms": [],
+    "metadata": {
+      "category": "siege",
+      "idea": "A stone cap carries two wooden storeys. Its fragile piers connect every floor to one failure.",
+      "mechanics": [
+        "corbelled vault",
+        "shared load path",
+        "fragile piers",
+        "upper house"
+      ],
+      "author": "Plush Siege production pass 5",
+      "design": {
+        "archetype": "corbelled base carrying an upper house",
+        "role": "reinforce",
+        "weakPoints": [
+          "shared-arch-pier-1",
+          "shared-arch-pier1"
+        ],
+        "sections": [
+          {
+            "id": "primary-assembly",
+            "members": [
+              "shared-arch-pier-1",
+              "shared-arch-shoulder-1",
+              "shared-arch-pier1",
+              "shared-arch-shoulder1",
+              "shared-arch-keystone",
+              "upper-house-l0",
+              "upper-house-r0",
+              "upper-house-roof0",
+              "upper-house-l1",
+              "upper-house-r1",
+              "upper-house-roof1",
+              "shared-arch-keeper",
+              "upper-house-m0",
+              "upper-house-m1"
+            ]
+          }
+        ],
+        "intendedRoute": [],
+        "worldUse": "classic"
+      }
+    }
   },
   {
     "version": 1,
@@ -1670,20 +2251,25 @@
       "x": 235,
       "y": 530
     },
-    "projectiles": ["duck", "bear", "rabbit", "sheep"],
+    "projectiles": [
+      "duck",
+      "bear",
+      "rabbit",
+      "sheep"
+    ],
     "blocks": [
       {
         "id": "b1",
-        "x": 849.0,
-        "y": 625.0,
+        "x": 849,
+        "y": 625,
         "w": 18,
         "h": 100,
         "material": "glass"
       },
       {
         "id": "b2",
-        "x": 1071.0,
-        "y": 625.0,
+        "x": 1071,
+        "y": 625,
         "w": 18,
         "h": 100,
         "material": "glass"
@@ -1698,16 +2284,16 @@
       },
       {
         "id": "b4",
-        "x": 909.0,
-        "y": 507.0,
+        "x": 909,
+        "y": 507,
         "w": 18,
         "h": 100,
         "material": "wood"
       },
       {
         "id": "b5",
-        "x": 1011.0,
-        "y": 507.0,
+        "x": 1011,
+        "y": 507,
         "w": 18,
         "h": 100,
         "material": "wood"
@@ -1745,7 +2331,11 @@
       }
     ],
     "hazards": [],
-    "thresholds": [15000, 19500, 24500],
+    "thresholds": [
+      15000,
+      19500,
+      24500
+    ],
     "par": 2
   },
   {
@@ -1763,7 +2353,12 @@
       "x": 235,
       "y": 530
     },
-    "projectiles": ["bear", "duck", "rabbit", "sheep"],
+    "projectiles": [
+      "bear",
+      "duck",
+      "rabbit",
+      "sheep"
+    ],
     "blocks": [
       {
         "id": "b1",
@@ -1791,16 +2386,16 @@
       },
       {
         "id": "b4",
-        "x": 944.0,
-        "y": 625.0,
+        "x": 944,
+        "y": 625,
         "w": 18,
         "h": 100,
         "material": "wood"
       },
       {
         "id": "b5",
-        "x": 1136.0,
-        "y": 625.0,
+        "x": 1136,
+        "y": 625,
         "w": 18,
         "h": 100,
         "material": "wood"
@@ -1815,16 +2410,16 @@
       },
       {
         "id": "b7",
-        "x": 989.0,
-        "y": 507.0,
+        "x": 989,
+        "y": 507,
         "w": 18,
         "h": 100,
         "material": "glass"
       },
       {
         "id": "b8",
-        "x": 1091.0,
-        "y": 507.0,
+        "x": 1091,
+        "y": 507,
         "w": 18,
         "h": 100,
         "material": "glass"
@@ -1862,14 +2457,18 @@
         "kind": "tnt"
       }
     ],
-    "thresholds": [10000, 19000, 22000],
+    "thresholds": [
+      10000,
+      19000,
+      22000
+    ],
     "par": 2
   },
   {
     "version": 1,
     "id": "meadow-22",
     "name": "Cloud Nine",
-    "subtitle": "The higher they climb\u2026",
+    "subtitle": "Glass couplers atop two pylons carry three linked balconies. A single released bank changes the entire deck.",
     "world": "countryside",
     "bounds": {
       "width": 1440,
@@ -1880,114 +2479,376 @@
       "x": 235,
       "y": 530
     },
-    "projectiles": ["duck", "bear", "rabbit", "sheep"],
+    "projectiles": [
+      "duck",
+      "bear",
+      "rabbit",
+      "sheep"
+    ],
     "blocks": [
       {
-        "id": "b1",
-        "x": 984.0,
-        "y": 625.0,
-        "w": 36,
-        "h": 100,
-        "material": "wood"
-      },
-      {
-        "id": "b2",
-        "x": 1096.0,
-        "y": 625.0,
-        "w": 36,
-        "h": 100,
-        "material": "wood"
-      },
-      {
-        "id": "b3",
-        "x": 1040,
-        "y": 566,
-        "w": 152,
-        "h": 18,
+        "id": "cloud-coupler-0",
+        "x": 715,
+        "y": 230,
+        "w": 52,
+        "h": 24,
         "material": "glass"
       },
       {
-        "id": "b4",
-        "x": 984.0,
-        "y": 507.0,
-        "w": 36,
-        "h": 100,
-        "material": "wood"
-      },
-      {
-        "id": "b5",
-        "x": 1096.0,
-        "y": 507.0,
-        "w": 36,
-        "h": 100,
-        "material": "wood"
-      },
-      {
-        "id": "b6",
-        "x": 1040,
-        "y": 448,
-        "w": 152,
-        "h": 18,
+        "id": "cloud-coupler-1",
+        "x": 1345,
+        "y": 230,
+        "w": 52,
+        "h": 24,
         "material": "glass"
       },
       {
-        "id": "b7",
-        "x": 984.0,
-        "y": 389.0,
-        "w": 36,
-        "h": 100,
-        "material": "wood"
-      },
-      {
-        "id": "b8",
-        "x": 1096.0,
-        "y": 389.0,
-        "w": 36,
-        "h": 100,
-        "material": "wood"
-      },
-      {
-        "id": "b9",
-        "x": 1040,
-        "y": 330,
-        "w": 152,
+        "id": "cloud-deck-0",
+        "x": 863.3333333333334,
+        "y": 475,
+        "w": 158.66666666666666,
         "h": 18,
-        "material": "glass"
+        "material": "wood"
+      },
+      {
+        "id": "cloud-deck-1",
+        "x": 1030,
+        "y": 475,
+        "w": 158.66666666666666,
+        "h": 18,
+        "material": "wood"
+      },
+      {
+        "id": "cloud-deck-2",
+        "x": 1196.6666666666665,
+        "y": 475,
+        "w": 158.66666666666666,
+        "h": 18,
+        "material": "wood"
       }
     ],
     "monsters": [
       {
-        "id": "m1",
-        "x": 1040,
-        "y": 657,
-        "radius": 18,
-        "kind": "horn"
-      },
-      {
-        "id": "m2",
-        "x": 1040,
-        "y": 539,
+        "id": "cloud-guest-0",
+        "x": 863.3333333333334,
+        "y": 448,
         "radius": 18,
         "kind": "blob"
       },
       {
-        "id": "m3",
-        "x": 1040,
-        "y": 421,
+        "id": "cloud-guest-1",
+        "x": 1030,
+        "y": 448,
         "radius": 18,
         "kind": "horn"
       },
       {
-        "id": "m4",
-        "x": 1040,
-        "y": 303,
+        "id": "cloud-guest-2",
+        "x": 1196.6666666666665,
+        "y": 448,
         "radius": 18,
-        "kind": "bat"
+        "kind": "blob"
       }
     ],
     "hazards": [],
-    "thresholds": [20000, 23500, 27500],
-    "par": 2
+    "thresholds": [
+      15000,
+      15500,
+      16000
+    ],
+    "par": 4,
+    "terrain": [
+      {
+        "id": "cloud-pylon-0",
+        "x": 715,
+        "y": 458.5,
+        "w": 32,
+        "h": 433,
+        "material": "stone"
+      },
+      {
+        "id": "cloud-pylon-1",
+        "x": 1345,
+        "y": 458.5,
+        "w": 32,
+        "h": 433,
+        "material": "stone"
+      }
+    ],
+    "props": [],
+    "joints": [
+      {
+        "id": "cloud-coupler-0-seat",
+        "kind": "hinge",
+        "bodyA": "cloud-pylon-0",
+        "pointA": {
+          "x": 0,
+          "y": -228.5
+        },
+        "bodyB": "cloud-coupler-0",
+        "pointB": {
+          "x": 0,
+          "y": 0
+        },
+        "length": 0,
+        "stiffness": 0.75,
+        "damping": 0.15
+      },
+      {
+        "id": "cloud-coupler-1-seat",
+        "kind": "hinge",
+        "bodyA": "cloud-pylon-1",
+        "pointA": {
+          "x": 0,
+          "y": -228.5
+        },
+        "bodyB": "cloud-coupler-1",
+        "pointB": {
+          "x": 0,
+          "y": 0
+        },
+        "length": 0,
+        "stiffness": 0.75,
+        "damping": 0.15
+      },
+      {
+        "id": "cloud-deck-0-stay-0",
+        "kind": "rope",
+        "bodyA": "cloud-coupler-0",
+        "pointA": {
+          "x": 0,
+          "y": 0
+        },
+        "bodyB": "cloud-deck-0",
+        "pointB": {
+          "x": -71.33333333333333,
+          "y": 0
+        },
+        "length": 256.815108589818,
+        "stiffness": 0.75,
+        "damping": 0.15,
+        "breakForce": 0.3
+      },
+      {
+        "id": "cloud-deck-0-stay-1",
+        "kind": "rope",
+        "bodyA": "cloud-coupler-1",
+        "pointA": {
+          "x": 0,
+          "y": 0
+        },
+        "bodyB": "cloud-deck-0",
+        "pointB": {
+          "x": 71.33333333333333,
+          "y": 0
+        },
+        "length": 477.9104983618213,
+        "stiffness": 0.75,
+        "damping": 0.15,
+        "breakForce": 0.3
+      },
+      {
+        "id": "cloud-deck-1-stay-0",
+        "kind": "rope",
+        "bodyA": "cloud-coupler-0",
+        "pointA": {
+          "x": 0,
+          "y": 0
+        },
+        "bodyB": "cloud-deck-1",
+        "pointB": {
+          "x": -71.33333333333333,
+          "y": 0
+        },
+        "length": 345.54079997077685,
+        "stiffness": 0.75,
+        "damping": 0.15,
+        "breakForce": 0.3
+      },
+      {
+        "id": "cloud-deck-1-stay-1",
+        "kind": "rope",
+        "bodyA": "cloud-coupler-1",
+        "pointA": {
+          "x": 0,
+          "y": 0
+        },
+        "bodyB": "cloud-deck-1",
+        "pointB": {
+          "x": 71.33333333333333,
+          "y": 0
+        },
+        "length": 345.5407999707769,
+        "stiffness": 0.75,
+        "damping": 0.15,
+        "breakForce": 0.3
+      },
+      {
+        "id": "cloud-deck-1-link",
+        "kind": "rope",
+        "bodyA": "cloud-deck-0",
+        "pointA": {
+          "x": 79.33333333333333,
+          "y": 0
+        },
+        "bodyB": "cloud-deck-1",
+        "pointB": {
+          "x": -79.33333333333333,
+          "y": 0
+        },
+        "length": 8,
+        "stiffness": 0.75,
+        "damping": 0.15,
+        "breakForce": 0.12
+      },
+      {
+        "id": "cloud-deck-2-stay-0",
+        "kind": "rope",
+        "bodyA": "cloud-coupler-0",
+        "pointA": {
+          "x": 0,
+          "y": 0
+        },
+        "bodyB": "cloud-deck-2",
+        "pointB": {
+          "x": -71.33333333333333,
+          "y": 0
+        },
+        "length": 477.9104983618213,
+        "stiffness": 0.75,
+        "damping": 0.15,
+        "breakForce": 0.3
+      },
+      {
+        "id": "cloud-deck-2-stay-1",
+        "kind": "rope",
+        "bodyA": "cloud-coupler-1",
+        "pointA": {
+          "x": 0,
+          "y": 0
+        },
+        "bodyB": "cloud-deck-2",
+        "pointB": {
+          "x": 71.33333333333333,
+          "y": 0
+        },
+        "length": 256.81510858981807,
+        "stiffness": 0.75,
+        "damping": 0.15,
+        "breakForce": 0.3
+      },
+      {
+        "id": "cloud-deck-2-link",
+        "kind": "rope",
+        "bodyA": "cloud-deck-1",
+        "pointA": {
+          "x": 79.33333333333333,
+          "y": 0
+        },
+        "bodyB": "cloud-deck-2",
+        "pointB": {
+          "x": -79.33333333333333,
+          "y": 0
+        },
+        "length": 8,
+        "stiffness": 0.75,
+        "damping": 0.15,
+        "breakForce": 0.12
+      },
+      {
+        "id": "cloud-deck-0-return",
+        "kind": "rope",
+        "bodyA": "cloud-coupler-1",
+        "pointA": {
+          "x": 0,
+          "y": 0
+        },
+        "bodyB": "cloud-deck-0",
+        "pointB": {
+          "x": 0,
+          "y": 0
+        },
+        "length": 540.3959453750349,
+        "stiffness": 0.75,
+        "damping": 0.15,
+        "breakForce": 0.2
+      },
+      {
+        "id": "cloud-deck-1-return",
+        "kind": "rope",
+        "bodyA": "cloud-coupler-1",
+        "pointA": {
+          "x": 0,
+          "y": 0
+        },
+        "bodyB": "cloud-deck-1",
+        "pointB": {
+          "x": 0,
+          "y": 0
+        },
+        "length": 399.06139878469827,
+        "stiffness": 0.75,
+        "damping": 0.15,
+        "breakForce": 0.2
+      },
+      {
+        "id": "cloud-deck-2-return",
+        "kind": "rope",
+        "bodyA": "cloud-coupler-1",
+        "pointA": {
+          "x": 0,
+          "y": 0
+        },
+        "bodyB": "cloud-deck-2",
+        "pointB": {
+          "x": 0,
+          "y": 0
+        },
+        "length": 286.40491926253264,
+        "stiffness": 0.75,
+        "damping": 0.15,
+        "breakForce": 0.2
+      }
+    ],
+    "zones": [],
+    "mechanisms": [],
+    "metadata": {
+      "category": "siege",
+      "idea": "Glass couplers atop two pylons carry three linked balconies. A single released bank changes the entire deck.",
+      "mechanics": [
+        "cable stays",
+        "coupler weak points",
+        "triangulated balconies"
+      ],
+      "author": "Plush Siege production pass 5",
+      "design": {
+        "archetype": "three-bay cable viaduct",
+        "role": "reinforce",
+        "weakPoints": [
+          "cloud-coupler-0",
+          "cloud-coupler-1"
+        ],
+        "sections": [
+          {
+            "id": "primary-assembly",
+            "members": [
+              "cloud-coupler-0",
+              "cloud-coupler-1",
+              "cloud-deck-0",
+              "cloud-deck-1",
+              "cloud-deck-2",
+              "cloud-guest-0",
+              "cloud-guest-1",
+              "cloud-guest-2",
+              "cloud-pylon-0",
+              "cloud-pylon-1"
+            ]
+          }
+        ],
+        "intendedRoute": [],
+        "worldUse": "classic"
+      }
+    }
   },
   {
     "version": 1,
@@ -2004,20 +2865,25 @@
       "x": 235,
       "y": 530
     },
-    "projectiles": ["rabbit", "bear", "duck", "sheep"],
+    "projectiles": [
+      "rabbit",
+      "bear",
+      "duck",
+      "sheep"
+    ],
     "blocks": [
       {
         "id": "b1",
-        "x": 869.0,
-        "y": 625.0,
+        "x": 869,
+        "y": 625,
         "w": 18,
         "h": 100,
         "material": "wood"
       },
       {
         "id": "b2",
-        "x": 1151.0,
-        "y": 625.0,
+        "x": 1151,
+        "y": 625,
         "w": 18,
         "h": 100,
         "material": "wood"
@@ -2032,16 +2898,16 @@
       },
       {
         "id": "b4",
-        "x": 959.0,
-        "y": 507.0,
+        "x": 959,
+        "y": 507,
         "w": 18,
         "h": 100,
         "material": "glass"
       },
       {
         "id": "b5",
-        "x": 1061.0,
-        "y": 507.0,
+        "x": 1061,
+        "y": 507,
         "w": 18,
         "h": 100,
         "material": "glass"
@@ -2086,14 +2952,18 @@
         "kind": "tnt"
       }
     ],
-    "thresholds": [15000, 18000, 21000],
+    "thresholds": [
+      15000,
+      18000,
+      21000
+    ],
     "par": 2
   },
   {
     "version": 1,
     "id": "meadow-24",
     "name": "Meadow Mayhem",
-    "subtitle": "All your friends. One magnificent mess.",
+    "subtitle": "The first great truss. Its central bays carry the guests and the little hanging court.",
     "world": "countryside",
     "bounds": {
       "width": 1440,
@@ -2104,159 +2974,623 @@
       "x": 235,
       "y": 530
     },
-    "projectiles": ["rabbit", "bear", "duck", "sheep", "bear"],
+    "projectiles": [
+      "rabbit",
+      "bear",
+      "duck",
+      "sheep",
+      "bear"
+    ],
     "blocks": [
       {
-        "id": "b1",
-        "x": 784.0,
-        "y": 625.0,
-        "w": 18,
-        "h": 100,
+        "id": "first-truss-deck-0",
+        "x": 785,
+        "y": 489,
+        "w": 110,
+        "h": 12,
+        "angle": 0,
+        "material": "wood"
+      },
+      {
+        "id": "first-truss-deck-1",
+        "x": 935,
+        "y": 489,
+        "w": 110,
+        "h": 12,
+        "angle": 0,
         "material": "glass"
       },
       {
-        "id": "b2",
-        "x": 866.0,
-        "y": 625.0,
-        "w": 18,
-        "h": 100,
+        "id": "first-truss-deck-2",
+        "x": 1085,
+        "y": 489,
+        "w": 110,
+        "h": 12,
+        "angle": 0,
+        "material": "wood"
+      },
+      {
+        "id": "first-truss-deck-3",
+        "x": 1235,
+        "y": 489,
+        "w": 110,
+        "h": 12,
+        "angle": 0,
+        "material": "wood"
+      },
+      {
+        "id": "first-truss-arch-0",
+        "x": 785,
+        "y": 410.25,
+        "w": 177.5,
+        "h": 12,
+        "angle": -0.8097835725701669,
+        "material": "wood"
+      },
+      {
+        "id": "first-truss-arch-1",
+        "x": 935,
+        "y": 305.25,
+        "w": 118.92215075312816,
+        "h": 12,
+        "angle": -0.33667481938672716,
+        "material": "wood"
+      },
+      {
+        "id": "first-truss-arch-2",
+        "x": 1085,
+        "y": 305.25,
+        "w": 118.92215075312816,
+        "h": 12,
+        "angle": 0.33667481938672716,
+        "material": "wood"
+      },
+      {
+        "id": "first-truss-arch-3",
+        "x": 1235,
+        "y": 410.25,
+        "w": 177.5,
+        "h": 12,
+        "angle": 0.8097835725701669,
+        "material": "wood"
+      },
+      {
+        "id": "first-truss-hanger-1",
+        "x": 860,
+        "y": 410.25,
+        "w": 117.5,
+        "h": 12,
+        "angle": -1.5707963267948966,
+        "material": "wood"
+      },
+      {
+        "id": "first-truss-hanger-2",
+        "x": 1010,
+        "y": 384,
+        "w": 170,
+        "h": 12,
+        "angle": -1.5707963267948966,
         "material": "glass"
       },
       {
-        "id": "b3",
-        "x": 825,
-        "y": 566,
-        "w": 122,
-        "h": 18,
+        "id": "first-truss-hanger-3",
+        "x": 1160,
+        "y": 410.25,
+        "w": 117.5,
+        "h": 12,
+        "angle": -1.5707963267948966,
         "material": "wood"
       },
       {
-        "id": "b4",
-        "x": 784.0,
-        "y": 507.0,
-        "w": 18,
-        "h": 100,
+        "id": "first-truss-brace-left",
+        "x": 935,
+        "y": 410.25,
+        "w": 177.5,
+        "h": 12,
+        "angle": 0.8097835725701669,
+        "material": "wood"
+      },
+      {
+        "id": "first-truss-brace-right",
+        "x": 1085,
+        "y": 410.25,
+        "w": 177.5,
+        "h": 12,
+        "angle": -0.8097835725701669,
+        "material": "wood"
+      },
+      {
+        "id": "first-truss-crown",
+        "x": 1010,
+        "y": 269,
+        "w": 100,
+        "h": 20,
+        "material": "wood"
+      },
+      {
+        "id": "first-court",
+        "x": 935,
+        "y": 590,
+        "w": 130,
+        "h": 18,
         "material": "glass"
-      },
-      {
-        "id": "b5",
-        "x": 866.0,
-        "y": 507.0,
-        "w": 18,
-        "h": 100,
-        "material": "glass"
-      },
-      {
-        "id": "b6",
-        "x": 825,
-        "y": 448,
-        "w": 122,
-        "h": 18,
-        "material": "wood"
-      },
-      {
-        "id": "b7",
-        "x": 1064.0,
-        "y": 625.0,
-        "w": 18,
-        "h": 100,
-        "material": "wood"
-      },
-      {
-        "id": "b8",
-        "x": 1196.0,
-        "y": 625.0,
-        "w": 18,
-        "h": 100,
-        "material": "wood"
-      },
-      {
-        "id": "b9",
-        "x": 1130,
-        "y": 566,
-        "w": 172,
-        "h": 18,
-        "material": "stone"
-      },
-      {
-        "id": "b10",
-        "x": 1064.0,
-        "y": 507.0,
-        "w": 18,
-        "h": 100,
-        "material": "wood"
-      },
-      {
-        "id": "b11",
-        "x": 1196.0,
-        "y": 507.0,
-        "w": 18,
-        "h": 100,
-        "material": "wood"
-      },
-      {
-        "id": "b12",
-        "x": 1130,
-        "y": 448,
-        "w": 172,
-        "h": 18,
-        "material": "stone"
       }
     ],
     "monsters": [
       {
-        "id": "m1",
-        "x": 825,
-        "y": 657,
-        "radius": 18,
-        "kind": "horn"
-      },
-      {
-        "id": "m2",
-        "x": 825,
-        "y": 539,
+        "id": "first-truss-traveller-1",
+        "x": 935,
+        "y": 465,
         "radius": 18,
         "kind": "blob"
       },
       {
-        "id": "m3",
-        "x": 1130,
-        "y": 657,
-        "radius": 18,
-        "kind": "horn"
-      },
-      {
-        "id": "m4",
-        "x": 1130,
-        "y": 539,
-        "radius": 18,
-        "kind": "blob"
-      },
-      {
-        "id": "m5",
-        "x": 1130,
-        "y": 421,
+        "id": "first-truss-inner-guest",
+        "x": 1085,
+        "y": 465,
         "radius": 18,
         "kind": "bat"
       },
       {
-        "id": "m6",
-        "x": 1290,
-        "y": 657,
+        "id": "first-courtier",
+        "x": 935,
+        "y": 563,
         "radius": 18,
-        "kind": "horn"
+        "kind": "blob"
       }
     ],
-    "hazards": [
+    "hazards": [],
+    "thresholds": [
+      15000,
+      15500,
+      16000
+    ],
+    "par": 4,
+    "tutorial": "Everything you have learned, together. Find the weak spot and make a little mayhem.",
+    "terrain": [
       {
-        "id": "t1",
-        "x": 1000,
-        "y": 655,
-        "kind": "tnt"
+        "id": "first-truss-bank-left",
+        "x": 710,
+        "y": 585,
+        "w": 90,
+        "h": 180,
+        "material": "stone"
+      },
+      {
+        "id": "first-truss-bank-right",
+        "x": 1310,
+        "y": 585,
+        "w": 90,
+        "h": 180,
+        "material": "stone"
       }
     ],
-    "thresholds": [30000, 33000, 36000],
-    "par": 3,
-    "tutorial": "Everything you have learned, together. Find the weak spot and make a little mayhem."
+    "props": [],
+    "joints": [
+      {
+        "id": "first-truss-pin-b0-first-truss-deck-0",
+        "kind": "hinge",
+        "bodyA": "first-truss-bank-left",
+        "pointA": {
+          "x": 0,
+          "y": -96
+        },
+        "bodyB": "first-truss-deck-0",
+        "pointB": {
+          "x": -75,
+          "y": 0
+        },
+        "length": 0,
+        "stiffness": 0.75,
+        "damping": 0.15
+      },
+      {
+        "id": "first-truss-pin-b0-first-truss-arch-0",
+        "kind": "hinge",
+        "bodyA": "first-truss-bank-left",
+        "pointA": {
+          "x": 0,
+          "y": -96
+        },
+        "bodyB": "first-truss-arch-0",
+        "pointB": {
+          "x": -108.75,
+          "y": 0
+        },
+        "length": 0,
+        "stiffness": 0.75,
+        "damping": 0.15
+      },
+      {
+        "id": "first-truss-pin-b1-first-truss-deck-1",
+        "kind": "hinge",
+        "bodyA": "first-truss-deck-0",
+        "pointA": {
+          "x": 75,
+          "y": 0
+        },
+        "bodyB": "first-truss-deck-1",
+        "pointB": {
+          "x": -75,
+          "y": 0
+        },
+        "length": 0,
+        "stiffness": 0.75,
+        "damping": 0.15
+      },
+      {
+        "id": "first-truss-pin-b1-first-truss-hanger-1",
+        "kind": "hinge",
+        "bodyA": "first-truss-deck-0",
+        "pointA": {
+          "x": 75,
+          "y": 0
+        },
+        "bodyB": "first-truss-hanger-1",
+        "pointB": {
+          "x": -78.75,
+          "y": 0
+        },
+        "length": 0,
+        "stiffness": 0.75,
+        "damping": 0.15
+      },
+      {
+        "id": "first-truss-pin-b2-first-truss-deck-2",
+        "kind": "hinge",
+        "bodyA": "first-truss-deck-1",
+        "pointA": {
+          "x": 75,
+          "y": 0
+        },
+        "bodyB": "first-truss-deck-2",
+        "pointB": {
+          "x": -75,
+          "y": 0
+        },
+        "length": 0,
+        "stiffness": 0.75,
+        "damping": 0.15
+      },
+      {
+        "id": "first-truss-pin-b2-first-truss-hanger-2",
+        "kind": "hinge",
+        "bodyA": "first-truss-deck-1",
+        "pointA": {
+          "x": 75,
+          "y": 0
+        },
+        "bodyB": "first-truss-hanger-2",
+        "pointB": {
+          "x": -105,
+          "y": 0
+        },
+        "length": 0,
+        "stiffness": 0.75,
+        "damping": 0.15
+      },
+      {
+        "id": "first-truss-pin-b2-first-truss-brace-left",
+        "kind": "hinge",
+        "bodyA": "first-truss-deck-1",
+        "pointA": {
+          "x": 75,
+          "y": 0
+        },
+        "bodyB": "first-truss-brace-left",
+        "pointB": {
+          "x": 108.75,
+          "y": 0
+        },
+        "length": 0,
+        "stiffness": 0.75,
+        "damping": 0.15
+      },
+      {
+        "id": "first-truss-pin-b2-first-truss-brace-right",
+        "kind": "hinge",
+        "bodyA": "first-truss-deck-1",
+        "pointA": {
+          "x": 75,
+          "y": 0
+        },
+        "bodyB": "first-truss-brace-right",
+        "pointB": {
+          "x": -108.75,
+          "y": 0
+        },
+        "length": 0,
+        "stiffness": 0.75,
+        "damping": 0.15
+      },
+      {
+        "id": "first-truss-pin-b3-first-truss-deck-3",
+        "kind": "hinge",
+        "bodyA": "first-truss-deck-2",
+        "pointA": {
+          "x": 75,
+          "y": 0
+        },
+        "bodyB": "first-truss-deck-3",
+        "pointB": {
+          "x": -75,
+          "y": 0
+        },
+        "length": 0,
+        "stiffness": 0.75,
+        "damping": 0.15
+      },
+      {
+        "id": "first-truss-pin-b3-first-truss-hanger-3",
+        "kind": "hinge",
+        "bodyA": "first-truss-deck-2",
+        "pointA": {
+          "x": 75,
+          "y": 0
+        },
+        "bodyB": "first-truss-hanger-3",
+        "pointB": {
+          "x": -78.75,
+          "y": 0
+        },
+        "length": 0,
+        "stiffness": 0.75,
+        "damping": 0.15
+      },
+      {
+        "id": "first-truss-pin-b4-first-truss-deck-3",
+        "kind": "hinge",
+        "bodyA": "first-truss-bank-right",
+        "pointA": {
+          "x": 0,
+          "y": -96
+        },
+        "bodyB": "first-truss-deck-3",
+        "pointB": {
+          "x": 75,
+          "y": 0
+        },
+        "length": 0,
+        "stiffness": 0.75,
+        "damping": 0.15
+      },
+      {
+        "id": "first-truss-pin-b4-first-truss-arch-3",
+        "kind": "hinge",
+        "bodyA": "first-truss-bank-right",
+        "pointA": {
+          "x": 0,
+          "y": -96
+        },
+        "bodyB": "first-truss-arch-3",
+        "pointB": {
+          "x": 108.75,
+          "y": 0
+        },
+        "length": 0,
+        "stiffness": 0.75,
+        "damping": 0.15
+      },
+      {
+        "id": "first-truss-pin-t1-first-truss-arch-1",
+        "kind": "hinge",
+        "bodyA": "first-truss-arch-0",
+        "pointA": {
+          "x": 108.75,
+          "y": 0
+        },
+        "bodyB": "first-truss-arch-1",
+        "pointB": {
+          "x": -79.46107537656408,
+          "y": 0
+        },
+        "length": 0,
+        "stiffness": 0.75,
+        "damping": 0.15
+      },
+      {
+        "id": "first-truss-pin-t1-first-truss-hanger-1",
+        "kind": "hinge",
+        "bodyA": "first-truss-arch-0",
+        "pointA": {
+          "x": 108.75,
+          "y": 0
+        },
+        "bodyB": "first-truss-hanger-1",
+        "pointB": {
+          "x": 78.75,
+          "y": 0
+        },
+        "length": 0,
+        "stiffness": 0.75,
+        "damping": 0.15
+      },
+      {
+        "id": "first-truss-pin-t1-first-truss-brace-left",
+        "kind": "hinge",
+        "bodyA": "first-truss-arch-0",
+        "pointA": {
+          "x": 108.75,
+          "y": 0
+        },
+        "bodyB": "first-truss-brace-left",
+        "pointB": {
+          "x": -108.75,
+          "y": 0
+        },
+        "length": 0,
+        "stiffness": 0.75,
+        "damping": 0.15
+      },
+      {
+        "id": "first-truss-pin-t2-first-truss-arch-2",
+        "kind": "hinge",
+        "bodyA": "first-truss-arch-1",
+        "pointA": {
+          "x": 79.46107537656408,
+          "y": 0
+        },
+        "bodyB": "first-truss-arch-2",
+        "pointB": {
+          "x": -79.46107537656408,
+          "y": 0
+        },
+        "length": 0,
+        "stiffness": 0.75,
+        "damping": 0.15
+      },
+      {
+        "id": "first-truss-pin-t2-first-truss-hanger-2",
+        "kind": "hinge",
+        "bodyA": "first-truss-arch-1",
+        "pointA": {
+          "x": 79.46107537656408,
+          "y": 0
+        },
+        "bodyB": "first-truss-hanger-2",
+        "pointB": {
+          "x": 105,
+          "y": 0
+        },
+        "length": 0,
+        "stiffness": 0.75,
+        "damping": 0.15
+      },
+      {
+        "id": "first-truss-pin-t3-first-truss-arch-3",
+        "kind": "hinge",
+        "bodyA": "first-truss-arch-2",
+        "pointA": {
+          "x": 79.46107537656408,
+          "y": 0
+        },
+        "bodyB": "first-truss-arch-3",
+        "pointB": {
+          "x": -108.75,
+          "y": 0
+        },
+        "length": 0,
+        "stiffness": 0.75,
+        "damping": 0.15
+      },
+      {
+        "id": "first-truss-pin-t3-first-truss-hanger-3",
+        "kind": "hinge",
+        "bodyA": "first-truss-arch-2",
+        "pointA": {
+          "x": 79.46107537656408,
+          "y": 0
+        },
+        "bodyB": "first-truss-hanger-3",
+        "pointB": {
+          "x": 78.75,
+          "y": 0
+        },
+        "length": 0,
+        "stiffness": 0.75,
+        "damping": 0.15
+      },
+      {
+        "id": "first-truss-pin-t3-first-truss-brace-right",
+        "kind": "hinge",
+        "bodyA": "first-truss-arch-2",
+        "pointA": {
+          "x": 79.46107537656408,
+          "y": 0
+        },
+        "bodyB": "first-truss-brace-right",
+        "pointB": {
+          "x": 108.75,
+          "y": 0
+        },
+        "length": 0,
+        "stiffness": 0.75,
+        "damping": 0.15
+      },
+      {
+        "id": "first-court-chain--1",
+        "kind": "rope",
+        "bodyA": "first-truss-deck-1",
+        "pointA": {
+          "x": -45,
+          "y": 0
+        },
+        "bodyB": "first-court",
+        "pointB": {
+          "x": -45,
+          "y": 0
+        },
+        "length": 101,
+        "stiffness": 0.75,
+        "damping": 0.15
+      },
+      {
+        "id": "first-court-chain-1",
+        "kind": "rope",
+        "bodyA": "first-truss-deck-1",
+        "pointA": {
+          "x": 45,
+          "y": 0
+        },
+        "bodyB": "first-court",
+        "pointB": {
+          "x": 45,
+          "y": 0
+        },
+        "length": 101,
+        "stiffness": 0.75,
+        "damping": 0.15
+      }
+    ],
+    "zones": [],
+    "mechanisms": [],
+    "metadata": {
+      "category": "siege",
+      "idea": "The first great truss. Its central bays carry the guests and the little hanging court.",
+      "mechanics": [
+        "bowstring truss",
+        "hanging court",
+        "shared fragile deck"
+      ],
+      "author": "Plush Siege production pass 5",
+      "design": {
+        "archetype": "bowstring with dependent hanging court",
+        "role": "reinforce",
+        "weakPoints": [
+          "first-truss-deck-1",
+          "first-truss-hanger-2",
+          "first-court"
+        ],
+        "sections": [
+          {
+            "id": "primary-assembly",
+            "members": [
+              "first-truss-deck-0",
+              "first-truss-deck-1",
+              "first-truss-deck-2",
+              "first-truss-deck-3",
+              "first-truss-arch-0",
+              "first-truss-arch-1",
+              "first-truss-arch-2",
+              "first-truss-arch-3",
+              "first-truss-hanger-1",
+              "first-truss-hanger-2",
+              "first-truss-hanger-3",
+              "first-truss-brace-left",
+              "first-truss-brace-right",
+              "first-truss-crown",
+              "first-court",
+              "first-truss-traveller-1",
+              "first-truss-inner-guest",
+              "first-courtier",
+              "first-truss-bank-left",
+              "first-truss-bank-right"
+            ]
+          }
+        ],
+        "intendedRoute": [],
+        "worldUse": "classic"
+      }
+    }
   }
 ]
