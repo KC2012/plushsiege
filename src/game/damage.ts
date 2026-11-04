@@ -8,6 +8,9 @@ export interface DamageRecord {
   normalSpeed?: number;
   energy?: number;
   material?: string;
+  supportedMass?: number;
+  pressureRatio?: number;
+  compressionMs?: number;
 }
 
 /** Contact-space energy before Matter resolves an impact. The normal points B → A.

@@ -1,4 +1,5 @@
 import Matter from 'matter-js';
+import {compressionScenarios} from './compression-scenarios';
 import { Simulation } from '../game/physics';
 import type { Level, BlockDef } from '../game/types';
 const { Body, Composite } = Matter;
@@ -284,3 +285,5 @@ export const physicsScenarios: PhysicsScenario[] = [
     }),
   },
 ];
+
+physicsScenarios.push(...compressionScenarios);

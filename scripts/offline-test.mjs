@@ -173,7 +173,7 @@ try {
   );
   await page.goto(url.replace(/\/$/, '') + '/physics-lab.html');
   await page.waitForFunction(() => window.plushPhysicsLab && document.querySelector('#details').textContent.length > 0);
-  check('physics lab and all eleven scenario definitions load offline', await page.locator('#scenario option').count() === 11);
+  check('physics lab and all eighteen scenario definitions load offline', await page.locator('#scenario option').count() === 18);
   await page.locator('#step').click();
   check('offline physics lab steps the real simulation', await page.evaluate(() => window.plushPhysicsLab.snapshot().frame === 1));
   check('production play made no external runtime requests', externalRequests.length === 0);

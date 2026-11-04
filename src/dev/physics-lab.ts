@@ -46,7 +46,7 @@ function updateInfo() {
       .filter((e) => e.type === 'monster')
       .map(
         (e) =>
-          `${e.id} · dynamic=${!e.body.isStatic} · ${e.body.isSleeping ? 'SLEEPING' : 'AWAKE'}\nposition=(${e.body.position.x.toFixed(2)}, ${e.body.position.y.toFixed(2)}) angle=${e.body.angle.toFixed(3)}\nvelocity=(${e.body.velocity.x.toFixed(2)}, ${e.body.velocity.y.toFixed(2)}) health=${e.health.toFixed(2)}/${e.maxHealth.toFixed(2)}`,
+          `${e.id} · dynamic=${!e.body.isStatic} · ${e.body.isSleeping ? 'SLEEPING' : 'AWAKE'}\nposition=(${e.body.position.x.toFixed(2)}, ${e.body.position.y.toFixed(2)}) angle=${e.body.angle.toFixed(3)}\nvelocity=(${e.body.velocity.x.toFixed(2)}, ${e.body.velocity.y.toFixed(2)}) health=${e.health.toFixed(2)}/${e.maxHealth.toFixed(2)}\nload=${(sim.compression.readings.get(e.body.id)?.supportedMass||0).toFixed(2)} ratio=${(sim.compression.readings.get(e.body.id)?.weightRatio||0).toFixed(2)} pressureMs=${Math.round(sim.compression.readings.get(e.body.id)?.durationMs||0)}`,
       )
       .join('\n\n') || 'No live monsters remain.';
   $('#events').textContent =
@@ -54,7 +54,7 @@ function updateInfo() {
       .slice(-16)
       .map(
         (e) =>
-          `${e.type} ${e.material || ''} @ ${Math.round(e.x)},${Math.round(e.y)}${'amount' in e ? ' damage=' + Number(e.amount).toFixed(2) : ''}${'source' in e ? ' source=' + e.source : ''}`,
+          `${e.type} ${e.material || ''} @ ${Math.round(e.x)},${Math.round(e.y)}${'amount' in e ? ' damage=' + Number(e.amount).toFixed(2) : ''}${'source' in e ? ' source=' + e.source : ''}${e.pressureRatio!==undefined?' loadRatio='+e.pressureRatio.toFixed(2):''}`,
       )
       .join('\n') || 'No damaging events yet.';
   $('#run').textContent = scene.paused ? 'RUN' : 'PAUSE';

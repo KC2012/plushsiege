@@ -73,6 +73,7 @@ export class SiegeScene extends Phaser.Scene {
   private trails: { x: number; y: number; at: number; color: number }[] = [];
   private trailAt = 0;
   private lastStretchAt = 0;
+  private lastPressureSoundAt = -1000;
   /** Coordinates passed to the real monster painter, for visual/physics regression inspection. */
   renderedMonsters: { id: string; x: number; y: number; angle: number; healthRatio: number }[] = [];
   private monsterLooks = new Map<number, { kind: string; radius: number; angle: number }>();
@@ -364,7 +365,13 @@ export class SiegeScene extends Phaser.Scene {
           }
         }
         if (e.type === 'ready' && this.mode === 'play') this.focusSling();
-        if ((e.type as string) === 'damage') this.audio.play('impact', e.material, e.power ?? 1);
+        if (e.type === 'damage' && e.pressureRatio !== undefined) {
+          if (this.elapsed - this.lastPressureSoundAt > 180) {
+            this.audio.play('impact', e.material || 'stone', Math.min(10, e.pressureRatio / 3));
+            this.lastPressureSoundAt = this.elapsed;
+          }
+        }
+        else if ((e.type as string) === 'damage') this.audio.play('impact', e.material, e.power ?? 1);
         else this.audio.play(e.type, e.material || e.projectileKind, e.power ?? 1);
       }
       const state = `${sim.phase}:${sim.score}:${sim.shots}:${sim.remainingMonsters}:${sim.abilityUsed}:${sim.canActivate}:${this.viewState.isOverview}`;
@@ -414,6 +421,19 @@ export class SiegeScene extends Phaser.Scene {
         b = Matter.Constraint.pointBWorld(constraint),
         def = sim.level.joints?.find((j) => j.id === id);
       if (def?.kind === 'hinge') {
+        for (const [body, anchor] of [[constraint.bodyA, a], [constraint.bodyB, b]] as const) {
+          const entity = body && sim.entities.get(body.id), piece = entity?.def as BlockDef | undefined;
+          if (!body || !piece || !('w' in piece)) continue;
+          const dx = anchor.x - body.position.x, dy = anchor.y - body.position.y;
+          const cos = Math.cos(body.angle), sin = Math.sin(body.angle);
+          const lx = dx * cos + dy * sin, ly = -dx * sin + dy * cos;
+          const x = Math.max(-piece.w / 2, Math.min(piece.w / 2, lx));
+          const y = Math.max(-piece.h / 2, Math.min(piece.h / 2, ly));
+          const end = { x: body.position.x + x * cos - y * sin, y: body.position.y + x * sin + y * cos };
+          if (Math.hypot(end.x - anchor.x, end.y - anchor.y) < 2) continue;
+          g.lineStyle(6, 0x242139); g.lineBetween(end.x, end.y, anchor.x, anchor.y);
+          g.lineStyle(2, 0xffd44e); g.lineBetween(end.x, end.y, anchor.x, anchor.y);
+        }
         g.fillStyle(0xffd44e);
         g.fillCircle(a.x, a.y, 7);
         g.lineStyle(3, 0x242139);

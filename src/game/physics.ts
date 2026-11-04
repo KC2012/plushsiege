@@ -3,6 +3,7 @@ import type { Level, StuffieKind, BlockDef, MonsterDef, TerrainDef, PropDef, Poi
 import { MATERIALS, STUFFIES, PHYSICS } from './config';
 import { contactImpact, impactDamage, pinnedImpactEnergy, type DamageRecord } from './damage';
 import { WorldPhysics } from './world-physics';
+import { CompressionSystem, convexBodiesNear } from './compression';
 const { Engine, Bodies, Body, Composite, Events, Sleeping } = Matter;
 export type Phase = 'aiming' | 'flying' | 'won' | 'lost';
 export interface Entity {
@@ -55,6 +56,9 @@ export interface GameEvent {
   energy?: number;
   jointId?:string;
   mechanismId?:string;
+  supportedMass?:number;
+  pressureRatio?:number;
+  compressionMs?:number;
 }
 
 export { contactImpact } from './damage';
@@ -62,6 +66,7 @@ export { contactImpact } from './damage';
 export class Simulation {
   engine: Matter.Engine;
   worldPhysics!:WorldPhysics;
+  compression!:CompressionSystem;
   get constraints(){return this.worldPhysics.constraints;}
   get mechanisms(){return this.worldPhysics.mechanisms;}
   accelerationAt(point:Point){return this.worldPhysics.accelerationAt(point);}
@@ -84,12 +89,15 @@ export class Simulation {
   private quiet = 0;
   private shotStart = 0;
   private targetsClearedAt?:number;
+  private restPoses = new Map<number, { x: number; y: number; angle: number; since: number }>();
+  private damageTimes = new Map<number, number>();
 
   constructor(public level: Level) {
     this.engine = Engine.create({
       enableSleeping: true,
       positionIterations: 10,
       velocityIterations: 8,
+      constraintIterations: (level.joints?.length || 0) > 8 ? 4 : 2,
     });
     if(level.environment?.ground!==false)Composite.add(this.engine.world,
       Bodies.rectangle(level.bounds.width/2,level.bounds.ground+60,level.bounds.width+500,120,{isStatic:true,friction:level.environment?.groundFriction??(level.world==='frozen'?.025:.9),label:'ground'})
@@ -142,7 +150,14 @@ export class Simulation {
         maxHealth: 5,
         born: 0,
       });
-    this.worldPhysics=new WorldPhysics(level,this.engine,this.entities,e=>this.add(e),(e,damage)=>this.queueDamage(e,damage),event=>this.events.push(event));
+    this.worldPhysics=new WorldPhysics(level,this.engine,this.entities,e=>this.add(e),(e,damage)=>this.queueDamage(e,damage),event=>{
+      if (event.type === 'joint-break') {
+        this.supportWakePending = true;
+        this.restPoses.clear();
+      }
+      this.events.push(event);
+    });
+    this.compression=new CompressionSystem(this.engine,this.entities,p=>this.accelerationAt(p),()=>this.constraints.values(),(e,d)=>this.queueDamage(e,d));
     Events.on(this.engine, 'beforeSolve', () => {
       // Existing contact pairs need their pre-solver velocities too: collisionActive
       // fires after resolution and collisionStart alone misses renewed loading.
@@ -289,20 +304,57 @@ export class Simulation {
       if (support !== excluding && [...dependents].some((body) => body.id === id)) return true;
     return false;
   }
-  private wakeDependents(id: number, seen = new Set<number>()) {
+  private wakeDependents(id: number, seen = new Set<number>(), holdResolution = true) {
     if (seen.has(id) || this.disposed) return;
     seen.add(id);
     for (const body of this.supportDependents.get(id) || []) {
       if (!body.isStatic) {
-        if (body.isSleeping) this.supportWakePending = true;
+        if (body.isSleeping && holdResolution && !this.fixedAtCentre(body)) this.supportWakePending = true;
         Sleeping.set(body, false);
       }
-      this.wakeDependents(body.id, seen);
+      this.wakeDependents(body.id, seen, holdResolution);
     }
+  }
+  private fixedAtCentre(body: Matter.Body) {
+    const live = new Set(Composite.allBodies(this.engine.world).map(b => b.id));
+    return [...this.constraints.values()].some(c => {
+      if (c.length > 1 || c.stiffness < .5) return false;
+      const point = c.bodyA === body ? c.pointA : c.bodyB === body ? c.pointB : undefined;
+      const other = c.bodyA === body ? c.bodyB : c.bodyB === body ? c.bodyA : undefined;
+      return !!point && Math.hypot(point.x, point.y) < 1 && (!other || (other.isStatic && live.has(other.id)));
+    });
+  }
+  private convergedBodies() {
+    const settled = new Set<number>();
+    const eligible = new Set<number>();
+    for (const c of this.constraints.values()) {
+      if (c.bodyA) eligible.add(c.bodyA.id);
+      if (c.bodyB) eligible.add(c.bodyB.id);
+    }
+    const carry = (id: number) => {
+      for (const body of this.compression.supportGraph.get(id) || []) {
+        if (eligible.has(body.id)) continue;
+        eligible.add(body.id); carry(body.id);
+      }
+    };
+    for (const id of [...eligible]) carry(id);
+    for (const e of this.entities.values()) {
+      const body = e.body, previous = this.restPoses.get(body.id);
+      const radius = Math.hypot(body.bounds.max.x - body.bounds.min.x, body.bounds.max.y - body.bounds.min.y) / 2;
+      if (!previous || Math.hypot(body.position.x - previous.x, body.position.y - previous.y) + Math.abs(body.angle - previous.angle) * radius > 1.5) {
+        this.restPoses.set(body.id, { ...body.position, angle: body.angle, since: this.time });
+      } else if (eligible.has(body.id) && this.time - previous.since >= 1000 && this.time - (this.damageTimes.get(body.id) ?? -Infinity) >= 1000) {
+        settled.add(body.id);
+      }
+    }
+    for (const id of this.restPoses.keys()) if (!this.entities.has(id)) this.restPoses.delete(id);
+    for (const id of this.damageTimes.keys()) if (!this.entities.has(id)) this.damageTimes.delete(id);
+    return settled;
   }
   private wakeMovedSupports() {
     const bodies = Composite.allBodies(this.engine.world),
       live = new Set(bodies.map((body) => body.id));
+    const byId = new Map(bodies.map(body => [body.id, body]));
     for (const [id] of this.supportPoses)
       if (!live.has(id)) {
         this.wakeDependents(id);
@@ -319,10 +371,14 @@ export class Simulation {
         Math.abs(body.angle - old.angle) > 0.006
       ) {
         if (!body.isStatic && body.isSleeping) {
-          this.supportWakePending = true;
+          const hadSupport = this.isSupported(body.id, -1);
+          const stillSupported = [...this.supportDependents].some(([id, dependents]) =>
+            [...dependents].some(d => d.id === body.id) && !!byId.get(id) && convexBodiesNear(byId.get(id)!, body));
+          if (hadSupport && !stillSupported) this.supportWakePending = true;
           Sleeping.set(body, false);
         }
-        this.wakeDependents(body.id);
+        const lostContact = [...this.supportDependents.get(body.id) || []].some(dependent => !convexBodiesNear(body, dependent));
+        this.wakeDependents(body.id, new Set(), lostContact);
         this.supportPoses.set(body.id, { ...body.position, angle: body.angle });
       }
     }
@@ -351,9 +407,14 @@ export class Simulation {
       if(ma>1e-6&&(n.x*ga.x+n.y*ga.y)<-.2*ma)connect(b,a);
       if(mb>1e-6&&(n.x*gb.x+n.y*gb.y)>.2*mb)connect(a,b);
     }
+    const byId = new Map(Composite.allBodies(this.engine.world).map(body => [body.id, body]));
     for (const [support, dependents] of this.supportDependents)
       for (const body of dependents)
-        if (!graph.get(support)?.has(body) && body.isSleeping) this.wakeDependents(support);
+        if (!graph.get(support)?.has(body) && body.isSleeping) {
+          const retained = this.compression.supportGraph.get(support)?.has(body);
+          if (retained && byId.has(support)) connect(byId.get(support)!, body);
+          else this.wakeDependents(support);
+        }
     this.supportDependents = graph;
   }
   private add(e: Entity) {
@@ -501,6 +562,7 @@ export class Simulation {
     this.worldPhysics.beforeStep(this.time,this.shots>0);
     this.wakeMovedSupports();
     Engine.update(this.engine, PHYSICS.step);
+    this.compression.update(this.time);
     this.refreshSupports();
     // Process TNT chains without dropping damage queued by another explosion in the same tick.
     for (let round = 0; this.pending.size && round < 8; round++) {
@@ -511,6 +573,8 @@ export class Simulation {
         if (!e) continue;
         for (const record of records) {
           e.health -= record.amount;
+          this.damageTimes.set(e.body.id, this.time);
+          if (record.sourceBodyId !== undefined) this.damageTimes.set(record.sourceBodyId, this.time);
           const event: GameEvent = {
             type: 'damage',
             x: e.body.position.x,
@@ -523,6 +587,9 @@ export class Simulation {
             normalSpeed: record.normalSpeed,
             energy: record.energy,
             material: record.material,
+            supportedMass: record.supportedMass,
+            pressureRatio: record.pressureRatio,
+            compressionMs: record.compressionMs,
           };
           this.events.push(event);
           this.damageHistory.push(event);
@@ -571,16 +638,20 @@ export class Simulation {
     };
     const markCarried=(id:number)=>{const support=this.entities.get(id)?.body;if(!support)return;for(const body of this.supportDependents.get(id)||[])if(!driven.has(body.id)&&stableRider(support,body)){driven.add(body.id);markCarried(body.id);}};
     for(const id of [...driven])markCarried(id);
+    const converged = this.convergedBodies();
     const moving =
       this.supportWakePending ||
+      this.compression.pending ||
       [...this.entities.values()].some(
         (e) =>
+          e.fractureAt !== undefined ||
+          (
           !e.body.isStatic &&
           !driven.has(e.body.id) &&
           !e.body.isSleeping &&
+          !converged.has(e.body.id) &&
           (e.body.speed > 0.32 ||
-            Math.abs(e.body.angularVelocity) > 0.04 ||
-            e.fractureAt !== undefined),
+            Math.abs(e.body.angularVelocity) > 0.04)),
       );
     this.supportWakePending = false;
     this.quiet = moving ? 0 : this.quiet + 1;

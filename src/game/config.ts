@@ -106,4 +106,7 @@ export const PHYSICS = {
   monsterFallSpeedFloor: 3.8,
   crushSpeedFloor: 0.65,
   crushMassRatio: 1.4,
+  compressionLoadRatio: 6,
+  compressionDelayMs: 300,
+  compressionDamageRate: .65,
 };

@@ -56,3 +56,7 @@ Keep body/effect budgets, fixed physics steps, offscreen drawing culls and safe 
 ## Quality review checklist
 
 Can the player identify a promising weak point? Does the first collision produce useful feedback even when the shot is imperfect? Is there room for another viable approach? Does the advertised mechanism really cause the next event? Can the entire arrangement be inspected? Is ammunition forgiving enough for experimentation? Does the level contribute an idea absent from its neighbors? These are review questions, not a numerical “fun score.”
+
+## Pass 5 revision
+
+See [concrete research and design rules](LEVEL_DESIGN_RESEARCH.md). The new acceptance focus is a recognizable initiating action, a physically important weak point, varied load paths, useful world mechanics, protected targets that can actually be crushed, and meaningful interaction between architectural sections. A winning sample alone does not approve a composition's quality.
