@@ -40,6 +40,14 @@ Ice and orbital browser clears used one available follow-up beyond their Node wi
 
 All 85 winning Node replays stayed below the 240-entity cap: the observed peak was 90 entities, including at most 46 fragments. The slowest per-level 95th-percentile physics step was 1.924 ms on this cloud host. These are physics CPU costs, not complete game frame times. The separate first-shot animation-loop samples averaged 53.3–60.1 FPS in headless software Canvas. Median frame intervals were 16.7 ms; per-sample p95 intervals ranged from 16.7 to 33.3 ms. Startup/host stalls are retained in the totals. These eight-second scene samples exclude the HTML HUD and audio, do not cover complete multi-shot clears, and do not establish sustained device performance.
 
+## Download and run
+
+The [0.5.0 browser ZIP](../downloads/README.md) includes the built game and a local server; it requires Node.js 24 but no npm install. Extract everything, then run `start-windows.cmd` on Windows or `node serve.mjs` on macOS/Linux. Open `http://127.0.0.1:8080`. The included README covers iPad/network hosting.
+
+The archive contains the production build from source commit `619f925279ba855f582b9352d45c4a8c2c059136`. ZIP integrity, all 19 file hashes and exact agreement with `dist/` passed. The extracted package also passed the full 18-check offline suite through its included Node server. See `package-integrity.json` and `package-offline.txt` in the evidence directory. The Windows command file was checked for CRLF formatting; it was not run on a physical Windows machine.
+
+For source development, run `npm ci` before `npm run dev` in the extracted repository folder containing `package.json`. This installs Vite and the pinned dependencies.
+
 ## Scope and remaining work
 
 The optional 30–50 new stages were reduced to 15 individually verified additions. Further expansion needs more distinct designs and human playtesting. Automated metrics measure materials, angles, target spread, moving/destructed objects, secondary impacts, affected sections, chronological unique-object paths and actual environmental activity. They do not rate fun or prove causal chains by themselves. The mechanism checks verify selected physical links directly.

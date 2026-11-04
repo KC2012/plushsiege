@@ -1,0 +1,36 @@
+PASS production home renders with its gameplay canvas
+PASS new production worker activates and controls the page
+PASS worker cached the HTML shell and local game bundles
+PASS precache includes install manifest and both raster icons
+Precache: 16 assets in plush-siege-0985892778492f78
+/
+/index.html
+/physics-lab.html
+/manifest.webmanifest
+/icon.svg
+/icon-192.png
+/icon-512.png
+/apple-touch-icon.png
+/third-party-notices.txt
+/assets/game-DkhQsfZ9.css
+/assets/physicsLab-CEhPTo06.css
+/assets/phaser-DzTDBLkw.js
+/assets/physics-elkLEKeR.js
+/assets/game-CeXBF0OW.js
+/assets/physicsLab-CjkcZY8F.js
+/assets/scene-FPq-y1pj.js
+PASS manifest PNG icons fetch and decode at their declared sizes
+PASS online reload remains controlled by production worker
+PASS fresh offline navigation renders game title and PLAY
+PASS browser reports offline for the functional test
+PASS manifest and raster icons also remain available offline
+PASS paged campaign map is selectable offline
+PASS first offline level starts with unused projectiles
+PASS real offline slingshot shot wins through running physics
+PASS offline restart resets the game
+PASS offline earned stars survive reload
+PASS physics lab and all eighteen scenario definitions load offline
+PASS offline physics lab steps the real simulation
+PASS production play made no external runtime requests
+PASS online and offline play produced no uncaught browser errors
+Offline production: 18 checks passed.

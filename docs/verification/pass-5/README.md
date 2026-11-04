@@ -25,3 +25,5 @@ Reproduce the animation measurement with the dev server running:
 ```sh
 GAME_URL=http://127.0.0.1:5190 CANVAS_CI=1 npm run measure:render
 ```
+
+`package-integrity.json` records ZIP integrity, all 19 file hashes, exact production-build contents and the build-source commit. `package-offline.txt` reruns the 18-check production offline suite against a separately extracted archive served by its included `serve.mjs`, rather than Vite preview. The Windows launcher has CRLF formatting but was not executed on Windows.

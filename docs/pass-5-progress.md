@@ -18,6 +18,8 @@ The broader game, destruction, monster, camera, audio and retained-showcase brow
 
 Real-animation-loop measurements also completed: 53.3–60.1 mean FPS in short scene-only software-Canvas samples, with host stalls retained. These exclude HUD/audio and are not device performance guarantees.
 
-Remaining release work: build and verify the 0.5.0 browser ZIP, and publish the tested source to GitHub. Do not publish a cloud environment or website.
+Release package complete: `downloads/plush-siege-0.5.0-browser.zip` contains the production build from source milestone `619f925279ba855f582b9352d45c4a8c2c059136`, the local Node server and a Windows launcher. ZIP integrity, all 19 file hashes and exact build contents passed. The extracted archive passed the full 18-check production offline suite using its included server.
+
+The release is ready for the authorized GitHub source publication. No cloud environment or website publication is part of this milestone.
 
 Human follow-up: physical iPad performance/touch/audio/offline installation and subjective campaign playtesting. The optional 30–50 new-level target was reduced to 15 verified additions; further expansion should use fresh premises and playtest evidence.
